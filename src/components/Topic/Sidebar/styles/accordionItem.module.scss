@@ -1,0 +1,47 @@
+@import "../../../../styles/mixins.module.scss";
+@import "../../../../styles/variables.module.scss";
+
+.itemWrapper {
+  width: 80%;
+  // border: 1px solid black;
+  height: 30px;
+  min-height: 30px;
+  margin-top: 10px;
+  overflow: hidden;
+  @include transistion(min-height, 0.3s);
+
+  &__titleWrapper {
+    width: 100%;
+    height: 30px;
+    // border: 1px solid red;
+    @include flex-container(flex-start, center);
+    padding-left: 2px;
+    cursor: pointer;
+    p {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+      white-space: nowrap;
+    }
+  }
+  &__subTitleWrapper {
+    width: 100%;
+    height: 30px;
+    @include flex-container(flex-start, center);
+    padding-left: 8px;
+    cursor: pointer;
+    p {
+      font-size: 0.8rem;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+      white-space: nowrap;
+      font-weight: 500;
+      color: $secondary-text-color;
+
+      &:hover {
+        color: darkblue;
+      }
+    }
+  }
+}

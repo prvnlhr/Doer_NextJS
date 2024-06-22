@@ -1,0 +1,23 @@
+@import "../styles/mixins.module";
+@import "../styles/variables.module";
+
+.rootLayoutWrapper {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
+  @include hide-scrollbar;
+  display: grid;
+  grid-template-rows: 80px minmax(0, 1fr);
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "headerWrapper"
+    "contentWrapper";
+  z-index: 1;
+  color: $primary-text-color;
+
+  .contentWrapper {
+    @include fhw;
+    @include flex-container(flex-start, flex-start);
+  }
+}

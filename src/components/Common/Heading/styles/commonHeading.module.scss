@@ -1,0 +1,33 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.headingBox {
+  margin-left: 2%;
+  width: auto;
+  height: 100%;
+  //   border: 1px solid black;
+  @include flex-container(center, flex-start, column);
+  &__textWrapper {
+    height: auto;
+    width: 100%;
+    // border: 1px solid springgreen;
+    p {
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      font-weight: 600;
+    }
+  }
+  &__lineWrapper {
+    // border: 1px solid blue;
+    height: 30%;
+    width: 100%;
+    @include flex-container(flex-start, center);
+    width: 100%;
+    &__lineSpan {
+      width: 15%;
+      height: 0.2rem;
+      border-radius: 10px;
+      background-color: #635db0;
+    }
+  }
+}

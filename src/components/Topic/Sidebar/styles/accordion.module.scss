@@ -1,0 +1,19 @@
+@import "../../../../styles/mixins.module.scss";
+@import "../../../../styles/variables.module.scss";
+
+.accordHeaderWrapper {
+  width: 100%;
+  height: 5%;
+  // border: 1px solid red;
+}
+.accordListWrapper {
+  width: 100%;
+  height: 80%;
+  min-height: 80%;
+  // border: 1px solid blue;
+  @include flex-container(flex-start, center, column);
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

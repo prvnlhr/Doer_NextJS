@@ -1,0 +1,14 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.mainLayoutWrapper {
+  @include fhw;
+  @include hide-scrollbar;
+  display: grid;
+  grid-template-rows: 80px minmax(0, 1fr);
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "headerWrapper"
+    "contentLayoutWrapper";
+  z-index: 1;
+}

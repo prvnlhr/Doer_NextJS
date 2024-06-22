@@ -1,0 +1,102 @@
+@import "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.card {
+  width: 190px;
+  aspect-ratio: 2/2.5;
+  margin: 2% 2%;
+  display: grid;
+  grid-template-areas:
+    "logoWrapper linkBtnWrapper"
+    "titleWrapper titleWrapper"
+    "descWrapper descWrapper"
+    "chapterWrapper durationWrapper";
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 35% 20% 30% 15%;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  background-color: white;
+  @include card-bg-shadow;
+
+  // border-radius: 1.6rem;
+
+  &:hover {
+    box-shadow: $card-hover-box-shadow;
+  }
+
+  &__logoWrapper {
+    grid-area: logoWrapper;
+    @include fhw;
+
+    div {
+      width: 85%;
+      aspect-ratio: 1/1;
+      @include flex-container(flex-start, center);
+    }
+  }
+
+  &__linkBtnWrapper {
+    grid-area: linkBtnWrapper;
+    @include fhw;
+    @include flex-container(flex-end, flex-start);
+    // border: 1px solid red;
+
+    div {
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+      width: 55%;
+    }
+  }
+
+  &__titleWrapper {
+    grid-area: titleWrapper;
+    @include fhw;
+    @include flex-container(flex-start, center);
+    // border: 1px solid red;
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__descWrapper {
+    grid-area: descWrapper;
+    @include fhw;
+    @include flex-container(flex-start, flex-start);
+    padding-right: 2%;
+
+    p {
+      font-size: 0.6rem;
+      color: $secondary-text-color;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+      line-height: 1.8;
+    }
+  }
+
+  &__chapterWrapper {
+    grid-area: chapterWrapper;
+    @include fhw;
+    @include flex-container(center, center);
+    // border: 1px solid black;
+
+    &__innerDiv {
+      width: 95%;
+      height: 80%;
+    }
+  }
+
+  &__durationWrapper {
+    grid-area: durationWrapper;
+    @include fhw;
+    @include flex-container(center, center);
+    // border: 1px solid black;
+    &__innerDiv {
+      width: 95%;
+      height: 80%;
+    }
+  }
+}

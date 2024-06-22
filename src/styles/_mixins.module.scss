@@ -1,0 +1,107 @@
+@import "./variables.module";
+
+@mixin hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin overflow-scroll-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin remove-touch-blue-highlight {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-cleftout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin fhw {
+  height: 100%;
+  width: 100%;
+}
+
+@mixin font-family {
+  font-family: $font;
+}
+
+@mixin card-bg-shadow {
+  box-shadow: $card-box-shadow;
+  background-color: $card-bg;
+}
+
+@mixin flex-container(
+  $justify-content: flex-start,
+  $align-items: flex-start,
+  $direction: row,
+  $wrap: nowrap
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin border($size: 1px, $type: solid, $color: black) {
+  border: $size $type $color;
+}
+
+@mixin radius($val: 3px) {
+  border-radius: $val;
+}
+
+@mixin scroll($dir: y, $display: none) {
+  @if $dir == y {
+    overflow-y: scroll;
+  } @else if $dir == x {
+    overflow-x: scroll;
+  }
+
+  @if $display == none {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  } @else if $display== show {
+    &::-webkit-scrollbar {
+      width: 0.18rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(226, 226, 226, 0.352);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $scrollbar-color;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #8be514;
+    }
+  }
+}
+
+@mixin transistion($type: left, $time: 0.5s) {
+  transition: $type $time ease-in-out;
+  -webkit-transition: $type $time ease-in-out;
+  -moz-transition: $type $time ease-in-out;
+  -o-transition: $type $time ease-in-out;
+  -ms-transition: $type $time ease-in-out;
+}
+
+//  Regular, Medium, Demi, Bold, Heavy
+@mixin font-avenir($weight: normal, $style: normal) {
+  font-family: "AvenirNextLTPro", sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+}

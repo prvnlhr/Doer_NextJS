@@ -1,0 +1,10 @@
+@import "../styles/mixins.module";
+@import "../styles/variables.module";
+.app {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  @include flex-container(center, center);
+  @include remove-touch-blue-highlight;
+  background: $app-main-bg;
+}

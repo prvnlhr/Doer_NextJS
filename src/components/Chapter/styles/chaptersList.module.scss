@@ -1,0 +1,10 @@
+@import "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.chaptersListWrapper {
+  @include fhw;
+  padding-left: 20px;
+  padding-top: 20px;
+  @include flex-container($wrap: wrap);
+  @include scroll($display: show);
+}

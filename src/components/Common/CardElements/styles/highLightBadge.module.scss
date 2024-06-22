@@ -1,0 +1,55 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.badge {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas: "iconWrapper textWrapper";
+  grid-template-rows: 100%;
+  grid-template-columns: auto minmax(0, 1fr);
+  @include radius(0.2rem);
+  @include flex-container(center, center);
+
+  &.borderedBadge {
+    // outline: 1px solid #e4e7ec;
+    background-color: #ecf2ff;
+  }
+
+  &__innerWrapper {
+    width: 75%;
+    height: 75%;
+    @include flex-container(center, center);
+
+    &__iconWrapper {
+      grid-area: iconWrapper;
+      height: 100%;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+      // border: 1px solid salmon;
+
+      &__iconInnerDiv {
+        @include flex-container(center, center);
+        //|> Adjust here to make icon big or small
+        width: 65%;
+        height: 100%;
+        // border: 1px solid skyblue;
+      }
+    }
+
+    &__textWrapper {
+      grid-area: textWrapper;
+      width: 100%;
+      height: 100%;
+      @include flex-container(flex-start, center);
+
+      p {
+        font-size: 0.5rem;
+        color: $secondary-text-color;
+        white-space: nowrap;
+        font-weight: 500;
+        margin-top: 2px;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.courseListWrapper {
+  @include fhw;
+  padding-left: 20px;
+  padding-top: 20px;
+  @include flex-container($wrap: wrap);
+  @include scroll($display: show);
+  border: 1px solid red;
+}
