@@ -14,9 +14,7 @@
     "headerWrapper"
     "contentWrapper";
   z-index: 1;
-  color: $primary-text-color;
   background: $app-bg;
-  // background: $app-main-bg;
 
   .contentWrapper {
     @include fhw;

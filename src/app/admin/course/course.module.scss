@@ -1,22 +1,24 @@
 @import "../../../styles/mixins.module";
-.courseWrapper {
-  width: 100%;
+.coursePageWrapper {
+  width: 90%;
   height: 100%;
   @include flex-container(flex-start, flex-start);
+  // border: 1px solid blue;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
 
   &__formWrapper {
     width: 70%;
-    height: 100%;
-    border-right: 1px solid #d0d5dd;
+    height: 95%;
+    // border: 1px solid red;
     @include flex-container(flex-start, flex-start);
-    // border: 1px solid red;
-    padding: 15px;
-    box-sizing: border-box;
-  }
 
-  &__previewWrapper {
-    width: 30%;
-    height: 100%;
-    // border: 1px solid red;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

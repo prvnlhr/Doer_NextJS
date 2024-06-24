@@ -30,10 +30,6 @@
   width: 100%;
 }
 
-@mixin font-family {
-  font-family: $font;
-}
-
 @mixin card-bg-shadow {
   box-shadow: $card-box-shadow;
   background-color: $card-bg;
@@ -97,13 +93,6 @@
   -moz-transition: $type $time ease-in-out;
   -o-transition: $type $time ease-in-out;
   -ms-transition: $type $time ease-in-out;
-}
-
-//  Regular, Medium, Demi, Bold, Heavy
-@mixin font-avenir($weight: normal, $style: normal) {
-  font-family: "AvenirNextLTPro", sans-serif;
-  font-weight: $weight;
-  font-style: $style;
 }
 
 @mixin border {
