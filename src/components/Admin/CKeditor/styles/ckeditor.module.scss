@@ -1,0 +1,8 @@
+@import "../../../../styles/mixins.module";
+
+.ckeditorWrapper {
+  width: 700px;
+  height: 500px;
+  border: 1px solid red;
+  @include flex-container(flex-start, flex-start);
+}

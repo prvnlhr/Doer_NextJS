@@ -6,7 +6,7 @@
   height: 100%;
   @include flex-container(flex-start, center);
   border-bottom: 1px solid #d0d5dd;
-  border: 1px solid blue;
+  // border: 1px solid blue;
 
   &__appLogoWrapper {
     height: 60%;

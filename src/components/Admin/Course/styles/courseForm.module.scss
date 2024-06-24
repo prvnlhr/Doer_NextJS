@@ -1,0 +1,156 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+@mixin gridCell($area, $color) {
+  grid-area: $area;
+  @include fhw;
+  padding: 2px;
+  display: grid;
+  grid-template-areas:
+    "formGroupWrapper"
+    "errorWrapper";
+  grid-column: 100%;
+  grid-template-rows: minmax(0, 1fr) 20px;
+  // border: 1px solid $color;
+}
+
+.form {
+  width: 100%;
+  height: 100%;
+  @include scroll($dir: y);
+  border-right: 1px solid #d0d5dd;
+  display: grid;
+  grid-template-areas:
+    "logoWrapper durationWrapper "
+    "logoWrapper titleWrapper"
+    "descriptionWrapper descriptionWrapper"
+    "editorWrapper editorWrapper";
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 15% 15% 25% 100%;
+  @include scroll($dir: y);
+  grid-gap: 10px;
+
+  &__logoWrapper {
+    grid-area: logoWrapper;
+    @include fhw;
+    height: 100%;
+    aspect-ratio: 1/1;
+    // border: 1px solid red;
+    display: grid;
+    padding: 2px;
+    grid-template-areas:
+      "formGroupWrapper"
+      "errorWrapper";
+    grid-column: 100%;
+    grid-template-rows: minmax(0, 1fr) 20px;
+  }
+
+  &__durationWrapper {
+    @include gridCell($area: durationWrapper, $color: red);
+  }
+
+  &__titleWrapper {
+    @include gridCell($area: titleWrapper, $color: blue);
+  }
+
+  &__descriptionWrapper {
+    @include gridCell($area: descriptionWrapper, $color: green);
+  }
+
+  &__editorWrapper {
+    @include gridCell($area: editorWrapper, $color: orange);
+  }
+}
+
+.formGroupWrapper {
+  grid-area: formGroupWrapper;
+  @include fhw;
+  // border: 1px solid red;
+  @include flex-container(flex-start, flex-start, $direction: column);
+  background-color: white;
+  padding: 5px 10px;
+  box-sizing: border-box;
+
+  &__labelDiv {
+    width: 100%;
+    height: 20px;
+    // border: 1px solid blue;
+
+    &__labelTag {
+      height: 100%;
+      width: 100%;
+      @include flex-container(flex-start, flex-end);
+    }
+  }
+
+  &__inputDiv {
+    width: 100%;
+    height: calc(100% - 20px);
+    // border: 1px solid red;
+
+    &__inputTag {
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: none;
+      // padding-left: 5px;
+      background-color: none;
+      // border: 1px solid red;
+    }
+
+    &__textAreaInputTag {
+      max-width: 100%;
+      max-height: 95%;
+      // border: 1px solid red;
+      padding: 1% 0px !important;
+    }
+  }
+  &__logoInputDiv {
+    @include flex-container(center, center);
+
+    .hiddenFileInput {
+      display: none;
+    }
+
+    .customUploadBox {
+      height: 90%;
+      width: 100%;
+      border: 2px dashed #d0d5dd;
+      color: #758da7;
+      cursor: pointer;
+      @include flex-container(center, center);
+      border-radius: 5px;
+      p {
+        color: #172c3c;
+        font-size: 0.6rem;
+      }
+    }
+  }
+}
+
+.errorWrapper {
+  grid: errorWrapper;
+  @include fhw;
+  // border: 1px solid sandybrown;
+  padding-left: 5px;
+
+  p {
+    font-size: 0.7rem;
+    color: #f0142f;
+  }
+}
+
+.labelText {
+  font-size: 0.8rem;
+  color: #758da7;
+}
+
+.submitBtn {
+  width: 100px;
+  height: 30px;
+  background-color: #635db0;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
