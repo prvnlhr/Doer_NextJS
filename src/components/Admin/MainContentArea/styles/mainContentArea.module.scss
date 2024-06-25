@@ -1,7 +1,7 @@
 @import "../../../../styles/mixins.module.scss";
 @import "../../../../styles/variables.module.scss";
 
-.mainContentWrapper {
+.mainContentAreaWrapper {
   height: 100%;
   width: 80%;
   // background-color: lightcoral;
@@ -16,10 +16,18 @@
     grid-area: breadcrumbsWrapper;
     @include fhw;
     border-bottom: 1px solid #d0d5dd;
+    @include flex-container(flex-start, center);
   }
   &__contentWrapper {
     grid-area: contentWrapper;
     @include fhw;
+    border: 1px solid red;
+
+    &__subHeaderWrapper {
+      width: 100%;
+      height: 50px;
+      border: 1px solid slategray;
+    }
   }
   @media (max-width: 768px) {
     width: 100%;

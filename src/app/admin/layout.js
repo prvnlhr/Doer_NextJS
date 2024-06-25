@@ -1,18 +1,8 @@
 import React from "react";
-import Sidebar from "@/components/Admin/Sidebar/Sidebar";
-import MainContent from "@/components/Admin/MainContent/MainContent";
-import styles from "./adminpanel.module.scss";
+import MainLayout from "@/components/Admin/MainLayout/MainLayout";
 
-const AdminPanelLayout = ({ children }) => {
-  let show = false;
-  return (
-    <div className={styles.adminPanelWrapper}>
-      <div className={styles.adminPanelWrapper__pageInnerWrapper}>
-        <Sidebar show={show} />
-        <MainContent children={children} show={show} />
-      </div>
-    </div>
-  );
+const AdminPageLayout = ({ children }) => {
+  return <MainLayout children={children} />;
 };
 
-export default AdminPanelLayout;
+export default AdminPageLayout;

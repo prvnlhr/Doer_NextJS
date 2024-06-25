@@ -1,0 +1,8 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.mainLayoutWrapper {
+  @include fhw;
+  border: 1px solid blue;
+  @include flex-container(center, center);
+}

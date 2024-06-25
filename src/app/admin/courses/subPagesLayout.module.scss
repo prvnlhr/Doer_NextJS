@@ -1,0 +1,15 @@
+@import "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.subPageLayoutWrapper {
+  width: 100%;
+  height: 100%;
+  background-color: salmon;
+  @include flex-container(flex-start, flex-start, $direction: column);
+
+  &__subLayoutHeaderWrapper {
+    width: 100%;
+    height: 50px;
+    background-color: skyblue;
+  }
+}
