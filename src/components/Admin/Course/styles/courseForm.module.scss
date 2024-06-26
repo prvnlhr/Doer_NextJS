@@ -5,7 +5,8 @@
   width: 100%;
   height: 100%;
   // border: 1px solid red;
-  @include flex-container(center, center);
+  @include flex-container(flex-start, center);
+  margin-left: 20px;
   @media (max-width: 768px) {
     @include flex-container(center, flex-start);
   }

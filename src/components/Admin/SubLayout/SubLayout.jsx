@@ -1,16 +1,15 @@
-"use client";
 import React from "react";
 import styles from "./styles/subLayout.module.scss";
-import { useParams } from "next/navigation";
+import LinksBar from "../Link/LinksBar";
 
 const SubLayout = ({ children }) => {
-  const params = useParams();
-  const { courseName, chapterName } = params;
   return (
     <div className={styles.subLayoutWrapper}>
       <div className={styles.subLayoutWrapper__headerWrapper}>
-        <p>{courseName}</p>
-        <p>{chapterName}</p>
+        <div className={styles.tabsWrapper}>
+          <LinksBar />
+        </div>
+        <div className={styles.buttonWrapper}></div>
       </div>
       <div className={styles.subLayoutWrapper__contentWrapper}>{children}</div>
     </div>

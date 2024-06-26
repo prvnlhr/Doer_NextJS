@@ -1,0 +1,28 @@
+@import "../../../../styles/mixins.module";
+
+.linksBar {
+  position: relative;
+  width: 80%;
+  height: 95%;
+  //   border: 1px solid red;
+  @include flex-container(flex-start, center);
+  &__link {
+    height: auto;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 20px;
+    border: 2px solid transparent;
+
+    @include flex-container(center, center);
+
+    &--active {
+      border-bottom: 2px solid #635db0;
+    }
+    p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 5px 5px;
+      letter-spacing: 3px;
+    }
+  }
+}

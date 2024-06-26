@@ -22,7 +22,7 @@ const MainContentArea = ({ showSidebar, setShowSidebar, children }) => {
         }}
         className={styles.mainContentAreaWrapper__breadcrumbsWrapper}
       >
-        <p>{pathname}</p>
+        {/* <p>{pathname}</p> */}
       </div>
       <div className={styles.mainContentAreaWrapper__contentWrapper}>
         {/* This children will be SubLayout */}
