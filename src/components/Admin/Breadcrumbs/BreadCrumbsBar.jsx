@@ -31,7 +31,7 @@ const BreadCrumbsBar = () => {
     topics: `/admin/courses/${normalizedCourseName}/chapters/${normalizedChapterName}/topics`,
   };
 
-  console.log({ pathSegments, courseName, chapterName, topicName });
+  // console.log({ pathSegments, courseName, chapterName, topicName });
 
   return (
     <div className={styles.breadCrumbsBar}>
