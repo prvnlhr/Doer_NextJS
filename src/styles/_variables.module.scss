@@ -6,7 +6,7 @@ $card-hover-box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 $link-btn-bg: #6167a0;
 $scrollbar-color: #635db0;
 
-$app-main-bg: linear-gradient(
+$app-bg: linear-gradient(
   to right top,
   #e0f2fe,
   #eaf4ff,
@@ -15,19 +15,18 @@ $app-main-bg: linear-gradient(
   #ffffff
 );
 
-
 $app-bg: linear-gradient(
   to right top,
-  #e0f2fe,
-  #e2f2fe,
-  #e4f2ff,
-  #e6f3ff,
-  #e8f3ff,
-  #e9f4ff,
-  #ebf4ff,
-  #ecf5ff,
-  #eef5ff,
-  #f0f6ff,
-  #f1f6ff,
-  #f3f7ff
+  #e0f5ff,
+  #e2f5ff,
+  #e4f5ff,
+  #e6f6ff,
+  #e8f6ff,
+  #e9f7ff,
+  #ebf7ff,
+  #ecf8ff,
+  #eef8ff,
+  #f0f9ff,
+  #f1f9ff,
+  #f3faff
 );

@@ -1,7 +1,8 @@
+import Datatable from "@/components/Admin/Datatable/Datatable";
 import React from "react";
 
 const CoursesPage = () => {
-  return <div>Course Table</div>;
+  return <Datatable />;
 };
 
 export default CoursesPage;

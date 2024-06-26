@@ -1,0 +1,100 @@
+@import "../../../../styles/mixins.module";
+
+.datatableWrapper {
+  width: 100%;
+  height: 100%;
+  //   border: 1px solid red;
+  @include flex-container(flex-start, flex-start);
+
+  .datatableContainer {
+    width: 80%;
+    height: 90%;
+    // border: 1px solid black;
+    margin-left: 20px;
+
+    &__toolbar {
+      width: 100%;
+      height: 50px;
+      //   border: 1px solid red;
+    }
+
+    .tableContentWrapper {
+      width: 100%;
+      height: calc(100% - 50px);
+      max-height: calc(100% - 50px);
+      //   border: 1px solid red;
+      position: relative;
+      @include flex-container(flex-start, flex-start, $direction: column);
+
+      .tableScrollWrapper {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        position: relative;
+        @include scroll();
+        border: 1px solid #d0d5dd;
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        thead {
+          height: 50px;
+          position: sticky;
+          top: 0;
+        }
+        th {
+          text-align: start;
+          padding: 15px;
+          background-color: white;
+
+          p {
+            margin: 0;
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+        }
+        tr {
+          height: 35px;
+          border-bottom: 1px solid #d0d5dd;
+          //   background-color: red;
+        }
+        // tr:nth-child(even) {
+        // //   background-color: #E1EAF9;
+        // }
+        // tr:nth-child(odd) {
+        // //   background-color: #F8F9FC;
+        // }
+        td {
+          padding: 15px;
+        }
+        td p {
+          font-size: 0.8rem;
+          width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.tableRow {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #d0d5dd;
+  @include flex-container(flex-start, center);
+}
+.tableCell {
+  width: auto;
+  max-width: 200px;
+  height: 100%;
+  border: 1px solid red;
+  @include flex-container(flex-start, center);
+}
+
+.big {
+  height: 500px;
+}

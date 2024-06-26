@@ -1,0 +1,6 @@
+@import "../../../../styles/mixins.module";
+
+.coursesPage {
+  @include fhw;
+  border: 1px solid red;
+}
