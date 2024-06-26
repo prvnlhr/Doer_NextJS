@@ -1,43 +1,68 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./styles/courseForm.module.scss";
+import Image from "next/image";
+
 const CourseForm = () => {
+  const [logoPreview, setLogoPreview] = useState(null); // State for image preview
+
   const initialValues = {
-    logo: "",
+    logo: null,
     title: "",
     description: "",
   };
 
   const validationSchema = Yup.object().shape({
     logo: Yup.mixed()
-      .test("fileType", "Invalid file format", (value) => {
-        if (!value) return false;
+      .required("Course Logo is required")
+      .test("fileType", "Unsupported file format", (value) => {
+        if (!value) return true;
         const supportedFormats = [
-          "image/png",
           "image/jpeg",
+          "image/png",
           "image/gif",
           "image/svg+xml",
         ];
         return supportedFormats.includes(value.type);
-      })
-      .required("Course Logo is required"),
-    title: Yup.string().required("Title is required"),
+      }),
+    title: Yup.string()
+      .max(200, "Title must be at most 200 characters")
+      .required("Title is required"),
     description: Yup.string().required("Description is required"),
   });
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues,
-      validationSchema,
-      onSubmit: (values, action) => {
-        console.log({ values });
-        action.resetForm();
-      },
-    });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: (values, action) => {
+      console.log({ values });
+      // action.resetForm();
+    },
+  });
+
+  const handleFileChange = (event) => {
+    const file = event.currentTarget.files[0];
+    formik.setFieldValue("logo", file);
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setLogoPreview(previewURL);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (logoPreview) {
+        URL.revokeObjectURL(logoPreview);
+      }
+    };
+  }, [logoPreview]);
+
   return (
     <div className={styles.formWrapper}>
-      <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
         <div className={styles.formContainer__logoCell}>
           <div className={styles.logoFormGroup}>
             <div className={styles.logoFormGroup__inputGroup}>
@@ -45,21 +70,33 @@ const CourseForm = () => {
                 type="file"
                 name="logo"
                 id="logo"
-                value={values.logo}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                onChange={handleFileChange}
+                onBlur={formik.handleBlur}
               />
               <label className={styles.customUploadBox} htmlFor="logo">
-                <div className={styles.uploadDiv}>
-                  <p>
-                    Choose course <br />
-                    Logo
-                  </p>
-                </div>
+                {formik.values.logo ? (
+                  <div className={styles.logoPreviewDiv}>
+                    <Image
+                      quality={10}
+                      fill={true}
+                      src={logoPreview}
+                      alt="Logo Preview"
+                    />
+                  </div>
+                ) : (
+                  <div className={styles.uploadDiv}>
+                    <p>
+                      Choose course <br />
+                      Logo
+                    </p>
+                  </div>
+                )}
               </label>
             </div>
             <div className={styles.logoFormGroup__errorGroup}>
-              {errors.logo && touched.logo ? <p>{errors.logo}</p> : null}
+              {formik.errors.logo && formik.touched.logo && (
+                <p>{formik.errors.logo}</p>
+              )}
             </div>
           </div>
         </div>
@@ -76,15 +113,19 @@ const CourseForm = () => {
               </div>
               <div className={styles.formGroup__inputGroup__inputDiv}>
                 <input
+                  type="text"
+                  id="title"
                   name="title"
-                  value={values.title}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={formik.values.title}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
               </div>
             </div>
             <div className={styles.formGroup__errorGroup}>
-              {errors.title && touched.title ? <p>{errors.title}</p> : null}
+              {formik.errors.title && formik.touched.title && (
+                <p>{formik.errors.title}</p>
+              )}
             </div>
           </div>
         </div>
@@ -101,21 +142,24 @@ const CourseForm = () => {
               </div>
               <div className={styles.formGroup__inputGroup__inputDiv}>
                 <textarea
+                  id="description"
                   name="description"
-                  value={values.description}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={formik.values.description}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
               </div>
             </div>
             <div className={styles.formGroup__errorGroup}>
-              {errors.description && touched.description ? (
-                <p>{errors.description}</p>
-              ) : null}
+              {formik.errors.description && formik.touched.description && (
+                <p>{formik.errors.description}</p>
+              )}
             </div>
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <div className={styles.formContainer__buttonCell}>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

@@ -15,9 +15,19 @@
     "contentWrapper";
   z-index: 1;
   background: $app-bg;
+  box-sizing: border-box;
+
+  // width: 90vw;
+  // height: 90dvh;
+  // min-height: 90vh;
+  // border: 1px solid red;
+  // margin-top: 10px;
+  // margin-left: auto;
+  // margin-right: auto;
 
   .contentWrapper {
     @include fhw;
     @include flex-container(flex-start, flex-start);
+    // border: 1px solid blue;
   }
 }

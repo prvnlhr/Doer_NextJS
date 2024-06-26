@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./styles/sidebar.module.scss";
-const Sidebar = ({ show }) => {
+const Sidebar = ({ setShowSidebar, showSidebar }) => {
   return (
     <div
+      onClick={() => setShowSidebar((prev) => !prev)}
       className={`${styles.sidebarWrapper} ${
-        show ? styles["sidebarWrapper--show"] : styles["sidebarWrapper--hide"]
+        showSidebar
+          ? styles["sidebarWrapper--show"]
+          : styles["sidebarWrapper--hide"]
       } `}
     >
       <div className={styles.sidebarWrapper__sidebarHeader}></div>

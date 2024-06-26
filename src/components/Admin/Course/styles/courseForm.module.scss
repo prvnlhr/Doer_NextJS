@@ -2,10 +2,13 @@
 @import "../../../../styles/variables.module";
 
 .formWrapper {
-  width: 98%;
-  height: 98%;
+  width: 100%;
+  height: 100%;
   // border: 1px solid red;
   @include flex-container(center, center);
+  @media (max-width: 768px) {
+    @include flex-container(center, flex-start);
+  }
 
   .formContainer {
     width: 70%;
@@ -14,14 +17,31 @@
     display: grid;
     grid-template-areas:
       "logoCell titleCell"
-      "logoCell descriptionCell";
+      "logoCell descriptionCell"
+      "buttonCell buttonCell";
     grid-template-columns: 30% 70%;
-    grid-template-rows: 30% 70%;
+    grid-template-rows: 30% minmax(0, 1fr) 50px;
+
+    @media (max-width: 768px) {
+      width: 90%;
+      height: 70%;
+      // border: 1px solid red;
+      display: grid;
+      grid-template-areas:
+        "logoCell titleCell"
+        "descriptionCell descriptionCell"
+        "buttonCell buttonCell";
+      grid-template-columns: 30% calc(70% - 10px);
+      grid-template-rows: 30% minmax(0, 1fr) 50px;
+      grid-gap: 10px;
+      margin-top: 20px;
+    }
 
     &__logoCell {
       grid-area: logoCell;
       @include fhw;
-      // border: 1px solid salmon;
+      // border: 1px solid black;
+      @include flex-container(center, flex-start);
     }
     &__titleCell {
       grid-area: titleCell;
@@ -34,6 +54,24 @@
       @include fhw;
       // border: 1px solid green;
     }
+    &__buttonCell {
+      grid-area: buttonCell;
+      @include fhw;
+      // border: 1px solid red;
+      @include flex-container(flex-end, center);
+
+      button {
+        height: 30px;
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #635db0;
+        outline: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+    }
   }
 }
 
@@ -41,7 +79,6 @@
   width: 100%;
   height: 100%;
   // border: 1px solid blue;
-  padding: 5px;
 
   &__inputGroup {
     width: 100%;
@@ -51,6 +88,7 @@
     // border: 1px solid #d0d5dd;
     border-radius: 15px;
     background-color: white;
+    overflow: hidden;
 
     &__labelDiv {
       // border: 1px solid salmon;
@@ -108,17 +146,30 @@
 }
 
 .logoFormGroup {
-  width: 90%;
+  width: 80%; // chnage the white logoFormGroup by changing this value
   aspect-ratio: 1/1;
   // border: 1px solid orange;
-  padding: 5px;
+
+  @media (max-width: 768px) {
+    // border: 1px solid orange;
+    aspect-ratio: unset;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+  }
 
   &__inputGroup {
-    height: 80%;
+    height: calc(100% - 30px);
     aspect-ratio: 1/1;
     background-color: white;
-    // border: 1px solid darkred;
     border-radius: 15px;
+    // border: 1px solid blue;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      aspect-ratio: unset;
+    }
+
     input {
       display: none;
     }
@@ -127,11 +178,17 @@
       width: 100%;
       height: 100%;
       @include flex-container(center, center);
+
       .uploadDiv {
         width: 80%;
         height: 80%;
         border: 2px dashed #635db0;
         border-radius: 15px;
+
+        @media (max-width: 768px) {
+          aspect-ratio: 1/1;
+          height: unset;
+        }
 
         cursor: pointer;
         @include flex-container(center, center);
@@ -140,11 +197,25 @@
           font-size: 0.6rem;
         }
       }
+      .logoPreviewDiv {
+        width: 80%;
+        height: 80%;
+        @include flex-container(center, center);
+        // border: 1px solid red;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
   &__errorGroup {
     width: 100%;
-    height: 20%;
+    height: 30px;
     // border: 1px solid darkred;
     @include flex-container(flex-start, center);
 
