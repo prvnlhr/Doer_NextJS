@@ -1,0 +1,50 @@
+@import "../../../../styles/mixins.module";
+
+.breadCrumbsBar {
+  width: 100%;
+  height: 100%;
+  // border: 1px solid red;
+  @include flex-container(flex-start, center);
+  padding-left: 8px;
+  .breadcrumbWrapper {
+    width: auto;
+    height: 90%;
+    @include flex-container(center, center);
+    // border: 1px solid red;
+    margin-left: 5px;
+
+    &__link {
+      width: auto;
+      height: 100%;
+      // border: 1px solid green;
+      @include flex-container(flex-start, center);
+
+      &--normalText {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        color: #7e8da4;
+      }
+
+      &--currentText {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        color: #635db0;
+      }
+    }
+
+    &__iconWrapper {
+      height: 100%;
+      aspect-ratio: 1/2;
+      // border: 1px solid blue;
+      @include flex-container(center, center);
+      &__iconDiv {
+        aspect-ratio: 1/1;
+        width: 60%;
+        @include flex-container(center, center);
+        // border: 1px solid blue;
+      }
+    }
+  }
+}

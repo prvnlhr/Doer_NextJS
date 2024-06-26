@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./styles/mainContentArea.module.scss";
 import { usePathname } from "next/navigation";
+import BreadCrumbsBar from "../Breadcrumbs/BreadCrumbsBar";
 
 const MainContentArea = ({ showSidebar, setShowSidebar, children }) => {
   const pathname = usePathname();
@@ -22,10 +23,9 @@ const MainContentArea = ({ showSidebar, setShowSidebar, children }) => {
         }}
         className={styles.mainContentAreaWrapper__breadcrumbsWrapper}
       >
-        {/* <p>{pathname}</p> */}
+        <BreadCrumbsBar />
       </div>
       <div className={styles.mainContentAreaWrapper__contentWrapper}>
-        {/* This children will be SubLayout */}
         {children}
       </div>
     </div>
