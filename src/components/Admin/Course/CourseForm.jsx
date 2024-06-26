@@ -1,27 +1,65 @@
+"use client";
 import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import styles from "./styles/courseForm.module.scss";
 const CourseForm = () => {
+  const initialValues = {
+    logo: "",
+    title: "",
+    description: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    logo: Yup.mixed()
+      .test("fileType", "Invalid file format", (value) => {
+        if (!value) return false;
+        const supportedFormats = [
+          "image/png",
+          "image/jpeg",
+          "image/gif",
+          "image/svg+xml",
+        ];
+        return supportedFormats.includes(value.type);
+      })
+      .required("Course Logo is required"),
+    title: Yup.string().required("Title is required"),
+    description: Yup.string().required("Description is required"),
+  });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: (values, action) => {
+        console.log({ values });
+        action.resetForm();
+      },
+    });
   return (
     <div className={styles.formWrapper}>
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div className={styles.formContainer__logoCell}>
           <div className={styles.logoFormGroup}>
             <div className={styles.logoFormGroup__inputGroup}>
-              {/* File input with hidden "Choose File" button */}
               <input
                 type="file"
-                id="logoInput"
-                className={styles.fileInput}
-                // onChange={handleFileChange}
-                accept="image/*" // Optional: Limit to specific file types
+                name="logo"
+                id="logo"
+                value={values.logo}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
-              {/* Custom styled box to indicate file input */}
-              <label htmlFor="logoInput" className={styles.fileInputLabel}>
-                Drag and drop or click to upload
+              <label className={styles.customUploadBox} htmlFor="logo">
+                <div className={styles.uploadDiv}>
+                  <p>
+                    Choose course <br />
+                    Logo
+                  </p>
+                </div>
               </label>
             </div>
             <div className={styles.logoFormGroup__errorGroup}>
-              <p>Course Logo is required</p>
+              {errors.logo && touched.logo ? <p>{errors.logo}</p> : null}
             </div>
           </div>
         </div>
@@ -29,14 +67,24 @@ const CourseForm = () => {
           <div className={styles.formGroup}>
             <div className={styles.formGroup__inputGroup}>
               <div className={styles.formGroup__inputGroup__labelDiv}>
-                <p>Title</p>
+                <label
+                  className={styles.formGroup__inputGroup__labelDiv__labelTag}
+                  htmlFor="title"
+                >
+                  Title
+                </label>
               </div>
               <div className={styles.formGroup__inputGroup__inputDiv}>
-                <input value={"Javascript - Basic to Advanced"} />
+                <input
+                  name="title"
+                  value={values.title}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
               </div>
             </div>
             <div className={styles.formGroup__errorGroup}>
-              <p>Title is required</p>
+              {errors.title && touched.title ? <p>{errors.title}</p> : null}
             </div>
           </div>
         </div>
@@ -44,21 +92,30 @@ const CourseForm = () => {
           <div className={styles.formGroup}>
             <div className={styles.formGroup__inputGroup}>
               <div className={styles.formGroup__inputGroup__labelDiv}>
-                <p>Description</p>
+                <label
+                  className={styles.formGroup__inputGroup__labelDiv__labelTag}
+                  htmlFor="description"
+                >
+                  Description
+                </label>
               </div>
               <div className={styles.formGroup__inputGroup__inputDiv}>
                 <textarea
-                  value={
-                    "JavaScript (JS) is a versatile and dynamic programming language primarily used for enhancing the interactivity of web pages. Developed initially as a client-side scripting language for web browsers, JS has evolved into a ubiquitous language capable of running on both client and server sides through frameworks like Node.js. Its flexibility allows developers to create dynamic, responsive user interfaces and web applications. JS supports object-oriented, imperative, and functional programming paradigms, making it suitable for a wide range of tasks from simple DOM manipulation to complex application development. Its widespread adoption and continuous evolution through ECMAScript"
-                  }
+                  name="description"
+                  value={values.description}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
               </div>
             </div>
             <div className={styles.formGroup__errorGroup}>
-              <p>Description is required</p>
+              {errors.description && touched.description ? (
+                <p>{errors.description}</p>
+              ) : null}
             </div>
           </div>
         </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

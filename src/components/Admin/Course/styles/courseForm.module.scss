@@ -58,7 +58,7 @@
       height: 30px;
       @include flex-container(flex-start, center);
       // background-color: ;
-      p {
+      &__labelTag {
         color: #a1a7c4;
         font-size: 0.8rem;
         font-weight: 500;
@@ -119,6 +119,28 @@
     background-color: white;
     // border: 1px solid darkred;
     border-radius: 15px;
+    input {
+      display: none;
+    }
+    .customUploadBox {
+      // border: 1px solid darkred;
+      width: 100%;
+      height: 100%;
+      @include flex-container(center, center);
+      .uploadDiv {
+        width: 80%;
+        height: 80%;
+        border: 2px dashed #635db0;
+        border-radius: 15px;
+
+        cursor: pointer;
+        @include flex-container(center, center);
+        text-align: center;
+        p {
+          font-size: 0.6rem;
+        }
+      }
+    }
   }
   &__errorGroup {
     width: 100%;
