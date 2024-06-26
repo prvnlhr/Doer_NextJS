@@ -1,7 +1,8 @@
+import CourseForm from "@/components/Admin/Course/CourseForm";
 import React from "react";
 
 const CourseAddPage = () => {
-  return <div>Add Course</div>;
+  return <CourseForm />;
 };
 
 export default CourseAddPage;

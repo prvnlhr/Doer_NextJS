@@ -7,12 +7,12 @@
   &__headerWrapper {
     height: 50px;
     width: 100%;
-    border: 1px solid lightcoral;
+    border-bottom: 1px solid #d0d5dd;
   }
 
   &__contentWrapper {
     height: calc(100% - 50px);
     width: 100%;
-    border: 1px solid lightgreen;
+    @include flex-container(center, center);
   }
 }
