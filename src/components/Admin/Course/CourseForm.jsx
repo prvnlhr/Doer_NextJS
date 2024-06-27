@@ -7,12 +7,15 @@ import styles from "./styles/courseForm.module.scss";
 import Image from "next/image";
 
 const CourseForm = () => {
+  const [selectedStatus, setSelectedStatus] = useState(1);
+
   const [logoPreview, setLogoPreview] = useState(null); // State for image preview
 
   const initialValues = {
     logo: null,
     title: "",
     description: "",
+    status: 1,
   };
 
   const validationSchema = Yup.object().shape({
@@ -32,6 +35,7 @@ const CourseForm = () => {
       .max(200, "Title must be at most 200 characters")
       .required("Title is required"),
     description: Yup.string().required("Description is required"),
+    status: Yup.number().required("Status is required"),
   });
 
   const formik = useFormik({
@@ -157,6 +161,60 @@ const CourseForm = () => {
             </div>
           </div>
         </div>
+        {/* Status */}
+        <div className={styles.formContainer__statusCell}>
+          <div className={styles.formGroup}>
+            <div className={styles.formGroup__inputGroup}>
+              <div className={styles.formGroup__inputGroup__labelDiv}>
+                <p className={styles.formGroup__inputGroup__labelDiv__labelTag}>
+                  Status
+                </p>
+              </div>
+              <div className={styles.formGroup__inputGroup__inputDiv}>
+                <div className={styles.statusInputWrapper}>
+                  <div
+                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    className={`${styles.radioBtnWrapper} ${
+                      selectedStatus && styles["radioBtnWrapper--activeBtn"]
+                    }`}
+                  >
+                    <div className={styles.radioDotDiv}>
+                      <div
+                        className={`${styles.radioDot} ${
+                          selectedStatus && styles["radioDotDiv--activeDot"]
+                        }`}
+                      ></div>
+                    </div>
+                    <div className={styles.radioLabelDiv}>
+                      <p>Active</p>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.statusInputWrapper}>
+                  <div
+                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    className={`${styles.radioBtnWrapper} ${
+                      !selectedStatus && styles["radioBtnWrapper--inactiveBtn"]
+                    }`}
+                  >
+                    <div className={styles.radioDotDiv}>
+                      <div
+                        className={`${styles.radioDot} ${
+                          !selectedStatus && styles["radioDotDiv--inactiveDot"]
+                        }`}
+                      ></div>
+                    </div>
+                    <div className={styles.radioLabelDiv}>
+                      <p>Inactive</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/*  */}
         <div className={styles.formContainer__buttonCell}>
           <button type="submit">Submit</button>
         </div>

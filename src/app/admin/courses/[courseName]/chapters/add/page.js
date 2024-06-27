@@ -1,7 +1,8 @@
+import ChapterForm from "@/components/Admin/Chapter/ChapterForm";
 import React from "react";
 
 const ChapterAddPage = () => {
-  return <div>ChapterAddPage</div>;
+  return <ChapterForm />;
 };
 
 export default ChapterAddPage;

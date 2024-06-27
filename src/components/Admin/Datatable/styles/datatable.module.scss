@@ -4,15 +4,25 @@
   height: 100%;
   @include flex-container(flex-start, flex-start);
 
+  @media (max-width: 768px) {
+    @include flex-container(center, flex-start);
+  }
+
   .datatableContainer {
     width: 80%;
     height: 90%;
     margin-left: 20px;
 
+    @media (max-width: 768px) {
+      width: 95%;
+      height: 95%;
+      // border: 1px solid red;
+      margin: unset;
+    }
+
     &__toolbar {
       width: 100%;
       height: 50px;
-      // border: 1px solid red;
       @include flex-container(flex-start, center);
       justify-content: space-between;
 

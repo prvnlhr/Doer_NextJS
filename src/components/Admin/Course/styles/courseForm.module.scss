@@ -9,6 +9,7 @@
   margin-left: 20px;
   @media (max-width: 768px) {
     @include flex-container(center, flex-start);
+    margin-left: unset;
   }
 
   .formContainer {
@@ -19,21 +20,23 @@
     grid-template-areas:
       "logoCell titleCell"
       "logoCell descriptionCell"
-      "buttonCell buttonCell";
+      "logoCell statusCell"
+      "logoCell buttonCell";
     grid-template-columns: 30% 70%;
-    grid-template-rows: 30% minmax(0, 1fr) 50px;
+    grid-template-rows: 25% minmax(0, 1fr) 30% 50px;
 
     @media (max-width: 768px) {
       width: 90%;
-      height: 70%;
+      height: 95%;
       // border: 1px solid red;
       display: grid;
       grid-template-areas:
         "logoCell titleCell"
         "descriptionCell descriptionCell"
+        "statusCell statusCell"
         "buttonCell buttonCell";
       grid-template-columns: 30% calc(70% - 10px);
-      grid-template-rows: 30% minmax(0, 1fr) 50px;
+      grid-template-rows: 30% minmax(0, 1fr) 20% 50px;
       grid-gap: 10px;
       margin-top: 20px;
     }
@@ -73,6 +76,12 @@
         cursor: pointer;
       }
     }
+    &__statusCell {
+      grid-area: statusCell;
+      @include fhw;
+      // border: 1px solid blue;
+      // @include flex-container(flex-end, center);
+    }
   }
 }
 
@@ -84,8 +93,8 @@
   &__inputGroup {
     width: 100%;
     height: calc(100% - 30px);
-    // border: 1px solid salmon;
-    padding: 20px;
+    // border: 1px solid blue;
+    padding: 10px 20px;
     // border: 1px solid #d0d5dd;
     border-radius: 15px;
     background-color: white;
@@ -94,7 +103,7 @@
     &__labelDiv {
       // border: 1px solid salmon;
       width: 100%;
-      height: 30px;
+      height: 20px;
       @include flex-container(flex-start, center);
       // background-color: ;
       &__labelTag {
@@ -106,7 +115,8 @@
     &__inputDiv {
       // border: 1px solid skyblue;
       width: 100%;
-      height: calc(100% - 30px);
+      height: calc(100% - 20px);
+      @include flex-container(flex-start, flex-start);
       input {
         width: 100%;
         height: 100%;
@@ -225,6 +235,62 @@
       font-size: 0.7rem;
       font-weight: 500;
       margin-left: 5px;
+    }
+  }
+}
+
+.statusInputWrapper {
+  width: auto;
+  height: 100%;
+  @include flex-container(flex-start, center);
+  // border: 1px solid red;
+  margin-left: 10px;
+
+  .radioBtnWrapper {
+    width: auto;
+    height: 30px;
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    @include flex-container(flex-start, center);
+    cursor: pointer;
+
+    &--activeBtn {
+      border: 1px solid #789980;
+      background-color: #deeedc;
+    }
+    &--inactiveBtn {
+      border: 1px solid #d27e67;
+      background-color: #fde7ea;
+    }
+
+    .radioDotDiv {
+      height: 100%;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+
+      .radioDot {
+        border-radius: 100%;
+        aspect-ratio: 1/1;
+        width: 40%;
+        background-color: #a4adbb;
+      }
+      &--activeDot {
+        background-color: #789980 !important;
+      }
+      &--inactiveDot {
+        background-color: #d27e67 !important;
+      }
+    }
+    .radioLabelDiv {
+      width: auto;
+      height: 100%;
+      @include flex-container(flex-start, center);
+      // border: 1px solid blue;
+      padding: 0px 8px 0px 0px;
+
+      p {
+        font-size: 0.6rem;
+      }
     }
   }
 }
