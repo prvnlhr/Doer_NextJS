@@ -1,7 +1,26 @@
+// Import necessary modules and components
+import Datatable from "@/components/Admin/Datatable/Datatable";
 import React from "react";
+import { courses } from "../../../../../components/courseData";
 
-const ChaptersPage = () => {
-  return <div>ChaptersPage</div>;
+const ChaptersPage = ({ params }) => {
+  const getEditUrl = (slug) => {
+    return `/admin/courses/${params.courseName}/chapters/${slug}/edit`;
+  };
+  const getAddUrl = () => {
+    return `/admin/courses/${params.courseName}/chapters/add`;
+  };
+
+  //TODO : deleteURl
+  const columns = ["title", "courseName", "status", "topics"];
+
+  let chapters = courses
+    .filter((course) => course.titleSlug === params.courseName)
+    .flatMap((course) => course.chapters);
+
+  return (
+    <Datatable data={chapters} columns={columns} getEditUrl={getEditUrl} getAddUrl={getAddUrl}/>
+  );
 };
 
 export default ChaptersPage;
