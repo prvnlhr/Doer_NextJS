@@ -67,8 +67,27 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      background-color: white;
       padding: 0px 0px;
+
+      &__editorContainer {
+        width: 100%;
+        height: calc(100% - 30px);
+        // border: 1px solid red;
+        @include flex-container(flex-start, center);
+        background-color: white;
+      }
+      &__errorGroup {
+        width: 100%;
+        height: 30px;
+        @include flex-container(flex-start, center);
+
+        p {
+          color: #f0142f;
+          font-size: 0.7rem;
+          font-weight: 500;
+          margin-left: 5px;
+        }
+      }
     }
 
     .buttonCell {

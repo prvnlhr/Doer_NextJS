@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
-import CkeditorComponent from "@/components/custom-editor2.js";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -90,7 +89,7 @@ const TopicForm = () => {
     minutes: "",
     hours: "",
     days: "",
-    status: 1,
+    status: selectedStatus,
     content: "",
   };
 
@@ -109,7 +108,7 @@ const TopicForm = () => {
     days: Yup.number()
       .min(0, "Days must be at least 0")
       .required("Days are required"),
-    // content: Yup.string().required("Topic content is required"),
+    content: Yup.string().required("Topic content is required"),
     status: Yup.number().required("Status is required"),
   });
 
@@ -252,8 +251,14 @@ const TopicForm = () => {
         </div>
 
         <div className={styles.editorCell}>
-          <CKeditor setFieldValue={formik.setFieldValue} />
-          
+          <div className={styles.editorCell__editorContainer}>
+            <CKeditor setFieldValue={formik.setFieldValue} />
+          </div>
+          <div className={styles.editorCell__errorGroup}>
+            {formik.errors.content && formik.touched.content && (
+              <p>{formik.errors.content}</p>
+            )}
+          </div>
         </div>
         <div className={styles.buttonCell}>
           <button type="submit">Submit</button>

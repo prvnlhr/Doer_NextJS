@@ -14,6 +14,7 @@
   margin-right: auto;
   width: 100%;
   position: relative;
+  /* border: 1px solid blueviolet !important; */
 }
 
 .ck-content {
@@ -21,7 +22,8 @@
   line-height: 1.6;
   word-break: break-word;
   padding: 0px 25px !important;
-  height: 400px !important;
+  height: 370px !important;
+  /* border: 1px solid red !important; */
 }
 
 .editor-container_classic-editor .editor-container__editor {
@@ -158,4 +160,12 @@
 
 .ck-dropdown__panel {
   width: 420px !important;
+}
+
+.ck-powered-by {
+  display: none !important;
+  border: none !important;
+}
+.ck-powered-by-balloon {
+  display: none !important;
 }
