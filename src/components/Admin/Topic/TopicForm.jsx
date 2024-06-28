@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
-import CkeditorComponent from "@/components/CkeditorComponent";
+import CkeditorComponent from "@/components/custom-editor2.js";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -252,7 +252,8 @@ const TopicForm = () => {
         </div>
 
         <div className={styles.editorCell}>
-          <CkeditorComponent setFieldValue={formik.setFieldValue} />
+          <CKeditor setFieldValue={formik.setFieldValue} />
+          
         </div>
         <div className={styles.buttonCell}>
           <button type="submit">Submit</button>
@@ -263,6 +264,3 @@ const TopicForm = () => {
 };
 
 export default TopicForm;
-
-
-          

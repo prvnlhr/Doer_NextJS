@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const CustomEditor = dynamic(
   () => {
-    return import("../../custom-editor.js");
+    return import("./custom-editor.js");
   },
   { ssr: false, loading: () => <p> Loading...</p> }
 );

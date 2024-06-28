@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import "./ckstyles.module.scss";
+import "./styles/ckeditor.module.scss";
 
 import {
   ClassicEditor,
-  AccessibilityHelp,
   Alignment,
   Autoformat,
   AutoImage,
@@ -75,7 +74,8 @@ import {
 
 import "ckeditor5/ckeditor5.css";
 
-export default function CkeditorComponent({ setFieldValue }) {
+export default function CustomEditor({ setFieldValue }) {
+  
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -89,7 +89,6 @@ export default function CkeditorComponent({ setFieldValue }) {
   const editorConfig = {
     toolbar: {
       items: [
-        
         // First set: Paragraph and heading
         "paragraph",
         "heading",
