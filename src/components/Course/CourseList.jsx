@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./styles/courseList.module.scss";
 import CourseCard from "./CourseCard";
 
-const CoursesList = () => {
-  const courses = [
+const CoursesList = ({ courses }) => {
+  console.log(courses);
+  const coursesx = [
     {
       title: "JavaScript",
       id: "01",

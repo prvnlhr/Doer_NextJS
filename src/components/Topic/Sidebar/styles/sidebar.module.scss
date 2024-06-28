@@ -11,7 +11,7 @@
     width: 100%;
     height: 8%;
     @include flex-container(flex-start, flex-start);
-    background-color: skyblue;
+    // background-color: skyblue;
   }
 
   @media (max-width: 768px) {

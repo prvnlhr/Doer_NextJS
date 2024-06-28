@@ -1,7 +1,7 @@
 import Datatable from "@/components/Admin/Datatable/Datatable";
 import React from "react";
 import { courses } from "@/components/courseData";
-const CoursesPage = () => {
+const CoursesPage = async () => {
   const getEditUrl = (slug) => {
     return `/admin/courses/${slug}/edit`;
   };
@@ -9,6 +9,7 @@ const CoursesPage = () => {
   const getAddUrl = () => {
     return `/admin/courses/add`;
   };
+
 
   const columns = ["title", "chapters", "status"];
   return (
