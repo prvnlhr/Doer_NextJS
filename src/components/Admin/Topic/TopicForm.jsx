@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 
+import DOMPurify from "dompurify";
+
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
     const higherValue = parseInt(formik.values[higherLabel] || 0) + amount;
@@ -83,6 +85,7 @@ const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
 
 const TopicForm = () => {
   const [selectedStatus, setSelectedStatus] = useState(1);
+  const [showPreviewPane, setShowPreviewPane] = useState(true);
 
   const initialValues = {
     title: "",
@@ -120,17 +123,17 @@ const TopicForm = () => {
       // Perform your submission logic here
     },
   });
+
   const toggleStatus = () => {
     formik.setFieldValue("status", formik.values.status === 1 ? 0 : 1);
     setSelectedStatus((prev) => !prev);
   };
 
-  const [showPreviewPane, setShowPreviewPane] = useState(true);
-
   const togglePreviewPane = () => {
     console.log("..toggling");
     setShowPreviewPane((prev) => !prev);
   };
+
   return (
     <div className={styles.formWrapper}>
       <div className={`${styles.formInnerWrapper}`}>
@@ -141,16 +144,198 @@ const TopicForm = () => {
               : styles["formContainer--expandForm"]
           }`}
           onSubmit={formik.handleSubmit}
-          onClick={togglePreviewPane}
-        ></form>
+        >
+          <div className={styles.formGridContainer}>
+            <div className={styles.titleCell}>
+              <div className={styles.formGroup}>
+                <div className={styles.formGroup__inputGroup}>
+                  <div className={styles.formGroup__inputGroup__labelDiv}>
+                    <label htmlFor="title">
+                      <p>Title</p>
+                    </label>
+                  </div>
+                  <div className={styles.formGroup__inputGroup__inputDiv}>
+                    <input
+                      id="title"
+                      name="title"
+                      value={formik.values.title}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </div>
+                </div>
+                <div className={styles.formGroup__errorGroup}>
+                  {formik.errors.title && formik.touched.title && (
+                    <p>{formik.errors.title}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className={styles.durationCell}>
+              <div className={styles.durationFormGroup}>
+                <DurationInput
+                  label={"minutes"}
+                  value={formik.values.minutes}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  formik={formik}
+                />
+                <div className={styles.errorGroup}>
+                  {formik.errors.minutes && formik.touched.minutes && (
+                    <p>{formik.errors.minutes}</p>
+                  )}
+                </div>
+              </div>
+              <div className={styles.durationFormGroup}>
+                <DurationInput
+                  label={"hours"}
+                  value={formik.values.hours}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  formik={formik}
+                />
+                <div className={styles.errorGroup}>
+                  {formik.errors.hours && formik.touched.hours && (
+                    <p>{formik.errors.hours}</p>
+                  )}
+                </div>
+              </div>
+              <div className={styles.durationFormGroup}>
+                <DurationInput
+                  label={"days"}
+                  value={formik.values.days}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  formik={formik}
+                />
+                <div className={styles.errorGroup}>
+                  {formik.errors.days && formik.touched.days && (
+                    <p>{formik.errors.days}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className={styles.statusCell}>
+              <div className={styles.formGroup}>
+                <div className={styles.formGroup__statusInputGroup}>
+                  <div className={styles.formGroup__statusInputGroup__labelDiv}>
+                    <p
+                      className={
+                        styles.formGroup__statusInputGroup__labelDiv__labelTag
+                      }
+                    >
+                      Status
+                    </p>
+                  </div>
+                  <div className={styles.formGroup__statusInputGroup__inputDiv}>
+                    <div className={styles.statusInputWrapper}>
+                      <div
+                        onClick={toggleStatus}
+                        className={`${styles.radioBtnWrapper} ${
+                          selectedStatus && styles["radioBtnWrapper--activeBtn"]
+                        }`}
+                      >
+                        <div className={styles.radioDotDiv}>
+                          <div
+                            className={`${styles.radioDot} ${
+                              selectedStatus && styles["radioDotDiv--activeDot"]
+                            }`}
+                          ></div>
+                        </div>
+                        <div className={styles.radioLabelDiv}>
+                          <p>Active</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.statusInputWrapper}>
+                      <div
+                        onClick={toggleStatus}
+                        className={`${styles.radioBtnWrapper} ${
+                          !selectedStatus &&
+                          styles["radioBtnWrapper--inactiveBtn"]
+                        }`}
+                      >
+                        <div className={styles.radioDotDiv}>
+                          <div
+                            className={`${styles.radioDot} ${
+                              !selectedStatus &&
+                              styles["radioDotDiv--inactiveDot"]
+                            }`}
+                          ></div>
+                        </div>
+                        <div className={styles.radioLabelDiv}>
+                          <p>Inactive</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.formGroup__errorGroup}></div>
+              </div>
+            </div>
+            <div className={styles.editorCell}>
+              <div className={styles.editorCell__editorHeaderWrapper}>
+                <div
+                  className={
+                    styles.editorCell__editorHeaderWrapper__labelWrapper
+                  }
+                >
+                  <p>Topic content</p>
+                </div>
+                <div
+                  className={
+                    styles.editorCell__editorHeaderWrapper__previewBtnWrapper
+                  }
+                >
+                  <button
+                    onClick={togglePreviewPane}
+                    type="button"
+                    className={styles.previewBtn}
+                  >
+                    <p>Preview</p>
+                  </button>
+                </div>
+              </div>
+              <div className={styles.editorCell__editorContainer}>
+                <CKeditor
+                  setFieldValue={formik.setFieldValue}
+                />
+              </div>
+              <div className={styles.editorCell__errorGroup}>
+                {formik.errors.content && formik.touched.content && (
+                  <p>{formik.errors.content}</p>
+                )}
+              </div>
+            </div>
+            <div className={styles.buttonCell}>
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
         <div
-          onClick={togglePreviewPane}
           className={`${styles.previewWrapper} ${
             showPreviewPane
               ? styles["previewWrapper--showPane"]
               : styles["previewWrapper--hidePane"]
           }`}
-        ></div>
+        >
+          <div className={styles.previewWrapper__headerWrapper}>
+            <div className={styles.previewWrapper__headerWrapper__textWrapper}>
+              <p>CONTENT PREVIEW</p>
+            </div>
+            <div
+              onClick={togglePreviewPane}
+              className={styles.previewWrapper__headerWrapper__toggleWrapper}
+            ></div>
+          </div>
+          <div className={styles.previewWrapper__contentWrapper}>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: formik.values.content,
+              }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
