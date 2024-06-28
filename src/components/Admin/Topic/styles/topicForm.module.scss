@@ -2,19 +2,18 @@
 
 .formWrapper {
   @include fhw;
-  //   border: 1px solid red;
-  @include flex-container(flex-start, center);
-  margin-left: 20px;
+  // border: 1px solid red;
+  @include flex-container(flex-start, flex-start);
+
   @media (max-width: 768px) {
     @include flex-container(center, flex-start);
     margin-left: unset;
   }
   .formContainer {
     width: 70%;
+    width: 70%;
     height: 95%;
     // border: 1px solid blue;
-    margin-top: 20px;
-    margin-left: 20px;
     display: grid;
     grid-template-areas:
       "titleCell titleCell"
@@ -22,9 +21,10 @@
       "editorCell editorCell"
       "buttonCell buttonCell";
     grid-template-columns: calc(50% - 5px) calc(50% - 5px);
-    grid-template-rows: 20% 25% 440px 50px;
+    grid-template-rows: 25% 25% 440px 50px;
     grid-gap: 10px;
     @include scroll($dir: y);
+    padding: 20px 20px;
 
     @media (max-width: 768px) {
       width: 85%;
@@ -353,6 +353,129 @@
           border: none;
         }
       }
+    }
+  }
+}
+
+.previewWrapper {
+  width: 30%;
+  height: 95%;
+  @include flex-container(flex-start, flex-start, $direction: column);
+  // border: 1px solid black;
+  padding: 20px 0px 0px 0px;
+
+  .previewHeader {
+    width: 90%;
+    height: 30px;
+    @include flex-container(flex-start, center, $direction: row);
+    padding: 0;
+    margin: 0;
+    // border: 1px solid red;
+    p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      // border: 1px solid orange;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .previewPane {
+    width: 90%;
+    height: calc(100% - 30px);
+    overflow-wrap: break-word;
+    background-color: white;
+    @include scroll($dir: y);
+    padding: 20px 20px;
+    // border: 1px solid blue;
+
+    p {
+      margin-bottom: 10px;
+      line-height: 2;
+      color: #1c3553;
+      font-size: 0.8rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 20px;
+      margin-bottom: 25px;
+      font-weight: bold;
+      color: #101828;
+      position: relative;
+      &::after {
+        position: absolute;
+        content: "";
+        left: 0px;
+        bottom: -10px;
+        background-color: #635db0;
+        width: 10%;
+        height: 3px;
+        border-radius: 8px;
+      }
+    }
+
+    pre {
+      background-color: #011627;
+      padding: 20px 20px;
+      border-radius: 5px;
+      overflow-x: scroll;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      code {
+        border-radius: 4px;
+        color: white !important;
+        background-color: transparent !important;
+        padding: 0px !important;
+      }
+    }
+
+    blockquote {
+      margin: 0;
+      padding-left: 10px;
+      border-left: 3px solid #ccc;
+      color: #666;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 10px;
+      padding-left: 20px;
+    }
+    li {
+      color: #1c3553;
+      font-size: 0.8rem;
+    }
+    code {
+      color: #f0142f;
+      background-color: #ffe4e8;
+      padding: 2px 8px;
+      border-radius: 3px;
+      border-radius: 5px;
+    }
+
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    figcaption {
+      font-size: 0.6rem;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }

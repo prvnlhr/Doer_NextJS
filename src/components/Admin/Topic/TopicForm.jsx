@@ -268,6 +268,14 @@ const TopicForm = () => {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <div className={styles.previewWrapper}>
+        <div className={styles.previewHeader}>
+          <p>CONTENT PREVIEW</p>
+        </div>
+        <div className={styles.previewPane}>
+          <div dangerouslySetInnerHTML={{ __html: formik.values.content }} />
+        </div>
+      </div>
     </div>
   );
 };
