@@ -120,6 +120,10 @@ const TopicForm = () => {
       // Perform your submission logic here
     },
   });
+  const toggleStatus = () => {
+    formik.setFieldValue("status", formik.values.status === 1 ? 0 : 1);
+    setSelectedStatus((prev) => !prev);
+  };
 
   return (
     <div className={styles.formWrapper}>
@@ -208,7 +212,7 @@ const TopicForm = () => {
               <div className={styles.formGroup__statusInputGroup__inputDiv}>
                 <div className={styles.statusInputWrapper}>
                   <div
-                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    onClick={toggleStatus}
                     className={`${styles.radioBtnWrapper} ${
                       selectedStatus && styles["radioBtnWrapper--activeBtn"]
                     }`}
@@ -227,7 +231,7 @@ const TopicForm = () => {
                 </div>
                 <div className={styles.statusInputWrapper}>
                   <div
-                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    onClick={toggleStatus}
                     className={`${styles.radioBtnWrapper} ${
                       !selectedStatus && styles["radioBtnWrapper--inactiveBtn"]
                     }`}
