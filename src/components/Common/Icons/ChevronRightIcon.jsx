@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles/chevronIcon.module.scss";
-const ChevronRightIcon = () => {
+const ChevronRightIcon = ({ color }) => {
   return (
     <svg
       className={styles.icon}
@@ -10,7 +10,7 @@ const ChevronRightIcon = () => {
     >
       <path
         d="M3.23438 6.89062L5.76562 4.5L3.23438 2.10938"
-        stroke="black"
+        stroke={color ? color : "black"}
         stroke-width="0.84375"
         stroke-linecap="round"
         stroke-linejoin="round"

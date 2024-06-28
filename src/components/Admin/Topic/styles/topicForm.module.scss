@@ -1,0 +1,343 @@
+@import "../../../../styles/mixins.module";
+
+.formWrapper {
+  @include fhw;
+  //   border: 1px solid red;
+  @include flex-container(flex-start, center);
+  margin-left: 20px;
+  @media (max-width: 768px) {
+    @include flex-container(center, flex-start);
+    margin-left: unset;
+  }
+  .formContainer {
+    width: 70%;
+    height: 95%;
+    // border: 1px solid blue;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: grid;
+    grid-template-areas:
+      "titleCell titleCell"
+      "durationCell statusCell"
+      "editorCell editorCell"
+      "buttonCell buttonCell";
+    grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+    grid-template-rows: 20% 25% 539px 50px;
+    grid-gap: 10px;
+    @include scroll($dir: y);
+
+    @media (max-width: 768px) {
+      width: 85%;
+      height: 95%;
+      margin: unset;
+      margin-top: 30px;
+      //   border: 1px solid red;
+
+      grid-template-areas:
+        "titleCell"
+        "durationCell"
+        "statusCell"
+        "editorCell"
+        "buttonCell";
+      grid-template-columns: 100%;
+      grid-template-rows: 20% 20% 20% 539px 50px;
+      grid-gap: unset;
+      grid-column-gap: 10px;
+    }
+    .titleCell {
+      grid-area: titleCell;
+      @include fhw;
+      //   border: 1px solid blue;
+    }
+    .durationCell {
+      grid-area: durationCell;
+      @include fhw;
+        // border: 1px solid red;
+      @include flex-container(flex-start, center);
+      justify-content: space-between;
+    }
+    .statusCell {
+      grid-area: statusCell;
+      @include fhw;
+      //   border: 1px solid orange;
+    }
+    .editorCell {
+      grid-area: editorCell;
+      @include fhw;
+      // border: 1px solid orange;
+      // @include scroll($dir: y);
+      // min-height: 70%;
+      position: relative;
+      padding: 0px 0px;
+      display: flex;
+      flex-direction: column;
+      display: flex;
+      background-color: white;
+    }
+
+    .buttonCell {
+      grid-area: buttonCell;
+      @include fhw;
+      //   border: 1px solid green;
+      @include flex-container(flex-end, center);
+      button {
+        height: 30px;
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #635db0;
+        outline: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.formGroup {
+  width: 100%;
+  height: 100%;
+  &__inputGroup {
+    width: 100%;
+    height: calc(100% - 30px);
+    // border: 1px solid orange;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+
+    &__labelDiv {
+      width: 100%;
+      height: 20px;
+      p {
+        color: #a1a7c4;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+    &__inputDiv {
+      width: 100%;
+      height: calc(100% - 20px);
+      // background-color: skyblue;
+      @include flex-container(flex-start, center);
+
+      input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: none;
+        outline: none;
+      }
+    }
+  }
+
+  &__statusInputGroup {
+    width: 100%;
+    height: calc(100% - 30px);
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+
+    &__labelDiv {
+      width: 100%;
+      height: 20px;
+      p {
+        color: #a1a7c4;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+    &__inputDiv {
+      width: 100%;
+      height: calc(100% - 20px);
+      @include flex-container(flex-start, center);
+    }
+
+    .statusInputWrapper {
+      width: auto;
+      height: 100%;
+      @include flex-container(flex-start, center);
+      //   border: 1px solid red;
+
+      &:first-of-type {
+        margin-right: 8px;
+      }
+
+      &:last-of-type {
+        margin-left: 8px;
+      }
+
+      @media (max-width: 768px) {
+        // border: 1px solid red;
+        width: auto;
+        &:first-of-type {
+          margin-right: 10px;
+        }
+
+        &:last-of-type {
+          margin-left: 10px;
+        }
+      }
+
+      .radioBtnWrapper {
+        width: auto;
+        height: 30px;
+        border: 1px solid #d0d5dd;
+        border-radius: 10px;
+        @include flex-container(flex-start, center);
+        cursor: pointer;
+
+        &--activeBtn {
+          border: 1px solid #789980;
+          background-color: #deeedc;
+        }
+        &--inactiveBtn {
+          border: 1px solid #d27e67;
+          background-color: #fde7ea;
+        }
+        .radioDotDiv {
+          height: 100%;
+          aspect-ratio: 1/1;
+          @include flex-container(center, center);
+
+          .radioDot {
+            border-radius: 100%;
+            aspect-ratio: 1/1;
+            width: 40%;
+            background-color: #a4adbb;
+          }
+          &--activeDot {
+            background-color: #789980 !important;
+          }
+          &--inactiveDot {
+            background-color: #d27e67 !important;
+          }
+        }
+        .radioLabelDiv {
+          width: auto;
+          height: 100%;
+          @include flex-container(flex-start, center);
+          // border: 1px solid blue;
+          padding: 0px 8px 0px 0px;
+
+          p {
+            font-size: 0.6rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__errorGroup {
+    height: 30px;
+    width: 100%;
+    // border: 1px solid darkred;
+    @include flex-container(flex-start, center);
+
+    p {
+      color: #f0142f;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+  }
+}
+
+.durationFormGroup {
+  height: 100%;
+  width: 30%;
+  // border: 1px solid blue;
+  @include flex-container(center, center, $direction: column);
+
+  .errorGroup {
+    width: 100%;
+    height: 30px;
+    @include flex-container(flex-start, center);
+
+    p {
+      color: #f0142f;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+  }
+}
+
+.durationInputWrapper {
+  width: 100%;
+  height: calc(100% - 30px);
+  //   border: 1px solid rgb(30, 0, 255);
+  @include flex-container(flex-start, center, $direction: column);
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 15px;
+
+  .labelGroup {
+    height: 20px;
+    width: 100%;
+    // border: 1px solid red;
+    p {
+      color: #a1a7c4;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
+  .inputBtnGroup {
+    height: calc(100% - 20px);
+    width: 100%;
+    // border: 1px solid springgreen;
+    display: inline-flex;
+
+    .inputWrapper {
+      width: auto;
+      height: 100%;
+      //   border: 1px solid blue;
+      display: inline-flex;
+      input {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: 1px solid #d0d5dd;
+        border: none;
+        text-align: center;
+
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none; /* Hide buttons in Chrome, Safari, Edge, and Opera */
+          margin: 0; /* Removes the margin, preventing any default offset */
+        }
+      }
+    }
+
+    .buttonsWrapper {
+      aspect-ratio: 1/2;
+      height: 100%;
+      @include flex-container(flex-start, flex-start, $direction: column);
+      //   border: 1px solid black;
+
+      .btnContainer {
+        height: 100%;
+        width: 100%;
+        @include flex-container(center, center);
+        &:first-of-type {
+          transform: rotate(-90deg);
+        }
+        &:last-of-type {
+          transform: rotate(90deg);
+        }
+
+        button {
+          width: 60%;
+          aspect-ratio: 1/1;
+          // border: 1px solid gold;
+          @include flex-container(center, center);
+          cursor: pointer;
+          background: none;
+          border: none;
+        }
+      }
+    }
+  }
+}

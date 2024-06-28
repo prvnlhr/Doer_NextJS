@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "^7.0.0",
+    "@ckeditor/ckeditor5-react": "^8.0.0",
     "@reduxjs/toolkit": "^2.2.5",
-    "ckeditor5-custom-build": "file:src/ckeditor5",
+    "ckeditor5": "^42.0.0",
     "formik": "^2.4.6",
     "mongoose": "^8.4.3",
     "next": "14.2.4",

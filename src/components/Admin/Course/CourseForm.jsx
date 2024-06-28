@@ -9,7 +9,7 @@ import Image from "next/image";
 const CourseForm = () => {
   const [selectedStatus, setSelectedStatus] = useState(1);
 
-  const [logoPreview, setLogoPreview] = useState(null); // State for image preview
+  const [logoPreview, setLogoPreview] = useState(null);
 
   const initialValues = {
     logo: null,

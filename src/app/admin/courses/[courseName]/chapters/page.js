@@ -10,9 +10,9 @@ const ChaptersPage = ({ params }) => {
   const getAddUrl = () => {
     return `/admin/courses/${params.courseName}/chapters/add`;
   };
+  const columns = ["title", "courseName", "status", "topics"];
 
   //TODO : deleteURl
-  const columns = ["title", "courseName", "status", "topics"];
 
   let chapters = courses
     .filter((course) => course.titleSlug === params.courseName)

@@ -20,3 +20,8 @@ textarea {
   font-family: inherit;
   color: #172c3c;
 }
+
+/* .ck-editor__editable_inline:not(.ck-comment__input *) {
+  height: 300px;
+  overflow-y: auto;
+} */
