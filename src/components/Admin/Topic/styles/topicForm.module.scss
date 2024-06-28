@@ -2,480 +2,76 @@
 
 .formWrapper {
   @include fhw;
-  // border: 1px solid red;
-  @include flex-container(flex-start, flex-start);
+  border: 1px solid red;
+  width: 80%;
+  height: 80%;
+  position: relative;
 
-  @media (max-width: 768px) {
-    @include flex-container(center, flex-start);
-    margin-left: unset;
-  }
-  .formContainer {
-    width: 70%;
-    width: 70%;
-    height: 95%;
-    // border: 1px solid blue;
-    display: grid;
-    grid-template-areas:
-      "titleCell titleCell"
-      "durationCell statusCell"
-      "editorCell editorCell"
-      "buttonCell buttonCell";
-    grid-template-columns: calc(50% - 5px) calc(50% - 5px);
-    grid-template-rows: 25% 25% 440px 50px;
-    grid-gap: 10px;
-    @include scroll($dir: y);
-    padding: 20px 20px;
-
-    @media (max-width: 768px) {
-      width: 85%;
-      height: 95%;
-      margin: unset;
-      margin-top: 30px;
-      //   border: 1px solid red;
-      grid-template-areas:
-        "titleCell"
-        "durationCell"
-        "statusCell"
-        "editorCell"
-        "buttonCell";
-      grid-template-columns: 100%;
-      grid-template-rows: 20% 20% 20% 440px 50px;
-      grid-gap: unset;
-      grid-column-gap: 10px;
-    }
-    .titleCell {
-      grid-area: titleCell;
-      @include fhw;
-      //   border: 1px solid blue;
-    }
-    .durationCell {
-      grid-area: durationCell;
-      @include fhw;
-      // border: 1px solid red;
-      @include flex-container(flex-start, center);
-      justify-content: space-between;
-    }
-    .statusCell {
-      grid-area: statusCell;
-      @include fhw;
-      //   border: 1px solid orange;
-    }
-    .editorCell {
-      grid-area: editorCell;
-      @include fhw;
-      // border: 1px solid orange;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 0px 0px;
-
-      &__editorContainer {
-        width: 100%;
-        height: calc(100% - 30px);
-        // border: 1px solid red;
-        @include flex-container(flex-start, center);
-        background-color: white;
-      }
-      &__errorGroup {
-        width: 100%;
-        height: 30px;
-        @include flex-container(flex-start, center);
-
-        p {
-          color: #f0142f;
-          font-size: 0.7rem;
-          font-weight: 500;
-          margin-left: 5px;
-        }
-      }
-    }
-
-    .buttonCell {
-      grid-area: buttonCell;
-      @include fhw;
-      //   border: 1px solid green;
-      @include flex-container(flex-end, center);
-      button {
-        height: 30px;
-        width: auto;
-        padding-left: 10px;
-        padding-right: 10px;
-        background-color: #635db0;
-        outline: none;
-        border: none;
-        color: white;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.formGroup {
-  width: 100%;
-  height: 100%;
-  &__inputGroup {
+  .formInnerWrapper {
     width: 100%;
-    height: calc(100% - 30px);
-    // border: 1px solid orange;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
+    height: 100%;
+    border: 1px solid orange;
+    @include flex-container(flex-start, flex-start);
 
-    &__labelDiv {
-      width: 100%;
-      height: 20px;
-      p {
-        color: #a1a7c4;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-    }
-    &__inputDiv {
-      width: 100%;
-      height: calc(100% - 20px);
-      // background-color: skyblue;
-      @include flex-container(flex-start, center);
-
-      input {
-        width: 100%;
-        height: 100%;
-        border: none;
-        background: none;
-        outline: none;
-      }
-    }
-  }
-
-  &__statusInputGroup {
-    width: 100%;
-    height: calc(100% - 30px);
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
-
-    &__labelDiv {
-      width: 100%;
-      height: 20px;
-      p {
-        color: #a1a7c4;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-    }
-    &__inputDiv {
-      width: 100%;
-      height: calc(100% - 20px);
-      @include flex-container(flex-start, center);
-    }
-
-    .statusInputWrapper {
-      width: auto;
+    .formContainer {
       height: 100%;
-      @include flex-container(flex-start, center);
-      //   border: 1px solid red;
+      border: 1px solid blue;
+      @include transistion($type: width, $time: 0.5s);
 
-      &:first-of-type {
-        margin-right: 8px;
+      &--expandForm {
+        width: 100%;
+        position: relative;
       }
 
-      &:last-of-type {
-        margin-left: 8px;
+      &--shrinkForm {
+        width: 70%;
+        position: relative;
       }
 
       @media (max-width: 768px) {
-        // border: 1px solid red;
-        width: auto;
-        &:first-of-type {
-          margin-right: 10px;
-        }
-
-        &:last-of-type {
-          margin-left: 10px;
-        }
-      }
-
-      .radioBtnWrapper {
-        width: auto;
-        height: 30px;
-        border: 1px solid #d0d5dd;
-        border-radius: 10px;
-        @include flex-container(flex-start, center);
-        cursor: pointer;
-
-        &--activeBtn {
-          border: 1px solid #789980;
-          background-color: #deeedc;
-        }
-        &--inactiveBtn {
-          border: 1px solid #d27e67;
-          background-color: #fde7ea;
-        }
-        .radioDotDiv {
-          height: 100%;
-          aspect-ratio: 1/1;
-          @include flex-container(center, center);
-
-          .radioDot {
-            border-radius: 100%;
-            aspect-ratio: 1/1;
-            width: 40%;
-            background-color: #a4adbb;
-          }
-          &--activeDot {
-            background-color: #789980 !important;
-          }
-          &--inactiveDot {
-            background-color: #d27e67 !important;
-          }
-        }
-        .radioLabelDiv {
-          width: auto;
-          height: 100%;
-          @include flex-container(flex-start, center);
-          // border: 1px solid blue;
-          padding: 0px 8px 0px 0px;
-
-          p {
-            font-size: 0.6rem;
-          }
-        }
-      }
-    }
-  }
-
-  &__errorGroup {
-    height: 30px;
-    width: 100%;
-    // border: 1px solid darkred;
-    @include flex-container(flex-start, center);
-
-    p {
-      color: #f0142f;
-      font-size: 0.7rem;
-      font-weight: 500;
-      margin-left: 5px;
-    }
-  }
-}
-
-.durationFormGroup {
-  height: 100%;
-  width: 30%;
-  // border: 1px solid blue;
-  @include flex-container(center, center, $direction: column);
-
-  .errorGroup {
-    width: 100%;
-    height: 30px;
-    @include flex-container(flex-start, center);
-
-    p {
-      color: #f0142f;
-      font-size: 0.7rem;
-      font-weight: 500;
-      margin-left: 5px;
-    }
-  }
-}
-
-.durationInputWrapper {
-  width: 100%;
-  height: calc(100% - 30px);
-  //   border: 1px solid rgb(30, 0, 255);
-  @include flex-container(flex-start, center, $direction: column);
-  padding: 10px 20px;
-  background-color: white;
-  border-radius: 15px;
-
-  .labelGroup {
-    height: 20px;
-    width: 100%;
-    // border: 1px solid red;
-    p {
-      color: #a1a7c4;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-  }
-  .inputBtnGroup {
-    height: calc(100% - 20px);
-    width: 100%;
-    // border: 1px solid springgreen;
-    display: inline-flex;
-
-    .inputWrapper {
-      width: auto;
-      height: 100%;
-      //   border: 1px solid blue;
-      display: inline-flex;
-      input {
-        width: 100%;
-        height: 100%;
-        outline: none;
-        border: 1px solid #d0d5dd;
-        border: none;
-        text-align: center;
-
-        -moz-appearance: textfield;
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          -webkit-appearance: none; /* Hide buttons in Chrome, Safari, Edge, and Opera */
-          margin: 0; /* Removes the margin, preventing any default offset */
-        }
-      }
-    }
-
-    .buttonsWrapper {
-      aspect-ratio: 1/2;
-      height: 100%;
-      @include flex-container(flex-start, flex-start, $direction: column);
-      //   border: 1px solid black;
-
-      .btnContainer {
-        height: 100%;
-        width: 100%;
-        @include flex-container(center, center);
-        &:first-of-type {
-          transform: rotate(-90deg);
-        }
-        &:last-of-type {
-          transform: rotate(90deg);
-        }
-
-        button {
-          width: 60%;
-          aspect-ratio: 1/1;
-          // border: 1px solid gold;
-          @include flex-container(center, center);
-          cursor: pointer;
-          background: none;
-          border: none;
-        }
-      }
-    }
-  }
-}
-
-.previewWrapper {
-  width: 30%;
-  height: 95%;
-  @include flex-container(flex-start, flex-start, $direction: column);
-  // border: 1px solid black;
-  padding: 20px 0px 0px 0px;
-
-  .previewHeader {
-    width: 90%;
-    height: 30px;
-    @include flex-container(flex-start, center, $direction: row);
-    padding: 0;
-    margin: 0;
-    // border: 1px solid red;
-    p {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      white-space: nowrap;
-      // border: 1px solid orange;
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  .previewPane {
-    width: 90%;
-    height: calc(100% - 30px);
-    overflow-wrap: break-word;
-    background-color: white;
-    @include scroll($dir: y);
-    padding: 20px 20px;
-    // border: 1px solid blue;
-
-    p {
-      margin-bottom: 10px;
-      line-height: 2;
-      color: #1c3553;
-      font-size: 0.8rem;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      margin-top: 20px;
-      margin-bottom: 25px;
-      font-weight: bold;
-      color: #101828;
-      position: relative;
-      &::after {
+        background-color: rgba(135, 207, 235, 0.466);
+        @include transistion($type: left, $time: 0.5s);
         position: absolute;
-        content: "";
-        left: 0px;
-        bottom: -10px;
-        background-color: #635db0;
-        width: 10%;
-        height: 3px;
-        border-radius: 8px;
+        width: 100%;
+        &--expandForm {
+          left: -100%;
+        }
+
+        &--shrinkForm {
+          left: 0%;
+        }
       }
     }
 
-    pre {
-      background-color: #011627;
-      padding: 20px 20px;
-      border-radius: 5px;
-      overflow-x: scroll;
-      margin-top: 20px;
-      margin-bottom: 20px;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      code {
-        border-radius: 4px;
-        color: white !important;
-        background-color: transparent !important;
-        padding: 0px !important;
-      }
-    }
-
-    blockquote {
-      margin: 0;
-      padding-left: 10px;
-      border-left: 3px solid #ccc;
-      color: #666;
-    }
-
-    ul,
-    ol {
-      margin-bottom: 10px;
-      padding-left: 20px;
-    }
-    li {
-      color: #1c3553;
-      font-size: 0.8rem;
-    }
-    code {
-      color: #f0142f;
-      background-color: #ffe4e8;
-      padding: 2px 8px;
-      border-radius: 3px;
-      border-radius: 5px;
-    }
-
-    hr {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    figcaption {
-      font-size: 0.6rem;
-    }
-    img {
-      width: 100%;
+    .previewWrapper {
       height: 100%;
-      object-fit: contain;
+      border: 1px solid black;
+      @include transistion($type: right, $time: 0.5s);
+      width: 30%;
+      &--showPane {
+        right: 0%;
+        position: absolute;
+        width: 30%;
+      }
+      &--hidePane {
+        position: absolute;
+        right: -30%;
+        width: 30%;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        background-color: salmon;
+
+        &--showPane {
+          right: -100%;
+          position: absolute;
+        }
+        &--hidePane {
+          position: absolute;
+          right: 0%;
+        }
+      }
     }
   }
 }
