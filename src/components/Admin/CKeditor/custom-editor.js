@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import "./styles/ckeditor.module.scss";
 
 import {
   ClassicEditor,
+  AccessibilityHelp,
   Alignment,
-  Autoformat,
   AutoImage,
   AutoLink,
   Autosave,
@@ -15,7 +14,6 @@ import {
   Code,
   CodeBlock,
   Essentials,
-  FindAndReplace,
   FontBackgroundColor,
   FontColor,
   FontFamily,
@@ -33,6 +31,7 @@ import {
   ImageInsertViaUrl,
   ImageResize,
   ImageStyle,
+  ImageTextAlternative,
   ImageToolbar,
   Indent,
   IndentBlock,
@@ -41,10 +40,8 @@ import {
   LinkImage,
   List,
   ListProperties,
-  MediaEmbed,
   PageBreak,
   Paragraph,
-  PasteFromOffice,
   RemoveFormat,
   SelectAll,
   ShowBlocks,
@@ -57,7 +54,6 @@ import {
   SpecialCharactersMathematical,
   SpecialCharactersText,
   Strikethrough,
-  Style,
   Subscript,
   Superscript,
   Table,
@@ -66,7 +62,6 @@ import {
   TableColumnResize,
   TableProperties,
   TableToolbar,
-  TextTransformation,
   TodoList,
   Underline,
   Undo,
@@ -74,8 +69,9 @@ import {
 
 import "ckeditor5/ckeditor5.css";
 
+import "./styles/ckeditor.css";
+
 export default function CustomEditor({ setFieldValue }) {
-  
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -89,16 +85,16 @@ export default function CustomEditor({ setFieldValue }) {
   const editorConfig = {
     toolbar: {
       items: [
-        // First set: Paragraph and heading
-        "paragraph",
+        "undo",
+        "redo",
+        "|",
         "heading",
-
-        // Second set: All font styles related
         "|",
         "fontSize",
         "fontFamily",
         "fontColor",
         "fontBackgroundColor",
+        "|",
         "bold",
         "italic",
         "underline",
@@ -107,45 +103,35 @@ export default function CustomEditor({ setFieldValue }) {
         "superscript",
         "code",
         "removeFormat",
+        "|",
+        "specialCharacters",
+        "horizontalLine",
+        "pageBreak",
+        "link",
+        "insertImageViaUrl",
+        "insertTable",
         "highlight",
-        // "style",
-
-        // Third set: List and alignment
+        "blockQuote",
+        "codeBlock",
+        "htmlEmbed",
+        "|",
+        "alignment",
         "|",
         "bulletedList",
         "numberedList",
         "todoList",
-        "alignment",
         "indent",
         "outdent",
-
-        // Fourth set: All content-related tools
         "|",
-        "insertTable",
-        "blockQuote",
-        "codeBlock",
-        "htmlEmbed",
-        "link",
-        "insertImageViaUrl",
-        "mediaEmbed",
-        "specialCharacters",
-        "horizontalLine",
-        "pageBreak",
-
-        // Additional tools
-        "|",
-        "undo",
-        "redo",
         "sourceEditing",
         "showBlocks",
-        "findAndReplace",
         "selectAll",
       ],
       shouldNotGroupWhenFull: false,
     },
     plugins: [
+      AccessibilityHelp,
       Alignment,
-      Autoformat,
       AutoImage,
       AutoLink,
       Autosave,
@@ -155,7 +141,6 @@ export default function CustomEditor({ setFieldValue }) {
       Code,
       CodeBlock,
       Essentials,
-      FindAndReplace,
       FontBackgroundColor,
       FontColor,
       FontFamily,
@@ -173,6 +158,7 @@ export default function CustomEditor({ setFieldValue }) {
       ImageInsertViaUrl,
       ImageResize,
       ImageStyle,
+      ImageTextAlternative,
       ImageToolbar,
       Indent,
       IndentBlock,
@@ -181,10 +167,8 @@ export default function CustomEditor({ setFieldValue }) {
       LinkImage,
       List,
       ListProperties,
-      MediaEmbed,
       PageBreak,
       Paragraph,
-      PasteFromOffice,
       RemoveFormat,
       SelectAll,
       ShowBlocks,
@@ -197,7 +181,6 @@ export default function CustomEditor({ setFieldValue }) {
       SpecialCharactersMathematical,
       SpecialCharactersText,
       Strikethrough,
-      Style,
       Subscript,
       Superscript,
       Table,
@@ -206,7 +189,6 @@ export default function CustomEditor({ setFieldValue }) {
       TableColumnResize,
       TableProperties,
       TableToolbar,
-      TextTransformation,
       TodoList,
       Underline,
       Undo,
@@ -317,55 +299,6 @@ export default function CustomEditor({ setFieldValue }) {
       },
     },
     placeholder: "Type or paste your content here!",
-    style: {
-      definitions: [
-        {
-          name: "Article category",
-          element: "h3",
-          classes: ["category"],
-        },
-        {
-          name: "Title",
-          element: "h2",
-          classes: ["document-title"],
-        },
-        {
-          name: "Subtitle",
-          element: "h3",
-          classes: ["document-subtitle"],
-        },
-        {
-          name: "Info box",
-          element: "p",
-          classes: ["info-box"],
-        },
-        {
-          name: "Side quote",
-          element: "blockquote",
-          classes: ["side-quote"],
-        },
-        {
-          name: "Marker",
-          element: "span",
-          classes: ["marker"],
-        },
-        {
-          name: "Spoiler",
-          element: "span",
-          classes: ["spoiler"],
-        },
-        {
-          name: "Code (dark)",
-          element: "pre",
-          classes: ["fancy-code", "fancy-code-dark"],
-        },
-        {
-          name: "Code (bright)",
-          element: "pre",
-          classes: ["fancy-code", "fancy-code-bright"],
-        },
-      ],
-    },
     table: {
       contentToolbar: [
         "tableColumn",
@@ -380,7 +313,7 @@ export default function CustomEditor({ setFieldValue }) {
   return (
     <div className="main-container">
       <div
-        className="editor-container editor-container_classic-editor editor-container_include-style"
+        className="editor-container editor-container_classic-editor"
         ref={editorContainerRef}
       >
         <div className="editor-container__editor">

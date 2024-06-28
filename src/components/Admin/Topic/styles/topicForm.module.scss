@@ -22,8 +22,9 @@
       "editorCell editorCell"
       "buttonCell buttonCell";
     grid-template-columns: calc(50% - 5px) calc(50% - 5px);
-    grid-template-rows: 20% 25% 539px 50px;
-    grid-gap: 10px;
+    grid-template-rows: 20% 25% 440px 50px;
+
+    // grid-gap: 10px;
     @include scroll($dir: y);
 
     @media (max-width: 768px) {
@@ -32,7 +33,6 @@
       margin: unset;
       margin-top: 30px;
       //   border: 1px solid red;
-
       grid-template-areas:
         "titleCell"
         "durationCell"
@@ -40,7 +40,7 @@
         "editorCell"
         "buttonCell";
       grid-template-columns: 100%;
-      grid-template-rows: 20% 20% 20% 539px 50px;
+      grid-template-rows: 20% 20% 20% 440px 50px;
       grid-gap: unset;
       grid-column-gap: 10px;
     }
@@ -52,7 +52,7 @@
     .durationCell {
       grid-area: durationCell;
       @include fhw;
-        // border: 1px solid red;
+      // border: 1px solid red;
       @include flex-container(flex-start, center);
       justify-content: space-between;
     }
@@ -65,14 +65,11 @@
       grid-area: editorCell;
       @include fhw;
       // border: 1px solid orange;
-      // @include scroll($dir: y);
-      // min-height: 70%;
       position: relative;
-      padding: 0px 0px;
       display: flex;
       flex-direction: column;
-      display: flex;
       background-color: white;
+      padding: 0px 0px;
     }
 
     .buttonCell {
