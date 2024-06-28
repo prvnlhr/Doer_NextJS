@@ -11,7 +11,7 @@ const Accordion = () => {
       chapterName: "Introduction to Programming",
       topics: [
         { topicName: "What is Programming?" },
-        { topicName: "Programming Languages" },
+        { topicName: "Node.Js environment" },
       ],
     },
     {
@@ -106,6 +106,7 @@ const Accordion = () => {
       <div className={styles.accordListWrapper}>
         {accordionData.map((ele, indx) => (
           <AccordionItem
+            key={indx}
             chapter={ele}
             chapterIndx={indx}
             currOpenItemIndx={currOpenItemIndx}
