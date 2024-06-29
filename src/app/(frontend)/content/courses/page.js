@@ -1,4 +1,3 @@
-// /app/courses/page.js
 import React from "react";
 import CoursesList from "@/components/Course/CourseList";
 

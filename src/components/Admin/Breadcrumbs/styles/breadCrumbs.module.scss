@@ -6,6 +6,7 @@
   // border: 1px solid red;
   @include flex-container(flex-start, center);
   padding-left: 8px;
+
   .breadcrumbWrapper {
     width: auto;
     height: 90%;
@@ -24,6 +25,10 @@
         font-weight: 500;
         letter-spacing: 0.3px;
         color: #7e8da4;
+        border: 1px solid transparent;
+        &:hover {
+          border-bottom: 1px solid #7e8da4;
+        }
       }
 
       &--currentText {
@@ -31,6 +36,7 @@
         font-weight: 500;
         letter-spacing: 0.3px;
         color: #635db0;
+        border: none !important;
       }
     }
 

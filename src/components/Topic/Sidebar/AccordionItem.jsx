@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles/accordionItem.module.scss";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { generateSlug } from "@/lib/utils/slugUtil";
 
 const AccordionItem = ({
   chapter,
@@ -10,17 +11,6 @@ const AccordionItem = ({
   currOpenItemHeight,
   handleItemClicked,
 }) => {
-  function generateSlug(topicName) {
-    let slug = topicName
-      .toLowerCase()
-      .replace(/\./g, "") // Remove dots
-      .replace(/\s+/g, "-") // Replace spaces with dashes
-      .trim(); // Trim any leading or trailing whitespace
-
-    console.log({ topicName, slug });
-    return slug;
-  }
-
   const params = useParams();
   const { courseName, chapterName } = params;
   return (

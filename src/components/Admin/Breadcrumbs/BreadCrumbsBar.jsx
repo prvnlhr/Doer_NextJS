@@ -1,9 +1,9 @@
-"use client";
 import React from "react";
 import { useParams, usePathname } from "next/navigation";
 import styles from "./styles/breadCrumbs.module.scss";
 import Link from "next/link";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
+import { generateSlug } from "@/lib/utils/slugUtil";
 const BreadCrumbsBar = () => {
   const params = useParams();
   const pathname = usePathname();
@@ -13,11 +13,10 @@ const BreadCrumbsBar = () => {
     chapterName: "",
     topicName: "",
   };
-  const normalize = (name) => name && name.replace(/\s+/g, "-");
 
-  const normalizedCourseName = normalize(courseName);
-  const normalizedChapterName = normalize(chapterName);
-  const normalizedTopicName = normalize(topicName);
+  const normalizedCourseName = generateSlug(courseName);
+  const normalizedChapterName = generateSlug(chapterName);
+  const normalizedTopicName = generateSlug(topicName);
 
   const pathSegments = pathname
     .split("/")
@@ -30,8 +29,6 @@ const BreadCrumbsBar = () => {
     chapters: `/admin/courses/${normalizedCourseName}/chapters`,
     topics: `/admin/courses/${normalizedCourseName}/chapters/${normalizedChapterName}/topics`,
   };
-
-  // console.log({ pathSegments, courseName, chapterName, topicName });
 
   return (
     <div className={styles.breadCrumbsBar}>

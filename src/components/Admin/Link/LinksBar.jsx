@@ -174,7 +174,8 @@ const LinkComponent = () => {
 
   return null;
 };
-const linksBar = () => {
+
+const LinksBar = () => {
   return (
     <div className={styles.linksBar}>
       <LinkComponent />
@@ -182,4 +183,4 @@ const linksBar = () => {
   );
 };
 
-export default linksBar;
+export default LinksBar;

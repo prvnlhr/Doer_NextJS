@@ -1,13 +1,8 @@
-"use client";
 import React from "react";
 import styles from "./styles/mainContentArea.module.scss";
-import { usePathname } from "next/navigation";
 import BreadCrumbsBar from "../Breadcrumbs/BreadCrumbsBar";
 
 const MainContentArea = ({ showSidebar, setShowSidebar, children }) => {
-  const pathname = usePathname();
-
-  console.log(pathname);
   return (
     <div
       className={`${styles.mainContentAreaWrapper} ${
@@ -19,7 +14,6 @@ const MainContentArea = ({ showSidebar, setShowSidebar, children }) => {
       <div
         onClick={() => {
           setShowSidebar((prev) => !prev);
-          console.log("ss");
         }}
         className={styles.mainContentAreaWrapper__breadcrumbsWrapper}
       >

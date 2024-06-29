@@ -95,7 +95,7 @@ const Accordion = () => {
     setCurrOpenItemIndx((prevIndx) =>
       prevIndx === clickedItemIndx ? null : clickedItemIndx
     );
-    console.log(subListHeight);
+    // console.log(subListHeight);
     setCurrOpenItemHeight(subListHeight);
   };
 
