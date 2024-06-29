@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./styles/courseForm.module.scss";
 import Image from "next/image";
+import { createCourse } from "@/lib/api/coursesApi";
 
 const CourseForm = () => {
   const [selectedStatus, setSelectedStatus] = useState(1);
@@ -28,6 +29,12 @@ const CourseForm = () => {
           "image/png",
           "image/gif",
           "image/svg+xml",
+          "image/bmp", // BMP
+          "image/webp", // WebP
+          "image/tiff", // TIFF
+          "image/x-icon", // ICO
+          "image/heif", // HEIF
+          "image/heic", // HEIC
         ];
         return supportedFormats.includes(value.type);
       }),
@@ -41,9 +48,16 @@ const CourseForm = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log({ values });
       // action.resetForm();
+      try {
+        const res = await createCourse(values);
+
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
