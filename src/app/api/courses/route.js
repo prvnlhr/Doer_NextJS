@@ -10,7 +10,13 @@ function delayedApiCall(time) {
 
 export async function GET(req, res) {
   try {
+    console.log(
+      "QUERY.................................................................",
+      req
+    );
+
     const data = await delayedApiCall(5000);
+
     return new Response(JSON.stringify(data), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: "Error fetching courses" }), {
