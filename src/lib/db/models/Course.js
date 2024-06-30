@@ -4,6 +4,7 @@ const courseSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
   logoUrl: { type: String },
+  cloudinary_id: { type: String },
   status: { type: Boolean, default: true },
 });
 

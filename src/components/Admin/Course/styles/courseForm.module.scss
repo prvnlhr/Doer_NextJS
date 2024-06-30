@@ -74,6 +74,13 @@
         border: none;
         color: white;
         cursor: pointer;
+
+        &:disabled {
+          background-color: #f5f6fa;
+          cursor: not-allowed;
+          color: #a1a7c4;
+          border: #d7dbec;
+        }
       }
     }
     &__statusCell {

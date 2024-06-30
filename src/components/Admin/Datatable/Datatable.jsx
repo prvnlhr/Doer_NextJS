@@ -11,7 +11,7 @@ const StatusBadge = ({ value, color }) => {
   return (
     <div
       className={`${styles.statusBadgeWrapper} ${
-        value === "active"
+        value === true
           ? styles[`statusBadgeWrapper--activeBg`]
           : styles[`statusBadgeWrapper--inactiveBg`]
       }`}
@@ -24,10 +24,10 @@ const StatusBadge = ({ value, color }) => {
       <div className={styles.statusBadgeWrapper__statusTextWrapper}>
         <p
           className={`${
-            value === "active" ? styles.activeText : styles.inactiveText
+            value === true ? styles.activeText : styles.inactiveText
           }`}
         >
-          {value}
+          {value ? "Active" : "Inactive"}
         </p>
       </div>
     </div>
@@ -90,9 +90,7 @@ const Datatable = ({ data, columns, getEditUrl, getAddUrl }) => {
                             <StatusBadge
                               value={row[colName]}
                               color={
-                                row[colName] === "active"
-                                  ? "#789980"
-                                  : "#7E8DA4"
+                                row[colName] === true ? "#789980" : "#7E8DA4"
                               }
                             />
                           ) : colName === "chapters" ? (

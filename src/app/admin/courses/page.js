@@ -1,6 +1,7 @@
 import Datatable from "@/components/Admin/Datatable/Datatable";
 import React from "react";
-import { courses } from "@/components/courseData";
+// import { courses } from "@/components/courseData";
+import { fetchCourses } from "@/lib/api/coursesApi";
 const CoursesPage = async () => {
   const getEditUrl = (slug) => {
     return `/admin/courses/${slug}/edit`;
@@ -10,6 +11,7 @@ const CoursesPage = async () => {
     return `/admin/courses/add`;
   };
 
+  const courses = await fetchCourses(false);
 
   const columns = ["title", "chapters", "status"];
   return (
@@ -20,7 +22,6 @@ const CoursesPage = async () => {
       3. getEditUrl -> Function to generate the edit URL for each row
       4. getAddUrl -> Function to generate the URL for adding a new row
     */
-
     <Datatable
       data={courses}
       columns={columns}

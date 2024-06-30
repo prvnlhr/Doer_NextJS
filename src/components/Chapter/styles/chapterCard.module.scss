@@ -121,9 +121,11 @@
     @include fhw;
     // border: 1px solid black;
     @include flex-container(flex-end, flex-end);
-    div {
+
+    .buttonWrapper {
       width: 60%;
       aspect-ratio: 1/1;
+      // border: 1px solid black;
     }
   }
 }

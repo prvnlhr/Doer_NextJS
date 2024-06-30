@@ -11,22 +11,22 @@ const TopicIcon = () => {
       <path
         d="M20 7H4"
         stroke="#635DB0"
-        stroke-width="3.482"
-        stroke-linecap="round"
+        strokeWidth="3.482"
+        strokeLinejoin="round"
       />
       <path
         opacity="0.7"
         d="M15 12.0005H4"
         stroke="#635DB0"
-        stroke-width="3.482"
-        stroke-linecap="round"
+        strokeWidth="3.482"
+        strokeLinejoin="round"
       />
       <path
         opacity="0.4"
         d="M9 17.001H4"
         stroke="#635DB0"
-        stroke-width="3.482"
-        stroke-linecap="round"
+        strokeWidth="3.482"
+        strokeLinejoin="round"
       />
     </svg>
   );

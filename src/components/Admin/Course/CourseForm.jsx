@@ -49,12 +49,15 @@ const CourseForm = () => {
     initialValues,
     validationSchema,
     onSubmit: async (values, action) => {
-      console.log({ values });
       // action.resetForm();
       try {
-        const res = await createCourse(values);
-
-        console.log(res);
+        const formData = new FormData();
+        formData.append("title", values.title);
+        formData.append("description", values.description);
+        formData.append("status", values.status);
+        formData.append("file", values.logo);
+        const res = await createCourse(formData);
+        console.log("RES..", res);
       } catch (error) {
         console.log(error);
       }
@@ -230,7 +233,9 @@ const CourseForm = () => {
 
         {/*  */}
         <div className={styles.formContainer__buttonCell}>
-          <button type="submit">Submit</button>
+          <button disabled={formik.isSubmitting} type="submit">
+            Submit
+          </button>
         </div>
       </form>
     </div>

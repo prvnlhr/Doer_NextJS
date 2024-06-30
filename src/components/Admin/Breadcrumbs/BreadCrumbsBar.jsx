@@ -33,7 +33,7 @@ const BreadCrumbsBar = () => {
   return (
     <div className={styles.breadCrumbsBar}>
       {pathSegments.map((segment, index) => (
-        <div className={styles.breadcrumbWrapper}>
+        <div key={index} className={styles.breadcrumbWrapper}>
           <Link
             className={styles.breadcrumbWrapper__link}
             href={links[segment] || "#"}

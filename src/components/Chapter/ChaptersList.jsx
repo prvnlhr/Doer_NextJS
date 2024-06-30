@@ -35,7 +35,7 @@ const ChaptersList = () => {
   return (
     <div className={styles.chaptersListWrapper}>
       {chapters.map((chapter) => (
-        <ChapterCard chapter={chapter} />
+        <ChapterCard key={chapter.title} chapter={chapter} />
       ))}
     </div>
   );

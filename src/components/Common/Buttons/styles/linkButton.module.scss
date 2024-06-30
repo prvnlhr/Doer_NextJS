@@ -1,17 +1,24 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
 
-.linkBtn {
+.btnWrapper {
   width: 100%;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  background-color: $link-btn-bg;
   @include flex-container(center, center);
   cursor: pointer;
-
-  &__arrowIcon {
-    width: 25%;
+  .linkBtn {
+    width: 100%;
     aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: $link-btn-bg;
     @include flex-container(center, center);
+    cursor: pointer;
+
+    &__arrowIcon {
+      width: 25%;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+    }
   }
 }

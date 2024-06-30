@@ -1,8 +1,11 @@
+import { cache } from "react";
+
 const BASE_URL = process.env.BASE_URL;
 
-export async function fetchCourses() {
+export async function fetchCourses(status = true) {
+
   try {
-    let response = await fetch(`${BASE_URL}/api/courses`, {
+    let response = await fetch(`${BASE_URL}/api/courses?status=${status}`, {
       cache: "no-store",
     });
 
@@ -15,15 +18,13 @@ export async function fetchCourses() {
   }
 }
 
-export async function createCourse(courseData) {
+export async function createCourse(formData) {
   try {
-    console.log(courseData);
+    console.log(formData);
     const response = await fetch(`http://localhost:3000/api/courses`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(courseData),
+      body: formData,
+      cache: "no-store",
     });
 
     if (!response.ok) {

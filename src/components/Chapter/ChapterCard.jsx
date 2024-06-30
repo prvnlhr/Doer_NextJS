@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import styles from "./styles/chapterCard.module.scss";
 import LinkButton from "../Common/Buttons/LinkButton";
@@ -31,8 +30,8 @@ const ChapterCard = ({ chapter }) => {
       </div>
       <div className={styles.card__topicsListWrapper}>
         <div className={styles.listInnerWrapper}>
-          {chapter.topics.map((topic) => (
-            <TopicsListItem topic={topic} />
+          {chapter.topics.map((topic, index) => (
+            <TopicsListItem key={index} topic={topic} />
           ))}
         </div>
       </div>

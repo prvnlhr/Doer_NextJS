@@ -137,7 +137,7 @@ const CoursesList = ({ courses }) => {
   return (
     <div className={styles.courseListWrapper}>
       {courses.map((course) => (
-        <CourseCard course={course} />
+        <CourseCard key={course.title} course={course} />
       ))}
     </div>
   );
