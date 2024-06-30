@@ -5,12 +5,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./styles/courseForm.module.scss";
 import Image from "next/image";
-import { createCourse } from "@/lib/api/coursesApi";
+import { createCourse } from "@/lib/api/admin/coursesApi";
 
-const CourseForm = () => {
-  const [selectedStatus, setSelectedStatus] = useState(1);
-
-  const [logoPreview, setLogoPreview] = useState(null);
+const CourseForm = ({ course }) => {
+  // const initialValues = {
+  //   logo: null,
+  //   title: course ? course.title : "",
+  //   description: course ? course.description : "",
+  //   status: course ? course.status : 1,
+  // };
 
   const initialValues = {
     logo: null,
@@ -18,6 +21,11 @@ const CourseForm = () => {
     description: "",
     status: 1,
   };
+
+  console.log("COURSE", { course });
+
+  const [selectedStatus, setSelectedStatus] = useState(1);
+  const [logoPreview, setLogoPreview] = useState(null);
 
   const validationSchema = Yup.object().shape({
     logo: Yup.mixed()
@@ -48,6 +56,7 @@ const CourseForm = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
+
     onSubmit: async (values, action) => {
       // action.resetForm();
       try {
@@ -95,13 +104,14 @@ const CourseForm = () => {
                 onBlur={formik.handleBlur}
               />
               <label className={styles.customUploadBox} htmlFor="logo">
-                {formik.values.logo ? (
+                {formik.values.logo || logoPreview ? (
                   <div className={styles.logoPreviewDiv}>
                     <Image
                       quality={10}
                       fill={true}
                       src={logoPreview}
                       alt="Logo Preview"
+                      sizes="(max-width:100%)"
                     />
                   </div>
                 ) : (
@@ -138,7 +148,7 @@ const CourseForm = () => {
                   id="title"
                   name="title"
                   value={formik.values.title}
-                  onChange={formik.handleChange}
+                  // onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </div>
@@ -166,7 +176,7 @@ const CourseForm = () => {
                   id="description"
                   name="description"
                   value={formik.values.description}
-                  onChange={formik.handleChange}
+                  // onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </div>

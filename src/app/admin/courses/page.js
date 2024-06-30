@@ -1,19 +1,21 @@
 import Datatable from "@/components/Admin/Datatable/Datatable";
+import { fetchCourses } from "@/lib/api/admin/coursesApi";
 import React from "react";
-// import { courses } from "@/components/courseData";
-import { fetchCourses } from "@/lib/api/coursesApi";
 const CoursesPage = async () => {
-  const getEditUrl = (slug) => {
-    return `/admin/courses/${slug}/edit`;
+  const getEditUrl = (slug, id) => {
+    const params = new URLSearchParams({ action: "edit", id }).toString();
+
+    return `/admin/courses/${slug}/edit?${params}`;
   };
 
   const getAddUrl = () => {
     return `/admin/courses/add`;
   };
 
-  const courses = await fetchCourses(false);
+  const courses = await fetchCourses();
 
   const columns = ["title", "chapters", "status"];
+
   return (
     /*
       Datatable component takes four props:

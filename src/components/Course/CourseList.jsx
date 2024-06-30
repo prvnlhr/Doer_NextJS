@@ -140,6 +140,7 @@ const CoursesList = ({ courses }) => {
         <CourseCard key={course.title} course={course} />
       ))}
     </div>
+  
   );
 };
 

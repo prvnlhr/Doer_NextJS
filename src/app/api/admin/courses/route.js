@@ -4,19 +4,21 @@ import cloudinary, { uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 
 // Get all courses
 export async function GET(req, res) {
-  console.log("FETCHING.................................");
   await dbConnect();
   try {
-    const query = {
-      status: true,
-    };
-    const courses = await Course.find(query);
+    const courses = await Course.find();
     return new Response(JSON.stringify(courses), { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response(JSON.stringify({ error: "Error fetching courses" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({
+        error: error,
+        message: "Error in fetching courses",
+      }),
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -25,7 +27,6 @@ export async function POST(req) {
   await dbConnect();
   try {
     const FormData = await req.formData();
-    // console.log("FormData", FormData);
 
     const courseData = {
       title: FormData.get("title"),
@@ -45,8 +46,14 @@ export async function POST(req) {
     return new Response(JSON.stringify(savedCourse), { status: 201 });
   } catch (error) {
     console.log(error);
-    return new Response(JSON.stringify({ error: "Error creating course" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({
+        error: error,
+        message: "Error in adding courses",
+      }),
+      {
+        status: 500,
+      }
+    );
   }
 }

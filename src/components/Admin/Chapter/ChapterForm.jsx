@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import styles from "./styles/chapterForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 const ChapterForm = () => {
+  console.log("CHAPTER");
   const [selectedStatus, setSelectedStatus] = useState(1);
 
   const initialValues = {
@@ -31,7 +31,6 @@ const ChapterForm = () => {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-      
         <div className={styles.formContainer__titleCell}>
           <div className={styles.formGroup}>
             <div className={styles.formGroup__inputGroup}>
