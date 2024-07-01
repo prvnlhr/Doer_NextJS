@@ -8,27 +8,18 @@ import Image from "next/image";
 import { createCourse } from "@/lib/api/admin/coursesApi";
 
 const CourseForm = ({ course }) => {
-  // const initialValues = {
-  //   logo: null,
-  //   title: course ? course.title : "",
-  //   description: course ? course.description : "",
-  //   status: course ? course.status : 1,
-  // };
-
   const initialValues = {
-    logo: null,
-    title: "",
-    description: "",
-    status: 1,
+    file: null,
+    title: course ? course.title : "",
+    description: course ? course.description : "",
+    status: course ? course.status : 1,
   };
-
-  console.log("COURSE", { course });
 
   const [selectedStatus, setSelectedStatus] = useState(1);
   const [logoPreview, setLogoPreview] = useState(null);
 
   const validationSchema = Yup.object().shape({
-    logo: Yup.mixed()
+    file: Yup.mixed()
       .required("Course Logo is required")
       .test("fileType", "Unsupported file format", (value) => {
         if (!value) return true;
@@ -64,9 +55,9 @@ const CourseForm = ({ course }) => {
         formData.append("title", values.title);
         formData.append("description", values.description);
         formData.append("status", values.status);
-        formData.append("file", values.logo);
+        formData.append("file", values.file);
         const res = await createCourse(formData);
-        console.log("RES..", res);
+        console.log("🚀 ~ file: CourseForm.jsx:60 ~ onSubmit: ~ res:", res);
       } catch (error) {
         console.log(error);
       }
@@ -75,7 +66,11 @@ const CourseForm = ({ course }) => {
 
   const handleFileChange = (event) => {
     const file = event.currentTarget.files[0];
-    formik.setFieldValue("logo", file);
+    console.log(
+      "🚀 ~ file: CourseForm.jsx:69 ~ handleFileChange ~ file:",
+      file
+    );
+    formik.setFieldValue("file", file);
     if (file) {
       const previewURL = URL.createObjectURL(file);
       setLogoPreview(previewURL);
@@ -89,6 +84,12 @@ const CourseForm = ({ course }) => {
       }
     };
   }, [logoPreview]);
+
+  useEffect(() => {
+    if (course && course.logoUrl) {
+      setLogoPreview(course.logoUrl);
+    }
+  }, []);
 
   return (
     <div className={styles.formWrapper}>
@@ -104,7 +105,7 @@ const CourseForm = ({ course }) => {
                 onBlur={formik.handleBlur}
               />
               <label className={styles.customUploadBox} htmlFor="logo">
-                {formik.values.logo || logoPreview ? (
+                {logoPreview ? (
                   <div className={styles.logoPreviewDiv}>
                     <Image
                       quality={10}
@@ -148,7 +149,7 @@ const CourseForm = ({ course }) => {
                   id="title"
                   name="title"
                   value={formik.values.title}
-                  // onChange={formik.handleChange}
+                  onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </div>
@@ -176,7 +177,7 @@ const CourseForm = ({ course }) => {
                   id="description"
                   name="description"
                   value={formik.values.description}
-                  // onChange={formik.handleChange}
+                  onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </div>
