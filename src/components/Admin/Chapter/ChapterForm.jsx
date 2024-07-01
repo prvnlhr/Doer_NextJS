@@ -4,7 +4,6 @@ import styles from "./styles/chapterForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 const ChapterForm = () => {
-  console.log("CHAPTER");
   const [selectedStatus, setSelectedStatus] = useState(1);
 
   const initialValues = {

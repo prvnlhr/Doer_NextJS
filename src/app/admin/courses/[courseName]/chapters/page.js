@@ -4,8 +4,9 @@ import React from "react";
 import { courses } from "../../../../../components/courseData";
 
 const ChaptersPage = ({ params }) => {
-  const getEditUrl = (slug) => {
-    return `/admin/courses/${params.courseName}/chapters/${slug}/edit`;
+  console.log("🚀 ~ file: page.js:7 ~ ChaptersPage ~ params:", params);
+  const getEditUrl = (chapterNameSlug, chapterId) => {
+    return `/admin/courses/${params.courseName}/chapters/${chapterNameSlug}/edit/${chapterId}`;
   };
   const getAddUrl = () => {
     return `/admin/courses/${params.courseName}/chapters/add`;
@@ -19,7 +20,12 @@ const ChaptersPage = ({ params }) => {
     .flatMap((course) => course.chapters);
 
   return (
-    <Datatable data={chapters} columns={columns} getEditUrl={getEditUrl} getAddUrl={getAddUrl}/>
+    <Datatable
+      data={chapters}
+      columns={columns}
+      getEditUrl={getEditUrl}
+      getAddUrl={getAddUrl}
+    />
   );
 };
 

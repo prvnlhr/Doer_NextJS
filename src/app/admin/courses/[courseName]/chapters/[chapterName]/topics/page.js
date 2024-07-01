@@ -1,20 +1,20 @@
-"use client";
 import React from "react";
-import { useParams } from "next/navigation";
 import topics from "../../../../../../../components/topicsData";
 import Datatable from "@/components/Admin/Datatable/Datatable";
-const TopicsPage = () => {
-  const params = useParams();
+
+const TopicsPage = ({ params }) => {
+  // const params = useParams();
   const { courseName, chapterName } = params;
-  console.log(courseName, chapterName);
+  console.log("🚀 ~ file: page.js:8 ~ TopicsPage ~ courseName:", courseName);
+  console.log("🚀 ~ file: page.js:8 ~ TopicsPage ~ chapterName:", chapterName);
+
   // console.table(topics);
   const topicsArr = topics.filter(
     (topics) => topics.chapterNameSlug === chapterName
   );
-  console.log(topicsArr);
 
-  const getEditUrl = (slug) => {
-    return `/admin/courses/${courseName}/chapters/${chapterName}/topics/${slug}/edit`;
+  const getEditUrl = (topicNameSlug, topicId) => {
+    return `/admin/courses/${courseName}/chapters/${chapterName}/topics/${topicNameSlug}/edit/${topicId}`;
   };
 
   const getAddUrl = () => {

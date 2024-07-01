@@ -2,10 +2,8 @@ import Datatable from "@/components/Admin/Datatable/Datatable";
 import { fetchCourses } from "@/lib/api/admin/coursesApi";
 import React from "react";
 const CoursesPage = async () => {
-  const getEditUrl = (slug, id) => {
-    const params = new URLSearchParams({ action: "edit", id }).toString();
-
-    return `/admin/courses/${slug}/edit?${params}`;
+  const getEditUrl = (courseNameSlug, courseId) => {
+    return `/admin/courses/${courseNameSlug}/edit/${courseId}`;
   };
 
   const getAddUrl = () => {

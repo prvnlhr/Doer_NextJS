@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./styles/subLayout.module.scss";
-import LinksBar from "../Link/LinksBar";
+import TabsBar from "../Tabs/TabsBar";
 
 const SubLayout = ({ children }) => {
   return (
     <div className={styles.subLayoutWrapper}>
       <div className={styles.subLayoutWrapper__headerWrapper}>
         <div className={styles.tabsWrapper}>
-          <LinksBar />
+          <TabsBar />
         </div>
         <div className={styles.buttonWrapper}></div>
       </div>
