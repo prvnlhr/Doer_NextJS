@@ -36,7 +36,7 @@
         "statusCell statusCell"
         "buttonCell buttonCell";
       grid-template-columns: 30% calc(70% - 10px);
-      grid-template-rows: 30% minmax(0, 1fr) 20% 50px;
+      grid-template-rows: auto minmax(0, 1fr) 20% 50px;
       grid-gap: 10px;
       margin-top: 20px;
     }
@@ -46,6 +46,10 @@
       @include fhw;
       // border: 1px solid black;
       @include flex-container(center, flex-start);
+      // @media (max-width: 768px) {
+      //   width: 100%;
+      //   aspect-ratio: 1/1;
+      // }
     }
     &__titleCell {
       grid-area: titleCell;
@@ -164,12 +168,11 @@
 }
 
 .logoFormGroup {
-  width: 80%; // chnage the white logoFormGroup by changing this value
+  width: 80%; // change the white logoFormGroup by changing this value
   aspect-ratio: 1/1;
-  // border: 1px solid orange;
 
   @media (max-width: 768px) {
-    // border: 1px solid orange;
+    // border: 1px solid red;
     aspect-ratio: unset;
     height: 100%;
     width: 100%;
@@ -186,6 +189,9 @@
 
     @media (max-width: 768px) {
       aspect-ratio: unset;
+      width: 100%;
+      aspect-ratio: 1/1;
+      height: unset;
     }
 
     input {
@@ -234,7 +240,6 @@
   &__errorGroup {
     width: 100%;
     height: 30px;
-    // border: 1px solid darkred;
     @include flex-container(flex-start, center);
 
     p {
