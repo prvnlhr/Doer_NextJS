@@ -4,7 +4,7 @@ import styles from "./styles/chapterForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useParams } from "next/navigation";
-import { createChapter } from "@/lib/api/admin/chaptersApi";
+import { createChapter, updateChapter } from "@/lib/api/admin/chaptersApi";
 
 const ChapterForm = ({ chapter }) => {
   const [selectedStatus, setSelectedStatus] = useState(
@@ -29,17 +29,22 @@ const ChapterForm = ({ chapter }) => {
     onSubmit: async (values, action) => {
       try {
         const chapterData = { ...values };
-        const res = await createChapter(chapterData, params.courseId);
+        let res;
+        if (chapter) {
+          res = await updateChapter(
+            chapterData,
+            params.courseId,
+            params.chapterId
+          );
+        } else {
+          res = await createChapter(chapterData, params.courseId);
+        }
         console.log(res);
       } catch (error) {
         console.log(error);
       }
     },
   });
-
-  const handleStatusChange = (val) => {
-    setSelectedStatus(val);
-  };
 
   return (
     <div className={styles.formWrapper}>

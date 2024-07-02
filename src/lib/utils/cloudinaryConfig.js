@@ -20,6 +20,7 @@ const options = {
     { width: 150, height: 150, crop: "limit" }, // Resize to 200x200, maintaining aspect ratio
   ],
 };
+
 export const uploadToCloudinary = async (file) => {
   const fileArrayBuffer = await file.arrayBuffer();
   const fileStream = Buffer.from(fileArrayBuffer);
@@ -36,4 +37,14 @@ export const uploadToCloudinary = async (file) => {
     );
     uploadStream.end(fileStream);
   });
+};
+
+export const deleteImage = async (cloudinary_id) => {
+  try {
+    const result = await cloudinary.uploader.destroy(cloudinary_id);
+    return result;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };

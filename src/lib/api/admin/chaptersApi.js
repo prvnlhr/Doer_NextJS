@@ -8,9 +8,8 @@ export async function fetchChapters(courseId) {
         cache: "no-store",
       }
     );
-    // console.log(response);
     if (!response.ok) {
-      // console.log(response);
+      console.log(response);
       throw new Error("Failed to fetch chapters");
     }
     return response.json();
@@ -21,8 +20,6 @@ export async function fetchChapters(courseId) {
 }
 
 export async function fetchChapterById(courseId, chapterId) {
-  console.log("FETCHIN..................", courseId, chapterId);
-
   try {
     let response = await fetch(
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
@@ -54,6 +51,29 @@ export async function createChapter(chapterData, courseId) {
       }
     );
     if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Create chapter error : ${error}`);
+  }
+}
+
+export async function updateChapter(chapterData, courseId, chapterId) {
+  try {
+    let response = await fetch(
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
+      {
+        method: "POST",
+        cache: "no-store",
+        body: JSON.stringify(chapterData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      console.log(response);
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     return response.json();

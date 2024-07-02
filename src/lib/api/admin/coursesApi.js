@@ -17,12 +17,29 @@ export async function fetchCourses() {
 
 export async function fetchCourseById(courseId) {
   try {
-   
     let response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`, {
       cache: "no-store",
     });
 
     if (!response.ok) {
+      throw new Error("Failed to fetch course by id");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Fetch courses error: ${error}`);
+  }
+}
+
+export async function updateCourse(formData, courseId) {
+  try {
+    let response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`, {
+      method: "POST",
+      cache: "no-store",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.log(response);
       throw new Error("Failed to fetch course by id");
     }
     return response.json();
