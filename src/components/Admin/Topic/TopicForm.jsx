@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles/topicForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
-
-import DOMPurify from "dompurify";
+import { useParams } from "next/navigation";
+import { createTopic } from "@/lib/api/admin/topicsApi";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -83,17 +83,21 @@ const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   );
 };
 
-const TopicForm = () => {
-  const [selectedStatus, setSelectedStatus] = useState(1);
+const TopicForm = ({ topic }) => {
+  const [selectedStatus, setSelectedStatus] = useState(
+    topic ? topic.status : true
+  );
   const [showPreviewPane, setShowPreviewPane] = useState(true);
 
+  const params = useParams();
+
   const initialValues = {
-    title: "",
-    minutes: "",
-    hours: "",
-    days: "",
-    status: selectedStatus,
-    content: "",
+    title: topic ? topic.title : "",
+    minutes: topic ? topic.duration.minutes : 0,
+    hours: topic ? topic.duration.hours : 0,
+    days: topic ? topic.duration.days : 0,
+    status: topic ? topic.status : true,
+    content: topic ? topic.content : "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -118,9 +122,25 @@ const TopicForm = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, actions) => {
+    onSubmit: async (values, actions) => {
       console.log("Form submitted with values:", values);
       // Perform your submission logic here
+
+      const topicData = {
+        title: values.title,
+        duration: {
+          minutes: values.minutes,
+          hours: values.hours,
+          days: values.days,
+        },
+        status: values.status,
+        content: values.content,
+      };
+      const res = await createTopic(
+        topicData,
+        params.courseId,
+        params.chapterId
+      );
     },
   });
 
@@ -298,6 +318,7 @@ const TopicForm = () => {
               </div>
               <div className={styles.editorCell__editorContainer}>
                 <CKeditor
+                  content={topic ? topic.content : ""}
                   setFieldValue={formik.setFieldValue}
                 />
               </div>

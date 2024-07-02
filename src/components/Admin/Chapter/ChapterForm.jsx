@@ -3,29 +3,43 @@ import React, { useState } from "react";
 import styles from "./styles/chapterForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-const ChapterForm = () => {
-  const [selectedStatus, setSelectedStatus] = useState(1);
+import { useParams } from "next/navigation";
+import { createChapter } from "@/lib/api/admin/chaptersApi";
 
+const ChapterForm = ({ chapter }) => {
+  const [selectedStatus, setSelectedStatus] = useState(
+    chapter ? chapter.status : true
+  );
+  const params = useParams();
   const initialValues = {
-    title: "",
-    status: 1,
+    title: chapter ? chapter.title : "",
+    status: chapter ? chapter.status : true,
   };
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
       .max(200, "Title must be at most 200 characters")
       .required("Title is required"),
-    status: Yup.number().required("Status is required"),
+    status: Yup.boolean().required("Status is required"),
   });
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, action) => {
-      console.log({ values });
-      // action.resetForm();
+    onSubmit: async (values, action) => {
+      try {
+        const chapterData = { ...values };
+        const res = await createChapter(chapterData, params.courseId);
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
+
+  const handleStatusChange = (val) => {
+    setSelectedStatus(val);
+  };
 
   return (
     <div className={styles.formWrapper}>
@@ -71,7 +85,10 @@ const ChapterForm = () => {
               <div className={styles.formGroup__inputGroup__inputDiv}>
                 <div className={styles.statusInputWrapper}>
                   <div
-                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    onClick={() => {
+                      setSelectedStatus((prev) => !prev);
+                      formik.setFieldValue("status", true);
+                    }}
                     className={`${styles.radioBtnWrapper} ${
                       selectedStatus && styles["radioBtnWrapper--activeBtn"]
                     }`}
@@ -90,7 +107,10 @@ const ChapterForm = () => {
                 </div>
                 <div className={styles.statusInputWrapper}>
                   <div
-                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    onClick={() => {
+                      setSelectedStatus((prev) => !prev);
+                      formik.setFieldValue("status", false);
+                    }}
                     className={`${styles.radioBtnWrapper} ${
                       !selectedStatus && styles["radioBtnWrapper--inactiveBtn"]
                     }`}

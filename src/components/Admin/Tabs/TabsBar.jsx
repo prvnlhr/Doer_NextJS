@@ -30,92 +30,94 @@ const Tabs = () => {
   const currentPathName = usePathname();
   const pathSegments = currentPathName.split("/");
 
-  const { courseState, setCourseState } = useAppState();
+  // const { courseState, setCourseState } = useAppState();
 
-  useEffect(() => {
-    const newState = { ...courseState };
+  // useEffect(() => {
+  //   const newState = { ...courseState };
 
-    if (!courseState.courseId && params.courseId) {
-      newState.courseId = params.courseId;
-    }
-    if (!courseState.chapterId && params.chapterId) {
-      newState.chapterId = params.chapterId;
-    }
-    if (!courseState.topicId && params.topicId) {
-      newState.topicId = params.topicId;
-    }
+  //   if (!courseState.courseId && params.courseId) {
+  //     newState.courseId = params.courseId;
+  //   }
+  //   if (!courseState.chapterId && params.chapterId) {
+  //     newState.chapterId = params.chapterId;
+  //   }
+  //   if (!courseState.topicId && params.topicId) {
+  //     newState.topicId = params.topicId;
+  //   }
 
-    if (
-      newState.courseId !== courseState.courseId ||
-      newState.chapterId !== courseState.chapterId ||
-      newState.topicId !== courseState.topicId
-    ) {
-      setCourseState(newState);
-    }
-  }, [params, courseState, setCourseState]);
+  //   if (
+  //     newState.courseId !== courseState.courseId ||
+  //     newState.chapterId !== courseState.chapterId ||
+  //     newState.topicId !== courseState.topicId
+  //   ) {
+  //     setCourseState(newState);
+  //   }
+  // }, [params, courseState, setCourseState]);
 
-  let { courseName, chapterName, topicName } = params;
-
-  const courseNameSlug = courseName && generateSlug(courseName);
-  const chapterNameSlug = chapterName && generateSlug(chapterName);
-  const topicNameSlug = topicName && generateSlug(topicName);
+  let { courseId, chapterId, topicId } = params;
 
   const lastSegment = pathSegments[pathSegments.length - 1];
+  const secondLastSegment = pathSegments[pathSegments.length - 2];
+  const thirdLast = pathSegments[pathSegments.length - 3];
+
+  // useEffect(() => {
+  //   console.log("params:", params, lastSegment, thirdLast, secondLastSegment);
+  // }, [params, lastSegment, secondLastSegment]);
 
   if (lastSegment === "add") {
-    let linkProps = {
+    let addTabProps = {
       href: currentPathName,
       pathName: currentPathName,
       label: "",
     };
-    const secondLastSegment = pathSegments[pathSegments.length - 2];
     if (secondLastSegment === "courses") {
-      linkProps.label = "Add Course";
+      addTabProps.label = "Add Course";
     } else if (secondLastSegment === "chapters") {
-      linkProps.label = "Add Chapter";
+      addTabProps.label = "Add Chapter";
     } else {
-      linkProps.label = "Add Topic";
+      addTabProps.label = "Add Topic";
     }
-    return <TabLink {...linkProps} />;
+    return <TabLink {...addTabProps} />;
   } else {
-    let editLinkProps = {
+    let editTabProps = {
       href: "",
       pathName: currentPathName,
       label: "",
     };
-    let listLinkProps = {
+    let listTabProps = {
       href: "",
       pathName: currentPathName,
       label: "",
     };
+    if (
+      (lastSegment === "edit" && thirdLast == "courses") ||
+      (lastSegment === "chapters" && thirdLast == "courses")
+    ) {
+      editTabProps.href = `/admin/courses/${courseId}/edit`;
+      editTabProps.label = "EDIT COURSE";
 
-    if (params.hasOwnProperty("courseId") || lastSegment === "chapters") {
-      editLinkProps.href = `/admin/courses/${courseNameSlug}/edit/${params.courseId}`;
-      editLinkProps.label = "EDIT COURSE";
+      listTabProps.href = `/admin/courses/${courseId}/chapters`;
+      listTabProps.label = "CHAPTERS";
+    } else if (
+      (lastSegment === "edit" && thirdLast == "chapters") ||
+      (lastSegment === "topics" && thirdLast == "chapters")
+    ) {
+      editTabProps.href = `/admin/courses/${courseId}/chapters/${chapterId}/edit`;
+      editTabProps.label = "EDIT CHAPTER";
 
-      listLinkProps.href = `/admin/courses/${courseNameSlug}/chapters`;
-      listLinkProps.label = "CHAPTERS";
-    } else if (params.hasOwnProperty("chapterId") || lastSegment === "topics") {
-      editLinkProps.href = `/admin/courses/${courseNameSlug}/chapters/${chapterNameSlug}/edit/${params.chapterId}`;
-      editLinkProps.label = "EDIT CHAPTER";
-
-      listLinkProps.href = `/admin/courses/${courseNameSlug}/chapters/${chapterNameSlug}/topics`;
-      listLinkProps.label = "TOPICS";
-    } else if (params.hasOwnProperty("topicId")) {
-      editLinkProps.href = `/admin/courses/${courseNameSlug}/chapters/${chapterNameSlug}/topics/${topicNameSlug}/edit/${params.topicId}`;
-      editLinkProps.label = "EDIT TOPIC";
-
-      listLinkProps.href = `/admin/courses/${courseName}/chapters`;
-      listLinkProps.label = "";
+      listTabProps.href = `/admin/courses/${courseId}/chapters/${chapterId}/topics`;
+      listTabProps.label = "TOPICS";
+    } else if (lastSegment === "edit" && thirdLast == "topics") {
+      editTabProps.href = `/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}/edit`;
+      editTabProps.label = "EDIT TOPIC";
     }
     return (
       <>
-        <TabLink {...editLinkProps} />
-        <TabLink {...listLinkProps} />
+        <TabLink {...editTabProps} />
+        <TabLink {...listTabProps} />
       </>
     );
   }
-
   return null;
 };
 

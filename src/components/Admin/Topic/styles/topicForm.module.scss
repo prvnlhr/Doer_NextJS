@@ -229,11 +229,16 @@
         word-break: break-all;
         display: flex;
         // @include scroll($dir: y);
+        // border: 1px solid red;
+        @include scroll($dir: y);
         p {
           margin-bottom: 10px;
           line-height: 2;
           color: #1c3553;
           font-size: 0.8rem;
+          word-break: break-all;
+          // border: 1px solid blue;
+          width: 80%;
         }
 
         h1,
@@ -263,9 +268,11 @@
           background-color: #011627;
           padding: 20px 20px;
           border-radius: 5px;
-          overflow-x: scroll;
+          @include scroll($dir: x);
           margin-top: 20px;
           margin-bottom: 20px;
+          position: relative;
+          overflow-x: scroll;
 
           &::-webkit-scrollbar {
             display: none;
@@ -275,6 +282,9 @@
             color: white !important;
             background-color: transparent !important;
             padding: 0px !important;
+            // border: 1px solid red;
+            // display: none;
+            @include scroll($dir: x);
           }
         }
 
@@ -289,10 +299,12 @@
         ol {
           margin-bottom: 10px;
           padding-left: 20px;
+          word-break: break-all;
         }
         li {
           color: #1c3553;
           font-size: 0.8rem;
+          word-break: break-all;
         }
         code {
           color: #f0142f;
@@ -395,7 +407,7 @@
       width: auto;
       height: 100%;
       @include flex-container(flex-start, center);
-        // border: 1px solid red;
+      // border: 1px solid red;
 
       &:first-of-type {
         margin-right: 8px;

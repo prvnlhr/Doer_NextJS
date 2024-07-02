@@ -70,7 +70,7 @@ import "ckeditor5/ckeditor5.css";
 
 import "./styles/ckeditor.css";
 
-export default function CustomEditor({ setFieldValue }) {
+export default function CustomEditor({ content, setFieldValue }) {
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -318,6 +318,7 @@ export default function CustomEditor({ setFieldValue }) {
               <CKEditor
                 editor={ClassicEditor}
                 config={editorConfig}
+                onReady={(editor) => content && editor.setData(content)}
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setFieldValue("content", data);

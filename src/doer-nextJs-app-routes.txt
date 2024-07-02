@@ -1,0 +1,188 @@
+admin/courses
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/add
+
+
+admin/courses/[courseNameSlug]/chapters  
+admin/courses/[courseNameSlug]/chapters/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/[topicNameSlug]/edit/[topicId]
+
+
+
+
+> admin      admin/courses
+  > courses
+    page.js
+ 
+> admin      admin/courses/[courseNameSlug]/edit/[courseId]
+  > courses
+    > add
+      - page.js
+    > [courseName]
+      > edit
+        > [courseId]
+          - page.js
+
+> admin     admin/courses/add
+  > courses
+    > add
+      - page.js
+    
+
+ 
+> admin      admin/courses/[courseNameSlug]/chapters  (READ)
+  > courses
+    > [courseName]
+      > chapters
+        - page.js
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/add (CREATE)
+  > courses
+    > [courseName]
+      > chapters
+        > add
+         - page.js
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]   (UPDATE)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > edit
+            > [chapterId]
+              - page.js 
+
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics   (READ)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > topics
+            - page.js 
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/add   (CREATE)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > topics
+            > add
+              - page.js 
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/[topicNameSlug]/edit/[topicId]   (UPDATE)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > topics
+            > [topicName]
+              > edit
+                > [topicId]
+                   - page.js
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+admin/courses/add
+admin/courses/[courseNameSlug]/chapters/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/add
+
+
+admin/courses  
+admin/courses/[courseNameSlug]/chapters 
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics   
+
+
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/[topicNameSlug]/edit/[topicId]
+
+
+
+
+
+
+
+const lastSegment = pathSegments.at(-1)
+
+if(['courses','chapters','topics'].includes(lastSegment))  Show Add addBtn
+
+if(lastSegment == add)  check secondLastSegment
+
+else if()
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+1. Either change folder structure
+
+
+admin/courses
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/add
+
+
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/[courseNameSlug]/chapters  
+
+
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/[courseNameSlug]/[courseId]/edit
+admin/courses/[courseNameSlug]/[courseId]/chapters  
+
+
+admin/courses/[courseNameSlug]/[courseId]/chapters  
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+
+
+
+admin/courses/[courseNameSlug]/chapters/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+
+
+
+
+
+
+
+
+// Only Show ADD COURSE, CHAPTER, TOPIC
+
+admin/courses/add
+admin/courses/[courseId]/chapters/add
+admin/courses/[courseId]/chapters/[chapterId]/topics/add
+
+
+admin/courses
+
+
+
+admin/courses/[courseId]/edit
+admin/courses/[courseId]/chapters  
+
+
+admin/courses/[courseId]/chapters/[chapterId]/edit
+admin/courses/[courseId]/chapters/[chapterId]/topics
+
+
+
+admin/courses/[courseId]/chapters/[chapterId]/topics/[topicId]/edit
+
+
+
+
+
+TAB1   TAB2

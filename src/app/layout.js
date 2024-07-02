@@ -25,7 +25,9 @@ export default function RootLayout({ children }) {
         <div className={styles.rootLayoutWrapper}>
           <MainHeader />
           <div className={styles.contentWrapper}>
-            <Providers>{children}</Providers>
+            {/* <Providers>
+              </Providers> */}
+            {children}
           </div>
         </div>
       </body>

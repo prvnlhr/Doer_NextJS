@@ -8,15 +8,17 @@ import Image from "next/image";
 import { createCourse } from "@/lib/api/admin/coursesApi";
 
 const CourseForm = ({ course }) => {
+  const [selectedStatus, setSelectedStatus] = useState(
+    course ? course.status : true
+  );
+  const [logoPreview, setLogoPreview] = useState(null);
+
   const initialValues = {
     file: null,
     title: course ? course.title : "",
     description: course ? course.description : "",
-    status: course ? course.status : 1,
+    status: course ? course.status : true,
   };
-
-  const [selectedStatus, setSelectedStatus] = useState(1);
-  const [logoPreview, setLogoPreview] = useState(null);
 
   const validationSchema = Yup.object().shape({
     file: Yup.mixed()
@@ -28,12 +30,12 @@ const CourseForm = ({ course }) => {
           "image/png",
           "image/gif",
           "image/svg+xml",
-          "image/bmp", // BMP
-          "image/webp", // WebP
-          "image/tiff", // TIFF
-          "image/x-icon", // ICO
-          "image/heif", // HEIF
-          "image/heic", // HEIC
+          "image/bmp",
+          "image/webp",
+          "image/tiff",
+          "image/x-icon",
+          "image/heif",
+          "image/heic",
         ];
         return supportedFormats.includes(value.type);
       }),
@@ -41,7 +43,7 @@ const CourseForm = ({ course }) => {
       .max(200, "Title must be at most 200 characters")
       .required("Title is required"),
     description: Yup.string().required("Description is required"),
-    status: Yup.number().required("Status is required"),
+    status: Yup.boolean().required("Status is required"),
   });
 
   const formik = useFormik({
@@ -56,8 +58,8 @@ const CourseForm = ({ course }) => {
         formData.append("description", values.description);
         formData.append("status", values.status);
         formData.append("file", values.file);
+        console.table(values);
         const res = await createCourse(formData);
-        console.log("🚀 ~ file: CourseForm.jsx:60 ~ onSubmit: ~ res:", res);
       } catch (error) {
         console.log(error);
       }
@@ -66,10 +68,6 @@ const CourseForm = ({ course }) => {
 
   const handleFileChange = (event) => {
     const file = event.currentTarget.files[0];
-    console.log(
-      "🚀 ~ file: CourseForm.jsx:69 ~ handleFileChange ~ file:",
-      file
-    );
     formik.setFieldValue("file", file);
     if (file) {
       const previewURL = URL.createObjectURL(file);
@@ -201,7 +199,10 @@ const CourseForm = ({ course }) => {
               <div className={styles.formGroup__inputGroup__inputDiv}>
                 <div className={styles.statusInputWrapper}>
                   <div
-                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    onClick={() => {
+                      setSelectedStatus((prev) => !prev);
+                      formik.setFieldValue("status", true);
+                    }}
                     className={`${styles.radioBtnWrapper} ${
                       selectedStatus && styles["radioBtnWrapper--activeBtn"]
                     }`}
@@ -220,7 +221,10 @@ const CourseForm = ({ course }) => {
                 </div>
                 <div className={styles.statusInputWrapper}>
                   <div
-                    onClick={() => setSelectedStatus((prev) => !prev)}
+                    onClick={() => {
+                      setSelectedStatus((prev) => !prev);
+                      formik.setFieldValue("status", false);
+                    }}
                     className={`${styles.radioBtnWrapper} ${
                       !selectedStatus && styles["radioBtnWrapper--inactiveBtn"]
                     }`}

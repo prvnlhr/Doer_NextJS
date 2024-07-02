@@ -1,11 +1,12 @@
+import dbConnect from "@/lib/db/dbConnect";
+import Topic from "@/lib/db/models/Topic";
+
 export async function GET(req, { params }) {
+  await dbConnect();
   try {
     const { topicId } = params;
-    console.log(
-      "QUERY.............................................................",
-      req.filter
-    );
-    return new Response(topicId, { status: 200 });
+    const topic = await Topic.findById(topicId);
+    return new Response(JSON.stringify(topic), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: "Error fetching courses" }), {
       status: 500,

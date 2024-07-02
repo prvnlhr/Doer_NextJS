@@ -14,9 +14,12 @@ export async function GET(req, res) {
     return new Response(JSON.stringify(courses), { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response(JSON.stringify({ error: "Error fetching courses" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: error, message: "Error fetching courses" }),
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -24,9 +27,9 @@ export async function GET(req, res) {
 export async function POST(req) {
   await dbConnect();
   try {
+    console.log("Hellow");
     const FormData = await req.formData();
-    // console.log("FormData", FormData);
-
+    console.log("FormData", FormData.get("title"));
     const courseData = {
       title: FormData.get("title"),
       description: FormData.get("description"),
@@ -45,8 +48,11 @@ export async function POST(req) {
     return new Response(JSON.stringify(savedCourse), { status: 201 });
   } catch (error) {
     console.log(error);
-    return new Response(JSON.stringify({ error: "Error creating course" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: error, message: "Error creating course" }),
+      {
+        status: 500,
+      }
+    );
   }
 }

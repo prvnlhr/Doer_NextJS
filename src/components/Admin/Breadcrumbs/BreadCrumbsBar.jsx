@@ -8,26 +8,22 @@ const BreadCrumbsBar = () => {
   const params = useParams();
   const pathname = usePathname();
 
-  let { courseName, chapterName, topicName } = params || {
-    courseName: "",
-    chapterName: "",
-    topicName: "",
+  let { courseId, chapterId, topicId } = params || {
+    courseId: "",
+    chapterId: "",
+    topicId: "",
   };
-
-  const normalizedCourseName = generateSlug(courseName);
-  const normalizedChapterName = generateSlug(chapterName);
-  const normalizedTopicName = generateSlug(topicName);
 
   const pathSegments = pathname
     .split("/")
-    .filter(
-      (seg) => !["admin", courseName, chapterName, topicName, ""].includes(seg)
+    .filter((seg) =>
+      ["add", "edit", "courses", "topics", "chapters"].includes(seg)
     );
 
   let links = {
     courses: `/admin/courses`,
-    chapters: `/admin/courses/${normalizedCourseName}/chapters`,
-    topics: `/admin/courses/${normalizedCourseName}/chapters/${normalizedChapterName}/topics`,
+    chapters: `/admin/courses/${courseId}/chapters`,
+    topics: `/admin/courses/${courseId}/chapters/${chapterId}/topics`,
   };
 
   return (

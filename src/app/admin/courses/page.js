@@ -1,17 +1,18 @@
 import Datatable from "@/components/Admin/Datatable/Datatable";
 import { fetchCourses } from "@/lib/api/admin/coursesApi";
 import React from "react";
+
 const CoursesPage = async () => {
-  const getEditUrl = (courseNameSlug, courseId) => {
-    return `/admin/courses/${courseNameSlug}/edit/${courseId}`;
+  
+  const courses = await fetchCourses();
+
+  const getEditUrl = (courseId) => {
+    return `/admin/courses/${courseId}/edit`;
   };
 
   const getAddUrl = () => {
     return `/admin/courses/add`;
   };
-
-  const courses = await fetchCourses();
-
   const columns = ["title", "chapters", "status"];
 
   return (

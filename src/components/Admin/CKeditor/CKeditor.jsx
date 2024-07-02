@@ -9,12 +9,10 @@ const CustomEditor = dynamic(
   { ssr: false, loading: () => <p> Loading...</p> }
 );
 
-const CKeditor = ({  setFieldValue }) => {
+const CKeditor = ({ content, setFieldValue }) => {
   return (
     <>
-      <CustomEditor
-        setFieldValue={setFieldValue}
-      />
+      <CustomEditor content={content} setFieldValue={setFieldValue} />
     </>
   );
 };
