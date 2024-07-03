@@ -75,27 +75,39 @@ export async function GET(req, { params }) {
   }
 }
 
+// Create new topic
 export async function POST(req, { params }) {
   try {
+    const { courseId, chapterId } = params;
     const topicData = await req.json();
-    // console.table(topicData);
-    // console.table(params.chapterId);
 
     // 1. Insert topic
     const newTopic = new Topic({
       ...topicData,
-      chapter: params.chapterId,
+      chapter: chapterId,
     });
 
     const savedTopic = await newTopic.save();
 
-    const topicDuration = topicData.duration;
-    console.table(topicDuration);
-    console.log(params.courseId, params.chapterId);
 
-    // 2. Update course and chapter
-    await updateCourseDuration(params.courseId, topicDuration);
-    await updateChapterDurationAndTopicsCount(params.chapterId, topicDuration);
+    const updateChapter = await Chapter.findByIdAndUpdate(
+      { _id: chapterId },
+      {
+        $inc: {
+          duration: topicData.duration,
+          topicsCount: 1,
+        },
+      }
+    );
+
+    const updateCourse = await Course.findByIdAndUpdate(
+      { _id: courseId },
+      {
+        $inc: {
+          duration: topicData.duration,
+        },
+      }
+    );
 
     return new Response(JSON.stringify(savedTopic), { status: 201 });
   } catch (error) {

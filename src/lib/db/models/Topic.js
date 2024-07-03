@@ -4,11 +4,7 @@ const topicSchema = new mongoose.Schema({
   title: { type: String, required: true },
   status: { type: Boolean, default: true },
   content: { type: String, required: true },
-  duration: {
-    minutes: { type: Number, default: 0 },
-    hours: { type: Number, default: 0 },
-    days: { type: Number, default: 0 },
-  },
+  duration: { type: Number, default: 0 },
   chapter: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Chapter",

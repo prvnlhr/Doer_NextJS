@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import { useParams } from "next/navigation";
-import { createTopic } from "@/lib/api/admin/topicsApi";
+import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -84,12 +84,32 @@ const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
 };
 
 const TopicForm = ({ topic }) => {
+  const [initialDuration, setInitialDuration] = useState(0);
+
   const [selectedStatus, setSelectedStatus] = useState(
     topic ? topic.status : true
   );
   const [showPreviewPane, setShowPreviewPane] = useState(true);
 
   const params = useParams();
+  function convertToMinutes(days, hours, minutes) {
+    const minutesPerDay = 24 * 60;
+    const minutesPerHour = 60;
+    return days * minutesPerDay + hours * minutesPerHour + minutes;
+  }
+
+  function convertMinutes(minutes) {
+    const days = Math.floor(minutes / (24 * 60));
+    const remainingMinutesAfterDays = minutes % (24 * 60);
+    const hours = Math.floor(remainingMinutesAfterDays / 60);
+    const remainingMinutes = remainingMinutesAfterDays % 60;
+
+    return {
+      minutes: remainingMinutes,
+      hours: hours,
+      days: days,
+    };
+  }
 
   const initialValues = {
     title: topic ? topic.title : "",
@@ -98,6 +118,15 @@ const TopicForm = ({ topic }) => {
     days: topic ? topic.duration.days : 0,
     status: topic ? topic.status : true,
     content: topic ? topic.content : "",
+  };
+
+  const toggleStatus = () => {
+    formik.setFieldValue("status", formik.values.status === 1 ? 0 : 1);
+    setSelectedStatus((prev) => !prev);
+  };
+
+  const togglePreviewPane = () => {
+    setShowPreviewPane((prev) => !prev);
   };
 
   const validationSchema = Yup.object().shape({
@@ -116,43 +145,57 @@ const TopicForm = ({ topic }) => {
       .min(0, "Days must be at least 0")
       .required("Days are required"),
     content: Yup.string().required("Topic content is required"),
-    status: Yup.number().required("Status is required"),
+    status: Yup.boolean().required("Status is required"),
   });
-
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, actions) => {
-      console.log("Form submitted with values:", values);
-      // Perform your submission logic here
-
       const topicData = {
         title: values.title,
-        duration: {
-          minutes: values.minutes,
-          hours: values.hours,
-          days: values.days,
-        },
         status: values.status,
         content: values.content,
       };
-      const res = await createTopic(
-        topicData,
-        params.courseId,
-        params.chapterId
+
+      const durationInMinutes = convertToMinutes(
+        formik.values.days,
+        formik.values.hours,
+        formik.values.minutes
       );
+
+      const duration = durationInMinutes - initialDuration;
+      topicData.duration = duration;
+
+      let res;
+      try {
+        if (topic) {
+          res = await updateTopic(
+            topicData,
+            params.courseId,
+            params.chapterId,
+            params.topicId
+          );
+          setInitialDuration(res.duration);
+        } else {
+          res = await createTopic(topicData, params.courseId, params.chapterId);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
-  const toggleStatus = () => {
-    formik.setFieldValue("status", formik.values.status === 1 ? 0 : 1);
-    setSelectedStatus((prev) => !prev);
-  };
-
-  const togglePreviewPane = () => {
-    console.log("..toggling");
-    setShowPreviewPane((prev) => !prev);
-  };
+  useEffect(() => {
+    if (topic && topic.duration) {
+      setInitialDuration(topic.duration);
+      const durationObj = convertMinutes(topic.duration);
+      formik.setFieldValue("minutes", durationObj.minutes);
+      formik.setFieldValue("hours", durationObj.hours);
+      formik.setFieldValue("days", durationObj.days);
+      formik.setFieldValue("status", topic.status);
+      setSelectedStatus(topic.status);
+    }
+  }, [topic]);
 
   return (
     <div className={styles.formWrapper}>
@@ -290,7 +333,11 @@ const TopicForm = ({ topic }) => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.formGroup__errorGroup}></div>
+                <div className={styles.formGroup__errorGroup}>
+                  {formik.errors.status && formik.touched.status && (
+                    <p>{formik.errors.status}</p>
+                  )}
+                </div>
               </div>
             </div>
             <div className={styles.editorCell}>
@@ -329,7 +376,9 @@ const TopicForm = ({ topic }) => {
               </div>
             </div>
             <div className={styles.buttonCell}>
-              <button type="submit">Submit</button>
+              <button disabled={formik.isSubmitting} type="submit">
+                {formik.isSubmitting ? "Updating" : "Submit"}
+              </button>
             </div>
           </div>
         </form>

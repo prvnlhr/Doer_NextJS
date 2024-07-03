@@ -7,11 +7,7 @@ const courseSchema = new mongoose.Schema({
   status: { type: Boolean, default: true },
   chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }],
   chaptersCount: { type: Number, default: 0 },
-  duration: {
-    minutes: { type: Number, default: 0 },
-    hours: { type: Number, default: 0 },
-    days: { type: Number, default: 0 },
-  },
+  duration: { type: Number, default: 0 },
 });
 
 const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);

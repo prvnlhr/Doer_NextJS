@@ -25,7 +25,7 @@ export async function GET(req, { params }) {
   }
 }
 
-//  udpate course by id
+//  Update course by id
 export async function POST(req, { params }) {
   await dbConnect();
   try {

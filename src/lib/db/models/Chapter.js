@@ -8,11 +8,7 @@ const chapterSchema = new mongoose.Schema({
     ref: "Course",
     required: true,
   },
-  duration: {
-    minutes: { type: Number, default: 0 },
-    hours: { type: Number, default: 0 },
-    days: { type: Number, default: 0 },
-  },
+  duration: { type: Number, default: 0 },
   topics: [{ type: mongoose.Schema.Types.ObjectId, ref: "Topic" }],
   topicsCount: { type: Number, default: 0 },
 });

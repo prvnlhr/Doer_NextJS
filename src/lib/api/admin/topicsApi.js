@@ -58,3 +58,26 @@ export async function createTopic(topicData, courseId, chapterId) {
     throw new Error(`Create topic error : ${error}`);
   }
 }
+
+export async function updateTopic(topicData, courseId, chapterId, topicId) {
+  try {
+    let response = await fetch(
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
+      {
+        method: "POST",
+        cache: "no-store",
+        body: JSON.stringify(topicData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      console.log(response);
+      throw new Error("Failed to update topic");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Update topic error: ${error}`);
+  }
+}
