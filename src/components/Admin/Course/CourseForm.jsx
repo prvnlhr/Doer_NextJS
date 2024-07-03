@@ -11,6 +11,8 @@ const CourseForm = ({ course }) => {
   const [selectedStatus, setSelectedStatus] = useState(
     course ? course.status : true
   );
+  const [courseData, setCourseData] = useState();
+
   const [logoPreview, setLogoPreview] = useState(null);
 
   const initialValues = {
@@ -18,66 +20,92 @@ const CourseForm = ({ course }) => {
     title: course ? course.title : "",
     description: course ? course.description : "",
     status: course ? course.status : true,
-    oldFile: course && course.logoUrl ? 1 : 0,
   };
 
-  const validationSchema = Yup.object().shape({
-    // oldFile: Yup.number(),
-    // file: Yup.mixed().when("oldFile", {
-    //   is: 0, // Validate file only if oldFile is 0 (indicating no existing logo)
-    //   then: Yup.mixed()
-    //     .test("fileType", "Course Logo must be an image file", (value) => {
-    //       if (!value) return true; // Allow null values (no file selected)
-    //       const supportedFormats = [
-    //         "image/jpeg",
-    //         "image/png",
-    //         "image/gif",
-    //         "image/svg+xml",
-    //         "image/bmp",
-    //         "image/webp",
-    //         "image/tiff",
-    //         "image/x-icon",
-    //         "image/heif",
-    //         "image/heic",
-    //       ];
-    //       return supportedFormats.includes(value.type);
-    //     })
-    //     .required("Course Logo is required"),
-    // }),
-    title: Yup.string()
-      .max(200, "Title must be at most 200 characters")
-      .required("Title is required"),
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "image/bmp",
+    "image/tiff",
+    "image/webp",
+    "image/svg+xml",
+  ];
+
+  let commanSchema = Yup.object().shape({
+    title: Yup.string().required("Title is required"),
     description: Yup.string().required("Description is required"),
     status: Yup.boolean().required("Status is required"),
   });
+
+  const createSchema = Yup.object().shape({
+    file: Yup.mixed()
+      .required("Course Logo is required")
+      .test(
+        "fileSize",
+        "File size is too large. Maximum size is 200KB.",
+        (value) => {
+          if (!value) return false; // Fail validation if file is not provided
+          return value.size <= 200 * 1024; // 200KB in bytes
+        }
+      )
+      .test("fileFormat", "Unsupported file format", (value) => {
+        if (!value) return false; // Fail validation if file is not provided
+        return SUPPORTED_FORMATS.includes(value.type);
+      }),
+  });
+
+  const editSchema = Yup.object().shape({
+    file: Yup.mixed()
+      .nullable() // Allow null values
+      .notRequired() // Make it not required
+      .test(
+        "fileSize",
+        "File size is too large. Maximum size is 200KB.",
+        (value) => {
+          if (!value) return true; // Skip validation if file is not provided
+          return value.size <= 200 * 1024; // 200KB in bytes
+        }
+      )
+      .test("fileFormat", "Unsupported file format", (value) => {
+        if (!value) return true; // Skip validation if file is not provided
+        return SUPPORTED_FORMATS.includes(value.type);
+      }),
+  });
+
+  const validationSchema = course
+    ? commanSchema.concat(editSchema)
+    : commanSchema.concat(createSchema);
 
   const formik = useFormik({
     initialValues,
     validationSchema,
 
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       // action.resetForm();
       console.log(values);
-      // try {
-      //   console.log(course);
-      //   //TODO : check if logo image file is updated or not, by comparing
-      //   let res;
-      //   const formData = new FormData();
-      //   formData.append("title", values.title);
-      //   formData.append("description", values.description);
-      //   formData.append("status", values.status);
-      //   formData.append("file", values.file);
-      //   if (course) {
-      //     console.log(course);
-      //     return;
-      //     res = updateCourse();
-      //   } else {
-      //     return;
-      //     res = await createCourse(formData);
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
+
+      try {
+        //TODO : check if logo image file is updated or not, by comparing
+        let res;
+        const formData = new FormData();
+        formData.append("title", values.title);
+        formData.append("description", values.description);
+        formData.append("status", values.status);
+        formData.append("file", values.file);
+
+        if (course) {
+          formData.append("cloudinary_id", courseData.cloudinary_id);
+          res = await updateCourse(formData, courseData._id);
+          console.log(res);
+          setCourseData(res);
+        } else {
+          res = await createCourse(formData);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -98,21 +126,28 @@ const CourseForm = ({ course }) => {
     };
   }, [logoPreview]);
 
+  async function urlToFile(url) {
+    const filename = url.substring(url.lastIndexOf("/") + 1);
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const file = new File([blob], filename, { type: blob.type });
+    return file;
+  }
+
   useEffect(() => {
-    if (course && course.logoUrl) {
+    if (course) {
       setLogoPreview(course.logoUrl);
+      setCourseData(course);
+      // urlToFile(course.logoUrl).then((file) => {
+      //   console.log("File", file);
+      //   formik.setFieldValue("file", file);
+      // });
     }
-  }, []);
+  }, [course]);
 
   return (
     <div className={styles.formWrapper}>
       <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-        <input
-          type="hidden"
-          name="oldFile"
-          id="oldFile"
-          value={course && course.logoUrl ? 1 : 0}
-        />
         <div className={styles.formContainer__logoCell}>
           <div className={styles.logoFormGroup}>
             <div className={styles.logoFormGroup__inputGroup}>
@@ -269,7 +304,10 @@ const CourseForm = ({ course }) => {
 
         {/*  */}
         <div className={styles.formContainer__buttonCell}>
-          <button disabled={formik.isSubmitting} type="submit">
+          <button
+            // disabled={formik.isSubmitting}
+            type="submit"
+          >
             Submit
           </button>
         </div>

@@ -30,29 +30,46 @@ export async function POST(req, { params }) {
   await dbConnect();
   try {
     const { courseId } = params;
-    const query = {
-      _id: courseId,
-    };
 
     const FormData = await req.formData();
 
     const title = FormData.get("title");
-    const description = FormData.get("title");
-    const status = FormData.get("title");
+    const description = FormData.get("description");
+    const status = FormData.get("status");
     const cloudinary_id = FormData.get("cloudinary_id");
+    const file = FormData.get("file");
 
-    const deleteImageRes = await deleteImage(cloudinary_id);
-    const cloudinaryResponse = await uploadToCloudinary(file);
-    const course = await Course.updateOne(query, {
+    const query = {
+      _id: courseId,
+    };
+
+    let updateQuery = {
       $set: {
         title: title,
         description: description,
         status: status,
-        logoUrl: cloudinaryResponse.secure_url,
       },
+    };
+
+    let cloudinaryResponse = null;
+
+    if (file !== "null") {
+      console.log("PREV ID ->>", cloudinary_id);
+      const deleteImageRes = await deleteImage(cloudinary_id);
+      console.log("DELETE RESPONSE", deleteImageRes);
+      cloudinaryResponse = await uploadToCloudinary(file);
+      updateQuery.$set.logoUrl = cloudinaryResponse.secure_url;
+      updateQuery.$set.cloudinary_id = cloudinaryResponse.public_id;
+    }
+
+    const updatedCourse = await Course.findOneAndUpdate(query, updateQuery, {
+      new: true,
     });
-    return new Response(JSON.stringify(course), { status: 200 });
+    cloudinaryResponse = null;
+
+    return new Response(JSON.stringify(updatedCourse), { status: 200 });
   } catch (error) {
+    console.log(error);
     return new Response(
       JSON.stringify({
         error: error,

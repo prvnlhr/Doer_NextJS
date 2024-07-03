@@ -1,3 +1,5 @@
+import { revalidatePath } from "next/cache";
+
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchCourses() {
@@ -42,6 +44,7 @@ export async function updateCourse(formData, courseId) {
       console.log(response);
       throw new Error("Failed to fetch course by id");
     }
+    // revalidatePath(`/admin/courses/[courseId]/edit`, "page");
     return response.json();
   } catch (error) {
     throw new Error(`Fetch courses error: ${error}`);
