@@ -6,6 +6,7 @@ import DeleteIcon from "@/components/Common/Icons/DeleteIcon";
 import SearchIcon from "@/components/Common/Icons/SearchIcon";
 import AddIcon from "@/components/Common/Icons/styles/AddIcon";
 import Link from "next/link";
+import DeleteBtn from "./DeleteBtn";
 
 const StatusBadge = ({ value, color }) => {
   return (
@@ -112,11 +113,7 @@ const Datatable = ({ data, columns, getEditUrl, getAddUrl }) => {
                           >
                             <EditIcon />
                           </Link>
-                          <button
-                            className={styles.actionBtnsWrapper__actionButton}
-                          >
-                            <DeleteIcon />
-                          </button>
+                          <DeleteBtn />
                         </div>
                       </td>
                     </tr>

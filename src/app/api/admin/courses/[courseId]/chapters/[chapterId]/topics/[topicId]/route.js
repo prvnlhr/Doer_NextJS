@@ -73,3 +73,61 @@ export async function POST(req, { params }) {
   }
 }
 
+// Delete Topic by id
+export async function DELETE(req, { params }) {
+  await dbConnect(); // Ensure database connection
+
+  try {
+    const { courseId, chapterId, topicId } = params;
+
+    // Retrieve topic to get its duration
+    const topic = await Topic.findById(topicId);
+    const topicDuration = topic.duration;
+
+    // Update chapter duration and topicsCount
+    const updateChapterRes = await Chapter.findByIdAndUpdate(
+      chapterId,
+      {
+        $inc: {
+          duration: -topicDuration,
+          topicsCount: -1,
+        },
+      },
+      { new: true } // Return the updated document
+    ).exec();
+
+    // Update course duration
+    const updateCourseRes = await Course.findByIdAndUpdate(
+      courseId,
+      {
+        $inc: {
+          duration: -topicDuration,
+        },
+      },
+      { new: true } // Return the updated document
+    ).exec();
+
+    // Delete the topic itself
+    const deleteTopicRes = await Topic.findByIdAndDelete(topicId).exec();
+
+    return new Response(
+      JSON.stringify({
+        message: `Topic deleted successfully`,
+        deletedTopic: deleteTopicRes,
+        updatedChapter: updateChapterRes,
+        updatedCourse: updateCourseRes,
+      }),
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error in deleting topic:", error);
+
+    return new Response(
+      JSON.stringify({
+        error: error.message,
+        message: "Error in deleting topic",
+      }),
+      { status: 500 }
+    );
+  }
+}

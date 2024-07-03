@@ -3,7 +3,6 @@ import { fetchCourses } from "@/lib/api/admin/coursesApi";
 import React from "react";
 
 const CoursesPage = async () => {
-  
   const courses = await fetchCourses();
 
   const getEditUrl = (courseId) => {
@@ -13,6 +12,7 @@ const CoursesPage = async () => {
   const getAddUrl = () => {
     return `/admin/courses/add`;
   };
+
   const columns = ["title", "chapters", "status"];
 
   return (

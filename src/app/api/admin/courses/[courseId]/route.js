@@ -1,5 +1,7 @@
 import dbConnect from "@/lib/db/dbConnect";
+import Chapter from "@/lib/db/models/Chapter";
 import Course from "@/lib/db/models/Course";
+import Topic from "@/lib/db/models/Topic";
 import { deleteImage, uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 
 // get course for editing by id
@@ -74,6 +76,48 @@ export async function POST(req, { params }) {
       JSON.stringify({
         error: error,
         message: "Error in fetching courses with ID",
+      }),
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+// Delete Course by id
+export async function DELETE(req, { params }) {
+  await dbConnect();
+  try {
+    const { courseId } = params;
+
+    // Find all chapters of the course
+    const coursesChapters = await Chapter.find({ course: courseId }).exec();
+
+    // Get all chapter IDs of the course
+    const chapterIds = coursesChapters.map((chapter) => chapter._id);
+
+    // Delete all topics of the chapters
+    const topicsDeleteRes = await Topic.deleteMany({
+      chapter: { $in: chapterIds },
+    }).exec();
+    console.log(`${topicsDeleteRes.deletedCount} Topics deleted`);
+
+    // Delete all chapters of the course
+    const chaptersDeleteRes = await Chapter.deleteMany({
+      course: courseId,
+    }).exec();
+    console.log(`${chaptersDeleteRes.deletedCount} Chapters deleted`);
+
+    const courseDeleteResponse = await Course.findByIdAndDelete(
+      courseId
+    ).exec();
+
+    return new Response(JSON.stringify(courseDeleteResponse), { status: 200 });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        error: error,
+        message: "Error in deleting course and its content",
       }),
       {
         status: 500,

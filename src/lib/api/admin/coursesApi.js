@@ -51,6 +51,20 @@ export async function updateCourse(formData, courseId) {
   }
 }
 
+export async function deleteCourse(courseId) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      console.log(response);
+      throw new Error("Failed to delete course and its content");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error in deleting the course ${error}`);
+  }
+}
 export async function createCourse(formData) {
   try {
     const response = await fetch(`${BASE_URL}/api/admin/courses`, {

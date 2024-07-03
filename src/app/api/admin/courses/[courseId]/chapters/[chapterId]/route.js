@@ -1,5 +1,7 @@
 import dbConnect from "@/lib/db/dbConnect";
 import Chapter from "@/lib/db/models/Chapter";
+import Course from "@/lib/db/models/Course";
+import Topic from "@/lib/db/models/Topic";
 
 // get chapter by id for editing
 export async function GET(req, { params }) {
@@ -21,7 +23,7 @@ export async function GET(req, { params }) {
   }
 }
 
-// update chapter
+// Update chapter
 export async function POST(req, { params }) {
   await dbConnect();
   try {
@@ -42,6 +44,47 @@ export async function POST(req, { params }) {
       {
         status: 500,
       }
+    );
+  }
+}
+
+// Delete Chapter by id
+export async function DELETE(req, { params }) {
+  await dbConnect();
+  try {
+    const { courseId, chapterId } = params;
+
+    // Delete all topics of the chapter
+    const topicsDeleteRes = await Topic.deleteMany({
+      chapter: chapterId,
+    }).exec();
+    console.log(`${topicsDeleteRes.deletedCount} topics deleted`);
+
+    const updateCourseRes = await Course.findByIdAndUpdate(courseId, {
+      $inc: {
+        chaptersCount: -1,
+      },
+    });
+
+    // Delete the chapter itself
+    const deleteChapterRes = await Chapter.findByIdAndDelete(chapterId).exec();
+    console.log(`Chapter ${chapterId} deleted`);
+
+    return new Response(
+      JSON.stringify({
+        message: `Chapter and its ${topicsDeleteRes.deletedCount} topics deleted successfully`,
+        deletedChapter: deleteChapterRes,
+      }),
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error in deleting chapter and its content:", error);
+    return new Response(
+      JSON.stringify({
+        error: error.message,
+        message: "Error in deleting chapter and its content",
+      }),
+      { status: 500 }
     );
   }
 }
