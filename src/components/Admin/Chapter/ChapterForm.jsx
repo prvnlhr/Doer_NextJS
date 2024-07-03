@@ -14,7 +14,7 @@ const ChapterForm = ({ chapter }) => {
   const initialValues = {
     title: chapter ? chapter.title : "",
     status: chapter ? chapter.status : true,
-  };
+  }; 
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
