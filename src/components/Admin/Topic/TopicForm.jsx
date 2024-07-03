@@ -7,6 +7,7 @@ import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import { useParams } from "next/navigation";
 import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
+import Spinner from "@/components/Common/Icons/Spinner";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -113,9 +114,9 @@ const TopicForm = ({ topic }) => {
 
   const initialValues = {
     title: topic ? topic.title : "",
-    minutes: topic ? topic.duration.minutes : 0,
-    hours: topic ? topic.duration.hours : 0,
-    days: topic ? topic.duration.days : 0,
+    minutes: 0,
+    hours: 0,
+    days: 0,
     status: topic ? topic.status : true,
     content: topic ? topic.content : "",
   };
@@ -377,7 +378,13 @@ const TopicForm = ({ topic }) => {
             </div>
             <div className={styles.buttonCell}>
               <button disabled={formik.isSubmitting} type="submit">
-                {formik.isSubmitting ? "Updating" : "Submit"}
+                {formik.isSubmitting ? (
+                  <div className={styles.spinnerDiv}>
+                    <Spinner />
+                  </div>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
           </div>

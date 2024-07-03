@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import styles from "./styles/courseForm.module.scss";
 import Image from "next/image";
 import { createCourse, updateCourse } from "@/lib/api/admin/coursesApi";
+import Spinner from "@/components/Common/Icons/Spinner";
 
 const CourseForm = ({ course }) => {
   const [courseData, setCourseData] = useState({
@@ -320,8 +321,14 @@ const CourseForm = ({ course }) => {
         </div>
 
         <div className={styles.formContainer__buttonCell}>
-          <button disabled={formik.isSubmitting} type="submit">
-            Submit
+          <button disabled={true} type="submit">
+            {formik.isSubmitting ? (
+              <div className={styles.spinnerDiv}>
+                <Spinner />
+              </div>
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </form>

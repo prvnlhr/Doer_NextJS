@@ -1,3 +1,7 @@
 {
-    "editor.fontFamily": "'Source Code Pro' ,Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "'Hasklug Nerd Font',  'Source Code Pro', 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "Hasklug Nerd Font",
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontWeight": "normal"
 }

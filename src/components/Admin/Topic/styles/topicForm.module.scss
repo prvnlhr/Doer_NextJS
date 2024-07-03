@@ -166,6 +166,16 @@
             border: none;
             color: white;
             cursor: pointer;
+            &:disabled {
+              background-color: #635db0;
+              cursor: not-allowed;
+            }
+
+            .spinnerDiv {
+              // border: 1px solid red;
+              height: 80%;
+              @include flex-container(center, center);
+            }
           }
         }
       }

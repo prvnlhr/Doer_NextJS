@@ -5,7 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useParams } from "next/navigation";
 import { createChapter, updateChapter } from "@/lib/api/admin/chaptersApi";
-
+import Spinner from "@/components/Common/Icons/Spinner";
+//FiraCode Nerd Font
 const ChapterForm = ({ chapter }) => {
   const [selectedStatus, setSelectedStatus] = useState(
     chapter ? chapter.status : true
@@ -14,7 +15,7 @@ const ChapterForm = ({ chapter }) => {
   const initialValues = {
     title: chapter ? chapter.title : "",
     status: chapter ? chapter.status : true,
-  }; 
+  };
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -39,6 +40,7 @@ const ChapterForm = ({ chapter }) => {
         } else {
           res = await createChapter(chapterData, params.courseId);
         }
+
         console.log(res);
       } catch (error) {
         console.log(error);
@@ -87,6 +89,7 @@ const ChapterForm = ({ chapter }) => {
                   Status
                 </p>
               </div>
+
               <div className={styles.formGroup__inputGroup__inputDiv}>
                 <div className={styles.statusInputWrapper}>
                   <div
@@ -139,7 +142,15 @@ const ChapterForm = ({ chapter }) => {
 
         {/*  */}
         <div className={styles.formContainer__buttonCell}>
-          <button type="submit">Submit</button>
+          <button disabled={formik.isSubmitting} type="submit">
+            {formik.isSubmitting ? (
+              <div className={styles.spinnerDiv}>
+                <Spinner />
+              </div>
+            ) : (
+              "Submit"
+            )}
+          </button>
         </div>
       </form>
     </div>

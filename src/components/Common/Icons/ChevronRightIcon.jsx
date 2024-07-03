@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles/chevronIcon.module.scss";
+
 const ChevronRightIcon = ({ color }) => {
   return (
     <svg
@@ -12,7 +13,6 @@ const ChevronRightIcon = ({ color }) => {
         d="M3.23438 6.89062L5.76562 4.5L3.23438 2.10938"
         stroke={color ? color : "black"}
         strokeWidth="0.84375"
-        strokeLinejoin="round"
         strokeLinejoin="round"
       />
     </svg>
