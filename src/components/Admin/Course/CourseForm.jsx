@@ -8,12 +8,14 @@ import Image from "next/image";
 import { createCourse, updateCourse } from "@/lib/api/admin/coursesApi";
 
 const CourseForm = ({ course }) => {
-  const [selectedStatus, setSelectedStatus] = useState(
-    course ? course.status : true
-  );
-  const [courseData, setCourseData] = useState();
-
-  const [logoPreview, setLogoPreview] = useState(null);
+  const [courseData, setCourseData] = useState({
+    id: "",
+    title: "",
+    description: "",
+    status: true,
+    logoUrl: null,
+    cloudinary_id: "",
+  });
 
   const initialValues = {
     file: null,
@@ -46,12 +48,12 @@ const CourseForm = ({ course }) => {
         "fileSize",
         "File size is too large. Maximum size is 200KB.",
         (value) => {
-          if (!value) return false; // Fail validation if file is not provided
+          if (!value) return false;
           return value.size <= 200 * 1024; // 200KB in bytes
         }
       )
       .test("fileFormat", "Unsupported file format", (value) => {
-        if (!value) return false; // Fail validation if file is not provided
+        if (!value) return false;
         return SUPPORTED_FORMATS.includes(value.type);
       }),
   });
@@ -64,12 +66,12 @@ const CourseForm = ({ course }) => {
         "fileSize",
         "File size is too large. Maximum size is 200KB.",
         (value) => {
-          if (!value) return true; // Skip validation if file is not provided
+          if (!value) return true;
           return value.size <= 200 * 1024; // 200KB in bytes
         }
       )
       .test("fileFormat", "Unsupported file format", (value) => {
-        if (!value) return true; // Skip validation if file is not provided
+        if (!value) return true;
         return SUPPORTED_FORMATS.includes(value.type);
       }),
   });
@@ -83,11 +85,7 @@ const CourseForm = ({ course }) => {
     validationSchema,
 
     onSubmit: async (values, action) => {
-      // action.resetForm();
-      console.log(values);
-
       try {
-        //TODO : check if logo image file is updated or not, by comparing
         let res;
         const formData = new FormData();
         formData.append("title", values.title);
@@ -95,13 +93,24 @@ const CourseForm = ({ course }) => {
         formData.append("status", values.status);
         formData.append("file", values.file);
 
+        console.log(course);
+        // return;
+
         if (course) {
+          console.log(courseData._id);
           formData.append("cloudinary_id", courseData.cloudinary_id);
           res = await updateCourse(formData, courseData._id);
-          console.log(res);
-          setCourseData(res);
+          setCourseData({
+            _id: res._id,
+            title: res.title,
+            description: res.description,
+            status: res.status,
+            logoUrl: res.logoUrl,
+            cloudinary_id: res.cloudinary_id,
+          });
         } else {
           res = await createCourse(formData);
+          action.resetForm();
         }
       } catch (error) {
         console.log(error);
@@ -114,35 +123,30 @@ const CourseForm = ({ course }) => {
     formik.setFieldValue("file", file);
     if (file) {
       const previewURL = URL.createObjectURL(file);
-      setLogoPreview(previewURL);
+      setCourseData((prev) => ({
+        ...prev,
+        logoUrl: previewURL,
+      }));
     }
   };
 
   useEffect(() => {
+    if (course) {
+      console.log(course.logoUrl);
+      setCourseData({
+        _id: course._id,
+        title: course.title,
+        description: course.description,
+        status: course.status,
+        cloudinary_id: course.cloudinary_id,
+        logoUrl: course.logoUrl,
+      });
+    }
     return () => {
-      if (logoPreview) {
+      if (courseData.logoUrl) {
         URL.revokeObjectURL(logoPreview);
       }
     };
-  }, [logoPreview]);
-
-  async function urlToFile(url) {
-    const filename = url.substring(url.lastIndexOf("/") + 1);
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const file = new File([blob], filename, { type: blob.type });
-    return file;
-  }
-
-  useEffect(() => {
-    if (course) {
-      setLogoPreview(course.logoUrl);
-      setCourseData(course);
-      // urlToFile(course.logoUrl).then((file) => {
-      //   console.log("File", file);
-      //   formik.setFieldValue("file", file);
-      // });
-    }
   }, [course]);
 
   return (
@@ -159,12 +163,12 @@ const CourseForm = ({ course }) => {
                 onBlur={formik.handleBlur}
               />
               <label className={styles.customUploadBox} htmlFor="file">
-                {logoPreview ? (
+                {courseData && courseData.logoUrl ? (
                   <div className={styles.logoPreviewDiv}>
                     <Image
                       quality={10}
                       fill={true}
-                      src={logoPreview}
+                      src={courseData.logoUrl}
                       alt="Logo Preview"
                       sizes="(max-width:100%)"
                     />
@@ -256,17 +260,25 @@ const CourseForm = ({ course }) => {
                 <div className={styles.statusInputWrapper}>
                   <div
                     onClick={() => {
-                      setSelectedStatus((prev) => !prev);
+                      setCourseData((prev) => ({
+                        ...prev,
+                        status: !prev.status,
+                      }));
+
                       formik.setFieldValue("status", true);
                     }}
                     className={`${styles.radioBtnWrapper} ${
-                      selectedStatus && styles["radioBtnWrapper--activeBtn"]
+                      courseData &&
+                      courseData.status &&
+                      styles["radioBtnWrapper--activeBtn"]
                     }`}
                   >
                     <div className={styles.radioDotDiv}>
                       <div
                         className={`${styles.radioDot} ${
-                          selectedStatus && styles["radioDotDiv--activeDot"]
+                          courseData &&
+                          courseData.status &&
+                          styles["radioDotDiv--activeDot"]
                         }`}
                       ></div>
                     </div>
@@ -278,17 +290,22 @@ const CourseForm = ({ course }) => {
                 <div className={styles.statusInputWrapper}>
                   <div
                     onClick={() => {
-                      setSelectedStatus((prev) => !prev);
+                      setCourseData((prev) => ({
+                        ...prev,
+                        status: !prev.status,
+                      }));
                       formik.setFieldValue("status", false);
                     }}
                     className={`${styles.radioBtnWrapper} ${
-                      !selectedStatus && styles["radioBtnWrapper--inactiveBtn"]
+                      !(courseData && courseData.status) &&
+                      styles["radioBtnWrapper--inactiveBtn"]
                     }`}
                   >
                     <div className={styles.radioDotDiv}>
                       <div
                         className={`${styles.radioDot} ${
-                          !selectedStatus && styles["radioDotDiv--inactiveDot"]
+                          !(courseData && courseData.status) &&
+                          styles["radioDotDiv--inactiveDot"]
                         }`}
                       ></div>
                     </div>
@@ -302,12 +319,8 @@ const CourseForm = ({ course }) => {
           </div>
         </div>
 
-        {/*  */}
         <div className={styles.formContainer__buttonCell}>
-          <button
-            // disabled={formik.isSubmitting}
-            type="submit"
-          >
+          <button disabled={formik.isSubmitting} type="submit">
             Submit
           </button>
         </div>
