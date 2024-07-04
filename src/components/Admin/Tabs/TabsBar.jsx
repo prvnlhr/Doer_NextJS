@@ -30,39 +30,11 @@ const Tabs = () => {
   const currentPathName = usePathname();
   const pathSegments = currentPathName.split("/");
 
-  // const { courseState, setCourseState } = useAppState();
-
-  // useEffect(() => {
-  //   const newState = { ...courseState };
-
-  //   if (!courseState.courseId && params.courseId) {
-  //     newState.courseId = params.courseId;
-  //   }
-  //   if (!courseState.chapterId && params.chapterId) {
-  //     newState.chapterId = params.chapterId;
-  //   }
-  //   if (!courseState.topicId && params.topicId) {
-  //     newState.topicId = params.topicId;
-  //   }
-
-  //   if (
-  //     newState.courseId !== courseState.courseId ||
-  //     newState.chapterId !== courseState.chapterId ||
-  //     newState.topicId !== courseState.topicId
-  //   ) {
-  //     setCourseState(newState);
-  //   }
-  // }, [params, courseState, setCourseState]);
-
   let { courseId, chapterId, topicId } = params;
 
   const lastSegment = pathSegments[pathSegments.length - 1];
   const secondLastSegment = pathSegments[pathSegments.length - 2];
   const thirdLast = pathSegments[pathSegments.length - 3];
-
-  // useEffect(() => {
-  //   console.log("params:", params, lastSegment, thirdLast, secondLastSegment);
-  // }, [params, lastSegment, secondLastSegment]);
 
   if (lastSegment === "add") {
     let addTabProps = {

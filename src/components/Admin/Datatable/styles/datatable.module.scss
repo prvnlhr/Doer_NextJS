@@ -3,6 +3,7 @@
   width: 100%;
   height: 100%;
   @include flex-container(flex-start, flex-start);
+  max-width: 100%;
 
   @media (max-width: 768px) {
     @include flex-container(center, flex-start);

@@ -109,6 +109,8 @@ export async function DELETE(req, { params }) {
     console.log(`${chaptersDeleteRes.deletedCount} Chapters deleted`);
 
     // Delete the course itself
+    const course = await Course.findById(courseId);
+    const deleteCourseImageRes = await deleteImage(course.cloudinary_id);
     const courseDeleteResponse = await Course.findByIdAndDelete(
       courseId
     ).exec();
