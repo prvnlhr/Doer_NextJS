@@ -59,9 +59,11 @@ const updateChapterDurationAndTopicsCount = async (
 
   return chapter;
 };
+
 // -----------------------------------------------------------------------------------------------------
+
+// Get all Topics
 export async function GET(req, { params }) {
-  // console.table(params);
   try {
     const query = {
       chapter: params.chapterId,
@@ -75,7 +77,7 @@ export async function GET(req, { params }) {
   }
 }
 
-// Create new topic
+// Create Topic
 export async function POST(req, { params }) {
   try {
     const { courseId, chapterId } = params;
@@ -88,7 +90,6 @@ export async function POST(req, { params }) {
     });
 
     const savedTopic = await newTopic.save();
-
 
     const updateChapter = await Chapter.findByIdAndUpdate(
       { _id: chapterId },

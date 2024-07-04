@@ -1,3 +1,6 @@
+// "use server";
+
+import revalidateMyPath from "@/app/validate";
 import { revalidatePath } from "next/cache";
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
@@ -36,7 +39,7 @@ export async function updateCourse(formData, courseId) {
   try {
     let response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`, {
       method: "POST",
-      cache: "no-store",
+      // cache: "no-store",
       body: formData,
     });
 
@@ -52,14 +55,19 @@ export async function updateCourse(formData, courseId) {
 }
 
 export async function deleteCourse(courseId) {
+  console.log("Called deleteCourse ", courseId);
   try {
     const response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`, {
       method: "DELETE",
     });
     if (!response.ok) {
       console.log(response);
-      throw new Error("Failed to delete course and its content");
+      throw new Error(
+        " HTTP !  Error :: Failed to delete course and its content"
+      );
     }
+    revalidateMyPath("/admin/courses");
+
     return response.json();
   } catch (error) {
     throw new Error(`Error in deleting the course ${error}`);
@@ -70,12 +78,12 @@ export async function createCourse(formData) {
     const response = await fetch(`${BASE_URL}/api/admin/courses`, {
       method: "POST",
       body: formData,
-      cache: "no-store",
     });
 
     if (!response.ok) {
       throw new Error("Failed to create course");
     }
+    revalidateMyPath("/admin/coures", "page");
     return response.json();
   } catch (error) {
     throw new Error(`Create course error: ${error}`);

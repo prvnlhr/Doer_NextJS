@@ -4,7 +4,7 @@ import Course from "@/lib/db/models/Course";
 import Topic from "@/lib/db/models/Topic";
 import { deleteImage, uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 
-// get course for editing by id
+// Get Course by id
 export async function GET(req, { params }) {
   await dbConnect();
   try {
@@ -27,7 +27,7 @@ export async function GET(req, { params }) {
   }
 }
 
-//  Update course by id
+// Update Course
 export async function POST(req, { params }) {
   await dbConnect();
   try {
@@ -84,7 +84,7 @@ export async function POST(req, { params }) {
   }
 }
 
-// Delete Course by id
+// Delete Course
 export async function DELETE(req, { params }) {
   await dbConnect();
   try {
@@ -108,6 +108,7 @@ export async function DELETE(req, { params }) {
     }).exec();
     console.log(`${chaptersDeleteRes.deletedCount} Chapters deleted`);
 
+    // Delete the course itself
     const courseDeleteResponse = await Course.findByIdAndDelete(
       courseId
     ).exec();

@@ -56,7 +56,7 @@
           cursor: not-allowed;
         }
         .spinnerDiv {
-          border: 1px solid red;
+          // border: 1px solid red;
           height: 80%;
           @include flex-container(center, center);
         }

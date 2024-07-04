@@ -81,3 +81,21 @@ export async function updateChapter(chapterData, courseId, chapterId) {
     throw new Error(`Create chapter error : ${error}`);
   }
 }
+
+export async function deleteChapter(courseId, chapterId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response.ok) {
+      console.log(response);
+      throw new Error("HTTP ! Error Failed to delete chapter and its content");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error in deleting the chapter ${error}`);
+  }
+}

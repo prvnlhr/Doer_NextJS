@@ -1,5 +1,4 @@
 import React from "react";
-import topics from "../../../../../../../components/topicsData";
 import Datatable from "@/components/Admin/Datatable/Datatable";
 import { fetchTopics } from "@/lib/api/admin/topicsApi";
 
@@ -12,11 +11,12 @@ const TopicsPage = async ({ params }) => {
     return `/admin/courses/${params.courseId}/chapters/${params.chapterId}/topics/add`;
   };
 
+  const getDeleteUrl = (topicId) => {
+    return `/admin/courses/${params.courseId}/chapters/${params.chapterId}/topics/${topicId}/delete`;
+  };
   const columns = ["title", "status"];
 
   const topics = await fetchTopics(params.courseId, params.chapterId);
-
-  //TODO : deleteURl
 
   return (
     <Datatable
@@ -24,6 +24,7 @@ const TopicsPage = async ({ params }) => {
       columns={columns}
       getEditUrl={getEditUrl}
       getAddUrl={getAddUrl}
+      getDeleteUrl={getDeleteUrl}
     />
   );
 };

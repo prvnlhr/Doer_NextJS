@@ -2,7 +2,7 @@ import dbConnect from "@/lib/db/dbConnect";
 import Course from "@/lib/db/models/Course";
 import cloudinary, { uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 
-// Get all courses
+// Get all Courses
 export async function GET(req, res) {
   await dbConnect();
   try {
@@ -22,7 +22,7 @@ export async function GET(req, res) {
   }
 }
 
-// Create a new course
+// Create Course
 export async function POST(req) {
   await dbConnect();
   try {

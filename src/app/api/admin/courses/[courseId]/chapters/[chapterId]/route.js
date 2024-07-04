@@ -3,7 +3,7 @@ import Chapter from "@/lib/db/models/Chapter";
 import Course from "@/lib/db/models/Course";
 import Topic from "@/lib/db/models/Topic";
 
-// get chapter by id for editing
+// Get Chapter by id
 export async function GET(req, { params }) {
   await dbConnect();
   try {
@@ -23,7 +23,7 @@ export async function GET(req, { params }) {
   }
 }
 
-// Update chapter
+// Update Chapter
 export async function POST(req, { params }) {
   await dbConnect();
   try {
@@ -48,12 +48,17 @@ export async function POST(req, { params }) {
   }
 }
 
-// Delete Chapter by id
+const intercept = () => {
+  return new Response(JSON.stringify("OK"), { status: 200 });
+};
+// Delete Chapter
 export async function DELETE(req, { params }) {
   await dbConnect();
   try {
     const { courseId, chapterId } = params;
-
+    const chapter = await Chapter.findById(chapterId);
+    intercept();
+    const chapterDuration = chapter.duration;
     // Delete all topics of the chapter
     const topicsDeleteRes = await Topic.deleteMany({
       chapter: chapterId,
@@ -63,6 +68,7 @@ export async function DELETE(req, { params }) {
     const updateCourseRes = await Course.findByIdAndUpdate(courseId, {
       $inc: {
         chaptersCount: -1,
+        duration: -chapterDuration,
       },
     });
 

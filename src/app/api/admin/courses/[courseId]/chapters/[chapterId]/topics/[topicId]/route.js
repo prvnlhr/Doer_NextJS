@@ -3,6 +3,7 @@ import Chapter from "@/lib/db/models/Chapter";
 import Course from "@/lib/db/models/Course";
 import Topic from "@/lib/db/models/Topic";
 
+// Get Topic by Id
 export async function GET(req, { params }) {
   await dbConnect();
   try {
@@ -19,7 +20,7 @@ export async function GET(req, { params }) {
   }
 }
 
-// Update topic
+// Update Topic
 export async function POST(req, { params }) {
   await dbConnect();
   try {
@@ -73,7 +74,7 @@ export async function POST(req, { params }) {
   }
 }
 
-// Delete Topic by id
+// Delete Topic
 export async function DELETE(req, { params }) {
   await dbConnect(); // Ensure database connection
 

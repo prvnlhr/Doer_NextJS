@@ -2,7 +2,7 @@ import dbConnect from "@/lib/db/dbConnect";
 import Chapter from "@/lib/db/models/Chapter";
 import Course from "@/lib/db/models/Course";
 
-// Get all chapters of course with courseId
+// Get all Chapters
 export async function GET(req, { params }) {
   await dbConnect();
   try {

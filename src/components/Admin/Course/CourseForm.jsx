@@ -94,11 +94,7 @@ const CourseForm = ({ course }) => {
         formData.append("status", values.status);
         formData.append("file", values.file);
 
-        console.log(course);
-        // return;
-
         if (course) {
-          console.log(courseData._id);
           formData.append("cloudinary_id", courseData.cloudinary_id);
           res = await updateCourse(formData, courseData._id);
           setCourseData({
@@ -110,6 +106,7 @@ const CourseForm = ({ course }) => {
             cloudinary_id: res.cloudinary_id,
           });
         } else {
+          console.log(values);
           res = await createCourse(formData);
           action.resetForm();
         }
@@ -133,7 +130,6 @@ const CourseForm = ({ course }) => {
 
   useEffect(() => {
     if (course) {
-      console.log(course.logoUrl);
       setCourseData({
         _id: course._id,
         title: course.title,
@@ -144,8 +140,8 @@ const CourseForm = ({ course }) => {
       });
     }
     return () => {
-      if (courseData.logoUrl) {
-        URL.revokeObjectURL(logoPreview);
+      if (courseData && courseData.logoUrl !== null) {
+        URL.revokeObjectURL(logoUrl);
       }
     };
   }, [course]);
@@ -265,7 +261,6 @@ const CourseForm = ({ course }) => {
                         ...prev,
                         status: !prev.status,
                       }));
-
                       formik.setFieldValue("status", true);
                     }}
                     className={`${styles.radioBtnWrapper} ${
@@ -321,7 +316,7 @@ const CourseForm = ({ course }) => {
         </div>
 
         <div className={styles.formContainer__buttonCell}>
-          <button disabled={true} type="submit">
+          <button disabled={formik.isSubmitting} type="submit">
             {formik.isSubmitting ? (
               <div className={styles.spinnerDiv}>
                 <Spinner />

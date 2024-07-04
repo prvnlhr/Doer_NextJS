@@ -81,3 +81,21 @@ export async function updateTopic(topicData, courseId, chapterId, topicId) {
     throw new Error(`Update topic error: ${error}`);
   }
 }
+
+export async function deleteTopic(courseId, chapterId, topicId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response.ok) {
+      console.log(response);
+      throw new Error("HTTP ! Error Failed to delete topic and its content");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error in deleting the topic ${error}`);
+  }
+}

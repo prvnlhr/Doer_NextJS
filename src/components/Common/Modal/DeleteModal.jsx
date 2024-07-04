@@ -1,10 +1,9 @@
-"use client";
 import React from "react";
 import styles from "./styles/deleteModal.module.scss";
-import { useRouter } from "next/navigation";
+import CancelBtn from "./CancelBtn";
+import DeleteBtn from "./DeleteBtn";
 
-const DeleteModal = ({ params }) => {
-  const router = useRouter();
+const DeleteModal = ({ deleteProps }) => {
   return (
     <div className={styles.modalWrapprer}>
       <div className={styles.modalInnerWrapper}>
@@ -19,19 +18,8 @@ const DeleteModal = ({ params }) => {
           </p>
         </div>
         <div className={styles.modalBtnWrapper}>
-          <button
-            type="button"
-            className={`${styles.modalBtn} ${styles.confirmBtn}`}
-          >
-            <p>Okay</p>
-          </button>
-          <button
-            onClick={() => router.back()}
-            type="button"
-            className={`${styles.modalBtn} ${styles.cancelBtn}`}
-          >
-            <p>Cancel</p>
-          </button>
+          <DeleteBtn deleteProps={deleteProps} />
+          <CancelBtn />
         </div>
       </div>
     </div>
