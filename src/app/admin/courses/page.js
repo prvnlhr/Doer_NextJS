@@ -13,6 +13,9 @@ const CoursesPage = async () => {
     return `/admin/courses/add`;
   };
 
+  const getDeleteUrl = (courseId) => {
+    return `/admin/courses/${courseId}/delete`;
+  };
   const columns = ["title", "chapters", "status"];
 
   return (
@@ -28,6 +31,7 @@ const CoursesPage = async () => {
       columns={columns}
       getEditUrl={getEditUrl}
       getAddUrl={getAddUrl}
+      getDeleteUrl={getDeleteUrl}
     />
   );
 };

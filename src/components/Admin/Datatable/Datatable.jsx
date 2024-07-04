@@ -35,7 +35,7 @@ const StatusBadge = ({ value, color }) => {
   );
 };
 
-const Datatable = ({ data, columns, getEditUrl, getAddUrl }) => {
+const Datatable = ({ data, columns, getEditUrl, getAddUrl, getDeleteUrl }) => {
   return (
     <div className={styles.datatableWrapper}>
       <div className={styles.datatableContainer}>
@@ -113,7 +113,12 @@ const Datatable = ({ data, columns, getEditUrl, getAddUrl }) => {
                           >
                             <EditIcon />
                           </Link>
-                          <DeleteBtn />
+                          <Link
+                            href={getDeleteUrl ? getDeleteUrl(row["_id"]) : "#"}
+                            className={styles.actionBtnsWrapper__actionButton}
+                          >
+                            <DeleteIcon />
+                          </Link>
                         </div>
                       </td>
                     </tr>

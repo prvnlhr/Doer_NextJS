@@ -18,6 +18,7 @@ export const metadata = {
   title: "Do.er - E Learning",
   description: "E-Learning app",
 };
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

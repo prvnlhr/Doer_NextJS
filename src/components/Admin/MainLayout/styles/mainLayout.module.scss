@@ -6,6 +6,7 @@
   height: 100%;
   // border: 1px solid red;
   @include flex-container(center, center);
+  position: relative;
 
   &__innerWrapper {
     position: relative;

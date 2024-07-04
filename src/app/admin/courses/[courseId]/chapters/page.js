@@ -9,6 +9,11 @@ export default async function ChaptersPage({ params }) {
   const getAddUrl = () => {
     return `/admin/courses/${params.courseId}/chapters/add`;
   };
+
+  const getDeleteUrl = (chapterId) => {
+    return `/admin/courses/${params.courseId}/chapters/${chapterId}/delete`;
+  };
+
   const columns = ["title", "courseName", "status", "topics"];
   const chapters = await fetchChapters(params.courseId);
   return (
@@ -17,6 +22,7 @@ export default async function ChaptersPage({ params }) {
       columns={columns}
       getEditUrl={getEditUrl}
       getAddUrl={getAddUrl}
+      getDeleteUrl={getDeleteUrl}
     />
   );
 }
