@@ -6,22 +6,24 @@
   width: 80%;
   // background-color: lightcoral;
   display: grid;
-  grid-template-rows: 8% 92%;
+  grid-template-rows: 50px calc(100% - 50px);
   grid-template-columns: 100%;
   grid-template-areas:
     "breadcrumbsWrapper"
     "contentWrapper";
+  position: relative;
 
   &__breadcrumbsWrapper {
     grid-area: breadcrumbsWrapper;
     @include fhw;
     border-bottom: 1px solid #d0d5dd;
     @include flex-container(flex-start, center);
+    // border: 1px solid red;
   }
   &__contentWrapper {
     grid-area: contentWrapper;
     @include fhw;
-    // border: 1px solid red;
+    // border: 1px solid greenyellow;
   }
   @media (max-width: 768px) {
     width: 100%;

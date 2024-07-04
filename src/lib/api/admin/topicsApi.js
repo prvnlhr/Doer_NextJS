@@ -1,3 +1,5 @@
+import revalidateTagHandler from "@/app/revalidate";
+
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchTopics(courseId, chapterId) {
@@ -5,7 +7,7 @@ export async function fetchTopics(courseId, chapterId) {
     const response = await fetch(
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics`,
       {
-        cache: "no-store",
+        next: { tags: ["topics"] },
       }
     );
     // console.log(response);
@@ -22,10 +24,7 @@ export async function fetchTopics(courseId, chapterId) {
 export async function fetchTopicById(courseId, chapterId, topicId) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
-      {
-        cache: "no-store",
-      }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -43,7 +42,6 @@ export async function createTopic(topicData, courseId, chapterId) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics`,
       {
         method: "POST",
-        cache: "no-store",
         headers: {
           "Content-Type": "application/json",
         },
@@ -53,6 +51,7 @@ export async function createTopic(topicData, courseId, chapterId) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response}`);
     }
+    await revalidateTagHandler("topics");
   } catch (error) {
     console.log(error);
     throw new Error(`Create topic error : ${error}`);
@@ -65,7 +64,6 @@ export async function updateTopic(topicData, courseId, chapterId, topicId) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
       {
         method: "POST",
-        cache: "no-store",
         body: JSON.stringify(topicData),
         headers: {
           "Content-Type": "application/json",
@@ -94,6 +92,8 @@ export async function deleteTopic(courseId, chapterId, topicId) {
       console.log(response);
       throw new Error("HTTP ! Error Failed to delete topic and its content");
     }
+    await revalidateTagHandler("topics");
+
     return response.json();
   } catch (error) {
     throw new Error(`Error in deleting the topic ${error}`);

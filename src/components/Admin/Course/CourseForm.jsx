@@ -7,8 +7,10 @@ import styles from "./styles/courseForm.module.scss";
 import Image from "next/image";
 import { createCourse, updateCourse } from "@/lib/api/admin/coursesApi";
 import Spinner from "@/components/Common/Icons/Spinner";
+import { useRouter } from "next/navigation";
 
 const CourseForm = ({ course }) => {
+  const router = useRouter();
   const [courseData, setCourseData] = useState({
     id: "",
     title: "",
@@ -109,6 +111,7 @@ const CourseForm = ({ course }) => {
           console.log(values);
           res = await createCourse(formData);
           action.resetForm();
+          router.push(`/admin/courses`);
         }
       } catch (error) {
         console.log(error);
@@ -139,11 +142,11 @@ const CourseForm = ({ course }) => {
         logoUrl: course.logoUrl,
       });
     }
-    return () => {
-      if (courseData && courseData.logoUrl !== null) {
-        URL.revokeObjectURL(logoUrl);
-      }
-    };
+    // return () => {
+    //   if (courseData && courseData.logoUrl !== null) {
+    //     URL.revokeObjectURL(logoUrl);
+    //   }
+    // };
   }, [course]);
 
   return (

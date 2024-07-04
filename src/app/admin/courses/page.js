@@ -16,7 +16,7 @@ const CoursesPage = async () => {
   const getDeleteUrl = (courseId) => {
     return `/admin/courses/${courseId}/delete`;
   };
-  const columns = ["title", "chapters", "status"];
+  const columns = ["title", "chaptersCount", "status"];
 
   return (
     /*

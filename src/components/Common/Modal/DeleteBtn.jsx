@@ -5,8 +5,10 @@ import styles from "./styles/deleteModal.module.scss";
 import { deleteCourse } from "@/lib/api/admin/coursesApi";
 import { deleteChapter } from "@/lib/api/admin/chaptersApi";
 import { deleteTopic } from "@/lib/api/admin/topicsApi";
+import { useRouter } from "next/navigation";
 
 const DeleteBtn = ({ deleteProps }) => {
+  const router = useRouter();
   const deleteHandler = async () => {
     const { type, params } = deleteProps;
     const { courseId, chapterId, topicId } = params;
@@ -19,6 +21,7 @@ const DeleteBtn = ({ deleteProps }) => {
       } else if (type === "topic") {
         res = await deleteTopic(courseId, chapterId, topicId);
       }
+      router.back();
       console.log(res);
     } catch (error) {
       console.log(error);

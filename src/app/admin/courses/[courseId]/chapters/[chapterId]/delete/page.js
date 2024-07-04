@@ -1,6 +1,12 @@
-import React from "react";
-
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 const page = () => {
-  return <p>Delete chapter</p>;
+  const router = useRouter();
+  useEffect(() => {
+    router.back();
+  }, []);
+  return <></>;
 };
+
 export default page;

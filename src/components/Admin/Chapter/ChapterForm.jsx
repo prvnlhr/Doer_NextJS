@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import styles from "./styles/chapterForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { createChapter, updateChapter } from "@/lib/api/admin/chaptersApi";
 import Spinner from "@/components/Common/Icons/Spinner";
 //FiraCode Nerd Font
 const ChapterForm = ({ chapter }) => {
+  const router = useRouter();
   const [selectedStatus, setSelectedStatus] = useState(
     chapter ? chapter.status : true
   );
@@ -40,7 +41,7 @@ const ChapterForm = ({ chapter }) => {
         } else {
           res = await createChapter(chapterData, params.courseId);
         }
-
+        router.back();
         console.log(res);
       } catch (error) {
         console.log(error);

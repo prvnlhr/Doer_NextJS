@@ -68,7 +68,11 @@ const Datatable = ({ data, columns, getEditUrl, getAddUrl, getDeleteUrl }) => {
                   {columns.map((colName) => (
                     <th key={colName}>
                       <p className={styles.text}>
-                        {colName.charAt(0).toUpperCase() + colName.slice(1)}
+                        {colName === "chaptersCount"
+                          ? "Total Chapters"
+                          : colName === "topicsCount"
+                          ? "Total Topics"
+                          : colName.charAt(0).toUpperCase() + colName.slice(1)}
                       </p>
                     </th>
                   ))}

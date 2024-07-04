@@ -14,4 +14,3 @@ export async function fetchCourses() {
     throw new Error(`Fetch courses error: ${error}`);
   }
 }
-

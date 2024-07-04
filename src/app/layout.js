@@ -25,11 +25,7 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.className} antialiased`}>
         <div className={styles.rootLayoutWrapper}>
           <MainHeader />
-          <div className={styles.contentWrapper}>
-            {/* <Providers>
-              </Providers> */}
-            {children}
-          </div>
+          <div className={styles.contentWrapper}>{children}</div>
         </div>
       </body>
     </html>

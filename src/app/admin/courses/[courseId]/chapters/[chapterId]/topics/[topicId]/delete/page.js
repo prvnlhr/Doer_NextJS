@@ -1,7 +1,12 @@
-import React from "react";
-
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 const page = () => {
-  return <div>Delete Topic</div>;
+  const router = useRouter();
+  useEffect(() => {
+    router.back();
+  }, []);
+  return <></>;
 };
 
 export default page;

@@ -14,7 +14,7 @@ export default async function ChaptersPage({ params }) {
     return `/admin/courses/${params.courseId}/chapters/${chapterId}/delete`;
   };
 
-  const columns = ["title", "courseName", "status", "topics"];
+  const columns = ["title", "topicsCount", "status"];
   const chapters = await fetchChapters(params.courseId);
   return (
     <Datatable

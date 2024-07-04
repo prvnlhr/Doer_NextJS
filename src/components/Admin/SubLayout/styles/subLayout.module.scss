@@ -3,6 +3,8 @@
 .subLayoutWrapper {
   @include fhw;
   @include flex-container(flex-start, flex-start, $direction: column);
+  // background-color: red;
+  // background-color: salmon;
 
   &__headerWrapper {
     height: 50px;

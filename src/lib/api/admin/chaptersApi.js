@@ -1,3 +1,5 @@
+import revalidateTagHandler from "@/app/revalidate";
+
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchChapters(courseId) {
@@ -5,7 +7,7 @@ export async function fetchChapters(courseId) {
     let response = await fetch(
       `${BASE_URL}/api/admin/courses/${courseId}/chapters`,
       {
-        cache: "no-store",
+        next: { tags: ["chapters"] },
       }
     );
     if (!response.ok) {
@@ -22,10 +24,7 @@ export async function fetchChapters(courseId) {
 export async function fetchChapterById(courseId, chapterId) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
-      {
-        cache: "no-store",
-      }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`
     );
     if (!response.ok) {
       console.log(response);
@@ -43,7 +42,6 @@ export async function createChapter(chapterData, courseId) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters`,
       {
         method: "POST",
-        cache: "no-store",
         headers: {
           "Content-Type": "application/json",
         },
@@ -53,6 +51,7 @@ export async function createChapter(chapterData, courseId) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    await revalidateTagHandler("chapters");
     return response.json();
   } catch (error) {
     throw new Error(`Create chapter error : ${error}`);
@@ -65,7 +64,6 @@ export async function updateChapter(chapterData, courseId, chapterId) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
       {
         method: "POST",
-        cache: "no-store",
         body: JSON.stringify(chapterData),
         headers: {
           "Content-Type": "application/json",
@@ -82,7 +80,7 @@ export async function updateChapter(chapterData, courseId, chapterId) {
   }
 }
 
-export async function deleteChapter(courseId, chapterId) {
+export async function deleteChapter(courseId, chapterId, params) {
   try {
     const response = await fetch(
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
@@ -94,6 +92,7 @@ export async function deleteChapter(courseId, chapterId) {
       console.log(response);
       throw new Error("HTTP ! Error Failed to delete chapter and its content");
     }
+    await revalidateTagHandler("chapters");
     return response.json();
   } catch (error) {
     throw new Error(`Error in deleting the chapter ${error}`);
