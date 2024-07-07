@@ -151,184 +151,34 @@ const CourseForm = ({ course }) => {
 
   return (
     <div className={styles.formWrapper}>
-      <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-        <div className={styles.formContainer__logoCell}>
-          <div className={styles.logoFormGroup}>
-            <div className={styles.logoFormGroup__inputGroup}>
-              <input
-                type="file"
-                name="file"
-                id="file"
-                onChange={handleFileChange}
-                onBlur={formik.handleBlur}
-              />
-              <label className={styles.customUploadBox} htmlFor="file">
-                {courseData && courseData.logoUrl ? (
-                  <div className={styles.logoPreviewDiv}>
-                    <Image
-                      quality={10}
-                      fill={true}
-                      src={courseData.logoUrl}
-                      alt="Logo Preview"
-                      sizes="(max-width:100%)"
-                    />
-                  </div>
-                ) : (
-                  <div className={styles.uploadDiv}>
-                    <p>
-                      Choose course <br />
-                      Logo
-                    </p>
-                  </div>
-                )}
-              </label>
-            </div>
-            <div className={styles.logoFormGroup__errorGroup}>
-              {formik.errors.file && formik.touched.file && (
-                <p>{formik.errors.file}</p>
-              )}
-            </div>
+      <form className={styles.formGrid} onSubmit={formik.handleSubmit}>
+        <div className={styles.formGrid__logoCell}>
+          <div className={styles.logoInputGroup}></div>
+          <div className={styles.errorGroup}>
+            <p>Course Logo is required</p>
           </div>
         </div>
-        <div className={styles.formContainer__titleCell}>
-          <div className={styles.formGroup}>
-            <div className={styles.formGroup__inputGroup}>
-              <div className={styles.formGroup__inputGroup__labelDiv}>
-                <label
-                  className={styles.formGroup__inputGroup__labelDiv__labelTag}
-                  htmlFor="title"
-                >
-                  Title
-                </label>
-              </div>
-              <div className={styles.formGroup__inputGroup__inputDiv}>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formik.values.title}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-            </div>
-            <div className={styles.formGroup__errorGroup}>
-              {formik.errors.title && formik.touched.title && (
-                <p>{formik.errors.title}</p>
-              )}
-            </div>
+        <div className={styles.formGrid__titleCell}>
+          <div className={styles.inputGroup}>
+            <label className={styles.inputGroup__labelTag}>
+              <p>Title</p>
+            </label>
+            <input className={styles.inputGroup__inputField} />
+          </div>
+          <div className={styles.errorGroup}>
+            <p>Title is required</p>
           </div>
         </div>
-        <div className={styles.formContainer__descriptionCell}>
-          <div className={styles.formGroup}>
-            <div className={styles.formGroup__inputGroup}>
-              <div className={styles.formGroup__inputGroup__labelDiv}>
-                <label
-                  className={styles.formGroup__inputGroup__labelDiv__labelTag}
-                  htmlFor="description"
-                >
-                  Description
-                </label>
-              </div>
-              <div className={styles.formGroup__inputGroup__inputDiv}>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-            </div>
-            <div className={styles.formGroup__errorGroup}>
-              {formik.errors.description && formik.touched.description && (
-                <p>{formik.errors.description}</p>
-              )}
-            </div>
+        <div className={styles.formGrid__descriptionCell}>
+          <div className={styles.inputGroup}>
+            <label className={styles.inputGroup__labelTag}>
+              <p>Description</p>
+            </label>
+            <textarea className={styles.inputGroup__textAreaField} />
           </div>
+          <div className={styles.errorGroup}></div>
         </div>
-        {/* Status */}
-        <div className={styles.formContainer__statusCell}>
-          <div className={styles.formGroup}>
-            <div className={styles.formGroup__inputGroup}>
-              <div className={styles.formGroup__inputGroup__labelDiv}>
-                <p className={styles.formGroup__inputGroup__labelDiv__labelTag}>
-                  Status
-                </p>
-              </div>
-              <div className={styles.formGroup__inputGroup__inputDiv}>
-                <div className={styles.statusInputWrapper}>
-                  <div
-                    onClick={() => {
-                      setCourseData((prev) => ({
-                        ...prev,
-                        status: !prev.status,
-                      }));
-                      formik.setFieldValue("status", true);
-                    }}
-                    className={`${styles.radioBtnWrapper} ${
-                      courseData &&
-                      courseData.status &&
-                      styles["radioBtnWrapper--activeBtn"]
-                    }`}
-                  >
-                    <div className={styles.radioDotDiv}>
-                      <div
-                        className={`${styles.radioDot} ${
-                          courseData &&
-                          courseData.status &&
-                          styles["radioDotDiv--activeDot"]
-                        }`}
-                      ></div>
-                    </div>
-                    <div className={styles.radioLabelDiv}>
-                      <p>Active</p>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.statusInputWrapper}>
-                  <div
-                    onClick={() => {
-                      setCourseData((prev) => ({
-                        ...prev,
-                        status: !prev.status,
-                      }));
-                      formik.setFieldValue("status", false);
-                    }}
-                    className={`${styles.radioBtnWrapper} ${
-                      !(courseData && courseData.status) &&
-                      styles["radioBtnWrapper--inactiveBtn"]
-                    }`}
-                  >
-                    <div className={styles.radioDotDiv}>
-                      <div
-                        className={`${styles.radioDot} ${
-                          !(courseData && courseData.status) &&
-                          styles["radioDotDiv--inactiveDot"]
-                        }`}
-                      ></div>
-                    </div>
-                    <div className={styles.radioLabelDiv}>
-                      <p>Inactive</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.formContainer__buttonCell}>
-          <button disabled={formik.isSubmitting} type="submit">
-            {formik.isSubmitting ? (
-              <div className={styles.spinnerDiv}>
-                <Spinner />
-              </div>
-            ) : (
-              "Submit"
-            )}
-          </button>
-        </div>
+        <div className={styles.formGrid__buttonCell}></div>
       </form>
     </div>
   );

@@ -5,308 +5,138 @@
   width: 100%;
   height: 100%;
   // border: 1px solid red;
-  @include flex-container(flex-start, center);
-  margin-left: 20px;
-  @media (max-width: 768px) {
-    @include flex-container(center, flex-start);
-    margin-left: unset;
-  }
+  padding: 20px;
 
-  .formContainer {
-    width: 70%;
-    height: 90%;
+  .formGrid {
     // border: 1px solid red;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-areas:
       "logoCell titleCell"
       "logoCell descriptionCell"
-      "logoCell statusCell"
       "logoCell buttonCell";
-    grid-template-columns: 30% 70%;
-    grid-template-rows: 25% minmax(0, 1fr) 30% 50px;
+    grid-template-columns: 15% minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) 50px;
+    grid-gap: 10px;
 
     @media (max-width: 768px) {
-      width: 90%;
-      height: 95%;
-      // border: 1px solid red;
-      display: grid;
       grid-template-areas:
         "logoCell titleCell"
         "descriptionCell descriptionCell"
-        "statusCell statusCell"
         "buttonCell buttonCell";
-      grid-template-columns: 30% calc(70% - 10px);
-      grid-template-rows: auto minmax(0, 1fr) 20% 50px;
-      grid-gap: 10px;
-      margin-top: 20px;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-rows: 150px minmax(0, 1fr) 30%;
+      grid-gap: unset;
+      grid-column-gap: 10px;
+      height: 100%;
     }
 
     &__logoCell {
       grid-area: logoCell;
-      @include fhw;
-      // border: 1px solid black;
-      @include flex-container(center, flex-start);
-      // @media (max-width: 768px) {
-      //   width: 100%;
-      //   aspect-ratio: 1/1;
-      // }
+      // border: 1px solid #b4b2b2;
+      width: 100%;
+      height: auto;
+      padding: 5px;
+      @media (max-width: 768px) {
+        width: auto;
+        // border: 1px solid springgreen;
+      }
     }
     &__titleCell {
       grid-area: titleCell;
-      @include fhw;
-      // border: 1px solid black;
-      // padding: 10px;
+      // border: 1px solid #b4b2b2;
+      padding: 5px;
+      height: 150px;
+      width: 100%;
+      // border: 1px solid red;
+      @media (max-width: 768px) {
+        height: 100%;
+      }
     }
     &__descriptionCell {
       grid-area: descriptionCell;
-      @include fhw;
-      // border: 1px solid green;
+      // border: 1px solid #b4b2b2;
+      padding: 5px;
+      width: 100%;
     }
     &__buttonCell {
       grid-area: buttonCell;
+      // border: 1px solid #b4b2b2;
       @include fhw;
-      // border: 1px solid red;
-      @include flex-container(flex-end, center);
-
-      button {
-        height: 30px;
-        width: auto;
-        padding-left: 10px;
-        padding-right: 10px;
-        background-color: #635db0;
-        outline: none;
-        border: none;
-        color: white;
-        cursor: pointer;
-
-        &:disabled {
-          background-color: #635db0;
-          cursor: not-allowed;
-        }
-
-        .spinnerDiv {
-          // border: 1px solid red;
-          height: 80%;
-          @include flex-container(center, center);
-        }
-      }
-    }
-    &__statusCell {
-      grid-area: statusCell;
-      @include fhw;
-      // border: 1px solid blue;
-      // @include flex-container(flex-end, center);
+      padding: 5px;
     }
   }
 }
 
-.formGroup {
+.inputGroup {
   width: 100%;
-  height: 100%;
-  // border: 1px solid blue;
+  height: calc(100% - 30px);
+  background-color: white;
+  border: 1px solid #b4b2b270;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 10px;
 
-  &__inputGroup {
-    width: 100%;
-    height: calc(100% - 30px);
-    // border: 1px solid blue;
-    padding: 10px 20px;
-    // border: 1px solid #d0d5dd;
-    border-radius: 15px;
-    background-color: white;
-    overflow: hidden;
-
-    &__labelDiv {
-      // border: 1px solid salmon;
-      width: 100%;
-      height: 20px;
-      @include flex-container(flex-start, center);
-      // background-color: ;
-      &__labelTag {
-        color: #a1a7c4;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-    }
-    &__inputDiv {
-      // border: 1px solid skyblue;
-      width: 100%;
-      height: calc(100% - 20px);
-      @include flex-container(flex-start, flex-start);
-      input {
-        width: 100%;
-        height: 100%;
-        @include flex-container(flex-start, flex-start);
-        text-align: start;
-        outline: none;
-        border: none;
-        background: none;
-      }
-      textarea {
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        outline: none;
-        border: none;
-        background: none;
-        @include scroll();
-        line-height: 1.8;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
-  }
-
-  &__errorGroup {
-    // border: 1px solid black;
+  &__labelTag {
     width: 100%;
     height: 30px;
+    // border: 1px solid red;
+    padding: 0px 5px;
     @include flex-container(flex-start, center);
     p {
-      color: #f0142f;
+      color: #101828;
       font-size: 0.7rem;
-      font-weight: 500;
-      margin-left: 5px;
     }
   }
-}
 
-.logoFormGroup {
-  width: 80%; // change the white logoFormGroup by changing this value
+  &__inputField {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+    outline: none;
+    padding: 0px 10px;
+    background-color: #ecf2ff;
+    border-radius: inherit;
+  }
+  &__textAreaField {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+    max-width: 100%;
+    max-height: calc(100% - 30px);
+    background-color: #ecf2ff;
+    border-radius: inherit;
+  }
+}
+.logoInputGroup {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #b4b2b270;
+  border-radius: 8px;
   aspect-ratio: 1/1;
 
   @media (max-width: 768px) {
-    // border: 1px solid red;
-    aspect-ratio: unset;
-    height: 100%;
-    width: 100%;
-    padding: 0px;
-  }
-
-  &__inputGroup {
     height: calc(100% - 30px);
     aspect-ratio: 1/1;
-    background-color: white;
-    border-radius: 15px;
-    // border: 1px solid blue;
-    overflow: hidden;
-
-    @media (max-width: 768px) {
-      aspect-ratio: unset;
-      width: 100%;
-      aspect-ratio: 1/1;
-      height: unset;
-    }
-
-    input {
-      display: none;
-    }
-    .customUploadBox {
-      // border: 1px solid darkred;
-      width: 100%;
-      height: 100%;
-      @include flex-container(center, center);
-
-      .uploadDiv {
-        width: 80%;
-        height: 80%;
-        border: 2px dashed #635db0;
-        border-radius: 15px;
-
-        @media (max-width: 768px) {
-          aspect-ratio: 1/1;
-          height: unset;
-        }
-
-        cursor: pointer;
-        @include flex-container(center, center);
-        text-align: center;
-        p {
-          font-size: 0.6rem;
-        }
-      }
-      .logoPreviewDiv {
-        width: 80%;
-        height: 80%;
-        @include flex-container(center, center);
-        // border: 1px solid red;
-        border-radius: 15px;
-        overflow: hidden;
-        position: relative;
-        img {
-          object-fit: contain;
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
-  &__errorGroup {
-    width: 100%;
-    height: 30px;
-    @include flex-container(flex-start, center);
-
-    p {
-      color: #f0142f;
-      font-size: 0.7rem;
-      font-weight: 500;
-      margin-left: 5px;
-    }
+    width: unset;
   }
 }
 
-.statusInputWrapper {
-  width: auto;
-  height: 100%;
+.errorGroup {
+  width: 100%;
+  height: 30px;
+  // border: 1px solid #b4b2b25c;
   @include flex-container(flex-start, center);
-  // border: 1px solid red;
-  margin-left: 10px;
-
-  .radioBtnWrapper {
-    width: auto;
-    height: 30px;
-    border: 1px solid #d0d5dd;
-    border-radius: 10px;
-    @include flex-container(flex-start, center);
-    cursor: pointer;
-
-    &--activeBtn {
-      border: 1px solid #789980;
-      background-color: #deeedc;
-    }
-    &--inactiveBtn {
-      border: 1px solid #d27e67;
-      background-color: #fde7ea;
-    }
-
-    .radioDotDiv {
-      height: 100%;
-      aspect-ratio: 1/1;
-      @include flex-container(center, center);
-
-      .radioDot {
-        border-radius: 100%;
-        aspect-ratio: 1/1;
-        width: 40%;
-        background-color: #a4adbb;
-      }
-      &--activeDot {
-        background-color: #789980 !important;
-      }
-      &--inactiveDot {
-        background-color: #d27e67 !important;
-      }
-    }
-    .radioLabelDiv {
-      width: auto;
-      height: 100%;
-      @include flex-container(flex-start, center);
-      // border: 1px solid blue;
-      padding: 0px 8px 0px 0px;
-
-      p {
-        font-size: 0.6rem;
-      }
-    }
+  overflow: hidden;
+  p {
+    color: #a82525;
+    font-size: 0.7rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
