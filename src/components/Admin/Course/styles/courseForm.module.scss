@@ -5,66 +5,93 @@
   width: 100%;
   height: 100%;
   // border: 1px solid red;
-  padding: 20px;
-
+  padding: 10px 20px;
+  @media (max-width: 768px) {
+    @include flex-container(center, center);
+  }
   .formGrid {
     // border: 1px solid red;
-    width: 100%;
+    width: 80%;
     height: 100%;
     display: grid;
     grid-template-areas:
       "logoCell titleCell"
       "logoCell descriptionCell"
+      "logoCell statusCell"
       "logoCell buttonCell";
-    grid-template-columns: 15% minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr) 50px;
-    grid-gap: 10px;
+    grid-template-columns: 18% minmax(0, 1fr);
+    grid-template-rows: 130px minmax(0, 1fr) 120px auto;
+    grid-gap: 5px;
 
     @media (max-width: 768px) {
+      width: 100%;
+      height: 85%;
       grid-template-areas:
         "logoCell titleCell"
         "descriptionCell descriptionCell"
+        "statusCell statusCell"
         "buttonCell buttonCell";
-      grid-template-columns: auto minmax(0, 1fr);
-      grid-template-rows: 150px minmax(0, 1fr) 30%;
+      grid-template-columns: 30% minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) 130px 50px;
       grid-gap: unset;
       grid-column-gap: 10px;
-      height: 100%;
     }
 
     &__logoCell {
       grid-area: logoCell;
       // border: 1px solid #b4b2b2;
       width: 100%;
-      height: auto;
-      padding: 5px;
-      @media (max-width: 768px) {
-        width: auto;
-        // border: 1px solid springgreen;
-      }
+      height: 100%;
     }
     &__titleCell {
       grid-area: titleCell;
       // border: 1px solid #b4b2b2;
-      padding: 5px;
-      height: 150px;
+      // padding: 5px;
+      height: 100%;
       width: 100%;
-      // border: 1px solid red;
-      @media (max-width: 768px) {
-        height: 100%;
-      }
     }
     &__descriptionCell {
       grid-area: descriptionCell;
       // border: 1px solid #b4b2b2;
-      padding: 5px;
+      // padding: 5px;
+      width: 100%;
+    }
+    &__statusCell {
+      grid-area: statusCell;
+      // border: 1px solid #b4b2b2;
+      // padding: 5px;
       width: 100%;
     }
     &__buttonCell {
       grid-area: buttonCell;
-      // border: 1px solid #b4b2b2;
+      border: 1px solid #b4b2b270;
       @include fhw;
+      @include flex-container(flex-end, center);
+      border-radius: 8px;
+
       padding: 5px;
+      button {
+        height: 30px;
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #635db0;
+        outline: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+
+        &:disabled {
+          background-color: #635db0;
+          cursor: not-allowed;
+        }
+
+        .spinnerDiv {
+          // border: 1px solid red;
+          height: 80%;
+          @include flex-container(center, center);
+        }
+      }
     }
   }
 }
@@ -77,7 +104,8 @@
   border-radius: 8px;
   overflow: hidden;
   padding: 10px;
-
+  @include flex-container(flex-start, center, $direction: column);
+  // border: 1px solid red;
   &__labelTag {
     width: 100%;
     height: 30px;
@@ -96,7 +124,7 @@
     border: none;
     outline: none;
     padding: 0px 10px;
-    background-color: #ecf2ff;
+    background-color: #ecf2ffb9;
     border-radius: inherit;
   }
   &__textAreaField {
@@ -107,21 +135,61 @@
     padding: 10px 10px;
     max-width: 100%;
     max-height: calc(100% - 30px);
-    background-color: #ecf2ff;
+    background-color: #ecf2ffb9;
     border-radius: inherit;
+    @include scroll();
+    line-height: 1.8;
   }
 }
 .logoInputGroup {
-  width: 100%;
+  width: 90%;
   background-color: white;
   border: 1px solid #b4b2b270;
-  border-radius: 8px;
+  border-radius: 10px;
   aspect-ratio: 1/1;
+  @include flex-container(center, center);
+  padding: 5px;
 
   @media (max-width: 768px) {
-    height: calc(100% - 30px);
+    width: 100%;
+  }
+
+  &__logoInput {
+    display: none;
+  }
+
+  &__logoLabel {
     aspect-ratio: 1/1;
-    width: unset;
+    width: 80%;
+    @include flex-container(center, center);
+    border-radius: inherit;
+  }
+
+  &__previewDiv {
+    aspect-ratio: 1/1;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__uploadBox {
+    @include flex-container(center, center);
+    aspect-ratio: 1/1;
+    width: 100%;
+    border: 1.5px dashed #635db0;
+    border-radius: inherit;
+    background-color: #ecf2ffb9;
+    cursor: pointer;
+    p {
+      font-size: 0.7rem;
+      text-align: center;
+    }
   }
 }
 
@@ -131,12 +199,84 @@
   // border: 1px solid #b4b2b25c;
   @include flex-container(flex-start, center);
   overflow: hidden;
+  max-width: 100%;
   p {
     color: #a82525;
     font-size: 0.7rem;
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+  }
+}
+
+.statusInputGroup {
+  @include flex-container(flex-start, center, $direction: column);
+  &__labelDiv {
+    width: 100%;
+    height: 30px;
+    p {
+      color: #101828;
+      font-size: 0.7rem;
+    }
+  }
+  &__inputBtnWrapper {
+    width: 100%;
+    height: calc(100% - 30px);
+    @include flex-container(flex-start, center);
+    input {
+      display: none;
+    }
+
+    .btnWrapper {
+      width: auto;
+      height: 80%;
+      padding: 0px 10px 0px 10px;
+      border-radius: 8px;
+      @include flex-container(center, center);
+      border: 1px solid #b4b2b25c;
+      cursor: pointer;
+
+      &:last-child {
+        margin-left: 20px;
+      }
+
+      p {
+        font-size: 0.7rem;
+      }
+
+      &--activeBtn {
+        border: 1px solid #789980;
+        background-color: #deeedc;
+        color: #789980;
+      }
+
+      &--inactiveBtn {
+        margin-left: 10px;
+        border: 1px solid #d27e67;
+        background-color: #fde7ea;
+        color: #d5765c;
+      }
+
+      .radioDotDiv {
+        height: 100%;
+        aspect-ratio: 1/2;
+        @include flex-container(center, center);
+        margin-right: 5px;
+
+        .radioDot {
+          aspect-ratio: 1/1;
+          width: 70%;
+          border-radius: 50%;
+          background-color: #a4adbb;
+
+          &--activeDot {
+            background-color: #789980 !important;
+          }
+          &--inactiveDot {
+            background-color: #d27e67 !important;
+          }
+        }
+      }
+    }
   }
 }

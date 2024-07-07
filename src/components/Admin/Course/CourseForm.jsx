@@ -15,7 +15,7 @@ const CourseForm = ({ course }) => {
     id: "",
     title: "",
     description: "",
-    status: true,
+    status: null,
     logoUrl: null,
     cloudinary_id: "",
   });
@@ -133,6 +133,7 @@ const CourseForm = ({ course }) => {
 
   useEffect(() => {
     if (course) {
+      console.log(course);
       setCourseData({
         _id: course._id,
         title: course.title,
@@ -153,32 +154,172 @@ const CourseForm = ({ course }) => {
     <div className={styles.formWrapper}>
       <form className={styles.formGrid} onSubmit={formik.handleSubmit}>
         <div className={styles.formGrid__logoCell}>
-          <div className={styles.logoInputGroup}></div>
-          <div className={styles.errorGroup}>
-            <p>Course Logo is required</p>
+          <div className={styles.logoInputGroup}>
+            <input
+              className={styles.logoInputGroup__logoInput}
+              type="file"
+              name="file"
+              id="file"
+              onChange={handleFileChange}
+              onBlur={formik.handleBlur}
+            />
+            <label className={styles.logoInputGroup__logoLabel} htmlFor="file">
+              {courseData && courseData.logoUrl ? (
+                <div className={styles.logoInputGroup__previewDiv}>
+                  <Image
+                    quality={10}
+                    fill={true}
+                    src={courseData.logoUrl}
+                    alt="Logo Preview"
+                    sizes="(max-width:100%)"
+                  />
+                </div>
+              ) : (
+                <div className={styles.logoInputGroup__uploadBox}>
+                  <p>
+                    Choose Course <br /> Logo
+                  </p>
+                </div>
+              )}
+            </label>
+          </div>
+          <div className={`${styles.errorGroup} ${styles.logoErrorGroup}`}>
+            {formik.errors.file && formik.touched.file && (
+              <p>{formik.errors.file}</p>
+            )}
           </div>
         </div>
         <div className={styles.formGrid__titleCell}>
           <div className={styles.inputGroup}>
-            <label className={styles.inputGroup__labelTag}>
+            <label htmlFor="title" className={styles.inputGroup__labelTag}>
               <p>Title</p>
             </label>
-            <input className={styles.inputGroup__inputField} />
+            <input
+              className={styles.inputGroup__inputField}
+              type="text"
+              id="title"
+              name="title"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
           </div>
           <div className={styles.errorGroup}>
-            <p>Title is required</p>
+            {formik.errors.title && formik.touched.title && (
+              <p>{formik.errors.title}</p>
+            )}
           </div>
         </div>
         <div className={styles.formGrid__descriptionCell}>
           <div className={styles.inputGroup}>
-            <label className={styles.inputGroup__labelTag}>
+            <label
+              htmlFor="description"
+              className={styles.inputGroup__labelTag}
+            >
               <p>Description</p>
             </label>
-            <textarea className={styles.inputGroup__textAreaField} />
+            <textarea
+              className={styles.inputGroup__textAreaField}
+              id="description"
+              name="description"
+              value={formik.values.description}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
           </div>
-          <div className={styles.errorGroup}></div>
+          <div className={styles.errorGroup}>
+            {formik.errors.description && formik.touched.description && (
+              <p>{formik.errors.description}</p>
+            )}
+          </div>
         </div>
-        <div className={styles.formGrid__buttonCell}></div>
+        <div className={styles.formGrid__statusCell}>
+          <div className={`${styles.inputGroup} ${styles.statusInputGroup}`}>
+            <div className={styles.statusInputGroup__labelDiv}>
+              <p>Status</p>
+            </div>
+            <div className={styles.statusInputGroup__inputBtnWrapper}>
+              <input
+                type="radio"
+                id="activeStatus"
+                checked={courseData && courseData.status === true}
+                onChange={() => {
+                  setCourseData((prev) => ({
+                    ...prev,
+                    status: !prev.status,
+                  }));
+                  formik.setFieldValue("status", true);
+                }}
+              />
+              <label
+                className={`${styles.btnWrapper} ${
+                  courseData &&
+                  courseData.status &&
+                  styles["btnWrapper--activeBtn"]
+                }`}
+                htmlFor="activeStatus"
+              >
+                <div className={styles.radioDotDiv}>
+                  <div
+                    className={`${styles.radioDot} ${
+                      courseData &&
+                      courseData.status &&
+                      styles["radioDot--activeDot"]
+                    }`}
+                  ></div>
+                </div>
+                <p>Active</p>
+              </label>
+              <input
+                type="radio"
+                id="inactiveStatus"
+                checked={courseData && courseData.status === false}
+                onChange={() => {
+                  setCourseData((prev) => ({
+                    ...prev,
+                    status: !prev.status,
+                  }));
+                  formik.setFieldValue("status", false);
+                }}
+              />
+              <label
+                className={`${styles.btnWrapper} ${
+                  courseData &&
+                  !courseData.status &&
+                  styles["btnWrapper--inactiveBtn"]
+                }`}
+                htmlFor="inactiveStatus"
+              >
+                <div className={styles.radioDotDiv}>
+                  <div
+                    className={`${styles.radioDot} ${
+                      courseData &&
+                      !courseData.status &&
+                      styles["radioDot--inactiveDot"]
+                    }`}
+                  ></div>
+                </div>
+                <p>Inative</p>
+              </label>
+            </div>
+          </div>
+          <div className={styles.errorGroup}>
+            {formik.errors.status && formik.touched.status && (
+              <p>{formik.errors.status}</p>
+            )}
+          </div>
+        </div>
+        <div className={styles.formGrid__buttonCell}>
+          <button disabled={formik.isSubmitting} type="submit">
+            {formik.isSubmitting ? (
+              <div className={styles.spinnerDiv}>
+                <Spinner />
+              </div>
+            ) : (
+              "Submit"
+            )}
+          </button>
+        </div>
       </form>
     </div>
   );
