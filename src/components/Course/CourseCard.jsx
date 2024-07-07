@@ -24,7 +24,9 @@ const CourseCard = ({ course }) => {
       <div className={styles.card__linkBtnWrapper}>
         <div className={styles.buttonWrapper}>
           <LinkButton
-            to={`courses/${generateSlug(course.title)}/chapters`.toLowerCase()}
+            to={`courses/${generateSlug(course.title)}-${
+              course._id
+            }/chapters`.toLowerCase()}
           />
         </div>
       </div>
