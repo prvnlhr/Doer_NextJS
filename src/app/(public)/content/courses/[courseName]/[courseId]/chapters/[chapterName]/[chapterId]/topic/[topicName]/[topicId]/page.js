@@ -1,10 +1,10 @@
-import TopicPage from "@/components/Topic/TopicPage";
-import { fetchChapters } from "@/lib/api/public/chaptersApi";
+import { fetchTopicById } from "@/lib/api/public/topicsApi";
 import React from "react";
 
 const Page = async ({ params }) => {
-  const allChapterList = await fetchChapters(params.courseId);
-  return <TopicPage accordionData={allChapterList} params={params} />;
+  const topic = await fetchTopicById(params);
+  console.log(topic);
+  return <>{topic.content}</>;
 };
 
 export default Page;

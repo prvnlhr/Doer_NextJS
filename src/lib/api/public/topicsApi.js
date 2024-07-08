@@ -1,10 +1,12 @@
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchTopicById(params) {
-  // console.log("topicsApi.................", params[0], params[1], params[2]);
+  console.log("topicsApi.................", params);
+  const { courseId, chapterId, topicId } = params;
+  // return "ok";
   try {
     const response = await fetch(
-      `${BASE_URL}/api/courses/${params[0]}/chapters/${params[1]}/topics/${params[2]}`
+      `${BASE_URL}/api/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);

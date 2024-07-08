@@ -3,7 +3,7 @@ import styles from "./styles/sidebar.module.scss";
 
 import Accordion from "./Accordion";
 
-const Sidebar = ({ show, setShow, accordionData, params }) => {
+const Sidebar = ({ show, setShow, accordionListData, params }) => {
   return (
     <div
       className={`${styles.sidebarWrapper} ${
@@ -14,7 +14,7 @@ const Sidebar = ({ show, setShow, accordionData, params }) => {
         className={styles.sidebarWrapper__sidebarHeader}
         onClick={() => setShow((prev) => !prev)}
       ></div>
-      <Accordion params={params} accordionData={accordionData} />
+      <Accordion params={params} accordionListData={accordionListData} />
     </div>
   );
 };
