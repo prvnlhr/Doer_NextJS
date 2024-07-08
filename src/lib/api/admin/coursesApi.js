@@ -7,6 +7,7 @@ export async function fetchCourses() {
   try {
     let response = await fetch(`${BASE_URL}/api/admin/courses`, {
       next: { tags: ["courses"] },
+      cache: "no-store",
     });
 
     if (!response.ok) {

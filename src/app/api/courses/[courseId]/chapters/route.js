@@ -1,13 +1,55 @@
-import { get } from "mongoose";
+import mongoose from "mongoose";
 
-const { default: dbConnect } = require("@/lib/db/dbConnect");
+import dbConnect from "@/lib/db/dbConnect";
+import Topic from "@/lib/db/models/Topic";
 const { default: Chapter } = require("@/lib/db/models/Chapter");
 
-export async function GET(req, res) {
+export async function GET(req, { params }) {
   await dbConnect();
+  const { courseId } = params;
   try {
-    const chapters = await Chapter.find();
-  } catch (error) {}
+    const query = {
+      course: new mongoose.Types.ObjectId(courseId),
+      status: true,
+    };
+    const chapters = await Chapter.aggregate([
+      {
+        $match: query,
+      },
+      {
+        $lookup: {
+          as: "topics",
+          from: "topics",
+          foreignField: "chapter",
+          localField: "_id",
+        },
+      },
+      {
+        $addFields: {
+          topics: { $slice: ["$topics", 2] },
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          title: 1,
+          course: 1,
+          duration: 1,
+          topicsCount: 1,
+          topics: { title: 1 },
+        },
+      },
+    ]);
+    return new Response(JSON.stringify(chapters), { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response(
+      JSON.stringify({ error: error, message: "Error in creating chapter" }),
+      {
+        status: 500,
+      }
+    );
+  }
 }
 
 export async function POST(req) {
@@ -19,6 +61,7 @@ export async function POST(req) {
     const course = await Chapter.findById(FormData.get("courseId"));
     return new Response(JSON.stringify(course), { status: 201 });
   } catch (error) {
+    console.log(error);
     return new Response(
       JSON.stringify({ error: error, message: "Error in creating chapter" }),
       {

@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./styles/chaptersList.module.scss";
 import ChapterCard from "./ChapterCard";
 
-const ChaptersList = () => {
-  let chapters = [
+const ChaptersList = ({ chapters }) => {
+  let chaptersx = [
     {
       title: "Introduction",
       id: "01-01",
@@ -34,8 +34,8 @@ const ChaptersList = () => {
 
   return (
     <div className={styles.chaptersListWrapper}>
-      {chapters.map((chapter) => (
-        <ChapterCard key={chapter.title} chapter={chapter} />
+      {chapters.map((chapter, index) => (
+        <ChapterCard key={chapter._id} index={index} chapter={chapter} />
       ))}
     </div>
   );

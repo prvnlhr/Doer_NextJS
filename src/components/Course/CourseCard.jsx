@@ -7,6 +7,7 @@ import ChapterIcon from "../Common/Icons/ChapterIcon";
 import ClockIcon from "../Common/Icons/ClockIcon";
 import Image from "next/image";
 import { generateSlug } from "@/lib/utils/slugUtil";
+import { convertMinutesToHours } from "@/lib/utils/durationConvert";
 
 const CourseCard = ({ course }) => {
   return (
@@ -40,7 +41,7 @@ const CourseCard = ({ course }) => {
         <div className={styles.card__chapterWrapper__innerDiv}>
           <HighLightBadge
             IconComponent={ChapterIcon}
-            text={"26 Chapters"}
+            text={`${course.chaptersCount} Chapters`}
             isHighlighted={true}
           />
         </div>
@@ -49,7 +50,7 @@ const CourseCard = ({ course }) => {
         <div className={styles.card__durationWrapper__innerDiv}>
           <HighLightBadge
             IconComponent={ClockIcon}
-            text={"2 Months"}
+            text={convertMinutesToHours(course.duration)}
             isHighlighted={false}
           />
         </div>

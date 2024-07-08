@@ -4,6 +4,7 @@ import LinkButton from "../Common/Buttons/LinkButton";
 import HighLightBadge from "../Common/CardElements/HighLightBadge";
 import ChapterIcon from "../Common/Icons/ChapterIcon";
 import ClockIcon from "../Common/Icons/ClockIcon";
+import { convertMinutesToHours } from "@/lib/utils/durationConvert";
 
 const TopicsListItem = ({ topic }) => {
   return (
@@ -16,13 +17,15 @@ const TopicsListItem = ({ topic }) => {
   );
 };
 
-const ChapterCard = ({ chapter }) => {
-  let cp_name = chapter.title.replace(/ /g, "-").toLowerCase();
-  let firstTopicName = chapter.topics[0].title.replace(/ /g, "-").toLowerCase();
+const ChapterCard = ({ chapter, index }) => {
+ 
   return (
     <div className={styles.card}>
       <div className={styles.card__chapterNumWrapper}>
-        <p>CHAPTER 01</p>
+        <p>
+          CHAPTER
+          {index <= 9 ? " 0" + (index + 1) : index + 1}
+        </p>
       </div>
       <div className={styles.card__bookmarkIconWrapper}></div>
       <div className={styles.card__titleWrapper}>
@@ -30,28 +33,32 @@ const ChapterCard = ({ chapter }) => {
       </div>
       <div className={styles.card__topicsListWrapper}>
         <div className={styles.listInnerWrapper}>
-          {chapter.topics.map((topic, index) => (
-            <TopicsListItem key={index} topic={topic} />
-          ))}
+          {chapter && chapter.topics && chapter.topics.length > 0 ? (
+            chapter.topics.map((topic, index) => (
+              <TopicsListItem key={topic._id} topic={topic} />
+            ))
+          ) : (
+            <TopicsListItem key={"0"} topic={{ title: "No Topics" }} />
+          )}
         </div>
       </div>
       <div className={styles.card__topicsCountWrapper}>
         <HighLightBadge
           IconComponent={ChapterIcon}
-          text={"26 Chapters"}
+          text={`${chapter.topicsCount} Topics`}
           isHighlighted={true}
         />
       </div>
       <div className={styles.card__durationWrapper}>
         <HighLightBadge
           IconComponent={ClockIcon}
-          text={"2 Months"}
+          text={convertMinutesToHours(chapter.duration)}
           isHighlighted={false}
         />
       </div>
       <div className={styles.card__linkBtnWrapper}>
         <div className={styles.buttonWrapper}>
-          <LinkButton to={`chapters/${cp_name}/topic/${firstTopicName}`} />
+          <LinkButton to="#" />
         </div>
       </div>
     </div>
