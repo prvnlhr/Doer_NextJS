@@ -19,7 +19,7 @@
     cursor: pointer;
     p {
       font-size: 0.9rem;
-      font-weight: 500;
+      // font-weight: 500;
       text-overflow: ellipsis;
       overflow-x: hidden;
       white-space: nowrap;
@@ -31,17 +31,18 @@
     @include flex-container(flex-start, center);
     padding-left: 8px;
     cursor: pointer;
-    p {
+    .topicTitleText {
       font-size: 0.8rem;
       text-overflow: ellipsis;
       overflow-x: hidden;
       white-space: nowrap;
-      font-weight: 500;
-      color: $secondary-text-color;
-
-      &:hover {
-        color: darkblue;
-      }
+      // font-weight: 500;
+    }
+    .topicActive {
+      color: #635db0;
+    }
+    .topicInactive {
+      color: #a4adbb;
     }
   }
 }

@@ -1,39 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles/accordionItem.module.scss";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { generateSlug } from "@/lib/utils/slugUtil";
 
-const AccordionItem = ({
-  chapter,
-  chapterIndx,
-  currOpenItemIndx,
-  currOpenItemHeight,
-  handleItemClicked,
-}) => {
+const AccordionItem = ({ chapter, currOpenItemId, currOpenItemHeight }) => {
   const params = useParams();
-  const { courseName, chapterName } = params;
+  const { courseName, courseId } = params;
   return (
     <div
       className={styles.itemWrapper}
       style={{
-        minHeight: currOpenItemIndx === chapterIndx && currOpenItemHeight,
+        minHeight: chapter._id === currOpenItemId && currOpenItemHeight,
       }}
     >
-      <div
+      <Link
         className={styles.itemWrapper__titleWrapper}
-        onClick={() => handleItemClicked(chapterIndx)}
+        href={`/content/courses/${generateSlug(
+          courseName
+        )}/${courseId}/chapters/${generateSlug(chapter.title)}/${
+          chapter._id
+        }/topic/${generateSlug(chapter.topics[0].title)}/${
+          chapter.topics[0]._id
+        }`}
       >
-        <p>{chapter.chapterName}</p>
-      </div>
-
+        <p>{chapter.title}</p>
+      </Link>
       {chapter.topics.map((topic) => (
-        <div
-          key={topic.topicName}
-          className={styles.itemWrapper__subTitleWrapper}
-        >
-          <Link href={`${generateSlug(topic.topicName)}`}>
-            <p>{topic.topicName}</p>
+        <div key={topic._id} className={styles.itemWrapper__subTitleWrapper}>
+          <Link
+            href={`/content/courses/${generateSlug(params.courseName)}/${
+              params.courseId
+            }/chapters/${generateSlug(params.chapterName)}/${
+              params.chapterId
+            }/topic/${generateSlug(topic.title)}/${topic._id}`}
+          >
+            <p
+              className={`${styles.topicTitleText} ${
+                topic._id === params.topicId
+                  ? styles.topicActive
+                  : styles.topicInactive
+              } `}
+            >
+              {topic.title}
+            </p>
           </Link>
         </div>
       ))}

@@ -1,18 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles/topicPage.module.scss";
 import Sidebar from "./Sidebar/Sidebar";
 import MainContent from "./MainContent/MainContent";
-const TopicPage = () => {
-  const [show, setShow] = useState(true);
+
+const TopicPage = ({ accordionData, params }) => {
+  const [show, setShow] = useState(false);
   return (
-    <div
-      className={styles.topicPageWrapper}
-      onClick={() => setShow((prev) => !prev)}
-    >
+    <div className={styles.topicPageWrapper}>
       <div className={styles.topicPageWrapper__pageInnerWrapper}>
-        <Sidebar show={show} setShow={setShow} />
-        <MainContent show={show} setShow={setShow} />
+        <Sidebar
+          params={params}
+          accordionData={accordionData}
+          show={show}
+          setShow={setShow}
+        />
+        <MainContent params={params} show={show} setShow={setShow} />
       </div>
     </div>
   );

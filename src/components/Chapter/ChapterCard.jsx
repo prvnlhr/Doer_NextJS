@@ -5,6 +5,7 @@ import HighLightBadge from "../Common/CardElements/HighLightBadge";
 import ChapterIcon from "../Common/Icons/ChapterIcon";
 import ClockIcon from "../Common/Icons/ClockIcon";
 import { convertMinutesToHours } from "@/lib/utils/durationConvert";
+import { generateSlug } from "@/lib/utils/slugUtil";
 
 const TopicsListItem = ({ topic }) => {
   return (
@@ -18,7 +19,6 @@ const TopicsListItem = ({ topic }) => {
 };
 
 const ChapterCard = ({ chapter, index }) => {
- 
   return (
     <div className={styles.card}>
       <div className={styles.card__chapterNumWrapper}>
@@ -58,7 +58,17 @@ const ChapterCard = ({ chapter, index }) => {
       </div>
       <div className={styles.card__linkBtnWrapper}>
         <div className={styles.buttonWrapper}>
-          <LinkButton to="#" />
+          <LinkButton
+            to={
+              chapter?.topics.length > 0
+                ? `chapters/${generateSlug(chapter.title)}/${
+                    chapter._id
+                  }/topic/${generateSlug(chapter.topics[0].title)}/${
+                    chapter.topics[0]._id
+                  }`
+                : "#"
+            }
+          />
         </div>
       </div>
     </div>
