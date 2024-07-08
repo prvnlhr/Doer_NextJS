@@ -1,13 +1,8 @@
 import React from "react";
-import MainLayout from "@/components/Admin/MainLayout/MainLayout";
+import AdminLayout from "@/components/Admin/Layouts/AdminLayout";
 
 const AdminPageLayout = ({ children, modal }) => {
-  return (
-    <MainLayout>
-      {modal}
-      {children}
-    </MainLayout>
-  );
+  return <AdminLayout modal={modal} children={children} />;
 };
 
 export default AdminPageLayout;

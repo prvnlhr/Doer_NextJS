@@ -280,65 +280,63 @@ const TopicForm = ({ topic }) => {
               </div>
             </div>
             <div className={styles.statusCell}>
-              <div className={styles.formGroup}>
-                <div className={styles.formGroup__statusInputGroup}>
-                  <div className={styles.formGroup__statusInputGroup__labelDiv}>
-                    <p
-                      className={
-                        styles.formGroup__statusInputGroup__labelDiv__labelTag
-                      }
-                    >
-                      Status
-                    </p>
-                  </div>
-                  <div className={styles.formGroup__statusInputGroup__inputDiv}>
-                    <div className={styles.statusInputWrapper}>
-                      <div
-                        onClick={toggleStatus}
-                        className={`${styles.radioBtnWrapper} ${
-                          selectedStatus && styles["radioBtnWrapper--activeBtn"]
-                        }`}
-                      >
-                        <div className={styles.radioDotDiv}>
-                          <div
-                            className={`${styles.radioDot} ${
-                              selectedStatus && styles["radioDotDiv--activeDot"]
-                            }`}
-                          ></div>
-                        </div>
-                        <div className={styles.radioLabelDiv}>
-                          <p>Active</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={styles.statusInputWrapper}>
-                      <div
-                        onClick={toggleStatus}
-                        className={`${styles.radioBtnWrapper} ${
-                          !selectedStatus &&
-                          styles["radioBtnWrapper--inactiveBtn"]
-                        }`}
-                      >
-                        <div className={styles.radioDotDiv}>
-                          <div
-                            className={`${styles.radioDot} ${
-                              !selectedStatus &&
-                              styles["radioDotDiv--inactiveDot"]
-                            }`}
-                          ></div>
-                        </div>
-                        <div className={styles.radioLabelDiv}>
-                          <p>Inactive</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div
+                className={`
+                  ${styles.inputGroup}
+                   ${styles.statusInputGroup}`}
+              >
+                <div className={styles.statusInputGroup__labelDiv}>
+                  <p>Status</p>
                 </div>
-                <div className={styles.formGroup__errorGroup}>
-                  {formik.errors.status && formik.touched.status && (
-                    <p>{formik.errors.status}</p>
-                  )}
+                <div className={styles.statusInputGroup__inputBtnWrapper}>
+                  <input
+                    type="radio"
+                    id="activeStatus"
+                    checked={selectedStatus === true}
+                    onChange={toggleStatus}
+                  />
+                  <label
+                    className={`${styles.btnWrapper} ${
+                      selectedStatus && styles["btnWrapper--activeBtn"]
+                    }`}
+                    htmlFor="activeStatus"
+                  >
+                    <div className={styles.radioDotDiv}>
+                      <div
+                        className={`${styles.radioDot} ${
+                          selectedStatus && styles["radioDot--activeDot"]
+                        }`}
+                      ></div>
+                    </div>
+                    <p>Active</p>
+                  </label>
+                  <input
+                    type="radio"
+                    id="inactiveStatus"
+                    checked={selectedStatus === false}
+                    onChange={toggleStatus}
+                  />
+                  <label
+                    className={`${styles.btnWrapper} ${
+                      !selectedStatus && styles["btnWrapper--inactiveBtn"]
+                    }`}
+                    htmlFor="inactiveStatus"
+                  >
+                    <div className={styles.radioDotDiv}>
+                      <div
+                        className={`${styles.radioDot} ${
+                          !selectedStatus && styles["radioDot--inactiveDot"]
+                        }`}
+                      ></div>
+                    </div>
+                    <p>Inative</p>
+                  </label>
                 </div>
+              </div>
+              <div className={styles.errorGroup}>
+                {formik.errors.status && formik.touched.status && (
+                  <p>{formik.errors.status}</p>
+                )}
               </div>
             </div>
             <div className={styles.editorCell}>

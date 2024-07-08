@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useParams, usePathname } from "next/navigation";
 import styles from "./styles/breadCrumbs.module.scss";

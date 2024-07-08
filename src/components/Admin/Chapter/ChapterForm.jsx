@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { useParams, useRouter } from "next/navigation";
 import { createChapter, updateChapter } from "@/lib/api/admin/chaptersApi";
 import Spinner from "@/components/Common/Icons/Spinner";
-//FiraCode Nerd Font
+
 const ChapterForm = ({ chapter }) => {
   const router = useRouter();
   const [selectedStatus, setSelectedStatus] = useState(
@@ -51,98 +51,91 @@ const ChapterForm = ({ chapter }) => {
 
   return (
     <div className={styles.formWrapper}>
-      <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-        <div className={styles.formContainer__titleCell}>
-          <div className={styles.formGroup}>
-            <div className={styles.formGroup__inputGroup}>
-              <div className={styles.formGroup__inputGroup__labelDiv}>
-                <label
-                  className={styles.formGroup__inputGroup__labelDiv__labelTag}
-                  htmlFor="title"
-                >
-                  Title
-                </label>
-              </div>
-              <div className={styles.formGroup__inputGroup__inputDiv}>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formik.values.title}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-            </div>
-            <div className={styles.formGroup__errorGroup}>
-              {formik.errors.title && formik.touched.title && (
-                <p>{formik.errors.title}</p>
-              )}
-            </div>
+      <form className={styles.formGrid} onSubmit={formik.handleSubmit}>
+        <div className={styles.formGrid__titleCell}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="title" className={styles.inputGroup__labelTag}>
+              <p>Title</p>
+            </label>
+            <input
+              className={styles.inputGroup__inputField}
+              type="text"
+              id="title"
+              name="title"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </div>
+          <div className={styles.errorGroup}>
+            {formik.errors.title && formik.touched.title && (
+              <p>{formik.errors.title}</p>
+            )}
           </div>
         </div>
-        {/* Status */}
-        <div className={styles.formContainer__statusCell}>
-          <div className={styles.formGroup}>
-            <div className={styles.formGroup__inputGroup}>
-              <div className={styles.formGroup__inputGroup__labelDiv}>
-                <p className={styles.formGroup__inputGroup__labelDiv__labelTag}>
-                  Status
-                </p>
-              </div>
-
-              <div className={styles.formGroup__inputGroup__inputDiv}>
-                <div className={styles.statusInputWrapper}>
+        <div className={styles.formGrid__statusCell}>
+          <div className={`${styles.inputGroup} ${styles.statusInputGroup}`}>
+            <div className={styles.statusInputGroup__labelDiv}>
+              <p>Status</p>
+            </div>
+            <div className={styles.statusInputGroup__inputBtnWrapper}>
+              <input
+                type="radio"
+                id="activeStatus"
+                checked={selectedStatus === true}
+                onChange={() => {
+                  setSelectedStatus(true);
+                  formik.setFieldValue("status", true);
+                }}
+              />
+              <label
+                className={`${styles.btnWrapper} ${
+                  selectedStatus && styles["btnWrapper--activeBtn"]
+                }`}
+                htmlFor="activeStatus"
+              >
+                <div className={styles.radioDotDiv}>
                   <div
-                    onClick={() => {
-                      setSelectedStatus((prev) => !prev);
-                      formik.setFieldValue("status", true);
-                    }}
-                    className={`${styles.radioBtnWrapper} ${
-                      selectedStatus && styles["radioBtnWrapper--activeBtn"]
+                    className={`${styles.radioDot} ${
+                      selectedStatus && styles["radioDot--activeDot"]
                     }`}
-                  >
-                    <div className={styles.radioDotDiv}>
-                      <div
-                        className={`${styles.radioDot} ${
-                          selectedStatus && styles["radioDotDiv--activeDot"]
-                        }`}
-                      ></div>
-                    </div>
-                    <div className={styles.radioLabelDiv}>
-                      <p>Active</p>
-                    </div>
-                  </div>
+                  ></div>
                 </div>
-                <div className={styles.statusInputWrapper}>
+                <p>Active</p>
+              </label>
+              <input
+                type="radio"
+                id="inactiveStatus"
+                checked={selectedStatus === false}
+                onChange={() => {
+                  setSelectedStatus(false);
+                  formik.setFieldValue("status", false);
+                }}
+              />
+              <label
+                className={`${styles.btnWrapper} ${
+                  !selectedStatus && styles["btnWrapper--inactiveBtn"]
+                }`}
+                htmlFor="inactiveStatus"
+              >
+                <div className={styles.radioDotDiv}>
                   <div
-                    onClick={() => {
-                      setSelectedStatus((prev) => !prev);
-                      formik.setFieldValue("status", false);
-                    }}
-                    className={`${styles.radioBtnWrapper} ${
-                      !selectedStatus && styles["radioBtnWrapper--inactiveBtn"]
+                    className={`${styles.radioDot} ${
+                      !selectedStatus && styles["radioDot--inactiveDot"]
                     }`}
-                  >
-                    <div className={styles.radioDotDiv}>
-                      <div
-                        className={`${styles.radioDot} ${
-                          !selectedStatus && styles["radioDotDiv--inactiveDot"]
-                        }`}
-                      ></div>
-                    </div>
-                    <div className={styles.radioLabelDiv}>
-                      <p>Inactive</p>
-                    </div>
-                  </div>
+                  ></div>
                 </div>
-              </div>
+                <p>Inative</p>
+              </label>
             </div>
           </div>
+          <div className={styles.errorGroup}>
+            {formik.errors.status && formik.touched.status && (
+              <p>{formik.errors.status}</p>
+            )}
+          </div>
         </div>
-
-        {/*  */}
-        <div className={styles.formContainer__buttonCell}>
+        <div className={styles.formGrid__buttonCell}>
           <button disabled={formik.isSubmitting} type="submit">
             {formik.isSubmitting ? (
               <div className={styles.spinnerDiv}>

@@ -95,7 +95,11 @@
           &__editorHeaderWrapper {
             height: 50px;
             width: 100%;
-            // border: 1px solid salmon;
+            border-left: 1px solid #b4b2b270;
+            border-right: 1px solid #b4b2b270;
+            border-top: 1px solid #b4b2b270;
+            border-radius: 5px 5px 0px 0px;
+
             @include flex-container(flex-start, center);
             background-color: white;
             padding: 0px 20px;
@@ -104,10 +108,8 @@
               height: 100%;
               @include flex-container(flex-start, center);
               p {
-                color: #a1a7c4;
-                font-size: 0.8rem;
-                font-weight: 500;
-                margin-left: 0px;
+                color: #101828;
+                font-size: 0.7rem;
               }
             }
 
@@ -135,6 +137,8 @@
             @include flex-container(flex-start, center);
             // background-color: white;
             // border: 2px solid darkred;
+            border: 1px solid #b4b2b270;
+            border-radius: 0px 0px 8px 8px;
             background-color: white;
           }
           &__errorGroup {
@@ -363,23 +367,25 @@
     height: calc(100% - 30px);
     // border: 1px solid orange;
     background-color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #b4b2b270;
 
     &__labelDiv {
       width: 100%;
       height: 20px;
       p {
-        color: #a1a7c4;
-        font-size: 0.8rem;
-        font-weight: 500;
+        color: #101828;
+        font-size: 0.7rem;
       }
     }
     &__inputDiv {
       width: 100%;
       height: calc(100% - 20px);
-      // background-color: skyblue;
+      background-color: skyblue;
       @include flex-container(flex-start, center);
+      background-color: #ecf2ffb9;
+      border-radius: 8px;
 
       input {
         width: 100%;
@@ -387,103 +393,7 @@
         border: none;
         background: none;
         outline: none;
-      }
-    }
-  }
-
-  &__statusInputGroup {
-    width: 100%;
-    height: calc(100% - 30px);
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
-
-    &__labelDiv {
-      width: 100%;
-      height: 20px;
-      p {
-        color: #a1a7c4;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-    }
-    &__inputDiv {
-      width: 100%;
-      height: calc(100% - 20px);
-      @include flex-container(flex-start, center);
-    }
-
-    .statusInputWrapper {
-      width: auto;
-      height: 100%;
-      @include flex-container(flex-start, center);
-      // border: 1px solid red;
-
-      &:first-of-type {
-        margin-right: 8px;
-      }
-
-      &:last-of-type {
-        margin-left: 8px;
-      }
-
-      @media (max-width: 768px) {
-        // border: 1px solid red;
-        width: auto;
-        &:first-of-type {
-          margin-right: 10px;
-        }
-
-        &:last-of-type {
-          margin-left: 10px;
-        }
-      }
-
-      .radioBtnWrapper {
-        width: auto;
-        height: 30px;
-        border: 1px solid #d0d5dd;
-        border-radius: 10px;
-        @include flex-container(flex-start, center);
-        cursor: pointer;
-
-        &--activeBtn {
-          border: 1px solid #789980;
-          background-color: #deeedc;
-        }
-        &--inactiveBtn {
-          border: 1px solid #d27e67;
-          background-color: #fde7ea;
-        }
-        .radioDotDiv {
-          height: 100%;
-          aspect-ratio: 1/1;
-          @include flex-container(center, center);
-
-          .radioDot {
-            border-radius: 100%;
-            aspect-ratio: 1/1;
-            width: 40%;
-            background-color: #a4adbb;
-          }
-          &--activeDot {
-            background-color: #789980 !important;
-          }
-          &--inactiveDot {
-            background-color: #d27e67 !important;
-          }
-        }
-        .radioLabelDiv {
-          width: auto;
-          height: 100%;
-          @include flex-container(flex-start, center);
-          // border: 1px solid blue;
-          padding: 0px 8px 0px 0px;
-
-          p {
-            font-size: 0.6rem;
-          }
-        }
+        padding: 0px 10px;
       }
     }
   }
@@ -528,18 +438,19 @@
   height: calc(100% - 30px);
   //   border: 1px solid rgb(30, 0, 255);
   @include flex-container(flex-start, center, $direction: column);
-  padding: 10px 20px;
+  padding: 10px;
   background-color: white;
   border-radius: 15px;
+
+  border: 1px solid #b4b2b270;
 
   .labelGroup {
     height: 20px;
     width: 100%;
     // border: 1px solid red;
     p {
-      color: #a1a7c4;
-      font-size: 0.8rem;
-      font-weight: 500;
+      color: #101828;
+      font-size: 0.7rem;
     }
   }
   .inputBtnGroup {
@@ -551,13 +462,15 @@
     .inputWrapper {
       width: auto;
       height: 100%;
-      //   border: 1px solid blue;
+      // border: 1px solid blue;
       display: inline-flex;
+
       input {
         width: 100%;
         height: 100%;
         outline: none;
-        border: 1px solid #d0d5dd;
+        background-color: #ecf2ffb9;
+        border-radius: 5px;
         border: none;
         text-align: center;
         -moz-appearance: textfield;
@@ -595,6 +508,84 @@
           cursor: pointer;
           background: none;
           border: none;
+        }
+      }
+    }
+  }
+}
+
+.statusInputGroup {
+  @include flex-container(flex-start, center, $direction: column);
+  // border: 1px solid red;
+  height: calc(100% - 30px);
+  border: 1px solid #b4b2b270;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+  &__labelDiv {
+    width: 100%;
+    height: 30px;
+    p {
+      color: #101828;
+      font-size: 0.7rem;
+    }
+  }
+  &__inputBtnWrapper {
+    width: 100%;
+    height: calc(100% - 30px);
+    @include flex-container(flex-start, center);
+    input {
+      display: none;
+    }
+
+    .btnWrapper {
+      width: auto;
+      height: 90%;
+      padding: 0px 10px 0px 10px;
+      border-radius: 8px;
+      @include flex-container(center, center);
+      border: 1px solid #b4b2b25c;
+      cursor: pointer;
+
+      &:last-child {
+        margin-left: 20px;
+      }
+
+      p {
+        font-size: 0.7rem;
+      }
+
+      &--activeBtn {
+        border: 1px solid #789980;
+        background-color: #deeedc;
+        color: #789980;
+      }
+
+      &--inactiveBtn {
+        margin-left: 10px;
+        border: 1px solid #d27e67;
+        background-color: #fde7ea;
+        color: #d5765c;
+      }
+
+      .radioDotDiv {
+        height: 100%;
+        aspect-ratio: 1/2;
+        @include flex-container(center, center);
+        margin-right: 5px;
+
+        .radioDot {
+          aspect-ratio: 1/1;
+          width: 70%;
+          border-radius: 50%;
+          background-color: #a4adbb;
+
+          &--activeDot {
+            background-color: #789980 !important;
+          }
+          &--inactiveDot {
+            background-color: #d27e67 !important;
+          }
         }
       }
     }

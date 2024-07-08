@@ -5,42 +5,52 @@
   width: 100%;
   height: 100%;
   // border: 1px solid red;
-  @include flex-container(flex-start, flex-start);
-  margin-left: 20px;
+  padding: 10px 20px;
   @media (max-width: 768px) {
-    @include flex-container(center, flex-start);
-    margin-left: unset;
+    @include flex-container(center, center);
   }
-
-  .formContainer {
-    width: 70%;
-    height: 60%;
+  .formGrid {
     // border: 1px solid red;
+    width: 80%;
+    height: 100%;
     display: grid;
     grid-template-areas:
       "titleCell"
       "statusCell"
       "buttonCell";
     grid-template-columns: 100%;
-    grid-template-rows: 120px 150px 50px;
-    margin-top: 20px;
+    grid-template-rows: 130px 120px 50px;
+    grid-gap: 5px;
 
     @media (max-width: 768px) {
-      width: 90%;
-      height: 95%;
+      width: 100%;
+      height: 85%;
+      grid-gap: unset;
+      grid-column-gap: 10px;
     }
 
     &__titleCell {
       grid-area: titleCell;
-      @include fhw;
+      // border: 1px solid #b4b2b2;
+      // padding: 5px;
+      height: 100%;
+      width: 100%;
     }
 
+    &__statusCell {
+      grid-area: statusCell;
+      // border: 1px solid #b4b2b2;
+      // padding: 5px;
+      width: 100%;
+    }
     &__buttonCell {
       grid-area: buttonCell;
+      border: 1px solid #b4b2b270;
       @include fhw;
-      // border: 1px solid red;
       @include flex-container(flex-end, center);
+      border-radius: 8px;
 
+      padding: 5px;
       button {
         height: 30px;
         width: auto;
@@ -51,10 +61,12 @@
         border: none;
         color: white;
         cursor: pointer;
+
         &:disabled {
           background-color: #635db0;
           cursor: not-allowed;
         }
+
         .spinnerDiv {
           // border: 1px solid red;
           height: 80%;
@@ -62,124 +74,125 @@
         }
       }
     }
-    &__statusCell {
-      grid-area: statusCell;
-      @include fhw;
-      // border: 1px solid blue;
-      // @include flex-container(flex-end, center);
-    }
   }
 }
 
-.formGroup {
+.inputGroup {
   width: 100%;
-  height: 100%;
-  // border: 1px solid blue;
-
-  &__inputGroup {
-    width: 100%;
-    height: calc(100% - 30px);
-    // border: 1px solid blue;
-    padding: 10px 20px;
-    // border: 1px solid #d0d5dd;
-    border-radius: 15px;
-    background-color: white;
-    overflow: hidden;
-
-    &__labelDiv {
-      // border: 1px solid salmon;
-      width: 100%;
-      height: 20px;
-      @include flex-container(flex-start, center);
-      // background-color: ;
-      &__labelTag {
-        color: #a1a7c4;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-    }
-    &__inputDiv {
-      // border: 1px solid skyblue;
-      width: 100%;
-      height: calc(100% - 20px);
-      @include flex-container(flex-start, flex-start);
-      input {
-        width: 100%;
-        height: 100%;
-        @include flex-container(flex-start, flex-start);
-        text-align: start;
-        outline: none;
-        border: none;
-        background: none;
-      }
-    }
-  }
-
-  &__errorGroup {
-    // border: 1px solid black;
+  height: calc(100% - 30px);
+  background-color: white;
+  border: 1px solid #b4b2b270;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 10px;
+  @include flex-container(flex-start, center, $direction: column);
+  // border: 1px solid red;
+  &__labelTag {
     width: 100%;
     height: 30px;
+    // border: 1px solid red;
+    padding: 0px 5px;
     @include flex-container(flex-start, center);
     p {
-      color: #f0142f;
+      color: #101828;
       font-size: 0.7rem;
-      font-weight: 500;
-      margin-left: 5px;
     }
+  }
+
+  &__inputField {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+    outline: none;
+    padding: 0px 10px;
+    background-color: #ecf2ffb9;
+    border-radius: inherit;
   }
 }
 
-.statusInputWrapper {
-  width: auto;
-  height: 100%;
+.errorGroup {
+  width: 100%;
+  height: 30px;
+  // border: 1px solid #b4b2b25c;
   @include flex-container(flex-start, center);
-  // border: 1px solid red;
-  margin-left: 10px;
+  overflow: hidden;
+  max-width: 100%;
+  p {
+    color: #a82525;
+    font-size: 0.7rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 
-  .radioBtnWrapper {
-    width: auto;
+.statusInputGroup {
+  @include flex-container(flex-start, center, $direction: column);
+  &__labelDiv {
+    width: 100%;
     height: 30px;
-    border: 1px solid #d0d5dd;
-    border-radius: 10px;
+    p {
+      color: #101828;
+      font-size: 0.7rem;
+    }
+  }
+  &__inputBtnWrapper {
+    width: 100%;
+    height: calc(100% - 30px);
     @include flex-container(flex-start, center);
-    cursor: pointer;
-
-    &--activeBtn {
-      border: 1px solid #789980;
-      background-color: #deeedc;
-    }
-    &--inactiveBtn {
-      border: 1px solid #d27e67;
-      background-color: #fde7ea;
+    input {
+      display: none;
     }
 
-    .radioDotDiv {
-      height: 100%;
-      aspect-ratio: 1/1;
-      @include flex-container(center, center);
-
-      .radioDot {
-        border-radius: 100%;
-        aspect-ratio: 1/1;
-        width: 40%;
-        background-color: #a4adbb;
-      }
-      &--activeDot {
-        background-color: #789980 !important;
-      }
-      &--inactiveDot {
-        background-color: #d27e67 !important;
-      }
-    }
-    .radioLabelDiv {
+    .btnWrapper {
       width: auto;
-      height: 100%;
-      @include flex-container(flex-start, center);
-      // border: 1px solid blue;
-      padding: 0px 8px 0px 0px;
+      height: 80%;
+      padding: 0px 10px 0px 10px;
+      border-radius: 8px;
+      @include flex-container(center, center);
+      border: 1px solid #b4b2b25c;
+      cursor: pointer;
+
+      &:last-child {
+        margin-left: 20px;
+      }
 
       p {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
+      }
+
+      &--activeBtn {
+        border: 1px solid #789980;
+        background-color: #deeedc;
+        color: #789980;
+      }
+
+      &--inactiveBtn {
+        margin-left: 10px;
+        border: 1px solid #d27e67;
+        background-color: #fde7ea;
+        color: #d5765c;
+      }
+
+      .radioDotDiv {
+        height: 100%;
+        aspect-ratio: 1/2;
+        @include flex-container(center, center);
+        margin-right: 5px;
+
+        .radioDot {
+          aspect-ratio: 1/1;
+          width: 70%;
+          border-radius: 50%;
+          background-color: #a4adbb;
+
+          &--activeDot {
+            background-color: #789980 !important;
+          }
+          &--inactiveDot {
+            background-color: #d27e67 !important;
+          }
+        }
       }
     }
   }
