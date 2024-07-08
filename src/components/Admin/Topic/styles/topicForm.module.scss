@@ -50,7 +50,7 @@
           "editorCell editorCell"
           "buttonCell buttonCell";
         grid-template-columns: calc(50% - 5px) calc(50% - 5px);
-        grid-template-rows: 25% 25% auto 50px;
+        grid-template-rows: 120px 25% auto 50px;
         grid-gap: 10px;
         @include scroll($dir: y);
         padding: 20px 0px;
@@ -64,7 +64,7 @@
             "editorCell"
             "buttonCell";
           grid-template-columns: 100%;
-          grid-template-rows: 20% 20% 20% auto 50px;
+          grid-template-rows: 120px 20% 20% auto 50px;
           grid-gap: unset;
           grid-column-gap: 10px;
         }
