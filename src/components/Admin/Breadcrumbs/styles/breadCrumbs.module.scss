@@ -42,12 +42,12 @@
 
     &__iconWrapper {
       height: 100%;
-      aspect-ratio: 1/2;
+      width: 24px;
       // border: 1px solid blue;
       @include flex-container(center, center);
       &__iconDiv {
+        width: 15px;
         aspect-ratio: 1/1;
-        width: 60%;
         @include flex-container(center, center);
         // border: 1px solid blue;
         max-width: 24px;

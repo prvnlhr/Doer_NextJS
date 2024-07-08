@@ -11,9 +11,11 @@
   // border: 1px solid blue;
 
   &__appLogoWrapper {
-    height: 60%;
+    height: 45px;
+    width: 45px;
     @include flex-container(center, center);
     margin-left: 1%;
     display: flex;
+    // border: 1px solid red;
   }
 }
