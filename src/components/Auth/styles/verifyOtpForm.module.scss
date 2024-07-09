@@ -1,0 +1,7 @@
+@import "../../../styles/mixins.module";
+
+.verifyOtpFormWrapper {
+  width: 400px;
+  height: 500px;
+  @include flex-container(flex-start, flex-start, $direction: column);
+}
