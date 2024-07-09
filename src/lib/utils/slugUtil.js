@@ -12,3 +12,13 @@ export function generateSlug(segment) {
 
   return slug;
 }
+
+export function reverseSlug(slug) {
+  if (!slug) return "";
+
+  let segment = slug
+    .replace(/-/g, " ") // Replace dashes with spaces
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
+
+  return segment;
+}

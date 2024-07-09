@@ -1,4 +1,10 @@
-import { Raleway, Work_Sans, Poppins, Montserrat } from "next/font/google";
+import {
+  Raleway,
+  Work_Sans,
+  Poppins,
+  Montserrat,
+  Source_Code_Pro,
+} from "next/font/google";
 
 import "./globals.css";
 import MainHeader from "@/components/Common/MainHeader/MainHeader";
@@ -9,8 +15,15 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
+const sourceCode = Source_Code_Pro({
+  subsets: ["latin"],
+});
 
 const montserrat = Montserrat({
+  subsets: ["latin"],
+});
+
+const WorkSans = Work_Sans({
   subsets: ["latin"],
 });
 
@@ -22,7 +35,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body
+        className={`
+          ${poppins.className} antialiased`}
+      >
         <div className={styles.rootLayoutWrapper}>
           <MainHeader />
           <div className={styles.contentWrapper}>{children}</div>

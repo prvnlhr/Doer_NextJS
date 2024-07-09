@@ -10,8 +10,19 @@
   &__sidebarHeader {
     width: 100%;
     height: 8%;
-    @include flex-container(flex-start, flex-start);
-    // background-color: skyblue;
+    @include flex-container(flex-end, center);
+    // border-bottom: 1px solid #d0d5dd;
+
+    .toggleIconDiv {
+      display: none;
+      height: 35%;
+      aspect-ratio: 1/1;
+      box-sizing: border-box;
+
+      @media (max-width: 768px) {
+        @include flex-container(center, center);
+      }
+    }
   }
 
   @media (max-width: 768px) {

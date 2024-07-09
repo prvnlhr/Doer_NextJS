@@ -3,7 +3,7 @@ import styles from "./styles/accordion.module.scss";
 import AccordionItem from "./AccordionItem";
 
 const Accordion = ({ accordionListData, params }) => {
-  const [currOpenItemId, setCurrOpenItemId] = useState();
+  const [currOpenItemId, setCurrOpenItemId] = useState(null);
   const [currOpenItemHeight, setCurrOpenItemHeight] = useState();
 
   useEffect(() => {
@@ -11,8 +11,8 @@ const Accordion = ({ accordionListData, params }) => {
       setCurrOpenItemHeight(
         accordionListData.filter((ch) => ch._id === params.chapterId)[0]
           .topicsCount *
-          30 +
-          30
+          40 +
+          40
       );
     }
     setCurrOpenItemId(params.chapterId);
@@ -21,7 +21,6 @@ const Accordion = ({ accordionListData, params }) => {
   return (
     <>
       <div className={styles.accordHeaderWrapper}></div>
-
       <div className={styles.accordListWrapper}>
         {accordionListData &&
           accordionListData.map((chapter, indx) => (

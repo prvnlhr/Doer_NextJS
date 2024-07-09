@@ -1,0 +1,97 @@
+@import "../../../../styles/mixins.module.scss";
+@import "../../../../styles/variables.module.scss";
+
+.mainViewWrapper {
+  height: 100%;
+  width: 80%;
+  // background-color: lightcoral;
+  display: grid;
+  grid-template-rows: 8% 92%;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "breadcrumbsWrapper"
+    "contentWrapper";
+
+  &__breadcrumbsWrapper {
+    grid-area: breadcrumbsWrapper;
+    @include fhw;
+    border-bottom: 1px solid #d0d5dd;
+    @include flex-container(flex-start, center);
+
+    .toggleIconDiv {
+      display: none;
+      height: 35%;
+      aspect-ratio: 1/1;
+      box-sizing: border-box;
+      margin-right: 10px;
+      @media (max-width: 768px) {
+        @include flex-container(center, center);
+      }
+    }
+
+    .breadcrumbsGroup {
+      width: 100%;
+      height: 100%;
+      // border: 1px solid red;
+      @include flex-container(flex-start, center);
+      @include scroll($dir: x);
+    }
+  }
+  &__contentWrapper {
+    grid-area: contentWrapper;
+    @include fhw;
+    padding: 20px 40px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    @include transistion(left);
+
+    &--hide {
+      position: relative;
+      left: 0%;
+    }
+
+    &--show {
+      position: absolute;
+      left: 100%;
+    }
+  }
+}
+
+.breadCrumbsContainer {
+  width: auto;
+  height: 80%;
+  // border: 1px solid red;
+  margin-left: 10px;
+  @include flex-container(flex-start, center);
+  .link {
+    width: auto;
+    height: 100%;
+    @include flex-container(flex-start, center);
+    // border: 1px solid blue;
+    @media (max-width: 768px) {
+      max-width: 150px;
+      overflow: hidden;
+    }
+
+    p {
+      font-size: 0.8rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  .chevIconContainer {
+    height: 100%;
+    aspect-ratio: 1/2;
+    @include flex-container(center, center);
+    // border: 1px solid orange;
+
+    .chevIconDiv {
+      width: 70%;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+      // border: 1px solid orange;
+    }
+  }
+}

@@ -1,7 +1,6 @@
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchChapters(courseId) {
-  console.log("pppppppppppp", courseId);
   try {
     let response = await fetch(`${BASE_URL}/api/courses/${courseId}/chapters`, {
       cache: "no-store",
