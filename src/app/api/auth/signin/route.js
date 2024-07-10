@@ -7,7 +7,7 @@ import EmailTemplate from "@/components/Email/EmailTemplate";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const generateOTP = async () => {
-  const otp = Math.floor(1000 + Math.random() * 9000);
+  const otp = Math.floor(10000 + Math.random() * 90000);
   const currentTime = Date.now();
   const expiryTime = currentTime + 120000;
   const hashedOTP = await bcrypt.hash(otp.toString(), 10);
@@ -15,7 +15,6 @@ const generateOTP = async () => {
 };
 
 const sendMail = async (email, otpDigits) => {
-  console.log("STEP2.", otpDigits);
   try {
     const { data, error } = await resend.emails.send({
       from: "onboarding@resend.dev",
@@ -23,47 +22,45 @@ const sendMail = async (email, otpDigits) => {
       subject: "One Time Password",
       react: EmailTemplate({ otpDigits }),
     });
+
     if (error) {
-      console.log(error);
-      throw new Error(error);
+      throw new Error(error.message || "Failed to send OTP email");
     }
+
     return data;
   } catch (error) {
-    console.log(error);
-    // console.error("Error sending email:", JSON.stringify(error));
-    // throw error;
-    return error;
+    throw new Error(error.message || "Failed to send OTP email");
   }
 };
 
 export async function POST(req, res) {
   const { email } = await req.json();
-  console.log("EMAIL", email);
   await dbConnect();
-
   try {
+    if (!email) {
+      return new Response(JSON.stringify({ message: "Email is required" }), {
+        status: 400,
+      });
+    }
     let query = {
       email: email,
     };
+
     const user = await User.findOne(query);
 
     if (!user) {
+      console.log("RES0", "Email does not exist");
       return new Response(JSON.stringify({ message: "Email does not exist" }), {
         status: 400,
       });
     }
-
     const { otp, hashedOTP, expiryTime } = await generateOTP();
-
     user.otp = hashedOTP;
     user.otpExpiry = expiryTime;
     await user.save();
 
-    console.log("OTP", otp);
-
     const otpDigits = otp.toString().split("").map(Number);
     await sendMail(email, otpDigits);
-
     return new Response(JSON.stringify({ message: "OTP sent successfully" }), {
       status: 200,
     });

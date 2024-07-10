@@ -1,7 +1,235 @@
 @import "../../../styles/mixins.module";
 
 .verifyOtpFormWrapper {
-  width: 400px;
-  height: 500px;
-  @include flex-container(flex-start, flex-start, $direction: column);
+  position: absolute;
+  width: 300px;
+  // aspect-ratio: 2/2.2;
+  height: auto;
+  @include flex-container(flex-start, center, $direction: column);
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+  padding: 10px 20px;
+  .formContainer {
+    @include fhw;
+    // border: 1px solid red;
+    display: grid;
+    grid-template-areas:
+      "headerCell"
+      "subHeaderCell"
+      "messageCell"
+      "inputCell"
+      "resendCell"
+      "buttonCell"
+      "footerCell";
+
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 50px 30px 110px 30px 80px 30px;
+
+    .headerCell {
+      grid-area: headerCell;
+      @include fhw;
+      // border: 1px solid springgreen;
+      @include flex-container(flex-start, center);
+      p {
+        color: #101828;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+    .subHeaderCell {
+      grid-area: subHeaderCell;
+      @include fhw;
+      // border: 1px solid red;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      p:first-child {
+        color: #667085;
+        font-size: 0.7rem;
+        font-weight: 500;
+      }
+
+      p:last-child {
+        color: #101828;
+        font-size: 0.7rem;
+        font-weight: 500;
+      }
+    }
+    .messageCell {
+      grid-area: messageCell;
+      @include fhw;
+      // border: 1px solid blue;
+      @include flex-container(center, center);
+    }
+
+    .inputCell {
+      grid-area: inputCell;
+      @include fhw;
+      // border: 1px solid orange;
+    }
+    .resendCell {
+      grid-area: resendCell;
+      @include fhw;
+      // border: 1px solid salmon;
+      @include flex-container(center, flex-start);
+
+      button {
+        background-color: #e7effc;
+        width: auto;
+        height: auto;
+        padding: 5px 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        p {
+          color: #635db0;
+          font-weight: 600;
+          font-size: 0.7rem;
+        }
+      }
+
+      .timerWrapper {
+        width: auto;
+        height: 30px;
+        @include flex-container(center, center);
+
+        .timeDiv {
+          aspect-ratio: 1/1.2;
+          height: 100%;
+          @include flex-container(center, center);
+          background-color: #e7effc;
+          border-radius: 5px;
+          p {
+            font-size: 0.6rem;
+            color: #101828;
+            font-weight: 500;
+          }
+          &:first-child {
+            margin-right: 5px;
+          }
+          &:last-child {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+
+    .buttonCell {
+      grid-area: buttonCell;
+      // border: 1px solid green;
+      @include fhw;
+      @include flex-container(center, center);
+
+      .buttonWrapper {
+        height: 60%;
+        width: auto;
+        @include flex-container(flex-start, center);
+        background: none;
+
+        .submitButton {
+          height: 100%;
+          aspect-ratio: 1/1;
+          @include flex-container(center, center);
+          cursor: pointer;
+          background: none;
+          outline: none;
+          border: none;
+          border-radius: 50%;
+          background-color: #635db0;
+          margin-left: 5px;
+        }
+        .textDiv {
+          width: auto;
+          height: 100%;
+          @include flex-container(center, center);
+          // border: 1px solid blue;
+          padding: 0px 5px;
+
+          p {
+            font-size: 1.2rem;
+            color: #101828;
+            font-weight: 500;
+          }
+          span {
+            font-size: 1.2rem;
+            color: #7e8da4;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .footerCell {
+      // border: 1px solid blue;
+      grid-area: footerCell;
+      @include fhw;
+      @include flex-container(center, center);
+      p {
+        font-size: 0.7rem;
+        color: #101828;
+      }
+      .footerLink {
+        margin-left: 5px;
+        p {
+          font-size: 0.7rem;
+          color: #635db0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.inputGroup {
+  width: 100%;
+  height: calc(100% - 30px);
+  padding: 0px 0px;
+  // padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  // border: 1px solid red;
+
+  input {
+    height: 80%;
+    width: 18%;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background-color: #e7effc;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    -moz-appearance: textfield;
+    &:focus {
+      border: 0.15rem solid #635db0;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none; /* Hide buttons in Chrome, Safari, Edge, and Opera */
+      margin: 0; /* Removes the margin, preventing any default offset */
+    }
+  }
+}
+
+.errorGroup {
+  width: 100%;
+  height: 30px;
+  // border: 1px solid red;
+  @include flex-container(flex-start, center);
+  padding-left: 8px;
+  p {
+    color: #a82525;
+    font-size: 0.65rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

@@ -8,17 +8,19 @@ export async function signUp(userData) {
     });
 
     if (!response.ok) {
-      console.log(response);
-      throw new Error(`SignIn error ${response}`);
+      const errorMessage = await response.json();
+      console.error("Sign-Up failed:", errorMessage);
+      throw new Error(`SignUp error ${response}`);
     }
+    const res = await response.json();
+    return res;
   } catch (error) {
-    console.log(error);
-    throw new Error(`SignIn error: ${error}`);
+    console.error("Sign-Up error:", error);
+    throw new Error(`${error.message}`);
   }
 }
 
 export async function signIn(email) {
-  console.log(email);
   try {
     const response = await fetch(`${BASE_URL}/api/auth/signin`, {
       method: "POST",
@@ -26,10 +28,15 @@ export async function signIn(email) {
     });
 
     if (!response.ok) {
-      console.log(response);
-      throw new Error(`SignIn error ${response}`);
+      const errorMessage = await response.json();
+      console.error("Sign-in failed:", errorMessage);
+      throw new Error(errorMessage.message || "Sign-in failed");
     }
+
+    const res = await response.json();
+    return res;
   } catch (error) {
-    throw new Error(`SignIn error: ${error}`);
+    console.error("Sign-in error:", error);
+    throw new Error(`${error.message}`);
   }
 }

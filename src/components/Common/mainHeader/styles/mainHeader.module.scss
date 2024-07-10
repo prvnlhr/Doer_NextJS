@@ -8,7 +8,7 @@
 
   @include flex-container(flex-start, center);
   border-bottom: 1px solid #d0d5dd;
-  // border: 1px solid blue;
+  // border: 1px solid blue;s
 
   &__appLogoWrapper {
     height: 45px;
@@ -17,5 +17,32 @@
     margin-left: 1%;
     display: flex;
     // border: 1px solid red;
+  }
+  &__rightSection {
+    width: calc(100% - 45px);
+    height: 100%;
+    // border: 1px solid red;
+    @include flex-container(flex-end, center);
+    box-sizing: border-box;
+    padding-right: 20px;
+
+    .navbarLink {
+      padding: 8px 20px;
+      background-color: #635db0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      p {
+        font-size: 0.8rem;
+        color: white;
+      }
+    }
+
+    .userAvatarDiv {
+      height: 50%;
+      aspect-ratio: 1/1;
+      border: 1px solid red;
+      margin-left: 5px;
+    }
   }
 }

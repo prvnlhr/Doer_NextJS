@@ -1,7 +1,204 @@
 @import "../../../styles/mixins.module";
 
 .signInFormWrapper {
-  width: 400px;
-  height: 500px;
-  @include flex-container(flex-start, flex-start, $direction: column);
+  position: absolute;
+  width: 300px;
+  // aspect-ratio: 2/2.2;
+  height: auto;
+  @include flex-container(flex-start, center, $direction: column);
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+  padding: 10px 20px;
+  .formContainer {
+    @include fhw;
+    // border: 1px solid red;
+    display: grid;
+    grid-template-areas:
+      "headerCell"
+      "messageCell"
+      "emailCell"
+      "buttonCell"
+      "footerCell";
+
+    grid-template-columns: 100%;
+    grid-template-rows: 30px 50px 100px 50px 50px;
+
+    .headerCell {
+      grid-area: headerCell;
+      @include fhw;
+      // border: 1px solid red;
+      @include flex-container(center, center);
+    }
+    .messageCell {
+      grid-area: messageCell;
+      @include fhw;
+      // border: 1px solid red;
+      @include flex-container(center, center);
+
+      .messageDiv {
+        width: auto;
+        height: auto;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background-color: #fde7ea;
+        p {
+          font-size: 0.7rem;
+          color: #f0142f;
+        }
+      }
+    }
+
+    .emailCell {
+      grid-area: emailCell;
+      @include fhw;
+      @include flex-container(flex-start, center, $direction: column);
+    }
+
+    .buttonCell {
+      grid-area: buttonCell;
+      @include fhw;
+      @include flex-container(center, center);
+
+      .buttonWrapper {
+        height: 80%;
+        width: auto;
+        @include flex-container(flex-start, center);
+        background: none;
+
+        .submitButton {
+          height: 100%;
+          aspect-ratio: 1/1;
+          @include flex-container(center, center);
+          cursor: pointer;
+          background: none;
+          outline: none;
+          border: none;
+          border-radius: 50%;
+          background-color: #635db0;
+        }
+        .textDiv {
+          width: auto;
+          height: 100%;
+          @include flex-container(center, center);
+          // border: 1px solid blue;
+          padding: 0px 5px;
+
+          p {
+            font-size: 1.2rem;
+            color: #101828;
+            font-weight: 500;
+          }
+          span {
+            font-size: 1.2rem;
+            color: #7e8da4;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .footerCell {
+      grid-area: footerCell;
+      @include fhw;
+      @include flex-container(center, center);
+      p {
+        font-size: 0.7rem;
+        color: #101828;
+      }
+      .footerLink {
+        margin-left: 5px;
+        p {
+          font-size: 0.7rem;
+          color: #635db0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.inputGroup {
+  width: 100%;
+  height: calc(100% - 30px);
+  background-color: #e7effc;
+  padding: 0px 15px;
+  padding: 5px;
+  border-radius: 12px;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    "iconCell labelCell"
+    "iconCell inputCell";
+
+  .iconCell {
+    grid-area: iconCell;
+    @include flex-container(flex-container, center);
+    height: 100%;
+    aspect-ratio: 1/1;
+    padding: 12px;
+    .iconWrapper {
+      height: 100%;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+      .iconDiv {
+        width: 100%;
+        height: 100%;
+        @include flex-container(center, center);
+      }
+    }
+  }
+
+  .labelCell {
+    grid-area: labelCell;
+    @include flex-container(flex-start, center);
+    label {
+      @include flex-container(flex-start, center);
+      width: 100%;
+      height: 100%;
+      p {
+        font-size: 0.65rem;
+        color: #7e8da4;
+        color: #101828;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
+    }
+  }
+  .inputCell {
+    grid-area: inputCell;
+    @include flex-container(flex-start, center);
+    input {
+      border: none;
+      outline: none;
+      padding-left: 0px;
+      width: 100%;
+      height: 100%;
+      background: none;
+      &::placeholder {
+        color: #c2c2c2;
+        font-size: 0.7rem;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.errorGroup {
+  width: 100%;
+  height: 30px;
+  @include flex-container(flex-start, center);
+  padding-left: 8px;
+  p {
+    color: #a82525;
+    font-size: 0.65rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
