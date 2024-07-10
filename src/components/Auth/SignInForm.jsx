@@ -22,6 +22,7 @@ const SignInForm = () => {
 
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
+        console.log(values);
         const res = await signIn(values.email);
         console.log(res);
       } catch (error) {

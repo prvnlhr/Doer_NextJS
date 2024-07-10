@@ -29,6 +29,8 @@ const SignUpForm = () => {
         const userData = {
           ...values,
         };
+        console.log(userData);
+        // return;
         const res = await signUp(userData);
         console.log(res);
       } catch (error) {

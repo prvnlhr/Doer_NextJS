@@ -186,3 +186,27 @@ admin/courses/[courseId]/chapters/[chapterId]/topics/[topicId]/edit
 
 
 TAB1   TAB2
+
+----------------------------------------------------------------
+AUTH FLOW
+
+
+1. SIGNUP
+    - API route handler will handle the new users registeration
+    - Checks DB if user exist or not, if not the create new user
+    - send email with OTP
+
+2. If user is register successfully
+    - show a OTP verify form
+    - user enter the OTP
+
+3. Verifying user's OTP
+    - Verify the OTP
+    - if correct the user gets logged in
+
+4. SIGNIN 
+    - user enter the email
+    - checks DB for email
+    - if email present the show OTP verify form
+    - next step same as step 3
+   

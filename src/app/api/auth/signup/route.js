@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
 const generateOTP = async () => {
   // Generate a random 4-digit OTP
   const otp = Math.floor(1000 + Math.random() * 9000);
@@ -22,23 +23,33 @@ const generateOTP = async () => {
   return { otp, hashedOTP, expiryTime };
 };
 
-const sendMail = async (email, optDigits) => {
+const sendMail = async (email, otpDigits) => {
+  console.log("STEP2.", otpDigits);
   try {
     const { data, error } = await resend.emails.send({
-      from: "doerreact@gmail.com",
+      from: "onboarding@resend.dev",
       to: email,
       subject: "One Time Password",
-      react: EmailTemplate({ optDigits }),
+      react: EmailTemplate({ otpDigits }),
     });
-    if (error) throw new Error(error);
+    if (error) {
+      console.log(error);
+      throw new Error(error);
+    }
     return data;
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw error;
+    console.log(error);
+    // console.error("Error sending email:", JSON.stringify(error));
+    // throw error;
+    return error;
   }
 };
+
+// SIGNUP USER
 export async function POST(req, res) {
   const { fullname, email, country } = await req.json();
+  console.log("FFFFF.......", fullname, email, country);
+  // return new Response(JSON.stringify("Sign Up Successful"), { status: 201 });
   await dbConnect();
   try {
     const existingUser = await User.findOne({ email });
@@ -59,8 +70,10 @@ export async function POST(req, res) {
       otpExpiry: expiryTime,
     });
 
-    const optDigits = otp.toString().split("").map(Number);
-    await sendMail(email, optDigits);
+    const otpDigits = otp.toString().split("").map(Number);
+    console.log("OTPDIGIT.......", otpDigits);
+    const emailRes = await sendMail(email, otpDigits);
+    console.log(emailRes);
 
     return new Response(JSON.stringify("Sign Up Successful"), { status: 201 });
   } catch (error) {

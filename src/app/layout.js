@@ -9,7 +9,7 @@ import {
 import "./globals.css";
 import MainHeader from "@/components/Common/MainHeader/MainHeader";
 import styles from "./app.module.scss";
-import { Providers } from "./providers";
+import { Provider } from "./providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -35,15 +35,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`
+      <Provider>
+        <body
+          className={`
           ${poppins.className} antialiased`}
-      >
-        <div className={styles.rootLayoutWrapper}>
-          <MainHeader />
-          <div className={styles.contentWrapper}>{children}</div>
-        </div>
-      </body>
+        >
+          <div className={styles.rootLayoutWrapper}>
+            <MainHeader />
+            <div className={styles.contentWrapper}>{children}</div>
+          </div>
+        </body>
+      </Provider>
     </html>
   );
 }

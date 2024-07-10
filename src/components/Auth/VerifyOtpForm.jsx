@@ -1,10 +1,15 @@
+"use client";
 import React from "react";
 import styles from "./styles/verifyOtpForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { verifyOtp } from "@/lib/api/auth/authApi";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const VerifyOtpForm = () => {
+  const { data, session, status } = useSession();
+
+  console.log(data, session);
+
   const initialValues = {
     otp: "",
   };
@@ -21,8 +26,11 @@ const VerifyOtpForm = () => {
 
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        const res = await verifyOtp(values.otp);
-        console.log(res);
+        const res = await signIn("credentials", {
+          email: "prvnlhr522@gmail.com",
+          otp: values.otp,
+          redirect: false,
+        });
       } catch (error) {
         console.log(error);
       } finally {
@@ -54,6 +62,11 @@ const VerifyOtpForm = () => {
           Submit
         </button>
       </form>
+
+      {session?.user && <p>{session.user}</p>}
+      <button type="button" onClick={() => signOut()}>
+        SignOut
+      </button>
     </div>
   );
 };

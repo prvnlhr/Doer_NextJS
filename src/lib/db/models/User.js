@@ -1,13 +1,16 @@
 import mongoose from "mongoose";
-import { string } from "yup";
 
-const userSchema = new mongoose.Schema({
-  fullname: { type: string, required: true },
-  country: { type: string, required: true },
-  otp: { type: string },
-  otpExpiry: { type: Date },
-});
+const userSchema = new mongoose.Schema(
+  {
+    fullname: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    country: { type: String, required: true },
+    otp: { type: String },
+    otpExpiry: { type: Date },
+  },
+  { timestamps: true }
+);
 
-const User = mongoose.models.users || mongoose.model("users", userSchema);
+const User = mongoose?.models?.User || mongoose.model("User", userSchema);
 
 export default User;

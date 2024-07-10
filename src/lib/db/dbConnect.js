@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const DB_URI =
+  "mongodb+srv://doer-nextjs:hS0SUxw3iqs22Jak@cluster0.gl6irw1.mongodb.net/doerNextDB?retryWrites=true&w=majority&appName=Cluster0";
+// const { MONGODB_URI } = process.env;
 
-if (!MONGODB_URI) {
+if (!DB_URI) {
   throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
+    "Please define the DB_URI environment variable inside .env.local"
   );
 }
 
@@ -22,7 +24,7 @@ async function dbConnect() {
     const opts = {
       bufferCommands: false,
     };
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(DB_URI, opts).then((mongoose) => {
       return mongoose;
     });
   }

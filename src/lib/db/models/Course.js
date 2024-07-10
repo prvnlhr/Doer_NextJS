@@ -10,6 +10,7 @@ const courseSchema = new mongoose.Schema({
   duration: { type: Number, default: 0 },
 });
 
-const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);
+const Course =
+  mongoose.models.Course || mongoose.model("Course", courseSchema);
 
 export default Course;
