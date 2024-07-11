@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/db/dbConnect";
 import User from "@/lib/db/models/User";
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
@@ -14,8 +14,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         try {
           await dbConnect();
+          
           const user = await User.findOne({ email: credentials.email });
-
           if (!user) {
             throw new Error("No user found with the email");
           }
@@ -36,8 +36,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             country: user.country,
           };
         } catch (error) {
-          console.error("Error authorizing user:", error);
-          throw new Error("Authorization failed");
+          console.error("Error authorizing user:", error.message);
+          throw new Error(`Authorization failed: ${error.message}`);
         }
       },
     }),

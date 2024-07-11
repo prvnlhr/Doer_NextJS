@@ -1,6 +1,7 @@
 import EmailTemplate from "@/components/Email/EmailTemplate";
 import dbConnect from "@/lib/db/dbConnect";
 import User from "@/lib/db/models/User";
+import sendMail from "@/lib/utils/sendMail";
 import bcrypt from "bcrypt";
 import { Resend } from "resend";
 
@@ -14,24 +15,7 @@ const generateOTP = async () => {
   return { otp, hashedOTP, expiryTime };
 };
 
-const sendMail = async (email, otpDigits) => {
-  try {
-    const { data, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: email,
-      subject: "One Time Password",
-      react: EmailTemplate({ otpDigits }),
-    });
 
-    if (error) {
-      throw new Error(error.message || "Failed to send OTP email");
-    }
-
-    return data;
-  } catch (error) {
-    throw new Error(error.message || "Failed to send OTP email");
-  }
-};
 
 // SIGNUP USER
 export async function POST(req, res) {
@@ -57,7 +41,7 @@ export async function POST(req, res) {
     });
 
     const otpDigits = otp.toString().split("").map(Number);
-    const emailRes = await sendMail(email, otpDigits);
+    await sendMail(email, otpDigits);
     return new Response(JSON.stringify({ message: "Sign Up Successful" }), {
       status: 201,
     });

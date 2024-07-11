@@ -3,6 +3,7 @@ import User from "@/lib/db/models/User";
 import bcrypt from "bcrypt";
 import { Resend } from "resend";
 import EmailTemplate from "@/components/Email/EmailTemplate";
+import sendMail from "@/lib/utils/sendMail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -14,25 +15,8 @@ const generateOTP = async () => {
   return { otp, hashedOTP, expiryTime };
 };
 
-const sendMail = async (email, otpDigits) => {
-  try {
-    const { data, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: email,
-      subject: "One Time Password",
-      react: EmailTemplate({ otpDigits }),
-    });
 
-    if (error) {
-      throw new Error(error.message || "Failed to send OTP email");
-    }
-
-    return data;
-  } catch (error) {
-    throw new Error(error.message || "Failed to send OTP email");
-  }
-};
-
+// SIGNIN USER
 export async function POST(req, res) {
   const { email } = await req.json();
   await dbConnect();
@@ -49,7 +33,7 @@ export async function POST(req, res) {
     const user = await User.findOne(query);
 
     if (!user) {
-      console.log("RES0", "Email does not exist");
+      console.log("Email does not exist");
       return new Response(JSON.stringify({ message: "Email does not exist" }), {
         status: 400,
       });

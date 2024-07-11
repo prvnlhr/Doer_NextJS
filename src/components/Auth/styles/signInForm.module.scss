@@ -1,5 +1,11 @@
 @import "../../../styles/mixins.module";
 
+.pageWrapper {
+  width: 100%;
+  height: 100%;
+  @include flex-container(center, flex-start);
+  position: relative;
+}
 .signInFormWrapper {
   position: absolute;
   width: 300px;

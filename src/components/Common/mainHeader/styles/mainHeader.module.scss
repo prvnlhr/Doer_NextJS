@@ -24,10 +24,10 @@
     // border: 1px solid red;
     @include flex-container(flex-end, center);
     box-sizing: border-box;
-    padding-right: 20px;
+    padding-right: 15px;
 
     .navbarLink {
-      padding: 8px 20px;
+      padding: 5px 12px;
       background-color: #635db0;
       border: none;
       outline: none;
@@ -38,11 +38,68 @@
       }
     }
 
-    .userAvatarDiv {
+    .menuIconWrapper {
       height: 50%;
       aspect-ratio: 1/1;
-      border: 1px solid red;
+      // border: 1px solid red;
       margin-left: 5px;
+      position: relative;
+      @include flex-container(center, center);
+
+      .popUpIconDiv {
+        height: 50%;
+        aspect-ratio: 1/1;
+        @include flex-container(center, center);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.popUpMenu {
+  width: 120px;
+  height: auto;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  @include flex-container(flex-start, flex-start, $direction: column);
+  position: absolute;
+  top: 85px;
+  right: 1%;
+
+  .userNameWrapper {
+    width: 100%;
+    height: 50px;
+    padding: 5px 10px;
+    @include flex-container(center, flex-start, $direction: column);
+    border-bottom: 1px solid #d0d5dd;
+
+    p:first-child {
+      color: #667085;
+      font-size: 0.7rem;
+      font-weight: 400;
+    }
+
+    p:last-child {
+      color: #101828;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
+  .logoutBtnWrapper {
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+    @include flex-container(center, center);
+
+    button {
+      background-color: #a82525;
+      width: auto;
+      height: auto;
+      padding: 5px 10px;
+      border: none;
+      outline: none;
+      color: white;
+      cursor: pointer;
     }
   }
 }

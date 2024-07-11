@@ -10,8 +10,11 @@ import LocationIcon from "../Common/Icons/LocationIcon";
 import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Link from "next/link";
 import Spinner from "../Common/Icons/Spinner";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
+  const router = useRouter();
+
   const initialValues = {
     fullname: "",
     email: "",
@@ -41,8 +44,14 @@ const SignUpForm = () => {
         };
         const res = await signUp(userData);
         console.log(res);
+        if (res.message === "Sign Up Successful") {
+          router.push("/auth/verifyotp");
+        } else {
+          setErrors({ formError: res.message || "Unexpected error" });
+        }
       } catch (error) {
-        console.log(error);
+        console.error("Sign-in error:", error);
+        setErrors({ formError: error.message || "SignUp error" });
       } finally {
         setSubmitting(false);
       }
@@ -50,120 +59,127 @@ const SignUpForm = () => {
   });
 
   return (
-    <div className={styles.signUpFormWrapper}>
-      <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-        <div className={styles.headerCell}></div>
-        <div className={styles.messageCell}></div>
-
-        <div className={styles.fullNameCell}>
-          <div className={styles.inputGroup}>
-            <div className={styles.iconCell}>
-              <div className={styles.iconWrapper}>
-                <UserIcon />
+    <div className={styles.pageWrapper}>
+      <div className={styles.signUpFormWrapper}>
+        <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
+          <div className={styles.headerCell}></div>
+          <div className={styles.messageCell}>
+            {formik.errors.formError && (
+              <div className={styles.messageDiv}>
+                <p>{formik.errors.formError}</p>
               </div>
-            </div>
-            <div className={styles.labelCell}>
-              <label htmlFor="fullname">
-                <p>FULLNAME</p>
-              </label>
-            </div>
-            <div className={styles.inputCell}>
-              <input
-                id="fullname"
-                type="text"
-                name="fullname"
-                value={formik.values.fullname}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                placeholder="Enter your fullname/name"
-              />
-            </div>
-          </div>
-          <div className={styles.errorGroup}>
-            {formik.errors.fullname && formik.touched.fullname && (
-              <p>{formik.errors.fullname}</p>
             )}
           </div>
-        </div>
-        <div className={styles.emailCell}>
-          <div className={styles.inputGroup}>
-            <div className={styles.iconCell}>
-              <div className={styles.iconWrapper}>
-                <EmailIcon />
+          <div className={styles.fullNameCell}>
+            <div className={styles.inputGroup}>
+              <div className={styles.iconCell}>
+                <div className={styles.iconWrapper}>
+                  <UserIcon />
+                </div>
+              </div>
+              <div className={styles.labelCell}>
+                <label htmlFor="fullname">
+                  <p>FULLNAME</p>
+                </label>
+              </div>
+              <div className={styles.inputCell}>
+                <input
+                  id="fullname"
+                  type="text"
+                  name="fullname"
+                  value={formik.values.fullname}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Enter your fullname/name"
+                />
               </div>
             </div>
-            <div className={styles.labelCell}>
-              <label htmlFor="email">
-                <p>EMAIL</p>
-              </label>
-            </div>
-            <div className={styles.inputCell}>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                placeholder="Enter your email address"
-              />
+            <div className={styles.errorGroup}>
+              {formik.errors.fullname && formik.touched.fullname && (
+                <p>{formik.errors.fullname}</p>
+              )}
             </div>
           </div>
-          <div className={styles.errorGroup}>
-            {formik.errors.email && formik.touched.email && (
-              <p>{formik.errors.email}</p>
-            )}
-          </div>
-        </div>
-        <div className={styles.countryCell}>
-          <div className={styles.inputGroup}>
-            <div className={styles.iconCell}>
-              <div className={styles.iconWrapper}>
-                <LocationIcon />
+          <div className={styles.emailCell}>
+            <div className={styles.inputGroup}>
+              <div className={styles.iconCell}>
+                <div className={styles.iconWrapper}>
+                  <EmailIcon />
+                </div>
+              </div>
+              <div className={styles.labelCell}>
+                <label htmlFor="email">
+                  <p>EMAIL</p>
+                </label>
+              </div>
+              <div className={styles.inputCell}>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Enter your email address"
+                />
               </div>
             </div>
-            <div className={styles.labelCell}>
-              <label htmlFor="country">
-                <p>COUNTRY</p>
-              </label>
-            </div>
-            <div className={styles.inputCell}>
-              <input
-                id="country"
-                type="text"
-                name="country"
-                value={formik.values.country}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                placeholder="Enter your country"
-              />
+            <div className={styles.errorGroup}>
+              {formik.errors.email && formik.touched.email && (
+                <p>{formik.errors.email}</p>
+              )}
             </div>
           </div>
-          <div className={styles.errorGroup}>
-            {formik.errors.country && formik.touched.country && (
-              <p>{formik.errors.country}</p>
-            )}
-          </div>
-        </div>
-        <div className={styles.buttonCell}>
-          <div className={styles.buttonWrapper}>
-            <div className={styles.textDiv}>
-              <p>
-                Sign<span>Up</span>
-              </p>
+          <div className={styles.countryCell}>
+            <div className={styles.inputGroup}>
+              <div className={styles.iconCell}>
+                <div className={styles.iconWrapper}>
+                  <LocationIcon />
+                </div>
+              </div>
+              <div className={styles.labelCell}>
+                <label htmlFor="country">
+                  <p>COUNTRY</p>
+                </label>
+              </div>
+              <div className={styles.inputCell}>
+                <input
+                  id="country"
+                  type="text"
+                  name="country"
+                  value={formik.values.country}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Enter your country"
+                />
+              </div>
             </div>
-            <button type="submit" className={styles.submitButton}>
-              {formik.isSubmitting ? <Spinner /> : <SubmitBtnIcon />}
-            </button>
+            <div className={styles.errorGroup}>
+              {formik.errors.country && formik.touched.country && (
+                <p>{formik.errors.country}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className={styles.footerCell}>
-          <p>Already Registered ?</p>
-          <Link className={styles.footerLink} href="/auth/signin">
-            <p>SignIn</p>
-          </Link>
-        </div>
-      </form>
+          <div className={styles.buttonCell}>
+            <div className={styles.buttonWrapper}>
+              <div className={styles.textDiv}>
+                <p>
+                  Sign<span>Up</span>
+                </p>
+              </div>
+              <button type="submit" className={styles.submitButton}>
+                {formik.isSubmitting ? <Spinner /> : <SubmitBtnIcon />}
+              </button>
+            </div>
+          </div>
+          <div className={styles.footerCell}>
+            <p>Already Registered ?</p>
+            <Link className={styles.footerLink} href="/auth/signin">
+              <p>SignIn</p>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
