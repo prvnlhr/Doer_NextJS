@@ -20,7 +20,7 @@
   left: 0;
   right: 0;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   // border: 1px solid red;
   .formContainer {
     @include fhw;
@@ -31,7 +31,6 @@
       "emailCell"
       "buttonCell"
       "footerCell";
-
     grid-template-columns: 100%;
     grid-template-rows: 30px 50px 100px 50px 50px;
 
@@ -39,7 +38,20 @@
       grid-area: headerCell;
       @include fhw;
       // border: 1px solid red;
-      @include flex-container(center, center);
+      @include flex-container(flex-end, center);
+      .closeLink {
+        height: 80%;
+        width: auto;
+        @include flex-container(center, center);
+        // border: 1px solid red;
+        .closeIconDiv {
+          height: 80%;
+          aspect-ratio: 1/1;
+          @include flex-container(center, center);
+          background-color: #635db0;
+          border-radius: 50%;
+        }
+      }
     }
     .messageCell {
       grid-area: messageCell;
@@ -64,6 +76,8 @@
       grid-area: emailCell;
       @include fhw;
       @include flex-container(flex-start, center, $direction: column);
+      // border: 1px solid red;
+      padding: 0px 10px;
     }
 
     .buttonCell {

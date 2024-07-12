@@ -11,6 +11,7 @@ import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Link from "next/link";
 import Spinner from "../Common/Icons/Spinner";
 import VerifyOtpForm from "./VerifyOtpForm";
+import CrossIcon from "../Common/Icons/CrossIcon";
 
 const SignUpForm = () => {
   const [showOtpForm, setShowOtpForm] = useState(false);
@@ -65,7 +66,13 @@ const SignUpForm = () => {
       ) : (
         <div className={styles.signUpFormWrapper}>
           <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-            <div className={styles.headerCell}></div>
+            <div className={styles.headerCell}>
+              <Link className={styles.closeLink} href="/">
+                <div className={styles.closeIconDiv}>
+                  <CrossIcon />
+                </div>
+              </Link>
+            </div>
             <div className={styles.messageCell}>
               {formik.errors.formError && (
                 <div className={styles.messageDiv}>
