@@ -1,7 +1,7 @@
 import React from "react";
 
-const Classroom = () => {
+const page = () => {
   return <div>Classroom</div>;
 };
 
-export default Classroom;
+export default page;

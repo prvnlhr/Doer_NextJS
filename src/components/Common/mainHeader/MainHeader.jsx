@@ -44,7 +44,7 @@ const MainHeader = () => {
       </div>
       <div className={styles.headerWrapper__rightSection}>
         {session ? (
-          <Link href="/classroom" className={styles.navbarLink}>
+          <Link href="/classroom/inprogress" className={styles.navbarLink}>
             <p>Classroom</p>
           </Link>
         ) : (

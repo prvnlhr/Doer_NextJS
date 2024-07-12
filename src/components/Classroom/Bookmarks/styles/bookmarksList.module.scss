@@ -1,0 +1,10 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.listWrapper {
+  width: 100%;
+  height: 100%;
+  //   border: 1px solid red;
+  @include flex(top, left, column);
+  @include scroll($dir: y);
+}

@@ -1,0 +1,95 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.card {
+  width: 280px;
+  aspect-ratio: 3/1.3;
+  margin: 2% 2%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 20% 40% 40%;
+  grid-template-areas:
+    "continueWrapper continueWrapper"
+    "breadCrumbsWrapper breadCrumbsWrapper"
+    "titleWrapper linkBtnWrapper";
+
+  padding: 0.8rem;
+  box-sizing: border-box;
+  background-color: white;
+  @include card-bg-shadow;
+
+  &__continueWrapper {
+    grid-area: continueWrapper;
+    @include fhw;
+    @include flex-container(flex-start, center);
+    .badgeContainer {
+      width: 80px;
+      height: 100%;
+    }
+  }
+
+  &__breadCrumbsWrapper {
+    grid-area: breadCrumbsWrapper;
+    @include fhw;
+    @include flex-container(flex-start, center);
+    // border: 1px solid black;
+  }
+
+  &__titleWrapper {
+    grid-area: titleWrapper;
+    @include fhw;
+    // border: 1px solid green;
+    @include flex-container(flex-start, center);
+    p {
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__linkBtnWrapper {
+    grid-area: linkBtnWrapper;
+    height: 100%;
+    @include flex-container(flex-end, flex-end);
+    // border: 1px solid blue;
+    aspect-ratio: 1/1;
+    &__btnDiv {
+      width: 100%;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+    }
+  }
+}
+
+.breadCrumbWrapper {
+  width: auto;
+  height: 100%;
+  //   border: 1px solid black;
+  @include flex-container(flex-start, center);
+  &__iconWrapper {
+    // border: 1px solid salmon;
+    height: 100%;
+    aspect-ratio: 1/2;
+    @include flex-container(center, center);
+    &__iconDiv {
+      width: 50%;
+      aspect-ratio: 1/1;
+      //   border: 1px solid red;
+      @include flex-container(center, center);
+    }
+  }
+  &__textWrapper {
+    width: auto;
+    max-width: 100px;
+    // border: 1px solid cyan;
+    overflow: hidden;
+    height: auto;
+    p {
+      font-size: 0.65rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

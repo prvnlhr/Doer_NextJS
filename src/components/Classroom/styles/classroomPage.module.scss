@@ -1,0 +1,125 @@
+@import "../../../styles/mixins.module";
+
+.layoutWrapper {
+  @include fhw;
+  @include flex(center, center);
+
+  @media (max-width: 768px) {
+    @include scroll($dir: y);
+  }
+
+  .layoutGrid {
+    width: 98%;
+    height: 95%;
+    display: grid;
+    grid-template-areas:
+      "statsCell graphCell"
+      "subPageCell bookmarksCell";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 40% 60%;
+
+    @media (max-width: 768px) {
+      //   border: 1px solid red;
+      width: 98%;
+      height: 95%;
+      display: grid;
+      grid-template-areas:
+        "statsCell"
+        "graphCell"
+        "subPageCell"
+        "bookmarksCell";
+      grid-template-columns: 100%;
+      grid-template-rows: 40% 60% 60% 60%;
+    }
+  }
+  .statsCell {
+    grid-area: statsCell;
+    @include fhw;
+    // border: 1px solid slateblue;
+  }
+  .graphCell {
+    grid-area: graphCell;
+    @include fhw;
+    // border: 1px solid salmon;
+  }
+  .subPageCell {
+    grid-area: subPageCell;
+    @include fhw;
+    // border: 1px solid lightskyblue;
+  }
+  .bookmarksCell {
+    grid-area: bookmarksCell;
+    @include fhw;
+    // border: 1px solid lightseagreen;
+  }
+}
+
+.cellLayout {
+  @include fhw;
+  //   border: 1px solid red;
+  @include flex(top, left, column);
+
+  .cellHeader {
+    width: 100%;
+    height: 50px;
+    @include flex(center, left);
+    // border: 1px solid blue;
+    padding: 0px 8px;
+  }
+  .cellMain {
+    width: 100%;
+    height: calc(100% - 50px);
+    @include flex(center, center);
+    // border: 1px solid green;
+  }
+}
+
+.titleWrapper {
+  width: auto;
+  height: 80%;
+  //   border: 1px solid red;
+  @include flex(top, left, column);
+
+  .titleDiv {
+    width: auto;
+    height: calc(100% - 10px);
+    @include flex(center, left);
+
+    p {
+      font-size: 0.8rem;
+      color: #101828;
+      letter-spacing: 4px;
+      font-weight: 600;
+    }
+
+    .headerLink {
+      p {
+        color: #667085;
+      }
+
+      &--active {
+        p {
+          color: #101828;
+        }
+      }
+    }
+  }
+  .titleLine {
+    width: 100%;
+    height: 10px;
+    // border: 1px solid blue;
+    @include flex(center, left);
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 3px;
+      border-radius: 5px;
+      background-color: #635db0;
+    }
+  }
+}
+.titleWrapperLastChild {
+  margin-left: 20px;
+}

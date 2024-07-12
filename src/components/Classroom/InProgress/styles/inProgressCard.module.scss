@@ -1,0 +1,105 @@
+@import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+
+.card {
+  width: 280px;
+  aspect-ratio: 3/1.7;
+  margin: 2% 2%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(
+      0,
+      1fr
+    );
+  grid-template-rows: 20% 20% 20% 40%;
+  grid-template-areas:
+    "typeWrapper typeWrapper typeWrapper  linkBtnWrapper"
+    "titleWrapper titleWrapper titleWrapper  linkBtnWrapper"
+    "progressBarWrapper progressBarWrapper progressBarWrapper progressBarWrapper"
+    "progressPercWrapper progressPercWrapper completedWrapper completedWrapper";
+  padding: 0.8rem;
+  box-sizing: border-box;
+  background-color: white;
+  @include card-bg-shadow;
+
+  &__typeWrapper {
+    grid-area: typeWrapper;
+    @include fhw;
+    @include flex-container(flex-start, center);
+    // border: 1px solid salmon;
+    div {
+      width: auto;
+      padding-left: 5px;
+      padding-right: 5px;
+      height: 90%;
+    }
+  }
+  &__titleWrapper {
+    grid-area: titleWrapper;
+    @include fhw;
+    // border: 1px solid gold;
+    @include flex-container(flex-start, center);
+  }
+  &__progressBarWrapper {
+    grid-area: progressBarWrapper;
+    @include fhw;
+    @include flex-container(flex-start, center);
+    // border: 1px solid red;
+    .progressBarTrack {
+      width: 80%;
+      height: 4px;
+      background-color: #eceff2;
+      border-radius: 3px;
+      @include flex-container(flex-start, center);
+      overflow: hidden;
+      &__progressBar {
+        width: 50%;
+        height: 100%;
+        background: #635db0;
+      }
+    }
+  }
+  &__progressPercWrapper {
+    grid-area: progressPercWrapper;
+    @include fhw;
+    // border: 1px solid green;
+  }
+  &__completedWrapper {
+    grid-area: completedWrapper;
+    @include fhw;
+    // border: 1px solid salmon;
+  }
+
+  &__linkBtnWrapper {
+    grid-area: linkBtnWrapper;
+    @include fhw;
+    // border: 1px solid blue;
+    padding: 0.5rem;
+    @include flex-container(flex-end, flex-end);
+  }
+
+  .valueWrapper {
+    width: 100%;
+    height: 70%;
+    // border: 1px solid blue;
+    @include flex-container(flex-start, flex-end);
+    p {
+      font-size: 2rem;
+      color: #635db0;
+      //   border: 1px solid red;
+    }
+    span {
+      font-size: 1rem;
+      color: $secondary-text-color;
+      //   border: 1px solid red;
+    }
+  }
+  .lableWrapper {
+    width: 100%;
+    height: 30%;
+    // border: 1px solid red;
+    @include flex-container(flex-start, center);
+    p {
+      font-size: 0.6rem;
+    }
+  }
+}

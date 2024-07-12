@@ -48,6 +48,19 @@
   flex-wrap: $wrap;
 }
 
+// @mixin flex(
+//   $justify: flex-start,
+//   $align: flex-start,
+//   $dir: row,
+//   $wrap: nowrap
+// ) {
+//   display: flex;
+//   justify-content: $justify;
+//   align-items: $align;
+//   flex-direction: $dir;
+//   flex-wrap: $wrap;
+// }
+
 @mixin border($size: 1px, $type: solid, $color: black) {
   border: $size $type $color;
 }
@@ -97,4 +110,49 @@
 
 @mixin border {
   border: 1px solid #d0d5dd;
+}
+
+@mixin flex($position1, $position2, $direction: row, $wrap: nowrap) {
+  $justify-content: flex-start;
+  $align-items: flex-start;
+
+  @if $direction == row {
+    @if $position1 == top or $position1 == left {
+      $align-items: flex-start;
+    } @else if $position1 == center {
+      $align-items: center;
+    } @else if $position1 == bottom or $position1 == right {
+      $align-items: flex-end;
+    }
+
+    @if $position2 == left or $position2 == top {
+      $justify-content: flex-start;
+    } @else if $position2 == center {
+      $justify-content: center;
+    } @else if $position2 == right or $position2 == bottom {
+      $justify-content: flex-end;
+    }
+  } @else if $direction == column {
+    @if $position1 == top or $position1 == left {
+      $justify-content: flex-start;
+    } @else if $position1 == center {
+      $justify-content: center;
+    } @else if $position1 == bottom or $position1 == right {
+      $justify-content: flex-end;
+    }
+
+    @if $position2 == left or $position2 == top {
+      $align-items: flex-start;
+    } @else if $position2 == center {
+      $align-items: center;
+    } @else if $position2 == right or $position2 == bottom {
+      $align-items: flex-end;
+    }
+  }
+
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
 }

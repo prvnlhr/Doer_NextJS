@@ -8,7 +8,7 @@ const PopUpMenuIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_235_436)">
+      <g clipPath="url(#clip0_235_436)">
         <circle cx="3.95991" cy="4.4325" r="3.12366" fill="#7E8DA4" />
         <circle cx="14.8736" cy="4.4325" r="3.12366" fill="#7E8DA4" />
         <circle
@@ -16,7 +16,7 @@ const PopUpMenuIcon = () => {
           cy="15.3471"
           r="3.12366"
           fill="#7E8DA4"
-          fill-opacity="0.13"
+          fillOpacity="0.13"
         />
         <circle cx="14.8736" cy="15.3471" r="3.12366" fill="#7E8DA4" />
       </g>
