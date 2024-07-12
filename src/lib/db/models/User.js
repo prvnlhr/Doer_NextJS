@@ -7,10 +7,24 @@ const userSchema = new mongoose.Schema(
     country: { type: String, required: true },
     otp: { type: String },
     otpExpiry: { type: Date },
+    otpRequestCount: { type: Number, default: 0 },
+    lastOtpRequestAt: { type: Date },
   },
   { timestamps: true }
 );
 
+// Middleware to update OTP request count and timestamp before saving user
+userSchema.pre("save", function (next) {
+  const demoEmail = process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
+
+  // Check if the user is not the demo account
+  if (this.email !== demoEmail && this.isModified("otp")) {
+    // Increment OTP request count and update last OTP request timestamp
+    this.otpRequestCount++;
+    this.lastOtpRequestAt = new Date();
+  }
+  next();
+});
 const User = mongoose?.models?.User || mongoose.model("User", userSchema);
 
 export default User;

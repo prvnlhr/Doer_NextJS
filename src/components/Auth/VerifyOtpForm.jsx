@@ -7,6 +7,7 @@ import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Spinner from "../Common/Icons/Spinner";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { resendOtp } from "@/lib/api/auth/authApi";
 
 const VerifyOtpForm = ({ email }) => {
   const router = useRouter();
@@ -101,6 +102,30 @@ const VerifyOtpForm = ({ email }) => {
     return `${maskedUsername}@${domain}`;
   };
 
+  const resendOtpHandler = async () => {
+    try {
+      formik.setSubmitting(true);
+      const resendRes = await resendOtp(email);
+      if (resendRes.message === "OTP sent successfully") {
+        setTimer(120);
+        setShowResendButton(false);
+        formik.setErrors({
+          formError: resendRes.message || "Enter the new OTP",
+        });
+      } else {
+        console.log("ERROR", resendRes);
+        formik.setErrors({
+          formError: resendRes.message || "Unexpected error",
+        });
+      }
+    } catch (error) {
+      console.log("ERROR2", error);
+      console.error("Resend OTP error:", error);
+      formik.setErrors({ formError: error.message || "Resend OTP error" });
+    } finally {
+      formik.setSubmitting(false);
+    }
+  };
   return (
     <div className={styles.verifyOtpFormWrapper}>
       <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
@@ -141,8 +166,14 @@ const VerifyOtpForm = ({ email }) => {
         </div>
         <div className={styles.resendCell}>
           {showResendButton ? (
-            <button type="button">
-              <p>Resend OTP</p>
+            <button type="button" onClick={resendOtpHandler}>
+              {formik.isSubmitting ? (
+                <div className={styles.resendSpinnerDiv}>
+                  <Spinner color="#635DB0" />
+                </div>
+              ) : (
+                <p>Resend OTP</p>
+              )}
             </button>
           ) : (
             <div className={styles.timerWrapper}>
@@ -164,7 +195,11 @@ const VerifyOtpForm = ({ email }) => {
               </p>
             </div>
             <button type="submit" className={styles.submitButton}>
-              {formik.isSubmitting ? <Spinner /> : <SubmitBtnIcon />}
+              {formik.isSubmitting && !showResendButton ? (
+                <Spinner />
+              ) : (
+                <SubmitBtnIcon />
+              )}
             </button>
           </div>
         </div>

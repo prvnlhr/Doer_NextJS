@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import styles from "./styles/signInForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { signIn } from "@/lib/api/auth/authApi";
+import { demoSignIn, userSignIn } from "@/lib/api/auth/authApi";
 import EmailIcon from "../Common/Icons/EmailIcon";
 import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Link from "next/link";
 import Spinner from "../Common/Icons/Spinner";
 import VerifyOtpForm from "./VerifyOtpForm";
 import CrossIcon from "../Common/Icons/CrossIcon";
+import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
+  const router = useRouter();
+  const [isDemoLogin, setIsDemoLogin] = useState(false);
   const [showOtpForm, setShowOtpForm] = useState(false);
   const initialValues = {
     email: "",
@@ -33,7 +36,7 @@ const SignInForm = () => {
 
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        const res = await signIn(values.email);
+        const res = await userSignIn(values.email);
         if (res.message === "OTP sent successfully") {
           setShowOtpForm(true);
         } else {
@@ -48,6 +51,25 @@ const SignInForm = () => {
     },
   });
 
+  const handleDemoLogin = async () => {
+    try {
+      formik.setSubmitting(true);
+      const demoRes = await demoSignIn();
+      if (demoRes.error) {
+        formik.setErrors({ formError: demoRes.message || "Unexpected error" });
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Demo sign-in error:", error);
+      formik.setErrors({
+        formError: error.message || "Failed to sign in with demo account",
+      });
+    } finally {
+      formik.setSubmitting(false);
+      setIsDemoLogin(false);
+    }
+  };
   return (
     <div className={styles.pageWrapper}>
       {showOtpForm ? (
@@ -109,7 +131,11 @@ const SignInForm = () => {
                   </p>
                 </div>
                 <button type="submit" className={styles.submitButton}>
-                  {formik.isSubmitting ? <Spinner /> : <SubmitBtnIcon />}
+                  {formik.isSubmitting && !isDemoLogin ? (
+                    <Spinner />
+                  ) : (
+                    <SubmitBtnIcon />
+                  )}
                 </button>
               </div>
             </div>
@@ -118,6 +144,39 @@ const SignInForm = () => {
               <Link className={styles.footerLink} href="/auth/signup">
                 <p>SignUp</p>
               </Link>
+            </div>
+            <div className={styles.demoLoginCell}>
+              <button
+                type="button"
+                onClick={() => {
+                  handleDemoLogin();
+                  setIsDemoLogin((prev) => !prev);
+                }}
+                className={`${styles.demoLoginBtn}`}
+                disabled={formik.isSubmitting}
+              >
+                <div className={styles.btnTextDiv}>
+                  <p>Demo Login</p>
+                </div>
+                <div className={styles.demoBtnIconDiv}>
+                  {formik.isSubmitting && isDemoLogin ? (
+                    <Spinner color={"#635DB0"} />
+                  ) : (
+                    <svg
+                      width="14"
+                      height="8"
+                      viewBox="0 0 14 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.3536 4.35355C13.5488 4.15829 13.5488 3.84171 13.3536 3.64645L10.1716 0.464466C9.97631 0.269204 9.65973 0.269204 9.46447 0.464466C9.2692 0.659728 9.2692 0.976311 9.46447 1.17157L12.2929 4L9.46447 6.82843C9.2692 7.02369 9.2692 7.34027 9.46447 7.53553C9.65973 7.7308 9.97631 7.7308 10.1716 7.53553L13.3536 4.35355ZM0 4.5H13V3.5H0V4.5Z"
+                        fill="black"
+                      />
+                    </svg>
+                  )}
+                </div>
+              </button>
             </div>
           </form>
         </div>

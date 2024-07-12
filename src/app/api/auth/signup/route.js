@@ -11,6 +11,17 @@ const generateOTP = async () => {
   return { otp, hashedOTP, expiryTime };
 };
 
+// const generateOTP = async () => {
+//   const otp = Math.floor(10000 + Math.random() * 90000); // Generate a random 5-digit OTP
+//   const hashedOTP = await bcrypt.hash(otp.toString(), 10); // Hash the OTP (optional, based on your needs)
+
+//   // Set a very large expiry time (e.g., 100 years from now)
+//   const currentTime = Date.now();
+//   const expiryTime = currentTime + 100 * 365 * 24 * 60 * 60 * 1000; // 100 years in milliseconds
+
+//   return { otp, hashedOTP, expiryTime };
+// };
+
 // SIGNUP USER
 export async function POST(req, res) {
   const { fullname, email, country } = await req.json();

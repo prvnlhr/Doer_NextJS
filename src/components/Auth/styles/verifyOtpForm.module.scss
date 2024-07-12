@@ -88,21 +88,29 @@
       grid-area: resendCell;
       @include fhw;
       // border: 1px solid salmon;
-      @include flex-container(center, flex-start);
+      @include flex-container(center, center);
 
       button {
         background-color: #e7effc;
         width: auto;
         height: auto;
+        max-height: 90%;
         padding: 5px 10px;
         border: none;
         outline: none;
         border-radius: 5px;
+        @include flex-container(center, center);
         cursor: pointer;
         p {
           color: #635db0;
           font-weight: 600;
           font-size: 0.7rem;
+        }
+        .resendSpinnerDiv {
+          height: 24px;
+          aspect-ratio: 1/1;
+          @include flex-container(center, center);
+          // border: 1px solid red;
         }
       }
 
@@ -118,9 +126,9 @@
           background-color: #e7effc;
           border-radius: 5px;
           p {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             color: #101828;
-            font-weight: 500;
+            font-weight: 600;
           }
           &:first-child {
             margin-right: 5px;

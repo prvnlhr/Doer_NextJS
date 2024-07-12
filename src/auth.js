@@ -28,6 +28,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           if (!isOtpValid) {
             throw new Error("Invalid OTP");
           }
+          const isDemoAccount =
+            user.email === process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
+
+          if (!isDemoAccount) {
+            user.otp = null;
+            user.otpExpiry = null;
+            await user.save();
+          }
 
           return {
             userId: user._id,
@@ -59,7 +67,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       session.user = token;
       return session;
     },
-    
   },
   session: {
     jwt: true,

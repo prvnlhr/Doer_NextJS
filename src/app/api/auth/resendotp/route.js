@@ -11,7 +11,7 @@ const generateOTP = async () => {
   return { otp, hashedOTP, expiryTime };
 };
 
-// SIGNIN USER
+// RESEND OTP USER
 export async function POST(req, res) {
   const { email } = await req.json();
   await dbConnect();
@@ -33,6 +33,7 @@ export async function POST(req, res) {
         status: 400,
       });
     }
+
     // -----------------------------------------------------
 
     const currentTime = new Date();
