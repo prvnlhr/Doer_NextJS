@@ -45,7 +45,9 @@ const SignUpForm = () => {
         const res = await signUp(userData);
         console.log(res);
         if (res.message === "Sign Up Successful") {
-          router.push("/auth/verifyotp");
+          router.push(
+            `/auth/verifyotp?email=${encodeURIComponent(values.email)}`
+          );
         } else {
           setErrors({ formError: res.message || "Unexpected error" });
         }

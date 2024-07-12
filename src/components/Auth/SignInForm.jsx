@@ -9,6 +9,8 @@ import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Link from "next/link";
 import Spinner from "../Common/Icons/Spinner";
 import { useRouter, useSearchParams, redirect } from "next/navigation";
+import CryptoJS from "crypto-js";
+import { encryptEmail } from "@/lib/utils/cryptoUtil";
 
 const SignInForm = () => {
   const router = useRouter();
@@ -35,9 +37,9 @@ const SignInForm = () => {
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         const res = await signIn(values.email);
-
         if (res.message === "OTP sent successfully") {
-          router.push(`/auth/verifyotp?email=${values.email.toString()}`);
+          const encryptedEmail = await encryptEmail(values.email);
+          router.push(`/auth/verifyotp?email=${encryptedEmail}`);
         } else {
           setErrors({ formError: res.message || "Unexpected error" });
         }

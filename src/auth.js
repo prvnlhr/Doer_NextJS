@@ -14,7 +14,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         try {
           await dbConnect();
-          
+
           const user = await User.findOne({ email: credentials.email });
           if (!user) {
             throw new Error("No user found with the email");
@@ -59,6 +59,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       session.user = token;
       return session;
     },
+    
   },
   session: {
     jwt: true,

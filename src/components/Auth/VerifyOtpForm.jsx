@@ -7,6 +7,8 @@ import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Spinner from "../Common/Icons/Spinner";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession, signIn } from "next-auth/react";
+import CryptoJS from "crypto-js";
+import { decryptEmail } from "@/lib/utils/cryptoUtil";
 
 const VerifyOtpForm = () => {
   const router = useRouter();
@@ -19,6 +21,7 @@ const VerifyOtpForm = () => {
   const [otp, setOtp] = useState(initialOtp);
   const [timer, setTimer] = useState(120);
   const [showResendButton, setShowResendButton] = useState(false);
+  const [userEmail, setUserEmail] = useState();
 
   const verifyOtpSchema = Yup.object().shape({
     otp: Yup.string()
@@ -77,6 +80,7 @@ const VerifyOtpForm = () => {
   }, [otp]);
 
   useEffect(() => {
+    fetchData();
     if (timer > 0) {
       const intervalId = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
@@ -115,7 +119,7 @@ const VerifyOtpForm = () => {
           </div>
           <div className={styles.subHeaderCell}>
             <p>Enter the OTP received on</p>
-            <p>{maskEmail(paramsEmail)}</p>
+            <p>{userEmail}</p>
           </div>
           <div className={styles.messageCell}>
             {formik.errors.formError && (
