@@ -5,6 +5,7 @@
   height: 100%;
   @include flex-container(center, flex-start);
   position: relative;
+  // border: 1px solid red;
 }
 .signInFormWrapper {
   position: absolute;
@@ -20,9 +21,9 @@
   right: 0;
   margin-top: 20px;
   padding: 10px 20px;
+  // border: 1px solid red;
   .formContainer {
     @include fhw;
-    // border: 1px solid red;
     display: grid;
     grid-template-areas:
       "headerCell"

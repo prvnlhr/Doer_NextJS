@@ -1,16 +1,21 @@
-import sgMail from "@sendgrid/mail";
+import nodemailer from "nodemailer";
 
-const { SENDER_EMAIL_ADDRESS, SEND_GRID_API_KEY } = process.env;
-sgMail.setApiKey(SEND_GRID_API_KEY);
+const { GMAIL_ID, GMAIL_PASS, SENDER_EMAIL } = process.env;
 
-const sendMail = async (to, otpDigits) => {
-  try {
-    const emailData = {
-      from: SENDER_EMAIL_ADDRESS,
-      to,
-      subject: "One Time Password",
-      html: `
-        <!DOCTYPE html>
+const transport = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: GMAIL_ID,
+    pass: GMAIL_PASS,
+  },
+});
+
+export const sendOTPEmail = async (to, otpDigits) => {
+  const mailOptions = {
+    from: SENDER_EMAIL,
+    to: to,
+    subject: "One Time Password",
+    html: `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -96,16 +101,14 @@ const sendMail = async (to, otpDigits) => {
                 </div>
             </div>
         </body>
-        </html>
-      `,
-    };
+        </html>`,
+  };
 
-    const res = await sgMail.send(emailData);
-    console.log("OTP email sent successfully.", res);
+  try {
+    const mailRes = await transport.sendMail(mailOptions);
+    return { success: true, message: "OTP email sent successfully.", mailRes };
   } catch (error) {
     console.error("Error sending OTP email:", error);
-    throw new Error("Error sending OTP email.", error);
+    throw new Error("Error sending OTP email.");
   }
 };
-
-export default sendMail;

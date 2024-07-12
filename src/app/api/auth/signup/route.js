@@ -1,11 +1,7 @@
-import EmailTemplate from "@/components/Email/EmailTemplate";
 import dbConnect from "@/lib/db/dbConnect";
 import User from "@/lib/db/models/User";
-import sendMail from "@/lib/utils/sendMail";
+import { sendOTPEmail } from "@/lib/utils/sendMail";
 import bcrypt from "bcrypt";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const generateOTP = async () => {
   const otp = Math.floor(10000 + Math.random() * 90000);
@@ -14,8 +10,6 @@ const generateOTP = async () => {
   const hashedOTP = await bcrypt.hash(otp.toString(), 10);
   return { otp, hashedOTP, expiryTime };
 };
-
-
 
 // SIGNUP USER
 export async function POST(req, res) {
@@ -41,10 +35,22 @@ export async function POST(req, res) {
     });
 
     const otpDigits = otp.toString().split("").map(Number);
-    await sendMail(email, otpDigits);
-    return new Response(JSON.stringify({ message: "Sign Up Successful" }), {
-      status: 201,
-    });
+    const emailRes = await sendOTPEmail(email, otpDigits);
+    if (
+      emailRes.success &&
+      emailRes?.message === "OTP email sent successfully."
+    ) {
+      return new Response(JSON.stringify({ message: "Sign Up Successful" }), {
+        status: 201,
+      });
+    } else {
+      return new Response(
+        JSON.stringify({ message: "Error sending OTP email" }),
+        {
+          status: 500,
+        }
+      );
+    }
   } catch (error) {
     console.log(error);
     return new Response(

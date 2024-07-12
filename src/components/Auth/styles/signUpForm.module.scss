@@ -4,6 +4,7 @@
   height: 100%;
   @include flex-container(center, flex-start);
   position: relative;
+  // border: 1px solid red;
 }
 .signUpFormWrapper {
   position: absolute;

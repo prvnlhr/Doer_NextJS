@@ -1,11 +1,7 @@
 import dbConnect from "@/lib/db/dbConnect";
 import User from "@/lib/db/models/User";
 import bcrypt from "bcrypt";
-import { Resend } from "resend";
-import EmailTemplate from "@/components/Email/EmailTemplate";
-import sendMail from "@/lib/utils/sendMail";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { sendOTPEmail } from "@/lib/utils/sendMail";
 
 const generateOTP = async () => {
   const otp = Math.floor(10000 + Math.random() * 90000);
@@ -14,7 +10,6 @@ const generateOTP = async () => {
   const hashedOTP = await bcrypt.hash(otp.toString(), 10);
   return { otp, hashedOTP, expiryTime };
 };
-
 
 // SIGNIN USER
 export async function POST(req, res) {
@@ -44,10 +39,27 @@ export async function POST(req, res) {
     await user.save();
 
     const otpDigits = otp.toString().split("").map(Number);
-    await sendMail(email, otpDigits);
-    return new Response(JSON.stringify({ message: "OTP sent successfully" }), {
-      status: 200,
-    });
+
+    const emailRes = await sendOTPEmail(email, otpDigits);
+
+    if (
+      emailRes.success &&
+      emailRes?.message === "OTP email sent successfully."
+    ) {
+      return new Response(
+        JSON.stringify({ message: "OTP sent successfully" }),
+        {
+          status: 200,
+        }
+      );
+    } else {
+      return new Response(
+        JSON.stringify({ message: "Error sending OTP email" }),
+        {
+          status: 500,
+        }
+      );
+    }
   } catch (error) {
     console.error("Error during sign-in:", error);
     return new Response(
