@@ -5,7 +5,11 @@ import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { reverseSlug } from "@/lib/utils/slugUtil";
+import { useAppState } from "@/context/AppContext";
+
 const MainView = ({ children, show, setShow }) => {
+  const { courseState } = useAppState();
+  // console.log(courseState);
   const params = useParams();
   return (
     <div
@@ -21,6 +25,7 @@ const MainView = ({ children, show, setShow }) => {
           <SideBarToggleIcon />
         </div>
         <div className={styles.breadcrumbsGroup}>
+          {/* BreadCrumb 1 */}
           <div className={styles.breadCrumbsContainer}>
             <Link href={`/content/courses`} className={styles.link}>
               <p>Course</p>
@@ -32,6 +37,7 @@ const MainView = ({ children, show, setShow }) => {
             </div>
           </div>
 
+          {/* BreadCrumb 2 */}
           <div className={styles.breadCrumbsContainer}>
             <Link
               href={`/content/courses/${params.courseName}/${params.courseId}/chapters`}
@@ -46,13 +52,14 @@ const MainView = ({ children, show, setShow }) => {
             </div>
           </div>
 
+          {/* BreadCrumb 3 */}
           <div className={styles.breadCrumbsContainer}>
             <Link
               href={`/content/courses/${params.courseName}/${params.courseId}/chapters`}
               className={styles.link}
             >
               <p style={{ color: "#635db0", fontWeight: 500 }}>
-                {reverseSlug(params.topicName)}
+                {courseState.topicName}
               </p>
             </Link>
             <div className={styles.chevIconContainer}>

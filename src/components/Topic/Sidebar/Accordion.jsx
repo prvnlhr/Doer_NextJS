@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles/accordion.module.scss";
 import AccordionItem from "./AccordionItem";
+import { useAppState } from "@/context/AppContext";
 
 const Accordion = ({ accordionListData, params }) => {
   const [currOpenItemId, setCurrOpenItemId] = useState(null);
   const [currOpenItemHeight, setCurrOpenItemHeight] = useState();
+  const { courseState, setCourseState } = useAppState();
 
   useEffect(() => {
     if (accordionListData) {
@@ -15,6 +17,12 @@ const Accordion = ({ accordionListData, params }) => {
           40
       );
     }
+
+    // setCourseState((prevState) => ({
+    //   ...prevState,
+    //   topicName: "",
+    // }));
+    // console.log(params);
     setCurrOpenItemId(params.chapterId);
   }, [params.chapterId, accordionListData]);
 
@@ -23,14 +31,17 @@ const Accordion = ({ accordionListData, params }) => {
       <div className={styles.accordHeaderWrapper}></div>
       <div className={styles.accordListWrapper}>
         {accordionListData &&
-          accordionListData.map((chapter, indx) => (
-            <AccordionItem
-              key={indx}
-              chapter={chapter}
-              currOpenItemId={currOpenItemId}
-              currOpenItemHeight={currOpenItemHeight}
-            />
-          ))}
+          accordionListData.map(
+            (chapter, indx) =>
+              chapter?.topicsCount > 0 && (
+                <AccordionItem
+                  key={indx}
+                  chapter={chapter}
+                  currOpenItemId={currOpenItemId}
+                  currOpenItemHeight={currOpenItemHeight}
+                />
+              )
+          )}
       </div>
     </>
   );

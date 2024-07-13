@@ -1,11 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { animate, motion } from "framer-motion";
-
 import styles from "./styles/linkButton.module.scss";
+import { useAppState } from "@/context/AppContext";
 
-const LinkButton = ({ to }) => {
+const LinkButton = ({ to, linkProps }) => {
+  const { courseState, setCourseState } = useAppState();
+
+  useEffect(() => {
+    if (linkProps) {
+      setCourseState((prevState) => ({
+        ...prevState,
+        ...linkProps,
+      }));
+    }
+  }, [linkProps, setCourseState]);
+
   const animationVariant = {
     initial: {
       x: 0,

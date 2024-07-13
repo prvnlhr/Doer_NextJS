@@ -24,15 +24,12 @@ export async function GET(req, { params }) {
           localField: "_id",
         },
       },
-      // {
-      //   $addFields: {
-      //     topics: { $slice: ["$topics", 2] },
-      //   },
-      // },
+
       {
         $project: {
           _id: 1,
           title: 1,
+          slug: 1,
           course: 1,
           duration: 1,
           topicsCount: 1,

@@ -9,8 +9,11 @@ import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import { toggleBookmark } from "@/lib/api/public/usersApi";
+import { useAppState } from "@/context/AppContext";
 
 const TopicContent = ({ topic }) => {
+  const { courseState, setCourseState } = useAppState();
+
   const { data: session } = useSession();
   const params = useParams();
 

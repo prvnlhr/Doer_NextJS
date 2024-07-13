@@ -7,8 +7,11 @@ export const useAppState = () => useContext(AppStateContext);
 export const AppStateProvider = ({ children }) => {
   const [courseState, setCourseState] = useState({
     courseId: "",
+    courseName: "",
     chapterId: "",
+    chapterName: "",
     topicId: "",
+    topicName: "",
   });
 
   return (

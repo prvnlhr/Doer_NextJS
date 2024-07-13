@@ -19,6 +19,7 @@ const TopicsListItem = ({ topic }) => {
 };
 
 const ChapterCard = ({ chapter, index }) => {
+  console.log(chapter);
   return (
     <div className={styles.card}>
       <div className={styles.card__chapterNumWrapper}>
@@ -59,15 +60,13 @@ const ChapterCard = ({ chapter, index }) => {
       <div className={styles.card__linkBtnWrapper}>
         <div className={styles.buttonWrapper}>
           <LinkButton
-            to={
-              chapter?.topics.length > 0
-                ? `chapters/${generateSlug(chapter.title)}/${
-                    chapter._id
-                  }/topic/${generateSlug(chapter.topics[0].title)}/${
-                    chapter.topics[0]._id
-                  }`
-                : "#"
-            }
+            to={`chapters/${chapter.slug}/${chapter._id}/topic/${chapter.topics[0].slug}/${chapter.topics[0]._id}`}
+            linkProps={{
+              chapterId: chapter._id,
+              chapterName: chapter.title,
+              topicId: chapter.topics[0]._id,
+              topicName: chapter.topics[0].title,
+            }}
           />
         </div>
       </div>
