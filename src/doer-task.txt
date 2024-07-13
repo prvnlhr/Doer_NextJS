@@ -1,0 +1,375 @@
+admin/courses
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/add
+
+
+admin/courses/[courseNameSlug]/chapters  
+admin/courses/[courseNameSlug]/chapters/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/[topicNameSlug]/edit/[topicId]
+
+
+
+
+> admin      admin/courses
+  > courses
+    page.js
+ 
+> admin      admin/courses/[courseNameSlug]/edit/[courseId]
+  > courses
+    > add
+      - page.js
+    > [courseName]
+      > edit
+        > [courseId]
+          - page.js
+
+> admin     admin/courses/add
+  > courses
+    > add
+      - page.js
+    
+
+ 
+> admin      admin/courses/[courseNameSlug]/chapters  (READ)
+  > courses
+    > [courseName]
+      > chapters
+        - page.js
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/add (CREATE)
+  > courses
+    > [courseName]
+      > chapters
+        > add
+         - page.js
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]   (UPDATE)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > edit
+            > [chapterId]
+              - page.js 
+
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics   (READ)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > topics
+            - page.js 
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/add   (CREATE)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > topics
+            > add
+              - page.js 
+
+
+> admin      admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/[topicNameSlug]/edit/[topicId]   (UPDATE)
+  > courses
+    > [courseName]
+      > chapters
+        > [chapterName]
+          > topics
+            > [topicName]
+              > edit
+                > [topicId]
+                   - page.js
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+admin/courses/add
+admin/courses/[courseNameSlug]/chapters/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/add
+
+
+admin/courses  
+admin/courses/[courseNameSlug]/chapters 
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics   
+
+
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/topics/[topicNameSlug]/edit/[topicId]
+
+
+
+
+
+
+
+const lastSegment = pathSegments.at(-1)
+
+if(['courses','chapters','topics'].includes(lastSegment))  Show Add addBtn
+
+if(lastSegment == add)  check secondLastSegment
+
+else if()
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+1. Either change folder structure
+
+
+admin/courses
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/add
+
+
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/[courseNameSlug]/chapters  
+
+
+admin/courses/[courseNameSlug]/edit/[courseId]
+admin/courses/[courseNameSlug]/[courseId]/edit
+admin/courses/[courseNameSlug]/[courseId]/chapters  
+
+
+admin/courses/[courseNameSlug]/[courseId]/chapters  
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+
+
+
+admin/courses/[courseNameSlug]/chapters/add
+admin/courses/[courseNameSlug]/chapters/[chapterNameSlug]/edit/[chapterId]
+
+
+
+
+
+
+
+
+// Only Show ADD COURSE, CHAPTER, TOPIC
+
+admin/courses/add
+admin/courses/[courseId]/chapters/add
+admin/courses/[courseId]/chapters/[chapterId]/topics/add
+
+
+admin/courses
+
+
+
+admin/courses/[courseId]/edit
+admin/courses/[courseId]/chapters  
+
+
+admin/courses/[courseId]/chapters/[chapterId]/edit
+admin/courses/[courseId]/chapters/[chapterId]/topics
+
+
+
+admin/courses/[courseId]/chapters/[chapterId]/topics/[topicId]/edit
+
+
+
+
+
+TAB1   TAB2
+
+----------------------------------------------------------------
+AUTH FLOW
+
+
+1. SIGNUP
+    - API route handler will handle the new users registeration
+    - Checks DB if user exist or not, if not the create new user
+    - send email with OTP
+
+2. If user is register successfully
+    - show a OTP verify form
+    - user enter the OTP
+
+3. Verifying user's OTP
+    - Verify the OTP
+    - if correct the user gets logged in
+
+4. SIGNIN 
+    - user enter the email
+    - checks DB for email
+    - if email present the show OTP verify form
+    - next step same as step 3
+   
+
+ --------------------------------------------------------------------------------------------
+
+ CLASSROOM PAGE
+
+
+1. Topic can be bookmarked -> add bookmark icon at top of topic content [Done]
+
+2. In Last opened will keep topic ->  courseId, chapterId, topicId [Done]
+
+3. In Progress -> show the course progress
+    - Show number of chapters completed :
+       -> number of chapters completed will depend on number of topic completed
+       -> topic will be marked as completed when the time spent on a particular topic is more or equal
+         to the mentioned duration of topic 
+
+    - Show percentage of course completion :
+       -> percentage of course completion can be calculated using the below formula
+          
+           num of topic completed in a course
+           ---------------------------------- x 100
+           total number of topic in a course
+
+
+
+DATE MODELING ::
+
+import mongoose from "mongoose";
+
+// Schema to store bookmarked topics
+const BookmarkTopicSchema = new mongoose.Schema({
+  topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true },
+  topicName: { type: String, required: true },
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+  courseName: { type: String, required: true },
+  chapterId: { type: mongoose.Schema.Types.ObjectId, ref: "Chapter", required: true },
+  chapterName: { type: String, required: true },
+  topicDuration: { type: Number, required: true },
+}, { _id: false }); // _id: false to avoid creating an _id for each subdocument
+
+// Schema to store last opened topics
+const LastOpenedTopicSchema = new mongoose.Schema({
+  topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true },
+  topicName: { type: String, required: true },
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+  courseName: { type: String, required: true },
+  chapterId: { type: mongoose.Schema.Types.ObjectId, ref: "Chapter", required: true },
+  chapterName: { type: String, required: true },
+}, { _id: false }); // _id: false to avoid creating an _id for each subdocument
+
+// Schema to track the completion status of courses, chapters, and topics
+const CourseProgressSchema = new mongoose.Schema({
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+  completed: { type: Boolean, default: false },
+  chapters: [{
+    chapterId: { type: mongoose.Schema.Types.ObjectId, ref: "Chapter", required: true },
+    completed: { type: Boolean, default: false },
+    topics: [{
+      topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true },
+      completed: { type: Boolean, default: false },
+    }],
+  }],
+});
+
+// Schema to encapsulate bookmarked and last opened topics, along with course progress
+const CourseStateSchema = new mongoose.Schema({
+  bookmarkedTopics: [BookmarkTopicSchema],
+  lastOpenedTopics: [LastOpenedTopicSchema],
+  courseProgress: [CourseProgressSchema],
+});
+
+// Schema to define user details including course state
+const UserSchema = new mongoose.Schema({
+  fullname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  country: { type: String, required: true },
+  otp: { type: String },
+  otpExpiry: { type: Date },
+  otpRequestCount: { type: Number, default: 0 },
+  lastOtpRequestAt: { type: Date },
+  courseState: {
+    type: CourseStateSchema,
+    default: {},
+  },
+}, { timestamps: true });
+
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+
+export default User;
+
+
+
+
+-------------------------------------
+
+bookmarking a topic ::
+
+  - if already bookmarked remove
+  - if not add to bookmark
+
+
+last opened topic ::
+
+  - first check if 'lastOpenedTopics' length is 10.
+  - if length is  10 remove the oldest item and add new item
+  - if length < 10 then add new item
+
+
+course progress ::
+ - if a user visits any topic at frontend and spents time  greater then or equal to topic's duration,
+   then its consider completed. In this case add this topic's courseIdm chapterId and topicId to the 
+   CourseProgressSchema. Course will be marked not completed = false chapter will be marked completed = false
+   topicId will be added and will  be marked completed = true
+
+- if completed topics equal to total topics then chapter itself is marked completed.
+- if completed chapters equal to total chapter then course itself is marked completed.
+   
+
+
+
+
+
+api routes
+
+GET /api/users/{userId}
+
+GET /api/users/{userId}/bookmarks
+POST /api/users/{userId}/bookmarks
+
+GET /api/users/{userId}/last-opened
+POST /api/users/{userId}/last-opened
+
+GET /api/users/{userId}/course-progress
+POST /api/users/{userId}/course-progress
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------
+
+TODO ::
+- show topic duration at topic content page
+- add skeleton
+- show only courses which chapters count 1 or more and similar for chapters 
+- also show content which are only active 
+
+

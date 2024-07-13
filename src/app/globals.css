@@ -22,6 +22,10 @@ textarea {
   font-family: inherit;
   color: #172c3c;
 }
+button{
+  font-family: inherit;
+
+}
 
 /* .ck-editor__editable_inline:not(.ck-comment__input *) {
   height: 300px;

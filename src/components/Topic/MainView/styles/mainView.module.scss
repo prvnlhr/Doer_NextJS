@@ -40,7 +40,6 @@
   &__contentWrapper {
     grid-area: contentWrapper;
     @include fhw;
-    padding: 20px 40px;
   }
   @media (max-width: 768px) {
     width: 100%;

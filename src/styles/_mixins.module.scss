@@ -112,47 +112,65 @@
   border: 1px solid #d0d5dd;
 }
 
-@mixin flex($position1, $position2, $direction: row, $wrap: nowrap) {
-  $justify-content: flex-start;
-  $align-items: flex-start;
-
+@mixin flex($verticalPos, $horizontalPos, $direction: row) {
+  
   @if $direction == row {
-    @if $position1 == top or $position1 == left {
-      $align-items: flex-start;
-    } @else if $position1 == center {
-      $align-items: center;
-    } @else if $position1 == bottom or $position1 == right {
-      $align-items: flex-end;
+    // Flex direction row
+    @if $verticalPos == top {
+      align-items: flex-start;
+    } @else if $verticalPos == center {
+      align-items: center;
+    } @else if $verticalPos == bottom {
+      align-items: flex-end;
     }
 
-    @if $position2 == left or $position2 == top {
-      $justify-content: flex-start;
-    } @else if $position2 == center {
-      $justify-content: center;
-    } @else if $position2 == right or $position2 == bottom {
-      $justify-content: flex-end;
+    @if $horizontalPos == left {
+      justify-content: flex-start;
+    } @else if $horizontalPos == center {
+      justify-content: center;
+    } @else if $horizontalPos == right {
+      justify-content: flex-end;
+    } @else if $horizontalPos == sb {
+      justify-content: space-between;
+    } @else if $horizontalPos == sa {
+      justify-content: space-around;
+    } @else if $horizontalPos == se {
+      justify-content: space-evenly;
     }
+
+    flex-direction: row;
   } @else if $direction == column {
-    @if $position1 == top or $position1 == left {
-      $justify-content: flex-start;
-    } @else if $position1 == center {
-      $justify-content: center;
-    } @else if $position1 == bottom or $position1 == right {
-      $justify-content: flex-end;
+    // Flex direction column
+    @if $verticalPos == top {
+      justify-content: flex-start;
+      align-items: flex-start;
+    } @else if $verticalPos == center {
+      justify-content: center;
+      align-items: center;
+    } @else if $verticalPos == bottom {
+      justify-content: flex-end;
+      align-items: flex-start;
     }
 
-    @if $position2 == left or $position2 == top {
-      $align-items: flex-start;
-    } @else if $position2 == center {
-      $align-items: center;
-    } @else if $position2 == right or $position2 == bottom {
-      $align-items: flex-end;
+    @if $horizontalPos == left {
+      align-items: flex-start;
+    } @else if $horizontalPos == center {
+      align-items: center;
+    } @else if $horizontalPos == right {
+      align-items: flex-end;
+    } @else if $horizontalPos == sb {
+      justify-content: space-between;
+      align-items: center; // Adjusted for center alignment in space-between
+    } @else if $horizontalPos == sa {
+      justify-content: space-around;
+      align-items: center; // Adjusted for center alignment in space-around
+    } @else if $horizontalPos == se {
+      justify-content: space-evenly;
+      align-items: center; // Adjusted for center alignment in space-evenly
     }
+
+    flex-direction: column;
   }
 
   display: flex;
-  justify-content: $justify-content;
-  align-items: $align-items;
-  flex-direction: $direction;
-  flex-wrap: $wrap;
 }

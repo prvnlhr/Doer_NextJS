@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./styles/mainView.module.scss";
-import TopicContent from "./TopicContent";
 import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import Link from "next/link";
@@ -64,9 +63,7 @@ const MainView = ({ children, show, setShow }) => {
           </div>
         </div>
       </div>
-      <div className={styles.mainViewWrapper__contentWrapper}>
-        <TopicContent>{children}</TopicContent>
-      </div>
+      <div className={styles.mainViewWrapper__contentWrapper}>{children}</div>
     </div>
   );
 };
