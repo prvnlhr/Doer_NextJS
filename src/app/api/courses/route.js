@@ -4,7 +4,6 @@ import cloudinary, { uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 
 // Get all courses
 export async function GET(req, res) {
-  console.log("FETCHING.................................");
   await dbConnect();
   try {
     const query = {

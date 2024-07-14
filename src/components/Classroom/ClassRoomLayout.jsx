@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./styles/classroomPage.module.scss";
-import InProgressCard from "./InProgress/InProgressCard";
-import BookmarkCard from "./Bookmarks/BookmarkCard";
-import LastOpenedCard from "./LastOpened/LastOpenedCard";
-import SubPageNavbar from "./SubPageNavbar";
 import BookmarksList from "./Bookmarks/BookmarksList";
-
-const ClassRoomLayout = ({ children }) => {
+import { fetchUserData } from "@/lib/api/public/usersApi";
+import SubPageTabsBar from "./SubPageTabsBar";
+const ClassRoomLayout = async ({ children, params, bookmarks }) => {
+  const { userId } = params;
+  const classroomData = await fetchUserData(userId);
   return (
     <div className={styles.layoutWrapper}>
       <div className={styles.layoutGrid}>
@@ -39,7 +38,7 @@ const ClassRoomLayout = ({ children }) => {
         <div className={styles.subPageCell}>
           <div className={styles.cellLayout}>
             <div className={styles.cellHeader}>
-              <SubPageNavbar />
+              <SubPageTabsBar />
             </div>
             <div className={styles.cellMain}>{children}</div>
           </div>
@@ -55,7 +54,9 @@ const ClassRoomLayout = ({ children }) => {
               </div>
             </div>
             <div className={styles.cellMain}>
-              <BookmarksList />
+              <BookmarksList
+                bookmarks={classroomData?.courseState.bookmarkedTopics}
+              />
             </div>
           </div>
         </div>

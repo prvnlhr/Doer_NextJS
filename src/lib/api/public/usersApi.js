@@ -7,9 +7,10 @@ export async function fetchUserData(userId) {
     });
     if (!response.ok) {
       const errorMessage = await response.json();
-      console.error("Fetch user error:", error);
+      console.error("Fetch user error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    return response.json();
   } catch (error) {
     console.error("Fetch user error:", error);
     throw new Error(`${error.message}`);
@@ -29,7 +30,7 @@ export async function toggleBookmark(userId, bookmarkData) {
     });
     if (!response.ok) {
       const errorMessage = await response.json();
-      console.error("Fetch user error:", error);
+      console.error("Fetch user error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
   } catch (error) {

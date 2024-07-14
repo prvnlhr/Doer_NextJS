@@ -6,9 +6,15 @@ export async function GET(req, { params }) {
   await dbConnect();
   try {
     const { userId } = params;
-    const user = User.findById(userId);
-    return new Response(user, { status: 200 });
+    const user = await User.findById(userId, {
+      fullname: 1,
+      country: 1,
+      courseState: 1,
+      _id: 0,
+    });
+    return new Response(JSON.stringify(user), { status: 200 });
   } catch (error) {
+    console.log("Error fetching user data", error);
     return new Response(JSON.stringify({ error: "Error fetching user data" }), {
       status: 500,
     });

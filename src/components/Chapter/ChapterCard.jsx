@@ -17,9 +17,8 @@ const TopicsListItem = ({ topic }) => {
     </div>
   );
 };
-
 const ChapterCard = ({ chapter, index }) => {
-  console.log(chapter);
+  // console.log(chapter);
   return (
     <div className={styles.card}>
       <div className={styles.card__chapterNumWrapper}>

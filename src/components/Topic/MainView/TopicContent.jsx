@@ -2,26 +2,21 @@
 import React, { useEffect } from "react";
 import hljs from "highlight.js";
 import "highlight.js/styles/tokyo-night-dark.css";
-// import "highlight.js/styles/night-owl.css";
 import styles from "./styles/topicContent.module.scss";
 import ClockIcon from "@/components/Common/Icons/ClockIcon";
 import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
-import { useParams } from "next/navigation";
 import { toggleBookmark } from "@/lib/api/public/usersApi";
-import { useAppState } from "@/context/AppContext";
 
 const TopicContent = ({ topic }) => {
-  const { courseState, setCourseState } = useAppState();
-
   const { data: session } = useSession();
-  const params = useParams();
-
   const handleBookmarkBtnClicked = async () => {
     const userId = session?.user?.userId;
+    const storedCourseState = localStorage.getItem("courseState");
+    const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
     const bookmarkData = {
-      duration: topic?.duration,
-      ...params,
+      topicDuration: topic?.duration,
+      ...currentState,
     };
     try {
       const res = await toggleBookmark(userId, bookmarkData);
@@ -32,9 +27,7 @@ const TopicContent = ({ topic }) => {
   };
 
   useEffect(() => {
-    // Highlight the code blocks
     document.querySelectorAll("pre code").forEach((block) => {
-      // Remove data-highlighted attribute if it exists
       if (block.dataset.highlighted) {
         delete block.dataset.highlighted;
       }

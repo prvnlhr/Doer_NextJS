@@ -4,12 +4,33 @@ import styles from "./styles/accordionItem.module.scss";
 import Link from "next/link";
 import { generateSlug } from "@/lib/utils/slugUtil";
 import { motion } from "framer-motion";
-
 const SubList = ({ chapter, params }) => {
+  const handleClick = (topic) => {
+    const storedCourseState = localStorage.getItem("courseState");
+    const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
+    const updatedState = {
+      ...currentState,
+      topicId: topic._id,
+      topicName: topic.title,
+    };
+    localStorage.setItem("courseState", JSON.stringify(updatedState));
+
+    let lastOpenedTopics =
+      JSON.parse(localStorage.getItem("lastOpenedTopics")) || [];
+
+    if (lastOpenedTopics.length >= 10) {
+      lastOpenedTopics.shift();
+    }
+
+    lastOpenedTopics.push(updatedState);
+
+    localStorage.setItem("lastOpenedTopics", JSON.stringify(lastOpenedTopics));
+  };
   return (
     <>
       {chapter.topics.map((topic, topicIndx) => (
         <motion.div
+          onClick={() => handleClick(topic)}
           variants={{
             hidden: { opacity: 0, translateY: -20 },
             visible: { opacity: 1, translateY: 0 },

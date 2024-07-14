@@ -218,7 +218,7 @@ AUTH FLOW
 
 1. Topic can be bookmarked -> add bookmark icon at top of topic content [Done]
 
-2. In Last opened will keep topic ->  courseId, chapterId, topicId [Done]
+2. In Last opened we will keep topics ->  courseId, chapterId, topicId [Done]
 
 3. In Progress -> show the course progress
     - Show number of chapters completed :
@@ -307,8 +307,8 @@ export default User;
 
 bookmarking a topic ::
 
-  - if already bookmarked remove
-  - if not add to bookmark
+  - if already bookmarked remove [Done]
+  - if not add to bookmark [Done]
 
 
 last opened topic ::

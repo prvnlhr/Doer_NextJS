@@ -6,16 +6,15 @@ import styles from "./styles/linkButton.module.scss";
 import { useAppState } from "@/context/AppContext";
 
 const LinkButton = ({ to, linkProps }) => {
-  const { courseState, setCourseState } = useAppState();
-
-  useEffect(() => {
-    if (linkProps) {
-      setCourseState((prevState) => ({
-        ...prevState,
-        ...linkProps,
-      }));
-    }
-  }, [linkProps, setCourseState]);
+  const handleClick = () => {
+    const storedCourseState = localStorage.getItem("courseState");
+    const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
+    const updatedState = {
+      ...currentState,
+      ...linkProps,
+    };
+    localStorage.setItem("courseState", JSON.stringify(updatedState));
+  };
 
   const animationVariant = {
     initial: {
@@ -42,6 +41,7 @@ const LinkButton = ({ to, linkProps }) => {
       initial="initial"
       animate="initial"
       whileHover="animate"
+      onClick={handleClick}
     >
       <Link href={to} className={styles.linkBtn}>
         <motion.svg
@@ -71,29 +71,3 @@ const LinkButton = ({ to, linkProps }) => {
 };
 
 export default LinkButton;
-
-/*
-<Link href={to} className={styles.linkBtn}>
-      <svg
-        className={styles.linkBtn__arrowIcon}
-        viewBox="0 0 15 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        whileHover={{ scale: 2 }}
-      >
-        <g clipPath="url(#clip0_211_155)">
-          <path
-            d="M1 14.6714L14.3201 1M14.3201 1V14.1246M14.3201 1H1.5328"
-            stroke="white"
-            strokeWidth="1.53696"
-            strokeLinejoin="round"
-          />
-        </g>
-        <defs>
-          <clipPath id="clip0_211_155">
-            <rect width="15" height="16" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-    </Link>
-*/

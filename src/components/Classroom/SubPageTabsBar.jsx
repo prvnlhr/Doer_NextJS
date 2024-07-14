@@ -1,11 +1,16 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 import React from "react";
 import styles from "./styles/classroomPage.module.scss";
-const SubPageNavbar = () => {
+const SubPageTabsBar = () => {
   const pathname = usePathname();
   console.log(pathname);
+  const params = useParams();
+
+  const isMatchPath = () => {
+    return pathname;
+  };
 
   return (
     <>
@@ -13,15 +18,15 @@ const SubPageNavbar = () => {
         <div className={styles.titleDiv}>
           <Link
             className={`${styles.headerLink} ${
-              pathname === "/classroom/inprogress" &&
+              pathname === `/user/${params.userId}/classroom/inprogress` &&
               styles["headerLink--active"]
             }`}
-            href="/classroom/inprogress"
+            href="classroom/inprogress"
           >
             <p>IN PROGRESS</p>
           </Link>
         </div>
-        {pathname === "/classroom/inprogress" && (
+        {pathname === `/user/${params.userId}/classroom/inprogress` && (
           <div className={styles.titleLine}></div>
         )}
       </div>
@@ -29,15 +34,15 @@ const SubPageNavbar = () => {
         <div className={styles.titleDiv}>
           <Link
             className={`${styles.headerLink} ${
-              pathname === "/classroom/lastopened" &&
+              pathname === `/user/${params.userId}/classroom/lastopened` &&
               styles["headerLink--active"]
             }`}
-            href="/classroom/lastopened"
+            href="classroom/lastopened"
           >
             <p>LAST OPENED</p>
           </Link>
         </div>
-        {pathname === "/classroom/lastopened" && (
+        {pathname === `/user/${params.userId}/classroom/lastopened` && (
           <div className={styles.titleLine}></div>
         )}
       </div>
@@ -45,4 +50,4 @@ const SubPageNavbar = () => {
   );
 };
 
-export default SubPageNavbar;
+export default SubPageTabsBar;

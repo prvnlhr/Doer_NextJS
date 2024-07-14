@@ -11,18 +11,12 @@ const Accordion = ({ accordionListData, params }) => {
   useEffect(() => {
     if (accordionListData) {
       setCurrOpenItemHeight(
-        accordionListData.filter((ch) => ch._id === params.chapterId)[0]
-          .topicsCount *
+        accordionListData.filter((ch) => ch._id === params?.chapterId)[0]
+          ?.topicsCount *
           40 +
           40
       );
     }
-
-    // setCourseState((prevState) => ({
-    //   ...prevState,
-    //   topicName: "",
-    // }));
-    // console.log(params);
     setCurrOpenItemId(params.chapterId);
   }, [params.chapterId, accordionListData]);
 

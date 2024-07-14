@@ -6,9 +6,11 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import PopUpMenuIcon from "../Icons/PopUpMenuIcon";
 import { usePathname } from "next/navigation";
+import { useAppState } from "@/context/AppContext";
 
 const MainHeader = () => {
   const { data: session } = useSession();
+  const userId = session?.user?.userId;
   const pathname = usePathname();
 
   const [showPopUp, setShowPopUp] = useState(false);
@@ -44,7 +46,10 @@ const MainHeader = () => {
       </div>
       <div className={styles.headerWrapper__rightSection}>
         {session ? (
-          <Link href="/classroom/inprogress" className={styles.navbarLink}>
+          <Link
+            href={`/user/${userId}/classroom`}
+            className={styles.navbarLink}
+          >
             <p>Classroom</p>
           </Link>
         ) : (

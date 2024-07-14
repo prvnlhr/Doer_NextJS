@@ -25,11 +25,11 @@ const CourseCard = ({ course }) => {
       <div className={styles.card__linkBtnWrapper}>
         <div className={styles.buttonWrapper}>
           <LinkButton
+            to={`courses/${course.slug}/${course._id}/chapters`}
             linkProps={{
               courseId: course._id,
               courseName: course.title,
             }}
-            to={`courses/${course.slug}/${course._id}/chapters`}
           />
         </div>
       </div>
