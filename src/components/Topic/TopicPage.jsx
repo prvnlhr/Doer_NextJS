@@ -1,21 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles/topicPage.module.scss";
 import Sidebar from "./Sidebar/Sidebar";
 import MainView from "./MainView/MainView";
 
 const TopicPage = ({ children, params }) => {
-  const [show, setShow] = useState(false);
   return (
     <div className={styles.topicPageWrapper}>
       <div className={styles.topicPageWrapper__pageInnerWrapper}>
-        <Sidebar params={params} show={show} setShow={setShow} />
-        <MainView
-          children={children}
-          params={params}
-          show={show}
-          setShow={setShow}
-        />
+        <Sidebar params={params} />
+        <MainView children={children} params={params} />
       </div>
     </div>
   );

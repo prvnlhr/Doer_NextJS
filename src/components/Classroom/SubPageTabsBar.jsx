@@ -5,13 +5,7 @@ import React from "react";
 import styles from "./styles/classroomPage.module.scss";
 const SubPageTabsBar = () => {
   const pathname = usePathname();
-  console.log(pathname);
   const params = useParams();
-
-  const isMatchPath = () => {
-    return pathname;
-  };
-
   return (
     <>
       <div className={styles.titleWrapper}>

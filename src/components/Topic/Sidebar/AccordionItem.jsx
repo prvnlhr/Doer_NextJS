@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles/accordionItem.module.scss";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useAppState } from "@/context/AppContext";
 import SubList from "./SubList";
 
-const AccordionItem = ({ chapter, currOpenItemId, currOpenItemHeight }) => {
+const AccordionItem = ({ chapter }) => {
   const params = useParams();
   const { courseName, courseId } = params;
+  const {
+    currentOpenChapterIndex,
+    setCurrentOpenChapterIndex,
+    currentOpenChapterHeight,
+    setCurrentOpenChapterHeight,
+  } = useAppState();
 
   const handleClick = () => {
     const storedCourseState = localStorage.getItem("courseState");
@@ -18,13 +24,28 @@ const AccordionItem = ({ chapter, currOpenItemId, currOpenItemHeight }) => {
       chapterName: chapter.title,
     };
     localStorage.setItem("courseState", JSON.stringify(updatedState));
+
+    setCurrentOpenChapterIndex((prevId) =>
+      prevId === chapter._id ? null : chapter._id
+    );
+    setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40);
+    
+
+
+
+
+
+
   };
 
   return (
     <div
       className={styles.itemWrapper}
       style={{
-        minHeight: chapter._id === currOpenItemId ? currOpenItemHeight : "auto",
+        minHeight:
+          chapter._id === currentOpenChapterIndex
+            ? currentOpenChapterHeight
+            : "auto",
       }}
     >
       <Link

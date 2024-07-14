@@ -10,7 +10,6 @@ import { generateSlug } from "@/lib/utils/slugUtil";
 import ClockIcon from "@/components/Common/Icons/ClockIcon";
 
 const BookmarkCard = ({ bookmark }) => {
-  console.log(bookmark);
   return (
     <div className={styles.card}>
       <div className={styles.card__breadCrumbsWrapper}>

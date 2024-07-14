@@ -5,22 +5,26 @@ import useSWR from "swr";
 import Accordion from "./Accordion";
 import { fetchChapters } from "@/lib/api/public/chaptersApi";
 import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
+import { useAppState } from "@/context/AppContext";
 
 const fetcher = (courseId) => fetchChapters(courseId);
 
-const Sidebar = ({ show, setShow, params }) => {
+const Sidebar = ({ params }) => {
   const { data, error, isLoading } = useSWR([params.courseId], fetcher);
+  const { showTopicSidebar, setShowTopicSidebar } = useAppState();
 
   return (
     <div
       className={`${styles.sidebarWrapper} ${
-        show ? styles["sidebarWrapper--show"] : styles["sidebarWrapper--hide"]
+        showTopicSidebar
+          ? styles["sidebarWrapper--show"]
+          : styles["sidebarWrapper--hide"]
       } `}
     >
       <div className={styles.sidebarWrapper__sidebarHeader}>
         <div
           className={styles.toggleIconDiv}
-          onClick={() => setShow((prev) => !prev)}
+          onClick={() => setShowTopicSidebar((prev) => !prev)}
         >
           <SideBarToggleIcon />
         </div>
@@ -28,7 +32,7 @@ const Sidebar = ({ show, setShow, params }) => {
       {isLoading ? (
         <p>Loading accordion skeleton</p>
       ) : (
-        <Accordion params={params} accordionListData={data} />
+        <Accordion accordionListData={data} params={params} />
       )}
     </div>
   );

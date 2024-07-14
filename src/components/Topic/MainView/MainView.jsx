@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles/mainView.module.scss";
 import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { reverseSlug } from "@/lib/utils/slugUtil";
 import { useAppState } from "@/context/AppContext";
 
-const MainView = ({ children, show, setShow }) => {
-  const { courseState } = useAppState();
-  // console.log(courseState);
+const MainView = ({ children }) => {
+  const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
   const params = useParams();
+
   return (
     <div
       className={`${styles.mainViewWrapper} ${
-        show ? styles["mainViewWrapper--show"] : styles["mainViewWrapper--hide"]
+        showTopicSidebar
+          ? styles["mainViewWrapper--show"]
+          : styles["mainViewWrapper--hide"]
       }`}
     >
       <div className={styles.mainViewWrapper__breadcrumbsWrapper}>
         <div
           className={styles.toggleIconDiv}
-          onClick={() => setShow((prev) => !prev)}
+          onClick={() => setShowTopicSidebar((prev) => !prev)}
         >
           <SideBarToggleIcon />
         </div>

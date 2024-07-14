@@ -1,3 +1,5 @@
+import revalidateTagHandler from "@/app/revalidate";
+
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchUserData(userId) {
@@ -18,7 +20,7 @@ export async function fetchUserData(userId) {
 }
 
 export async function toggleBookmark(userId, bookmarkData) {
-  console.log(userId, bookmarkData);
+  // console.log(userId, bookmarkData);
   try {
     const response = await fetch(`${BASE_URL}/api/user/${userId}/bookmarks`, {
       method: "POST",
@@ -33,6 +35,7 @@ export async function toggleBookmark(userId, bookmarkData) {
       console.error("Fetch user error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    // revalidateTagHandler("userData");
   } catch (error) {
     console.error("Toogle bookmark error:", error);
     throw new Error(`${error.message}`);

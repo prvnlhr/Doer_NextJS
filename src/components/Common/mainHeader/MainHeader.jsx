@@ -6,10 +6,9 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import PopUpMenuIcon from "../Icons/PopUpMenuIcon";
 import { usePathname } from "next/navigation";
-import { useAppState } from "@/context/AppContext";
 
 const MainHeader = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const userId = session?.user?.userId;
   const pathname = usePathname();
 
@@ -39,30 +38,34 @@ const MainHeader = () => {
     };
   }, [showPopUp]);
 
+  const isAuthPage =
+    pathname === "/auth/signin" ||
+    pathname === "/auth/signup" ||
+    pathname === "/auth/verifyotp";
+
   return (
     <nav className={styles.headerWrapper}>
       <div className={styles.headerWrapper__appLogoWrapper}>
         <AppLogo />
       </div>
       <div className={styles.headerWrapper__rightSection}>
-        {session ? (
+        {status === "authenticated" ? (
           <Link
-            href={`/user/${userId}/classroom`}
+            href={`/user/${session?.user?.userId}/classroom`}
             className={styles.navbarLink}
           >
             <p>Classroom</p>
           </Link>
         ) : (
-          pathname !== "/auth/signin" &&
-          pathname !== "/auth/signup" &&
-          pathname !== "/auth/verifyotp" && (
+          !isAuthPage &&
+          status === "unauthenticated" && (
             <Link href="/auth/signin" className={styles.navbarLink}>
               <p>Log In</p>
             </Link>
           )
         )}
 
-        {session && (
+        {status === "authenticated" && (
           <div className={styles.menuIconWrapper} ref={iconRef}>
             <div
               className={styles.popUpIconDiv}

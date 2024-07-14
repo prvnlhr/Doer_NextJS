@@ -3,9 +3,12 @@ import styles from "./styles/classroomPage.module.scss";
 import BookmarksList from "./Bookmarks/BookmarksList";
 import { fetchUserData } from "@/lib/api/public/usersApi";
 import SubPageTabsBar from "./SubPageTabsBar";
-const ClassRoomLayout = async ({ children, params, bookmarks }) => {
+import InProgressList from "./InProgress/InProgressList";
+const ClassRoomLayout = async ({ children, params }) => {
   const { userId } = params;
+
   const classroomData = await fetchUserData(userId);
+
   return (
     <div className={styles.layoutWrapper}>
       <div className={styles.layoutGrid}>
@@ -40,7 +43,9 @@ const ClassRoomLayout = async ({ children, params, bookmarks }) => {
             <div className={styles.cellHeader}>
               <SubPageTabsBar />
             </div>
-            <div className={styles.cellMain}>{children}</div>
+            <div className={styles.cellMain}>
+              <InProgressList />
+            </div>
           </div>
         </div>
         <div className={styles.bookmarksCell}>

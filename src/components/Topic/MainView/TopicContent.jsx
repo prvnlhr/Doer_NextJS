@@ -10,6 +10,7 @@ import { toggleBookmark } from "@/lib/api/public/usersApi";
 
 const TopicContent = ({ topic }) => {
   const { data: session } = useSession();
+
   const handleBookmarkBtnClicked = async () => {
     const userId = session?.user?.userId;
     const storedCourseState = localStorage.getItem("courseState");
@@ -20,7 +21,6 @@ const TopicContent = ({ topic }) => {
     };
     try {
       const res = await toggleBookmark(userId, bookmarkData);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

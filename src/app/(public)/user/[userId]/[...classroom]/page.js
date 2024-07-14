@@ -1,7 +1,7 @@
 import React from "react";
 import ClassRoomLayout from "@/components/Classroom/ClassRoomLayout";
-const page = ({ params, children }) => {
+const ClassRoomLayoutPage = ({ children, params }) => {
   return <ClassRoomLayout params={params}>{children}</ClassRoomLayout>;
 };
 
-export default page;
+export default ClassRoomLayoutPage;
