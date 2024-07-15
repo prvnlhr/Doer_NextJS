@@ -57,20 +57,22 @@ const InProgressCard = ({ courseProgress }) => {
         </div>
       </div>
       <div className={styles.card__linkBtnWrapper}>
-        <LinkButton
-          to={`/content/courses/${generateSlug(
-            courseName
-          )}/${courseId}/chapters/${generateSlug(
-            chapterName
-          )}/${chapterId}/topic/${generateSlug(topicName)}/${topicId}`}
-          linkProps={{
-            chapterId,
-            chapterName,
-            topicId,
-            topicName,
-            topicsCount: topics.length,
-          }}
-        />
+        <div className={styles.btnContainer}>
+          <LinkButton
+            to={`/content/courses/${generateSlug(
+              courseName
+            )}/${courseId}/chapters/${generateSlug(
+              chapterName
+            )}/${chapterId}/topic/${generateSlug(topicName)}/${topicId}`}
+            linkProps={{
+              chapterId,
+              chapterName,
+              topicId,
+              topicName,
+              topicsCount: topics.length,
+            }}
+          />
+        </div>
       </div>
     </div>
   );

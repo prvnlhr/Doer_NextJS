@@ -12,7 +12,7 @@
   grid-template-areas:
     "breadCrumbsWrapper linkBtnWrapper"
     "titleWrapper linkBtnWrapper"
-    "topicsCountWrapper linkBtnWrapper";
+    "durationWrapper linkBtnWrapper";
   // border: 1px solid red;
 
   padding: 0.8rem;
@@ -50,14 +50,15 @@
       width: 95%;
     }
   }
-  &__topicsCountWrapper {
+  &__durationWrapper {
     @include fhw;
-    grid-area: topicsCountWrapper;
-    // border: 1px solid lightgreen;
+    grid-area: durationWrapper;
+    border: 1px solid lightgreen;
+    @include flex-container(flex-start, center);
     &__badgeContainer {
-      width: 100px;
+      width: auto;
       height: 80%;
-      //   border: 1px solid red;
+      // border: 1px solid red;
     }
   }
   &__linkBtnWrapper {

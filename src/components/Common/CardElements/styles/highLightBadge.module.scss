@@ -42,6 +42,7 @@
       width: 100%;
       height: 100%;
       @include flex-container(flex-start, center);
+      border: 1px solid red;
 
       p {
         font-size: 0.5rem;

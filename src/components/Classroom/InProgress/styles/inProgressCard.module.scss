@@ -10,7 +10,7 @@
       0,
       1fr
     );
-  grid-template-rows: 20% 20% 20% 40%;
+  grid-template-rows: 20% 30% 10% 40%;
   grid-template-areas:
     "typeWrapper typeWrapper typeWrapper  linkBtnWrapper"
     "titleWrapper titleWrapper titleWrapper  linkBtnWrapper"
@@ -38,6 +38,14 @@
     @include fhw;
     // border: 1px solid gold;
     @include flex-container(flex-start, center);
+    overflow: hidden;
+
+    p {
+      font-size: 0.8rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   &__progressBarWrapper {
     grid-area: progressBarWrapper;
@@ -73,8 +81,16 @@
     grid-area: linkBtnWrapper;
     @include fhw;
     // border: 1px solid blue;
-    padding: 0.5rem;
-    @include flex-container(flex-end, flex-end);
+    padding: 0rem;
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: flex-start;
+    .btnContainer {
+      width: 70%;
+      aspect-ratio: 1/1;
+      // border: 1px solid red;
+      @include flex-container(center, center);
+    }
   }
 
   .valueWrapper {
@@ -83,12 +99,14 @@
     // border: 1px solid blue;
     @include flex-container(flex-start, flex-end);
     p {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      line-height: 100%;
       color: #635db0;
-      //   border: 1px solid red;
+      // border: 1px solid red;
     }
     span {
       font-size: 1rem;
+      line-height: 100%;
       color: $secondary-text-color;
       //   border: 1px solid red;
     }
@@ -97,9 +115,11 @@
     width: 100%;
     height: 30%;
     // border: 1px solid red;
-    @include flex-container(flex-start, center);
+    @include flex-container(flex-start, flex-end);
     p {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
+      margin: 0;
+      line-height: 100%;
     }
   }
 }

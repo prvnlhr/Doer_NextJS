@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./styles/bookmarkCard.module.scss";
 // import LinkButton from "../../Common/Button/LinkButton";
 import HighLightBadge from "../../Common/CardElements/HighLightBadge";
-import TopicIcon from "../../Common/Icons/TopicIcon";
 import ChevronRightIcon from "../../Common/Icons/ChevronRightIcon";
 import LinkButton from "@/components/Common/Buttons/LinkButton";
 import { generateSlug } from "@/lib/utils/slugUtil";
@@ -21,10 +20,10 @@ const BookmarkCard = ({ bookmark }) => {
       <div className={styles.card__titleWrapper}>
         <p>{bookmark.topicName}</p>
       </div>
-      <div className={styles.card__topicsCountWrapper}>
-        <div className={styles.card__topicsCountWrapper__badgeContainer}>
+      <div className={styles.card__durationWrapper}>
+        <div className={styles.card__durationWrapper__badgeContainer}>
           <HighLightBadge
-            IconComponent={ClockIcon}
+            // IconComponent={ClockIcon}
             text={`Duration ${bookmark.topicDuration} Min`}
             isHighlighted={true}
           />
