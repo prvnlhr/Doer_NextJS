@@ -10,6 +10,7 @@ export async function GET(req, { params }) {
       userId: userId,
     };
     const coursesProgress = await CourseProgress.find(query);
+    console.log("coursesProgress", coursesProgress);
 
     return new Response(JSON.stringify(coursesProgress), { status: 200 });
   } catch (error) {
@@ -23,44 +24,108 @@ export async function GET(req, { params }) {
   }
 }
 
-// Insert new course in progress
-
 export async function POST(req, { params }) {
   await dbConnect();
   try {
     const { userId } = params;
-    const bookmarkData = await req.json();
+    const courseProgressData = await req.json();
+    console.log("courseProgressData", courseProgressData);
 
-    console.log(bookmarkData);
-    const existingBookmark = await BookmarkedTopic.findOne({
+    const query = {
       userId: userId,
-      topicId: bookmarkData.topicId,
-    });
+      courseId: courseProgressData.courseId,
+    };
 
-    if (existingBookmark) {
-      await BookmarkedTopic.deleteOne({
+    let courseInProgress = await CourseProgress.findOne(query);
+
+    if (!courseInProgress) {
+      // If the course progress does not exist, create a new record
+      courseInProgress = new CourseProgress({
         userId: userId,
-        topicId: bookmarkData.topicId,
+        courseId: courseProgressData.courseId,
+        courseName: courseProgressData.courseName,
+        totalChapters: courseProgressData.chaptersCount,
+        completed: false,
+        chapters: [
+          {
+            chapterId: courseProgressData.chapterId,
+            chapterName: courseProgressData.chapterName,
+            completed: false,
+            totalTopics: courseProgressData.topicsCount,
+            topics: [
+              {
+                topicId: courseProgressData.topicId,
+                topicName: courseProgressData.topicName,
+                completed: true,
+              },
+            ],
+          },
+        ],
       });
-      return new Response(
-        JSON.stringify({
-          message: "Bookmark removed",
-        }),
-        { status: 200 }
-      );
     } else {
-      const newBookmark = new BookmarkedTopic({
-        userId: userId,
-        ...bookmarkData,
-      });
-      await newBookmark.save();
-      return new Response(JSON.stringify(newBookmark), { status: 201 });
+      // If the course progress exists, update the existing record
+      let chapter = courseInProgress.chapters.find(
+        (ch) => ch.chapterId.toString() === courseProgressData.chapterId
+      );
+
+      if (!chapter) {
+        // If the chapter does not exist, add it
+        chapter = {
+          chapterId: courseProgressData.chapterId,
+          chapterName: courseProgressData.chapterName,
+          completed: false,
+          totalTopics: courseProgressData.topicsCount,
+          topics: [
+            {
+              topicId: courseProgressData.topicId,
+              topicName: courseProgressData.topicName,
+              completed: true,
+            },
+          ],
+        };
+        courseInProgress.chapters.push(chapter);
+      } else {
+        // If the chapter exists, update its topics
+        const topicExists = chapter.topics.some(
+          (topic) => topic.topicId.toString() === courseProgressData.topicId
+        );
+        if (!topicExists) {
+          chapter.topics.push({
+            topicId: courseProgressData.topicId,
+            topicName: courseProgressData.topicName,
+            completed: true,
+          });
+        }
+
+        // Check if all topics in the chapter are completed
+        if (
+          chapter.topics.filter((topic) => topic.completed).length ===
+          chapter.totalTopics
+        ) {
+          chapter.completed = true;
+        }
+      }
+
+      // Check if all chapters in the course are completed
+      if (
+        courseInProgress.chapters.filter((ch) => ch.completed).length ===
+        courseInProgress.totalChapters
+      ) {
+        courseInProgress.completed = true;
+      }
     }
+
+    await courseInProgress.save();
+
+    return new Response(JSON.stringify("Course progress updated"), {
+      status: 200,
+    });
   } catch (error) {
+    console.error(error);
     return new Response(
       JSON.stringify({
         error: error,
-        message: "Error at bookmark post request",
+        message: "Error at update progress post request",
       }),
       {
         status: 500,

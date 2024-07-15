@@ -6,7 +6,10 @@ import styles from "./styles/topicContent.module.scss";
 import ClockIcon from "@/components/Common/Icons/ClockIcon";
 import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
-import { toggleBookmark } from "@/lib/api/public/usersApi";
+import {
+  toggleBookmark,
+  updateCourseProgress,
+} from "@/lib/api/public/usersApi";
 import { useInView } from "react-intersection-observer";
 
 const TopicContent = ({ topic }) => {
@@ -41,13 +44,23 @@ const TopicContent = ({ topic }) => {
 
   const [ref, inView] = useInView({
     threshold: 0,
-    rootMargin: "0px 0px 0px 0px",
   });
 
+  const markTopicCompleted = async () => {
+    const userId = session?.user?.userId;
+    const progressData = JSON.parse(localStorage.getItem("courseState"));
+    try {
+      const response = await updateCourseProgress(userId, progressData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     if (inView && !hasReachedEnd) {
       console.log("Reached Page End");
       setHasReachedEnd(true);
+      markTopicCompleted();
     }
   }, [inView, hasReachedEnd]);
 

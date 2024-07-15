@@ -5,7 +5,7 @@ const InProgressList = ({ inprogressCourses }) => {
   return (
     <div className={styles.listWrapper}>
       {inprogressCourses.map((courseProgress) => (
-        <InProgressCard />
+        <InProgressCard courseProgress={courseProgress} />
       ))}
     </div>
   );

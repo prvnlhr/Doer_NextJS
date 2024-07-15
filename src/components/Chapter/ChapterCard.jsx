@@ -64,6 +64,7 @@ const ChapterCard = ({ chapter, index }) => {
               chapterName: chapter.title,
               topicId: chapter.topics[0]._id,
               topicName: chapter.topics[0].title,
+              topicsCount: chapter.topicsCount,
             }}
           />
         </div>

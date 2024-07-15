@@ -29,6 +29,7 @@ const CourseCard = ({ course }) => {
             linkProps={{
               courseId: course._id,
               courseName: course.title,
+              chaptersCount: course.chaptersCount,
             }}
           />
         </div>

@@ -22,6 +22,7 @@ const AccordionItem = ({ chapter }) => {
       ...currentState,
       chapterId: chapter._id,
       chapterName: chapter.title,
+      topicsCount: chapter.topicsCount,
     };
     localStorage.setItem("courseState", JSON.stringify(updatedState));
 
@@ -29,13 +30,6 @@ const AccordionItem = ({ chapter }) => {
       prevId === chapter._id ? null : chapter._id
     );
     setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40);
-    
-
-
-
-
-
-
   };
 
   return (

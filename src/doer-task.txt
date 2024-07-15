@@ -250,6 +250,52 @@ AUTH FLOW
         ]
    ]
 
+
+  api route handler will recieve this data
+
+  const {userId} = params;
+   const progressData =
+   {
+    "topicId": "668bbd5610b4d6f9266d1f61",
+    "topicName": "Control Structures: Conditionals",
+    "chapterId": "668b7f8ccb015f4ae03573ab",
+    "chapterName": "Basics of JavaScript",
+    "courseId": "66876aabac359b85b857fe18",
+    "courseName": "Javascript Essentials 4",
+    "chaptersCount": 6,
+    "topicsCount": 3
+}
+
+  - find CourseProgress by userId and courseId
+
+  - if not found then we need a insert new
+  - else update
+
+  > updating   
+
+  1.find if chapter exists
+    if exists
+      - find if topic exists
+      - if not then insert 
+      - else do nothing
+
+    else
+      - insert the chapter
+      - then add chapter 
+        - add the  topic
+        
+
+
+
+  - add the topic to topics array
+  - if topics length == topicsCount , then
+    mark chapter as completed:true
+
+  - chapters length == chaptersCount then
+    mark the course as completed:true
+
+
+
   ------------------------------------------------- 
 
 

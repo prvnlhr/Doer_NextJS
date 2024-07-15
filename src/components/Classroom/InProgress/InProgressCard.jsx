@@ -1,33 +1,44 @@
 import React from "react";
-
 import styles from "./styles/inProgressCard.module.scss";
 import HighLightBadge from "../../Common/CardElements/HighLightBadge";
 import LinkButton from "@/components/Common/Buttons/LinkButton";
-const InProgressCard = () => {
-  const percVal = "56.12";
-  const values = percVal.split(".");
-  const p_text = values[0];
-  const span_text = values[1];
+import { generateSlug } from "@/lib/utils/slugUtil";
+
+const InProgressCard = ({ courseProgress }) => {
+  const { courseName, courseId, totalChapters, chapters } = courseProgress;
+
+  const { chapterName, chapterId, topics } = chapters[0];
+  const { topicName, topicId } = topics[0];
+
+  const percentOfCourseCompleted = (chapters.length / totalChapters) * 100;
+
+  const integerPart = Math.floor(percentOfCourseCompleted);
+  const fractionalPart = percentOfCourseCompleted - integerPart;
+  const fractionalCeil = fractionalPart ? Math.ceil(fractionalPart * 100) : 0;
+
+  console.log(courseProgress);
+
   return (
     <div className={styles.card}>
       <div className={styles.card__typeWrapper}>
-        <div>
-          <HighLightBadge text={"COURSE"} isHighlighted={true} />
-        </div>
+        <HighLightBadge text={"COURSE"} isHighlighted={true} />
       </div>
       <div className={styles.card__titleWrapper}>
-        <p>JavaScript</p>
+        <p>{courseName}</p>
       </div>
       <div className={styles.card__progressBarWrapper}>
         <div className={styles.progressBarTrack}>
-          <div className={styles.progressBarTrack__progressBar}></div>
+          <div
+            className={styles.progressBarTrack__progressBar}
+            style={{ width: `${percentOfCourseCompleted}%` }}
+          ></div>
         </div>
       </div>
       <div className={styles.card__progressPercWrapper}>
         <div className={styles.valueWrapper}>
           <p>
-            {p_text}
-            <span>{span_text ? `.${span_text}` : ""}%</span>
+            {integerPart}
+            <span>{fractionalCeil ? `.${fractionalCeil}` : ""}%</span>
           </p>
         </div>
         <div className={styles.lableWrapper}>
@@ -37,16 +48,29 @@ const InProgressCard = () => {
       <div className={styles.card__completedWrapper}>
         <div className={styles.valueWrapper}>
           <p>
-            {"06"}
-            <span>/{"24"}</span>
+            {chapters.length}
+            <span>/{totalChapters}</span>
           </p>
         </div>
         <div className={styles.lableWrapper}>
-          <p>CHAPTERES COMPLETED</p>
+          <p>CHAPTERS COMPLETED</p>
         </div>
       </div>
       <div className={styles.card__linkBtnWrapper}>
-        <LinkButton to={"#"} />
+        <LinkButton
+          to={`/content/courses/${generateSlug(
+            courseName
+          )}/${courseId}/chapters/${generateSlug(
+            chapterName
+          )}/${chapterId}/topic/${generateSlug(topicName)}/${topicId}`}
+          linkProps={{
+            chapterId,
+            chapterName,
+            topicId,
+            topicName,
+            topicsCount: topics.length,
+          }}
+        />
       </div>
     </div>
   );

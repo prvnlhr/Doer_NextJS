@@ -84,3 +84,26 @@ export async function toggleBookmark(userId, bookmarkData) {
     throw new Error(`${error.message}`);
   }
 }
+
+export async function updateCourseProgress(userId, progressData) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/user/${userId}/courses-progress`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(progressData),
+      }
+    );
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Error in updating the course progress:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+  } catch (error) {
+    console.error("Error in updating the course progress:", error);
+    throw new Error(`${error.message}`);
+  }
+}
