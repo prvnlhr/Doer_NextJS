@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import styles from "./styles/bookmarkCard.module.scss";
-// import LinkButton from "../../Common/Button/LinkButton";
 import HighLightBadge from "../../Common/CardElements/HighLightBadge";
 import ChevronRightIcon from "../../Common/Icons/ChevronRightIcon";
 import LinkButton from "@/components/Common/Buttons/LinkButton";
@@ -23,7 +22,7 @@ const BookmarkCard = ({ bookmark }) => {
       <div className={styles.card__durationWrapper}>
         <div className={styles.card__durationWrapper__badgeContainer}>
           <HighLightBadge
-            // IconComponent={ClockIcon}
+            IconComponent={ClockIcon}
             text={`Duration ${bookmark.topicDuration} Min`}
             isHighlighted={true}
           />

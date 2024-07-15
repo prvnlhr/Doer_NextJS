@@ -95,10 +95,10 @@
     @include fhw;
     @include flex-container(center, center);
     // border: 1px solid black;
-
     &__innerDiv {
-      width: 95%;
+      width: 100%;
       height: 80%;
+      // border: 1px solid black;
     }
   }
 
@@ -106,10 +106,11 @@
     grid-area: durationWrapper;
     @include fhw;
     @include flex-container(center, center);
-    // border: 1px solid black;
+    // border: 1px solid red;
     &__innerDiv {
-      width: 95%;
+      width: auto;
       height: 80%;
+      // border: 1px solid black;
     }
   }
 }

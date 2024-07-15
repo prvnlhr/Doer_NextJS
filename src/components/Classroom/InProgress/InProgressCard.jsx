@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./styles/inProgressCard.module.scss";
-import HighLightBadge from "../../Common/CardElements/HighLightBadge";
 import LinkButton from "@/components/Common/Buttons/LinkButton";
 import { generateSlug } from "@/lib/utils/slugUtil";
+import HighLightBadge from "@/components/Common/CardElements/HighLightBadge";
 
 const InProgressCard = ({ courseProgress }) => {
   const { courseName, courseId, totalChapters, chapters } = courseProgress;

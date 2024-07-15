@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styles from "./styles/courseCard.module.scss";
 import LinkButton from "../Common/Buttons/LinkButton";
@@ -45,7 +46,7 @@ const CourseCard = ({ course }) => {
           <HighLightBadge
             IconComponent={ChapterIcon}
             text={`${course.chaptersCount} Chapters`}
-            isHighlighted={true}
+            isHighlighted={false}
           />
         </div>
       </div>

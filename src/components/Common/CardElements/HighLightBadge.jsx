@@ -1,23 +1,20 @@
 import React from "react";
 import styles from "./styles/highLightBadge.module.scss";
 
-const HighLightBadge = ({ IconComponent, text, isHighlighted }) => {
+const HighLightBadge = ({ text, IconComponent, isHighlighted }) => {
   return (
-    <div className={`${styles.badge} ${isHighlighted && styles.borderedBadge}`}>
-      <div className={styles.badge__innerWrapper}>
-        {IconComponent && (
-          <div className={styles.badge__innerWrapper__iconWrapper}>
-            <div
-              className={styles.badge__innerWrapper__iconWrapper__iconInnerDiv}
-            >
-              <IconComponent />
-            </div>
-          </div>
-        )}
-
-        <div className={styles.badge__innerWrapper__textWrapper}>
-          <p>{text}</p>
+    <div
+      className={`${styles.badgeWrapper} ${
+        isHighlighted && styles["badgeWrapper--highlightBg"]
+      }`}
+    >
+      {IconComponent && (
+        <div className={styles.iconWrapper}>
+          <div className={styles.iconDiv}>{<IconComponent />}</div>
         </div>
+      )}
+      <div className={styles.textWrapper}>
+        <p>{text}</p>
       </div>
     </div>
   );

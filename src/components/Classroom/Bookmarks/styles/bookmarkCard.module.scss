@@ -53,7 +53,7 @@
   &__durationWrapper {
     @include fhw;
     grid-area: durationWrapper;
-    border: 1px solid lightgreen;
+    // border: 1px solid lightgreen;
     @include flex-container(flex-start, center);
     &__badgeContainer {
       width: auto;
