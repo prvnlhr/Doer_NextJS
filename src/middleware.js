@@ -11,7 +11,7 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if (!token && pathname.startsWith("/classroom")) {
+  if (!token && pathname.startsWith("/user")) {
     return NextResponse.redirect(new URL("/auth/signin", req.url));
   }
 
@@ -19,5 +19,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/classroom", "/auth/signin", "/auth/verifyotp", "/auth/signup"],
+  matcher: ["/user/:path*", "/auth/signin", "/auth/verifyotp", "/auth/signup"],
 };

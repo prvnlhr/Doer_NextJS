@@ -1,13 +1,9 @@
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchChapters(courseId) {
-  // console.log(courseId);
   try {
-    let response = await fetch(`${BASE_URL}/api/courses/${courseId}/chapters`, {
-      cache: "no-store",
-    });
+    let response = await fetch(`${BASE_URL}/api/courses/${courseId}/chapters`);
     if (!response.ok) {
-      // console.log(response);
       throw new Error(`Failed to fetch chapters ${response}`);
     }
     return response.json();

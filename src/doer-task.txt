@@ -235,6 +235,24 @@ AUTH FLOW
 
 
 
+      courseProgress Schema
+
+        
+- userId
+- courseId
+- completed
+- chapters : [
+    - chapterId
+    - completed
+    - topics : [
+        - topicId
+        - completed
+        ]
+   ]
+
+  ------------------------------------------------- 
+
+
 DATE MODELING ::
 
 import mongoose from "mongoose";

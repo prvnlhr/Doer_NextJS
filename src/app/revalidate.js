@@ -1,13 +1,27 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
-const revalidateTagHandler = async (tag) => {
+// Function to revalidate a specific path
+const revalidatePathHandler = async (path, type) => {
   try {
-    revalidateTag(tag);
+    revalidatePath(path, type);
+    console.log(`Path revalidated: ${path}`);
   } catch (error) {
-    console.error("Error revalidating tag:", error);
+    console.error("Error revalidating path:", error);
+    throw new Error(`Error revalidating path: ${error}`);
   }
 };
 
-export default revalidateTagHandler;
+// Function to revalidate a specific tag
+const revalidateTagHandler = async (tag) => {
+  try {
+    revalidateTag(tag);
+    console.log(`Tag revalidated: ${tag}`);
+  } catch (error) {
+    console.error("Error revalidating tag:", error);
+    throw new Error(`Error revalidating tag: ${error}`);
+  }
+};
+
+export { revalidatePathHandler, revalidateTagHandler };

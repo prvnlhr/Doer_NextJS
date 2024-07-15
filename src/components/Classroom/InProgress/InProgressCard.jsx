@@ -1,7 +1,6 @@
 import React from "react";
 
 import styles from "./styles/inProgressCard.module.scss";
-// import LinkButton from "../../Common/Button/LinkButton";
 import HighLightBadge from "../../Common/CardElements/HighLightBadge";
 import LinkButton from "@/components/Common/Buttons/LinkButton";
 const InProgressCard = () => {

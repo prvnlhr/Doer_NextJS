@@ -26,7 +26,6 @@ export async function GET(req, res) {
 export async function POST(req) {
   await dbConnect();
   try {
-    console.log("Hellow");
     const FormData = await req.formData();
     console.log("FormData", FormData.get("title"));
     const courseData = {

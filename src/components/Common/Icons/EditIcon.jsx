@@ -13,7 +13,6 @@ const EditIcon = () => {
         stroke="#2B3F6C"
         strokeWidth="0.5625"
         strokeLinejoin="round"
-        strokeLinejoin="round"
       />
     </svg>
   );

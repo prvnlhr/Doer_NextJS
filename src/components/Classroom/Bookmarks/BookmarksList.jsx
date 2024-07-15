@@ -5,7 +5,7 @@ const BookmarksList = ({ bookmarks }) => {
   return (
     <div className={styles.listWrapper}>
       {bookmarks.map((bookmark) => (
-        <BookmarkCard bookmark={bookmark} />
+        <BookmarkCard key={bookmark._id} bookmark={bookmark} />
       ))}
     </div>
   );

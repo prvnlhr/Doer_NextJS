@@ -5,10 +5,7 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 export async function fetchTopics(courseId, chapterId) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics`,
-      {
-        cache: "no-store",
-      }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -23,10 +20,7 @@ export async function fetchTopics(courseId, chapterId) {
 export async function fetchTopicById(courseId, chapterId, topicId) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
-      {
-        cache: "no-store",
-      }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -48,14 +42,11 @@ export async function createTopic(topicData, courseId, chapterId) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(topicData),
-        cache: "no-store",
       }
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response}`);
     }
-
-    // await revalidateTagHandler("topics");
   } catch (error) {
     console.log(error);
     throw new Error(`Create topic error : ${error}`);
@@ -72,14 +63,12 @@ export async function updateTopic(topicData, courseId, chapterId, topicId) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-store",
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error("Failed to update topic");
     }
-    // await revalidateTagHandler("topics");
     return response.json();
   } catch (error) {
     throw new Error(`Update topic error: ${error}`);
@@ -99,7 +88,6 @@ export async function deleteTopic(courseId, chapterId, topicId) {
       console.log(response);
       throw new Error("HTTP ! Error Failed to delete topic and its content");
     }
-    // await revalidateTagHandler("topics");
 
     return response.json();
   } catch (error) {

@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/db/dbConnect";
-import BookmarkedTopic from "@/lib/db/models/BookmarkTopic";
+import CourseProgress from "@/lib/db/models/CourseProgress";
 
-// Get user bookmarks
+// Get user courses in progress
 export async function GET(req, { params }) {
   await dbConnect();
   try {
@@ -9,14 +9,13 @@ export async function GET(req, { params }) {
     const query = {
       userId: userId,
     };
+    const coursesProgress = await CourseProgress.find(query);
 
-    const bookmarks = await BookmarkedTopic.find(query);
-
-    return new Response(JSON.stringify(bookmarks), { status: 200 });
+    return new Response(JSON.stringify(coursesProgress), { status: 200 });
   } catch (error) {
-    console.log("Error fetching user's bookmarks", error);
+    console.log("Error fetching user's coursesProgress", error);
     return new Response(
-      JSON.stringify({ error: "Error fetching user's bookmarks" }),
+      JSON.stringify({ error: "Error fetching user's coursesProgress" }),
       {
         status: 500,
       }
@@ -24,7 +23,7 @@ export async function GET(req, { params }) {
   }
 }
 
-// Insert new bookmark
+// Insert new course in progress
 
 export async function POST(req, { params }) {
   await dbConnect();

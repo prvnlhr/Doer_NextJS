@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "./styles/inProgressList.module.scss";
 import InProgressCard from "./InProgressCard";
-const InProgressList = () => {
+const InProgressList = ({ inprogressCourses }) => {
   return (
     <div className={styles.listWrapper}>
-      <InProgressCard />
-      <InProgressCard />
-      <InProgressCard />
-      <InProgressCard />
+      {inprogressCourses.map((courseProgress) => (
+        <InProgressCard />
+      ))}
     </div>
   );
 };

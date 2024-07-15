@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
-const page = () => {
+const ChapterDeletePage = () => {
   const router = useRouter();
   useEffect(() => {
     router.back();
@@ -9,4 +9,4 @@ const page = () => {
   return <></>;
 };
 
-export default page;
+export default ChapterDeletePage;

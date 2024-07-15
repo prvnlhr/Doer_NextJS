@@ -9,7 +9,7 @@ const TopicPage = ({ children, params }) => {
     <div className={styles.topicPageWrapper}>
       <div className={styles.topicPageWrapper__pageInnerWrapper}>
         <Sidebar params={params} />
-        <MainView children={children} params={params} />
+        <MainView params={params}>{children}</MainView>
       </div>
     </div>
   );

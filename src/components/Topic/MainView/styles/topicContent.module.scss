@@ -105,10 +105,16 @@ $fontColorSecondary: #101828;
   }
   .topicContentWrapper {
     height: calc(100% - 40px);
-    // border: 1px solid red;
     padding: 20px 40px;
     width: 80%;
     // border: 1px solid red;
+    .endLine {
+      width: 20%;
+      background-color: transparent;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     @include scroll($dir: y);
     @media (max-width: 768px) {
       width: 100%;

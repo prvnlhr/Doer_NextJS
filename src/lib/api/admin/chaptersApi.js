@@ -5,11 +5,7 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 export async function fetchChapters(courseId) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters`,
-      {
-        next: { tags: ["chapters"] },
-        cache: "no-store",
-      }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters`
     );
     if (!response.ok) {
       console.log(response);
@@ -25,10 +21,7 @@ export async function fetchChapters(courseId) {
 export async function fetchChapterById(courseId, chapterId) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
-      {
-        cache: "no-store",
-      }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`
     );
     if (!response.ok) {
       console.log(response);
@@ -49,14 +42,12 @@ export async function createChapter(chapterData, courseId) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-store",
         body: JSON.stringify(chapterData),
       }
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    // await revalidateTagHandler("chapters");
     return response.json();
   } catch (error) {
     throw new Error(`Create chapter error : ${error}`);
@@ -73,14 +64,12 @@ export async function updateChapter(chapterData, courseId, chapterId) {
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-store",
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    // await revalidateTagHandler("chapters");
     return response.json();
   } catch (error) {
     throw new Error(`Create chapter error : ${error}`);
@@ -93,14 +82,12 @@ export async function deleteChapter(courseId, chapterId, params) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
       {
         method: "DELETE",
-        cache: "no-store",
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error("HTTP ! Error Failed to delete chapter and its content");
     }
-    // await revalidateTagHandler("chapters");
     return response.json();
   } catch (error) {
     throw new Error(`Error in deleting the chapter ${error}`);

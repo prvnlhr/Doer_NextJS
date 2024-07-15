@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
-const page = () => {
+const DeletePage = () => {
   const router = useRouter();
   useEffect(() => {
     router.replace(`/admin/courses`);
@@ -9,4 +9,4 @@ const page = () => {
   return <></>;
 };
 
-export default page;
+export default DeletePage;

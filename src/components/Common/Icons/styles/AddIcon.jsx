@@ -13,13 +13,11 @@ const AddIcon = () => {
         stroke="white"
         strokeWidth="1.05231"
         strokeLinejoin="round"
-        strokeLinejoin="round"
       />
       <path
         d="M9.00928 13.023V4.60449"
         stroke="white"
         strokeWidth="1.05231"
-        strokeLinejoin="round"
         strokeLinejoin="round"
       />
     </svg>

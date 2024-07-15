@@ -4,10 +4,16 @@ import BookmarksList from "./Bookmarks/BookmarksList";
 import { fetchUserData } from "@/lib/api/public/usersApi";
 import SubPageTabsBar from "./SubPageTabsBar";
 import InProgressList from "./InProgress/InProgressList";
-const ClassRoomLayout = async ({ children, params }) => {
+const ClassRoomLayout = async ({
+  children,
+  stats,
+  inprogress,
+  bookmarks,
+  params,
+}) => {
   const { userId } = params;
 
-  const classroomData = await fetchUserData(userId);
+  // const classroomData = await fetchUserData(userId);
 
   return (
     <div className={styles.layoutWrapper}>
@@ -22,7 +28,7 @@ const ClassRoomLayout = async ({ children, params }) => {
                 <div className={styles.titleLine}></div>
               </div>
             </div>
-            <div className={styles.cellMain}></div>
+            <div className={styles.cellMain}>{stats}</div>
           </div>
         </div>
         <div className={styles.graphCell}>
@@ -41,11 +47,15 @@ const ClassRoomLayout = async ({ children, params }) => {
         <div className={styles.subPageCell}>
           <div className={styles.cellLayout}>
             <div className={styles.cellHeader}>
-              <SubPageTabsBar />
+              {/* <SubPageTabsBar /> */}
+              <div className={styles.titleWrapper}>
+                <div className={styles.titleDiv}>
+                  <p>IN PROGRESS</p>
+                </div>
+                <div className={styles.titleLine}></div>
+              </div>
             </div>
-            <div className={styles.cellMain}>
-              <InProgressList />
-            </div>
+            <div className={styles.cellMain}>{inprogress}</div>
           </div>
         </div>
         <div className={styles.bookmarksCell}>
@@ -58,11 +68,7 @@ const ClassRoomLayout = async ({ children, params }) => {
                 <div className={styles.titleLine}></div>
               </div>
             </div>
-            <div className={styles.cellMain}>
-              <BookmarksList
-                bookmarks={classroomData?.courseState.bookmarkedTopics}
-              />
-            </div>
+            <div className={styles.cellMain}>{bookmarks}</div>
           </div>
         </div>
       </div>

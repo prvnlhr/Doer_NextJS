@@ -5,9 +5,7 @@ export async function fetchTopicById(params) {
   try {
     const response = await fetch(
       `${BASE_URL}/api/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
-      {
-        cache: "no-store",
-      }
+      { next: { revalidate: 0 } }
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);

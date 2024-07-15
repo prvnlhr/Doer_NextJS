@@ -15,7 +15,7 @@ const SubPageTabsBar = () => {
               pathname === `/user/${params.userId}/classroom/inprogress` &&
               styles["headerLink--active"]
             }`}
-            href="classroom/inprogress"
+            href={`/user/${params.userId}/classroom/inprogress`}
           >
             <p>IN PROGRESS</p>
           </Link>
@@ -31,7 +31,7 @@ const SubPageTabsBar = () => {
               pathname === `/user/${params.userId}/classroom/lastopened` &&
               styles["headerLink--active"]
             }`}
-            href="classroom/lastopened"
+            href={`/user/${params.userId}/classroom/lastopened`}
           >
             <p>LAST OPENED</p>
           </Link>
