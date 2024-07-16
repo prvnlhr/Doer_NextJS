@@ -2,7 +2,7 @@
 @import "../../../styles/variables.module";
 
 .card {
-  width: 180px;
+  width: 190px;
   aspect-ratio: 2/2.5;
   margin: 2% 2%;
   display: grid;
@@ -17,13 +17,6 @@
   box-sizing: border-box;
   background-color: white;
   @include card-bg-shadow;
-
-  @media (max-width: 768px) {
-    width: 90% !important;
-    aspect-ratio: 1/1.4;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   &:hover {
     box-shadow: $card-hover-box-shadow;

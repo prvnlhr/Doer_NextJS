@@ -5,6 +5,7 @@ import styles from "./styles/breadCrumbs.module.scss";
 import Link from "next/link";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import { generateSlug } from "@/lib/utils/slugUtil";
+
 const BreadCrumbsBar = () => {
   const params = useParams();
   const pathname = usePathname();

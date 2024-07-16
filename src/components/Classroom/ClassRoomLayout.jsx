@@ -4,6 +4,8 @@ import BookmarksList from "./Bookmarks/BookmarksList";
 import { fetchUserData } from "@/lib/api/public/usersApi";
 import SubPageTabsBar from "./SubPageTabsBar";
 import InProgressList from "./InProgress/InProgressList";
+import TimeSpendingsGraph from "./Graph/TimeSpendingsGraph";
+
 const ClassRoomLayout = async ({
   children,
   stats,
@@ -12,8 +14,6 @@ const ClassRoomLayout = async ({
   params,
 }) => {
   const { userId } = params;
-
-  // const classroomData = await fetchUserData(userId);
 
   return (
     <div className={styles.layoutWrapper}>
@@ -41,7 +41,11 @@ const ClassRoomLayout = async ({
                 <div className={styles.titleLine}></div>
               </div>
             </div>
-            <div className={styles.cellMain}></div>
+            <div className={styles.cellMain}>
+              <div className={styles.graphContainer}>
+                <TimeSpendingsGraph />
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.subPageCell}>

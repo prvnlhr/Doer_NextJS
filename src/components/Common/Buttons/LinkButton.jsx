@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { animate, motion } from "framer-motion";
 import styles from "./styles/linkButton.module.scss";
-import { useAppState } from "@/context/AppContext";
 
 const LinkButton = ({ to, linkProps }) => {
   const handleClick = () => {

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import styles from "./styles/accordionItem.module.scss";
 import Link from "next/link";
 import { useParams } from "next/navigation";

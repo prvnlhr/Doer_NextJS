@@ -8,7 +8,7 @@ import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import { useParams } from "next/navigation";
 import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
 import Spinner from "@/components/Common/Icons/Spinner";
-
+//'Hasklug Nerd Font' ,'Source Code Pro'
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
     const higherValue = parseInt(formik.values[higherLabel] || 0) + amount;

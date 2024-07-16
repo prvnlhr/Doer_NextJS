@@ -11,6 +11,7 @@ import {
   updateCourseProgress,
 } from "@/lib/api/public/usersApi";
 import { useInView } from "react-intersection-observer";
+import moment from "moment";
 
 const TopicContent = ({ topic }) => {
   const { data: session } = useSession();
@@ -58,11 +59,35 @@ const TopicContent = ({ topic }) => {
   };
   useEffect(() => {
     if (inView && !hasReachedEnd) {
-      console.log("Reached Page End");
       setHasReachedEnd(true);
       markTopicCompleted();
     }
   }, [inView, hasReachedEnd]);
+
+  useEffect(() => {
+    const startTime = new Date().getTime();
+
+    return () => {
+      const endTime = new Date().getTime();
+      const difference = endTime - startTime;
+
+      let minDiff = difference / 60000;
+      console.log(minDiff);
+
+      // Ensure minDiff is a whole number
+      minDiff = minDiff;
+
+      if (startTime) {
+        const dayIndex = new Date().getDay();
+        const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+        const weeklyTime = JSON.parse(localStorage.getItem("weeklyTime")) || [
+          0, 0, 0, 0, 0, 0, 0,
+        ];
+        weeklyTime[adjustedCurrentDayIndex] += minDiff;
+        localStorage.setItem("weeklyTime", JSON.stringify(weeklyTime));
+      }
+    };
+  }, []);
 
   return (
     <div className={styles.contentWrapper}>

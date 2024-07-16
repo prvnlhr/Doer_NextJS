@@ -117,9 +117,12 @@
     // border: 1px solid red;
     @include flex-container(flex-start, flex-end);
     p {
-      font-size: 0.5rem;
+      font-size: 0.55rem;
       margin: 0;
       line-height: 100%;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
     }
   }
 }

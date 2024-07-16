@@ -437,3 +437,45 @@ TODO ::
 - also show content which are only active 
 
 
+
+
+-------------------------------------
+
+- total days spent
+- course completed
+
+
+- user visits the topic page
+  - time starts
+- user leaves the topic page 
+  - time ends
+
+record this difference and add to the localstorge 
+
+const diff  = endTime - startTime 
+ 
+const timeSpentArr = [0, 1, 2, 3, 4, 5, 6]
+                      0  0  0  0  0  0  0
+
+timeSpentArr[dayOfWeekIndex] += diff
+
+now if its monday 
+
+sync the localstorge data with DB data
+
+ - calculate the totalTime = localstorge timeSpentArr sum
+ - DB totalTimeSpent = totalTime
+
+- reset the localstorge timeSpentArr to [0, 0, 0 ....]
+
+
+
+
+
+
+
+  
+
+
+
+  

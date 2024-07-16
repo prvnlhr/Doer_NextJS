@@ -1,33 +1,61 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
 
-.headingBox {
-  margin-left: 2%;
+.backBtnWrapper {
   width: auto;
   height: 100%;
-  //   border: 1px solid black;
-  @include flex-container(center, flex-start, column);
-  &__textWrapper {
-    height: auto;
-    width: 100%;
-    // border: 1px solid springgreen;
-    p {
-      font-size: 0.9rem;
-      letter-spacing: 4px;
-      font-weight: 600;
-    }
-  }
-  &__lineWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .backBtnIconDiv {
+    height: 80%;
+    aspect-ratio: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     // border: 1px solid blue;
-    height: 30%;
-    width: 100%;
-    @include flex-container(flex-start, center);
-    width: 100%;
-    &__lineSpan {
-      width: 15%;
-      height: 0.2rem;
-      border-radius: 10px;
-      background-color: #635db0;
+    transform: rotate(180deg);
+  }
+  .backBtnTextDiv {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // border: 1px solid red;
+    margin-left: 5px;
+    .textDiv {
+      width: 100%;
+      height: 60%;
+      // border: 1px solid green;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      p {
+        color: #101828;
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+        font-weight: 600;
+      }
+    }
+    .lineDiv {
+      width: 100%;
+      height: 40%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      // border: 1px solid brown;
+
+      &::after {
+        content: "";
+        background-color: #635db0;
+        width: 20px;
+        height: 3px;
+        border-radius: 5px;
+      }
     }
   }
 }

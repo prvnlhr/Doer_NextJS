@@ -1,4 +1,3 @@
-"use client";
 import TopicPage from "@/components/Topic/TopicPage";
 import React from "react";
 

@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import styles from "./styles/mainView.module.scss";
 import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { useAppState } from "@/context/AppContext";
 
-const MainView = ({ children }) => {
+const MainView = ({ children, params }) => {
   const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
-  const params = useParams();
 
   return (
     <div

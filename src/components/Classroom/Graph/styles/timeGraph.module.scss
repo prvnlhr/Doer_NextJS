@@ -1,0 +1,167 @@
+@import "../../../../styles/mixins.module";
+
+.graphWrapper {
+  width: 50%;
+  height: 90%;
+  //   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 95%;
+  }
+  .chartHeaderWrapper {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // border: 1px solid blue;
+    box-sizing: border-box;
+    padding: 0px 8px;
+
+    p {
+      font-size: 1.2rem;
+      color: #635db0;
+      font-weight: 500;
+      span {
+        font-size: 0.8rem;
+        color: #7e8da4;
+        margin-right: 2px;
+      }
+    }
+  }
+
+  .chartWrapper {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    // border: 1px solid red;
+  }
+
+  .dayElement {
+    width: 14%;
+    height: 100%;
+    // border: 1px solid blue;
+    display: grid;
+    grid-template-areas:
+      "valueBarCell"
+      "valueLabelCell";
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-columns: 100%;
+    padding: 5px;
+    margin: auto;
+    cursor: pointer;
+
+    .valueBarCell {
+      grid-area: valueBarCell;
+      width: 100%;
+      height: 100%;
+      //   border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      &:hover .valueBar {
+        background-color: #635db0;
+      }
+      &:hover .tooltip {
+        display: flex;
+      }
+      .valueBar {
+        width: 3px;
+        background-color: #d0d5dd;
+        border-radius: 5px 5px 0px 0px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        &--activeDay {
+          background-color: #635db0;
+        }
+
+        // &:hover .tooltip {
+        //   display: flex;
+        // }
+      }
+    }
+    .valueLabelCell {
+      grid-area: "valueLabelCell";
+      width: 100%;
+      aspect-ratio: 1/1;
+      //   border: 1px solid green;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      p {
+        color: #7e8da4;
+        font-size: 0.7rem;
+      }
+
+      &--activeLabelCell {
+        p {
+          color: #635db0 !important;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #222222;
+  color: #fff;
+  width: auto;
+  height: 35px;
+  border-radius: 2px;
+  font-size: 12px;
+  pointer-events: none;
+  top: -40px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px 5px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  .labelWrapper {
+    width: 100%;
+    height: 50%;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .labelDiv {
+      width: auto;
+      padding: 0px 0px;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      p {
+        font-size: 0.6rem;
+        color: #7e8da4;
+      }
+    }
+  }
+  .valueWrapper {
+    width: 100%;
+    height: 50%;
+    // border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 0.6rem;
+      white-space: nowrap;
+    }
+  }
+}
