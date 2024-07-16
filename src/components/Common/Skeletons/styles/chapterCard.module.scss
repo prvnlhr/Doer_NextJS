@@ -24,21 +24,12 @@
     margin-right: auto;
   }
 
-  // border-radius: 1.6rem;
-
-  &:hover {
-    box-shadow: $card-hover-box-shadow;
-  }
-
   &__chapterNumWrapper {
     grid-area: chapterNumWrapper;
     @include fhw;
     // border: 1px solid red;
     @include flex-container(flex-start, center);
-    p {
-      font-size: 0.6rem;
-      font-weight: 500;
-    }
+    padding: 5px 0px;
   }
   &__bookmarkIconWrapper {
     // border: 1px solid red;
@@ -50,9 +41,7 @@
     @include flex-container(flex-start, center);
     grid-area: titleWrapper;
     @include fhw;
-    p {
-      font-size: 0.9rem;
-    }
+    padding: 5px 0px;
   }
   &__topicsListWrapper {
     grid-area: topicsListWrapper;
@@ -64,52 +53,15 @@
     .listInnerWrapper {
       width: 95%;
       height: 70%;
-      //   border: 1px solid black;
+      // border: 1px solid black;
       @include flex-container($direction: column);
-      @include scroll($dir: y);
+      @include scroll($dir: y, $display: none);
 
-      .topicItemWrapper {
-        // border: 1px solid red;
-        position: relative;
+      div {
         width: 100%;
-        height: 20px;
-        min-height: 20px;
-        @include flex-container(flex-start, center);
+        flex: 1;
+        // border: 1px solid red;
         margin-top: 5px;
-
-        &__dotIndicatorDiv {
-          position: relative;
-          height: 20px;
-          aspect-ratio: 1/1;
-          @include flex-container(center, center);
-          //   border: 1px solid black;
-          div {
-            width: 4px;
-            aspect-ratio: 1/1;
-            background-color: #635db0;
-          }
-
-          &::before {
-            position: absolute;
-            content: "";
-            left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #7e8da47f;
-            width: 1.5px;
-            height: 50%;
-            top: -25%;
-          }
-        }
-
-        p {
-          font-size: 0.6rem;
-          color: $secondary-text-color;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          //   border: 1px solid red;
-        }
       }
     }
   }
@@ -117,11 +69,13 @@
     grid-area: topicsCountWrapper;
     @include fhw;
     // border: 1px solid cyan;
+    padding: 5px 0px;
   }
   &__durationWrapper {
     grid-area: durationWrapper;
     @include fhw;
     // border: 1px solid greenyellow;
+    padding: 5px 0px;
   }
   &__linkBtnWrapper {
     grid-area: linkBtnWrapper;

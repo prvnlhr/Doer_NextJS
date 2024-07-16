@@ -1,12 +1,12 @@
 import ChapterCardSkeleton from "@/components/Common/Skeletons/ChapterCardSkeleton";
-import ContentListSkeleton from "@/components/Common/Skeletons/ContentListSkeleton";
+import ChaptersListSkeleton from "@/components/Common/Skeletons/ChaptersListSkeleton";
 import React from "react";
 
 const loading = () => {
   return (
-    <ContentListSkeleton>
+    <ChaptersListSkeleton>
       <ChapterCardSkeleton />
-    </ContentListSkeleton>
+    </ChaptersListSkeleton>
   );
 };
 
