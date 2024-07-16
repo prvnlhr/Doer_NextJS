@@ -2,7 +2,7 @@ import React from "react";
 import CourseCardSkeleton from "./CourseCardSkeleton";
 import styles from "./styles/contentList.module.scss";
 import ChevronRightIcon from "../Icons/ChevronRightIcon";
-const ContentListSkeleton = () => {
+const ContentListSkeleton = ({ children }) => {
   return (
     <div className={styles.courseListWrapper}>
       <div className={styles.listHeader}>
@@ -19,10 +19,11 @@ const ContentListSkeleton = () => {
         </div>
       </div>
       <div className={styles.mainListWrapper}>
-        <CourseCardSkeleton />
-        <CourseCardSkeleton />
-        <CourseCardSkeleton />
-        <CourseCardSkeleton />
+        {children}
+        {children}
+        {children}
+        {children}
+        {children}
       </div>
     </div>
   );

@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./styles/commonHeading.module.scss";
 import ChevronRightIcon from "../Icons/ChevronRightIcon";
-const CommonHeading = ({ text }) => {
+import Link from "next/link";
+
+const CommonHeading = ({ to, text }) => {
   return (
     <div className={styles.backBtnWrapper}>
-      <div className={styles.backBtnIconDiv}>
+      <Link href={to ? to : "#"} className={styles.backBtnIconDiv}>
         <ChevronRightIcon color="#3D4754" />
-      </div>
+      </Link>
       <div className={styles.backBtnTextDiv}>
         <div className={styles.textDiv}>
           <p>{text}</p>

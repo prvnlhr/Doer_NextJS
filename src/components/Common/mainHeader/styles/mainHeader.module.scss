@@ -7,14 +7,15 @@
   max-height: 80px;
 
   @include flex-container(flex-start, center);
+  // border: 1px solid blue;
+  // background-color: #0d1321;
   border-bottom: 1px solid #d0d5dd;
-  // border: 1px solid blue;s
 
   &__appLogoWrapper {
     height: 45px;
     width: 45px;
     @include flex-container(center, center);
-    margin-left: 1%;
+    margin-left: 2%;
     display: flex;
     // border: 1px solid red;
   }

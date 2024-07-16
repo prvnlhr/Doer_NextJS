@@ -7,7 +7,7 @@ const CoursesList = ({ courses }) => {
   return (
     <div className={styles.courseListWrapper}>
       <div className={styles.listHeader}>
-        <CommonHeading text="EXPLORE COURSES" />
+        <CommonHeading to="/" text="EXPLORE COURSES" />
       </div>
       <div className={styles.mainListWrapper}>
         {courses.map(

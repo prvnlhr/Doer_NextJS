@@ -1,0 +1,138 @@
+@import "../../../../styles/mixins.module";
+
+.card {
+  width: 280px;
+  aspect-ratio: 3/1.9;
+  margin: 2% 2%;
+  display: grid;
+  grid-template-areas:
+    "chapterNumWrapper chapterNumWrapper bookmarkIconWrapper"
+    "titleWrapper titleWrapper titleWrapper"
+    "topicsListWrapper topicsListWrapper linkBtnWrapper"
+    "topicsCountWrapper durationWrapper linkBtnWrapper";
+  grid-template-columns: 35% 35% 30%;
+  grid-template-rows: 15% 20% 45% 20%;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  background-color: white;
+  @include card-bg-shadow;
+
+  @media (max-width: 768px) {
+    width: 85% !important;
+    aspect-ratio: 3/1.8;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // border-radius: 1.6rem;
+
+  &:hover {
+    box-shadow: $card-hover-box-shadow;
+  }
+
+  &__chapterNumWrapper {
+    grid-area: chapterNumWrapper;
+    @include fhw;
+    // border: 1px solid red;
+    @include flex-container(flex-start, center);
+    p {
+      font-size: 0.6rem;
+      font-weight: 500;
+    }
+  }
+  &__bookmarkIconWrapper {
+    // border: 1px solid red;
+    grid-area: bookmarkIconWrapper;
+    @include fhw;
+  }
+  &__titleWrapper {
+    // border: 1px solid red;
+    @include flex-container(flex-start, center);
+    grid-area: titleWrapper;
+    @include fhw;
+    p {
+      font-size: 0.9rem;
+    }
+  }
+  &__topicsListWrapper {
+    grid-area: topicsListWrapper;
+    @include fhw;
+    // border: 1px solid salmon;
+    @include scroll($dir: y, $display: none);
+    @include flex-container(flex-start, center);
+
+    .listInnerWrapper {
+      width: 95%;
+      height: 70%;
+      //   border: 1px solid black;
+      @include flex-container($direction: column);
+      @include scroll($dir: y);
+
+      .topicItemWrapper {
+        // border: 1px solid red;
+        position: relative;
+        width: 100%;
+        height: 20px;
+        min-height: 20px;
+        @include flex-container(flex-start, center);
+        margin-top: 5px;
+
+        &__dotIndicatorDiv {
+          position: relative;
+          height: 20px;
+          aspect-ratio: 1/1;
+          @include flex-container(center, center);
+          //   border: 1px solid black;
+          div {
+            width: 4px;
+            aspect-ratio: 1/1;
+            background-color: #635db0;
+          }
+
+          &::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #7e8da47f;
+            width: 1.5px;
+            height: 50%;
+            top: -25%;
+          }
+        }
+
+        p {
+          font-size: 0.6rem;
+          color: $secondary-text-color;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          //   border: 1px solid red;
+        }
+      }
+    }
+  }
+  &__topicsCountWrapper {
+    grid-area: topicsCountWrapper;
+    @include fhw;
+    // border: 1px solid cyan;
+  }
+  &__durationWrapper {
+    grid-area: durationWrapper;
+    @include fhw;
+    // border: 1px solid greenyellow;
+  }
+  &__linkBtnWrapper {
+    grid-area: linkBtnWrapper;
+    @include fhw;
+    // border: 1px solid black;
+    @include flex-container(flex-end, flex-end);
+
+    .buttonWrapper {
+      width: 60%;
+      aspect-ratio: 1/1;
+      // border: 1px solid black;
+    }
+  }
+}

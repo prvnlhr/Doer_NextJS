@@ -1,0 +1,296 @@
+.introSectionOuterWrapper {
+  width: 100%;
+  height: 60%;
+  min-height: 60%;
+  /* border: 1px solid red; */
+  // background-color: #0d1321;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.introSectionInnerWrapper {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.descriptionSection {
+  width: 50%;
+  height: 100%;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 45% 30% 25%;
+  grid-template-areas:
+    "upperTextWrapper"
+    "lowerTextWrapper"
+    "btnWrapper";
+}
+
+.upperTextWrapper {
+  grid-area: upperTextWrapper;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.upperText {
+  width: 100%;
+  font-size: 30px;
+  color: #101828;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.introSpanText {
+  position: relative;
+  color: #635db0;
+  font-weight: 400;
+}
+
+.lowerTextWrapper {
+  grid-area: lowerTextWrapper;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid greenyellow; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.lowerText {
+  width: 80%;
+  font-size: 0.95rem;
+  color: #51637d;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------- */
+.btnWrapper {
+  grid-area: btnWrapper;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.btnInnerWrapper {
+  /* border: 1px solid red; */
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btnTextWrapper {
+  display: flex;
+  width: auto;
+  height: 100%;
+  /* border: 1px solid white; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-right: 20px;
+}
+
+.exploreText {
+  color: #101828;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.coursesText {
+  position: relative;
+  color: #635db0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  /* border: 1px solid red; */
+}
+
+/* .courseTextSpan {
+    height: auto;
+    font-size: 1rem;
+    color: var(--app-ui-scheme-color);
+    border: 1px solid red;
+} */
+
+.coursesText::after {
+  content: "";
+  position: absolute;
+  background-color: #635db0;
+  aspect-ratio: 1/1;
+  width: 4.5px;
+  bottom: 20%;
+  right: -9px;
+  border-radius: 50%;
+}
+
+.arrowIconWrapper {
+  /* border: 1px solid red; */
+  aspect-ratio: 1/1;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.arrowIconDiv {
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  background-color: #6167a0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------- */
+
+/* ------------------------------------------------------------------- */
+
+/* ---------------------------- */
+.illustrationSection {
+  width: 50%;
+  height: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.illustrationWrapper {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid pink; */
+}
+
+.illustrationSvg {
+  height: 100%;
+  width: 100%;
+  /* border: 1px solid rebeccapurple; */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .introSectionOuterWrapper {
+    width: 100%;
+    height: 100%;
+    /* height: auto; */
+    min-height: 100%;
+    /* border: 1px solid red; */
+  }
+
+  .introSectionInnerWrapper {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 1px solid red; */
+    flex-direction: column;
+  }
+
+  .descriptionSection {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+  }
+
+  .upperText {
+    width: 100%;
+    color: #101828;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: unset;
+    /* font-size: clamp(0.9rem, -0.5000000000000001rem + 7.000000000000001vw, 1.6rem) !important; */
+    font-size: clamp(0.9rem, -0.29999999999999993rem + 6vw, 1.5rem) !important;
+  }
+
+  .introSpanText {
+    position: relative;
+    color: #635db0;
+    font-weight: 500;
+    font-size: clamp(0.9rem, -0.29999999999999993rem + 6vw, 1.5rem) !important;
+  }
+
+  .lowerText {
+    width: 100%;
+    font-size: 0.95rem;
+    /* font-size: 0.65rem; */
+    font-size: 1.1rem;
+    /* font-size:clamp(0.65rem , -0.04999999999999993rem + 3.4999999999999996vw, 1.0rem) !important; */
+    font-size: clamp(
+      0.65rem,
+      -0.2500000000000001rem + 4.500000000000001vw,
+      1.1rem
+    ) !important;
+  }
+
+  .btnInnerWrapper {
+    /* border: 1px solid red; */
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .exploreText {
+    font-size: 2rem;
+    font-size: 3rem;
+    font-size: clamp(2rem, 0rem + 10vw, 3rem) !important;
+  }
+
+  .coursesText {
+    /* font-size: 2rem; */
+    /* font-size: 1.5rem; */
+    font-size: clamp(1rem, 0rem + 5vw, 1.5rem) !important;
+    /* font-size: clamp(1.0rem, -1.0rem + 10.0vw, 2.0rem) !important; */
+  }
+
+  .arrowIconWrapper {
+    /* border: 1px solid red; */
+    aspect-ratio: 1/1;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .arrowIconDiv {
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .illustrationSection {
+    width: 100%;
+    height: 50%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+  }
+}

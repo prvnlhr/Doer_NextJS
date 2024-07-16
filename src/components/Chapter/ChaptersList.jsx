@@ -3,11 +3,11 @@ import styles from "./styles/chaptersList.module.scss";
 import ChapterCard from "./ChapterCard";
 import CommonHeading from "../Common/Heading/CommonHeading";
 
-const ChaptersList = ({ chapters }) => {
+const ChaptersList = ({ chapters, params }) => {
   return (
     <div className={styles.chaptersListWrapper}>
       <div className={styles.listHeader}>
-        <CommonHeading text="CHAPTERS" />
+        <CommonHeading to="/content/courses" text="CHAPTERS" />
       </div>
       <div className={styles.mainListWrapper}>
         {chapters.map(

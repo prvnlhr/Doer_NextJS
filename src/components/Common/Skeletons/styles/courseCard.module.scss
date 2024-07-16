@@ -2,7 +2,7 @@
 @import "../../../styles/variables.module";
 
 .card {
-  width: 190px;
+  width: 180px;
   aspect-ratio: 2/2.5;
   margin: 2% 2%;
   display: grid;
@@ -18,6 +18,13 @@
   background-color: white;
   @include card-bg-shadow;
 
+  @media (max-width: 768px) {
+    width: 90% !important;
+    aspect-ratio: 1/1.4;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &:hover {
     box-shadow: $card-hover-box-shadow;
   }
@@ -28,6 +35,7 @@
     width: 100%;
     // border: 1px solid red;
     aspect-ratio: 1/1;
+    position: relative;
 
     div {
       width: 100%;
@@ -37,14 +45,7 @@
       border-radius: 10px;
       overflow: hidden;
       position: relative;
-      border: 1px solid #d3cee9;
-      // background-color: #f7f5ff;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
+      // border: 1px solid #d3cee9;
     }
   }
 
@@ -64,30 +65,19 @@
   &__titleWrapper {
     grid-area: titleWrapper;
     @include fhw;
-    @include flex-container(flex-start, center);
-    // border: 1px solid red;
-
-    p {
-      font-size: 0.8rem;
-    }
+    // overflow: hidden;
+    // position: relative;
+    padding: 10px 0px;
+    overflow: hidden;
   }
 
   &__descWrapper {
     grid-area: descWrapper;
     @include fhw;
     @include flex-container(flex-start, flex-start);
-    padding-right: 2%;
-
-    p {
-      font-size: 0.6rem;
-      color: $secondary-text-color;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      white-space: normal;
-      line-height: 1.8;
-    }
+    position: relative;
+    // border: 1px solid red;
+    padding: 10px 0px;
   }
 
   &__chapterWrapper {
