@@ -5,7 +5,11 @@ import AccordionItem from "./AccordionItem";
 const Accordion = ({ accordionListData, params }) => {
   return (
     <>
-      <div className={styles.accordHeaderWrapper}></div>
+      <div className={styles.accordHeaderWrapper}>
+        <div className={styles.headerTitleDiv}>
+          <p>Table of Content</p>
+        </div>
+      </div>
       <div className={styles.accordListWrapper}>
         {accordionListData &&
           accordionListData.map(

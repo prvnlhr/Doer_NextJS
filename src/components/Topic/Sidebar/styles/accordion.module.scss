@@ -3,8 +3,37 @@
 
 .accordHeaderWrapper {
   width: 100%;
-  height: 5%;
+  height: 10%;
   // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+
+  .headerTitleDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 80%;
+    position: relative;
+    // border: 1px solid blue;
+    box-sizing: border-box;
+    padding: 5px 0px;
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      height: 3px;
+      width: 20px;
+      background-color: #635db0;
+      border-radius: 5px;
+      bottom: 0px;
+    }
+  }
 }
 .accordListWrapper {
   width: 100%;

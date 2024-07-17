@@ -9,6 +9,8 @@ import { useAppState } from "@/context/AppContext";
 const MainView = ({ children, params }) => {
   const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
 
+  console.log(courseState);
+
   return (
     <div
       className={`${styles.mainViewWrapper} ${

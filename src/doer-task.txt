@@ -508,3 +508,50 @@ sync the localstorge data with DB data
 
 
   
+------------------------------------------------------------
+
+
+localStorage courseState = {
+
+   courseName:
+   courseId:
+   chapterName:
+   chapterId:
+   topicName:
+   topicId:
+   topicDuration:
+}
+
+- 1.  on clicking CourseCard set 
+      - courseState ={
+         courseName: 
+         courseId
+      }
+
+- 2.  on clicking ChapterCard set 
+      - courseState ={
+         courseName: 
+         courseId:
+         chapterName:
+         chapterId:
+         topicName: chapter's first topic's name
+         topicId:  chapter's first topic's id
+         topicsCount : chapter's topicsCount
+      }
+
+- 3. Topic Page
+     - Accordion
+       - on clicking chapter
+         repeat step 2   
+
+       - on clicking chapter's  topic
+         courseState ={
+            courseName: 
+            courseId:
+            chapterName:
+            chapterId:
+            topicName: clicked topic's name
+            topicId: clicked topic's id
+            topicsCount : no need to set
+      }
+

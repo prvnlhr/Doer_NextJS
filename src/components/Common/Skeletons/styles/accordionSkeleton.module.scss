@@ -1,0 +1,113 @@
+@import "../../../../styles/mixins.module";
+
+.accordHeaderWrapper {
+  width: 100%;
+  height: 5%;
+  // border: 1px solid red;
+}
+.accordListWrapper {
+  width: 100%;
+  height: 80%;
+  min-height: 80%;
+  // border: 1px solid blue;
+  @include flex-container(flex-start, center, column);
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .itemWrapper {
+    width: 80%;
+    // border: 1px solid black;
+    height: 160px;
+    min-height: 160px;
+    margin-top: 10px;
+    overflow: hidden;
+    @include transistion(min-height, 0.3s);
+
+    &__titleWrapper {
+      width: 100%;
+      height: 40px;
+      // border: 1px solid red;
+      @include flex-container(flex-start, center);
+      padding: 5px 5px;
+      // border: 1px solid #d0d5dd;
+      div {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #d0d5dd66;
+      }
+    }
+    &__subTitleWrapper {
+      width: 100%;
+      height: 40px;
+      @include flex-container(flex-start, center);
+      cursor: pointer;
+      // border: 1px solid blue;
+      overflow: hidden;
+      padding: 10px 5px;
+
+      .lineDiv {
+        width: 20px;
+        height: 100%;
+        // border: 1px solid orange;
+        @include flex-container(center, center);
+        position: relative;
+
+        .dotDiv {
+          width: 3px;
+          aspect-ratio: 1/2;
+          // background-color: #a4adbb45;
+          // border-radius: 50%;
+        }
+
+        &::after {
+          position: absolute;
+          content: "";
+          height: 40%;
+          width: 1px;
+          background-color: #a4adbb74;
+          border-radius: 5px;
+          top: -10%;
+          z-index: 999;
+        }
+      }
+
+      .linkDiv {
+        width: calc(100% - 20px);
+        height: 100%;
+        // border: 1px solid black;
+        @include flex-container(flex-start, center);
+        overflow: hidden;
+
+        .linkElement {
+          width: 100%;
+          height: 100%;
+          @include flex-container(flex-start, center);
+          border: 1px solid #d0d5dd66;
+          border-radius: 5px;
+          overflow: hidden;
+          .topicTitleText {
+            font-size: 0.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:hover {
+              color: #635db0;
+            }
+          }
+          .topicActive {
+            color: #635db0;
+          }
+          .topicInactive {
+            color: #919295;
+          }
+        }
+      }
+    }
+  }
+}
