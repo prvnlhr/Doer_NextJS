@@ -7,8 +7,7 @@ const TotalTimeSpent = () => {
   useEffect(() => {
     const totalSpentTime =
       JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
-    console.log(totalSpentTime);
-    const daysVal = Math.floor(totalSpentTime / 1440); // Calculate whole days
+    const daysVal = Math.floor(totalSpentTime / 1440);
     setDays(daysVal);
   }, []);
 

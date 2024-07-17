@@ -17,6 +17,7 @@ const AccordionItem = ({ chapter }) => {
   } = useAppState();
 
   const handleClick = () => {
+    
     const storedCourseState = localStorage.getItem("courseState");
     const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
     const updatedState = {

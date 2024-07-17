@@ -1,4 +1,4 @@
-import revalidateTagHandler from "@/app/revalidate";
+import { revalidateTagHandler } from "@/app/revalidate";
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
@@ -27,6 +27,7 @@ export async function fetchUsersBookmarks(userId) {
       console.error("Fetch user's bookmarks error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+
     return response.json();
   } catch (error) {
     console.log(error);
@@ -34,6 +35,29 @@ export async function fetchUsersBookmarks(userId) {
     throw new Error(`${error.message}`);
   }
 }
+
+export async function fetchUsersBookmarkById(userId, topicId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/user/${userId}/bookmarks/${topicId}`,
+      {
+        next: { revalidate: 0 },
+      }
+    );
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Fetch user's bookmark by id error:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    await revalidateTagHandler("fetchTopicById");
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    console.error("Fetch user's bookmark by id error:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
 export async function fetchUsersCoursesProgress(userId) {
   try {
     const response = await fetch(
@@ -79,6 +103,8 @@ export async function toggleBookmark(userId, bookmarkData) {
       console.error("Fetch user error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+
+    await revalidateTagHandler("fetchTopicById");
     return response.json();
   } catch (error) {
     console.error("Toogle bookmark error:", error);

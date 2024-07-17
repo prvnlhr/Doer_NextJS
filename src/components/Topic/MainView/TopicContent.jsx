@@ -6,18 +6,23 @@ import styles from "./styles/topicContent.module.scss";
 import ClockIcon from "@/components/Common/Icons/ClockIcon";
 import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
+
 import {
   toggleBookmark,
   updateCourseProgress,
 } from "@/lib/api/public/usersApi";
 import { useInView } from "react-intersection-observer";
 import { getLastMonday } from "@/lib/utils/dailyTimeSpentUtils";
+import BookmarkIcon from "@/components/Common/Icons/BookmarkIcon";
+import Spinner from "@/components/Common/Icons/Spinner";
 
-const TopicContent = ({ topic }) => {
+const TopicContent = ({ bookmark, topic }) => {
   const { data: session } = useSession();
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
+  const [isBookmarking, setIsBookmarking] = useState(false);
 
   const handleBookmarkBtnClicked = async () => {
+    setIsBookmarking(true);
     const userId = session?.user?.userId;
     const storedCourseState = localStorage.getItem("courseState");
     const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
@@ -30,6 +35,8 @@ const TopicContent = ({ topic }) => {
       const res = await toggleBookmark(userId, bookmarkData);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsBookmarking(false);
     }
   };
 
@@ -52,7 +59,7 @@ const TopicContent = ({ topic }) => {
     const progressData = JSON.parse(localStorage.getItem("courseState"));
     try {
       const response = await updateCourseProgress(userId, progressData);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -138,13 +145,22 @@ const TopicContent = ({ topic }) => {
               type="button"
               className={styles.bookmarkBtn}
               onClick={handleBookmarkBtnClicked}
+              disabled={isBookmarking}
             >
               <div className={styles.btnIconDiv}>
-                <BookmarkIconFilled />
+                {isBookmarking ? (
+                  <Spinner color="#635DB0" />
+                ) : bookmark.bookmarkId ? (
+                  <BookmarkIconFilled />
+                ) : (
+                  <BookmarkIcon />
+                )}
               </div>
-              <div className={styles.btnTextDiv}>
-                <p>Add to Bookmarks</p>
-              </div>
+              {!isBookmarking && (
+                <div className={styles.btnTextDiv}>
+                  <p>{bookmark.bookmarkId ? "Remove" : "Bookmark"}</p>
+                </div>
+              )}
             </button>
           </>
         )}

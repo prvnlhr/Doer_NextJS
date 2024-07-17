@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../Course/styles/courseCard.module.scss";
+import styles from "./styles/courseCard.module.scss";
 import Shimmer from "./Shimmer";
 const CourseCardSkeleton = () => {
   return (

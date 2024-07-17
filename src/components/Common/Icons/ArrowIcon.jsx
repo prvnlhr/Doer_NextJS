@@ -13,7 +13,7 @@ const ArrowIcon = () => {
         stroke="white"
         strokeWidth="2.57975"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

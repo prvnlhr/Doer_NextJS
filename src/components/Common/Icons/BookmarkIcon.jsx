@@ -19,7 +19,7 @@ const BookmarkIcon = () => {
         stroke="#2B3F6C"
         strokeWidth="1.5"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
