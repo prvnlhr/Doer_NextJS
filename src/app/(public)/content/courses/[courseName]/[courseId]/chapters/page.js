@@ -6,12 +6,7 @@ import ChaptersListSkeleton from "@/components/Common/Skeletons/ChaptersListSkel
 const ChaptersListPage = async ({ params }) => {
   const courseId = params.courseId;
   const chapters = await fetchChapters(courseId);
-  // return <ChaptersList params={params} chapters={chapters} />;
-  return (
-    <ChaptersListSkeleton>
-      <ChapterCardSkeleton />
-    </ChaptersListSkeleton>
-  );
+  return <ChaptersList params={params} chapters={chapters} />;
 };
 
 export default ChaptersListPage;

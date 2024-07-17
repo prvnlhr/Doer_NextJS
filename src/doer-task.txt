@@ -469,10 +469,39 @@ sync the localstorge data with DB data
 - reset the localstorge timeSpentArr to [0, 0, 0 ....]
 
 
+- days spent
+- courses completed
+- score -> (if we add mcq/quiz in future)
+
+-----------------------------------------------------------------------------------------------
+
+|>TODO ::
+
+- public
+  - universal search
+  - topics page sidebar show checked icon
+  - show loading spinner for bookmark toggle btn
+  - fix accordion animation
+  - fix accordion refresh page openinig the last opened accordion item  
+  - fix topics page breadcrumbs
+
+- admin
+  - admin auth
 
 
+|>DONE ::
 
+- public
+  - Landing page
+  - Course List
+  - Chapters List
+  - topic page
+  - public auth
 
+- admin 
+  - course add, edit, delete
+  - chapter add, edit, delete
+  - topic add, edit, delete
 
   
 

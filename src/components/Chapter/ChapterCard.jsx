@@ -21,10 +21,12 @@ const ChapterCard = ({ chapter, index }) => {
   return (
     <div className={styles.card}>
       <div className={styles.card__chapterNumWrapper}>
-        <p>
-          CHAPTER
-          {index <= 9 ? " 0" + (index + 1) : index + 1}
-        </p>
+        <div>
+          <HighLightBadge
+            text={`CHAPTER ${index <= 9 ? " 0" + (index + 1) : index + 1}`}
+            isHighlighted={true}
+          />
+        </div>
       </div>
       <div className={styles.card__bookmarkIconWrapper}></div>
       <div className={styles.card__titleWrapper}>

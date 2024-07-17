@@ -4,4 +4,141 @@
   width: 100%;
   height: 100%;
   // border: 1px solid red;
+  box-sizing: border-box;
+  padding: 5px;
+  .innerWrapper {
+    @include fhw;
+    // border: 1px solid red;
+
+    .userInfoWrapper {
+      width: 100%;
+      height: 30%;
+      // border: 1px solid blue;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      // padding: 2px;
+      box-sizing: border-box;
+      padding-left: 10px;
+      .nameWrapper {
+        width: 100%;
+        height: 60%;
+        // border: 1px solid salmon;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        p {
+          font-size: 0.9rem;
+          color: #718199;
+
+          span {
+            font-weight: 500;
+            color: #101828;
+          }
+        }
+      }
+      .countryWrapper {
+        width: 100%;
+        height: 60%;
+        // border: 1px solid skyblue;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        p {
+          font-size: 0.7rem;
+          color: #635db0;
+          font-weight: 500;
+        }
+      }
+    }
+    .statsBoxContainer {
+      width: 100%;
+      height: 70%;
+      // border: 1px solid green;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      box-sizing: border-box;
+      padding-left: 10px;
+      padding-top: 20px;
+      @media (max-width: 768px) {
+        padding: 10px 20px;
+      }
+    }
+  }
+}
+.statsBox {
+  width: 30%;
+  height: 45%;
+  display: grid;
+  grid-template-areas:
+    "iconCell labelCell"
+    "iconCell valueCell";
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 50% 50%;
+  box-sizing: border-box;
+  @media (max-width: 768px) {
+    width: 75%;
+    height: 45%;
+  }
+
+  .iconCell {
+    height: 100%;
+    aspect-ratio: 1/1;
+    grid-area: iconCell;
+    // border: 1px solid springgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf2ff;
+    border: 1px solid #d0d5dd;
+    border-radius: 12px;
+
+    .iconDiv {
+      width: 60%;
+      aspect-ratio: 1/1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .labelCell {
+    width: 100%;
+    height: 100%;
+    grid-area: labelCell;
+    // border: 1px solid sandybrown;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0px 8px;
+    p {
+      font-size: 0.6rem;
+      color: #101828;
+      font-weight: 500;
+    }
+  }
+
+  .valueCell {
+    width: 100%;
+    height: 100%;
+    grid-area: valueCell;
+    // border: 1px solid salmon;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0px 8px;
+    p {
+      font-size: 0.8rem;
+      color: #101828;
+      font-weight: 500;
+
+      span {
+        color: #718199;
+      }
+    }
+  }
 }

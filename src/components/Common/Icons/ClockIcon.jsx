@@ -8,36 +8,18 @@ const ClockIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle
-        cx="11.5714"
-        cy="13.4286"
-        r="8.57143"
-        stroke="#2B3F6C"
-        strokeWidth="1.42857"
+      <path
+        opacity="0.3"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25Z"
+        fill="#2B3F6C"
       />
       <path
-        d="M9.66663 2H13.4761"
+        d="M12 8V11.7324C12 11.8996 12.0836 12.0557 12.2226 12.1484L15 14"
         stroke="#2B3F6C"
-        strokeWidth="1.42857"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.5714 2L11.5714 4.85714"
-        stroke="#2B3F6C"
-        strokeWidth="1.42857"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.5714 13.4287L14.4286 10.5715"
-        stroke="#2B3F6C"
-        strokeWidth="1.42857"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M17.762 6.76184L18.2382 6.28564"
-        stroke="#2B3F6C"
-        strokeWidth="1.42857"
-        strokeLinejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );

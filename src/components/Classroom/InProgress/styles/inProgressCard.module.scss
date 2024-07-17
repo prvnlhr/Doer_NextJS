@@ -21,6 +21,11 @@
   background-color: white;
   @include card-bg-shadow;
 
+  @media (max-width: 768px) {
+    width: 85%;
+    margin-top: 20px;
+  }
+
   &__typeWrapper {
     grid-area: typeWrapper;
     @include fhw;

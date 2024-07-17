@@ -16,8 +16,6 @@ const InProgressCard = ({ courseProgress }) => {
   const fractionalPart = percentOfCourseCompleted - integerPart;
   const fractionalCeil = fractionalPart ? Math.ceil(fractionalPart * 100) : 0;
 
-  console.log(courseProgress);
-
   return (
     <div className={styles.card}>
       <div className={styles.card__typeWrapper}>

@@ -56,9 +56,9 @@ export async function POST(req, { params }) {
     let cloudinaryResponse = null;
 
     if (file !== "null") {
-      console.log("PREV ID ->>", cloudinary_id);
+      // console.log("PREV ID ->>", cloudinary_id);
       const deleteImageRes = await deleteImage(cloudinary_id);
-      console.log("DELETE RESPONSE", deleteImageRes);
+      // console.log("DELETE RESPONSE", deleteImageRes);
       cloudinaryResponse = await uploadToCloudinary(file);
       updateQuery.$set.logoUrl = cloudinaryResponse.secure_url;
       updateQuery.$set.cloudinary_id = cloudinaryResponse.public_id;
@@ -100,7 +100,7 @@ export async function DELETE(req, { params }) {
     const topicsDeleteRes = await Topic.deleteMany({
       chapter: { $in: chapterIds },
     }).exec();
-    console.log(`${topicsDeleteRes.deletedCount} Topics deleted`);
+    // console.log(`${topicsDeleteRes.deletedCount} Topics deleted`);
 
     // Delete all chapters of the course
     const chaptersDeleteRes = await Chapter.deleteMany({

@@ -79,6 +79,7 @@ export async function toggleBookmark(userId, bookmarkData) {
       console.error("Fetch user error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    return response.json();
   } catch (error) {
     console.error("Toogle bookmark error:", error);
     throw new Error(`${error.message}`);
@@ -102,8 +103,48 @@ export async function updateCourseProgress(userId, progressData) {
       console.error("Error in updating the course progress:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    return response.json();
   } catch (error) {
     console.error("Error in updating the course progress:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
+export async function fetchUsersStats(userId) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/user/${userId}/stats`, {
+      next: { revalidate: 0 },
+    });
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Error in fetching user's stats:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Error in fetching user's stats:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
+export async function updateUserStats(userId, timeSpentData) {
+  try {
+    console.log(userId, timeSpentData);
+    const response = await fetch(`${BASE_URL}/api/user/${userId}/stats`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(timeSpentData),
+    });
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Error in updating the user's stats:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Error in updating the user's stats:", error);
     throw new Error(`${error.message}`);
   }
 }

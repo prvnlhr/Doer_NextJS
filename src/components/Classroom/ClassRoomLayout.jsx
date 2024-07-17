@@ -1,9 +1,5 @@
 import React from "react";
 import styles from "./styles/classroomPage.module.scss";
-import BookmarksList from "./Bookmarks/BookmarksList";
-import { fetchUserData } from "@/lib/api/public/usersApi";
-import SubPageTabsBar from "./SubPageTabsBar";
-import InProgressList from "./InProgress/InProgressList";
 import TimeSpendingsGraph from "./Graph/TimeSpendingsGraph";
 
 const ClassRoomLayout = async ({
@@ -43,7 +39,7 @@ const ClassRoomLayout = async ({
             </div>
             <div className={styles.cellMain}>
               <div className={styles.graphContainer}>
-                <TimeSpendingsGraph />
+                <TimeSpendingsGraph params={params} />
               </div>
             </div>
           </div>

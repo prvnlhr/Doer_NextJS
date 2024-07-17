@@ -80,11 +80,15 @@ const TopicContent = ({ topic }) => {
       if (startTime) {
         const dayIndex = new Date().getDay();
         const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
-        const weeklyTime = JSON.parse(localStorage.getItem("weeklyTime")) || [
-          0, 0, 0, 0, 0, 0, 0,
-        ];
-        weeklyTime[adjustedCurrentDayIndex] += minDiff;
-        localStorage.setItem("weeklyTime", JSON.stringify(weeklyTime));
+        const dailyTimeSpent = JSON.parse(
+          localStorage.getItem("dailyTimeSpent")
+        ) || [0, 0, 0, 0, 0, 0, 0];
+        dailyTimeSpent[adjustedCurrentDayIndex] += minDiff;
+        localStorage.setItem("weeklyTime", JSON.stringify(dailyTimeSpent));
+        let prevTotalTime =
+          JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
+        const updateTotalTime = prevTotalTime + minDiff;
+        localStorage.setItem("totalTimeSpent", JSON.stringify(updateTotalTime));
       }
     };
   }, []);

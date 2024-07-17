@@ -10,7 +10,6 @@ export async function GET(req, { params }) {
       userId: userId,
     };
     const coursesProgress = await CourseProgress.find(query);
-    console.log("coursesProgress", coursesProgress);
 
     return new Response(JSON.stringify(coursesProgress), { status: 200 });
   } catch (error) {
@@ -29,7 +28,6 @@ export async function POST(req, { params }) {
   try {
     const { userId } = params;
     const courseProgressData = await req.json();
-    console.log("courseProgressData", courseProgressData);
 
     const query = {
       userId: userId,

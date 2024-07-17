@@ -46,7 +46,7 @@ const CourseCard = ({ course }) => {
           <HighLightBadge
             IconComponent={ChapterIcon}
             text={`${course.chaptersCount} Chapters`}
-            isHighlighted={false}
+            isHighlighted={true}
           />
         </div>
       </div>

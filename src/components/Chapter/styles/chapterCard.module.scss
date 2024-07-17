@@ -36,9 +36,10 @@
     @include fhw;
     // border: 1px solid red;
     @include flex-container(flex-start, center);
-    p {
-      font-size: 0.6rem;
-      font-weight: 500;
+    div {
+      width: auto;
+      height: 100%;
+      @include flex-container(flex-start, center);
     }
   }
   &__bookmarkIconWrapper {
@@ -85,7 +86,8 @@
           @include flex-container(center, center);
           //   border: 1px solid black;
           div {
-            width: 4px;
+            width: 3.5px;
+            border-radius: 50%;
             aspect-ratio: 1/1;
             background-color: #635db0;
           }

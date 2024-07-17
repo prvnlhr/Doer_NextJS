@@ -25,14 +25,12 @@ export async function GET(req, { params }) {
 }
 
 // Insert new bookmark
-
 export async function POST(req, { params }) {
   await dbConnect();
   try {
     const { userId } = params;
     const bookmarkData = await req.json();
 
-    console.log(bookmarkData);
     const existingBookmark = await BookmarkedTopic.findOne({
       userId: userId,
       topicId: bookmarkData.topicId,
@@ -58,6 +56,7 @@ export async function POST(req, { params }) {
       return new Response(JSON.stringify(newBookmark), { status: 201 });
     }
   } catch (error) {
+    console.log(error);
     return new Response(
       JSON.stringify({
         error: error,
