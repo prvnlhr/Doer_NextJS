@@ -8,9 +8,7 @@ import { useAppState } from "@/context/AppContext";
 
 const MainView = ({ children, params }) => {
   const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
-
-  console.log(courseState);
-
+  const { topicName } = JSON.parse(localStorage.getItem("courseState"));
   return (
     <div
       className={`${styles.mainViewWrapper} ${
@@ -60,9 +58,7 @@ const MainView = ({ children, params }) => {
               href={`/content/courses/${params.courseName}/${params.courseId}/chapters`}
               className={styles.link}
             >
-              <p style={{ color: "#635db0", fontWeight: 500 }}>
-                {courseState.topicName}
-              </p>
+              <p style={{ color: "#635db0", fontWeight: 500 }}>{topicName}</p>
             </Link>
             <div className={styles.chevIconContainer}>
               <div className={styles.chevIconDiv}>
