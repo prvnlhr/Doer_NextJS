@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./styles/timeGraph.module.scss";
 import { updateUserStats } from "@/lib/api/public/usersApi";
-
+import {
+  convertMinutesToHoursAndMinutes,
+  getLastMonday,
+} from "@/lib/utils/dailyTimeSpentUtils";
+import { convertMinutesToHours } from "@/lib/utils/durationConvert";
+convertMinutesToHours
 const daysOfWeek = [
   "Monday",
   "Tuesday",
@@ -14,22 +19,9 @@ const daysOfWeek = [
   "Sunday",
 ];
 
-const getLastMonday = () => {
-  const date = new Date();
-  const day = date.getDay();
-  const diff = date.getDate() - day + (day === 0 ? -6 : 1); // Adjust for Monday being the start of the week
-  const lastMonday = new Date(date.setDate(diff));
-  lastMonday.setHours(0, 0, 0, 0); // Reset time to the start of the day
-  return lastMonday;
-};
-
-function convertMinutesToHoursAndMinutes(totalMinutes) {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  return { hours, minutes };
-}
 const TimeSpendingsGraph = ({ params }) => {
   const [weeklyTime, setWeeklyTime] = useState([0, 0, 0, 0, 0, 0, 0]);
+
   const [totalTimeSpentMin, setTotalTimeSpentMin] = useState(0);
   const [timeSpentData, setTimeSpentData] = useState({ hours: 0, minutes: 0 });
   const { userId } = params;
@@ -41,9 +33,15 @@ const TimeSpendingsGraph = ({ params }) => {
     const lastSyncDate = new Date(localStorage.getItem("lastSyncDate") || 0);
     const currentMonday = getLastMonday();
 
-    const syncData = async () => {
+    if (currentMonday > lastSyncDate) {
+      syncAndResetData(userId, localStorageData);
+    } else {
+      setWeeklyTime(localStorageData);
+    }
+
+    const syncAndResetData = async (userId, data) => {
       try {
-        await updateUserStats(userId, localStorageData);
+        await updateUserStats(userId, data);
         localStorage.setItem(
           "dailyTimeSpent",
           JSON.stringify([0, 0, 0, 0, 0, 0, 0])
@@ -55,20 +53,11 @@ const TimeSpendingsGraph = ({ params }) => {
       }
     };
 
-    if (currentMonday > lastSyncDate) {
-      syncData();
-    } else {
-      setWeeklyTime(localStorageData);
-    }
-
-    const totalTime = JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
-    setTotalTimeSpentMin(totalTime);
-  }, [userId]);
-
-  useEffect(() => {
-    const timeData = convertMinutesToHoursAndMinutes(totalTimeSpentMin);
+    let totalTimeInMinutes =
+      JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
+    const timeData = convertMinutesToHoursAndMinutes(totalTimeInMinutes);
     setTimeSpentData(timeData);
-  }, [totalTimeSpentMin]);
+  }, []);
 
   const maxTime = Math.max(...weeklyTime, 1);
   const currentDayIndex = new Date().getDay();
@@ -103,7 +92,7 @@ const TimeSpendingsGraph = ({ params }) => {
                     <div className={styles.valueWrapper}>
                       <p>
                         {convertMinutesToHoursAndMinutes(Math.ceil(time)).hours}
-                        h{" "}
+                        h
                         {
                           convertMinutesToHoursAndMinutes(Math.ceil(time))
                             .minutes

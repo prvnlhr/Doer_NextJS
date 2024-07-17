@@ -11,7 +11,7 @@ import {
   updateCourseProgress,
 } from "@/lib/api/public/usersApi";
 import { useInView } from "react-intersection-observer";
-import moment from "moment";
+import { getLastMonday } from "@/lib/utils/dailyTimeSpentUtils";
 
 const TopicContent = ({ topic }) => {
   const { data: session } = useSession();
@@ -57,6 +57,7 @@ const TopicContent = ({ topic }) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (inView && !hasReachedEnd) {
       setHasReachedEnd(true);
@@ -64,30 +65,54 @@ const TopicContent = ({ topic }) => {
     }
   }, [inView, hasReachedEnd]);
 
+  const syncAndResetData = async () => {
+    const localStorageData = JSON.parse(
+      localStorage.getItem("dailyTimeSpent")
+    ) || [0, 0, 0, 0, 0, 0, 0];
+    try {
+      await updateUserStats(userId, localStorageData);
+      localStorage.setItem(
+        "dailyTimeSpent",
+        JSON.stringify([0, 0, 0, 0, 0, 0, 0])
+      );
+      localStorage.setItem("lastSyncDate", new Date().toISOString());
+    } catch (error) {
+      console.error("Error updating user stats:", error);
+    }
+  };
+
   useEffect(() => {
     const startTime = new Date().getTime();
 
     return () => {
       const endTime = new Date().getTime();
       const difference = endTime - startTime;
-
-      let minDiff = difference / 60000;
-      console.log(minDiff);
-
-      // Ensure minDiff is a whole number
-      minDiff = minDiff;
+      const minDiff = difference / 60000;
 
       if (startTime) {
         const dayIndex = new Date().getDay();
         const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+
+        // Check if data needs to be synced before updating localStorage
+        const lastSyncDate = new Date(
+          localStorage.getItem("lastSyncDate") || 0
+        );
+        const currentMonday = getLastMonday();
+        if (currentMonday > lastSyncDate) {
+          syncAndResetData(userId);
+        }
+
+        // Update localStorage
         const dailyTimeSpent = JSON.parse(
           localStorage.getItem("dailyTimeSpent")
         ) || [0, 0, 0, 0, 0, 0, 0];
         dailyTimeSpent[adjustedCurrentDayIndex] += minDiff;
-        localStorage.setItem("weeklyTime", JSON.stringify(dailyTimeSpent));
+        localStorage.setItem("dailyTimeSpent", JSON.stringify(dailyTimeSpent));
+
         let prevTotalTime =
           JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
-        const updateTotalTime = prevTotalTime + minDiff;
+        const updateTotalTime = Math.ceil(prevTotalTime + minDiff);
+
         localStorage.setItem("totalTimeSpent", JSON.stringify(updateTotalTime));
       }
     };
