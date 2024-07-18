@@ -74,6 +74,27 @@ export async function fetchUsersCoursesProgress(userId) {
     throw new Error(`${error.message}`);
   }
 }
+
+export async function fetchUsersCoursesProgressByCourseId(params) {
+  try {
+    const userId = params[0];
+    const courseId = params[1];
+    const response = await fetch(
+      `${BASE_URL}/api/user/${userId}/courses-progress/${courseId}`,
+      { cache: "no-store" }
+    );
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Fetch user error:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Fetch user error:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
 export async function fetchUsersLastopened(userId) {
   try {
     const response = await fetch(`${BASE_URL}/api/user/${userId}`);

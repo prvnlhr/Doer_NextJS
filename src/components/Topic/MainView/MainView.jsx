@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles/mainView.module.scss";
 import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
@@ -8,7 +8,14 @@ import { useAppState } from "@/context/AppContext";
 
 const MainView = ({ children, params }) => {
   const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
-  const { topicName } = JSON.parse(localStorage.getItem("courseState"));
+  const [topicName, setTopicName] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedState = JSON.parse(localStorage?.getItem("courseState"));
+      setTopicName(storedState?.topicName || "");
+    }
+  }, []);
   return (
     <div
       className={`${styles.mainViewWrapper} ${

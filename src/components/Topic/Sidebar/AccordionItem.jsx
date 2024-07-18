@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { useAppState } from "@/context/AppContext";
 import SubList from "./SubList";
 import { motion } from "framer-motion";
-const AccordionItem = ({ chapter }) => {
+const AccordionItem = ({ topicIds, chapter }) => {
   const params = useParams();
   const { courseName, courseId, chapterId } = params;
 
@@ -30,14 +30,14 @@ const AccordionItem = ({ chapter }) => {
     setCurrentOpenChapterIndex((prevId) =>
       prevId === chapter._id ? null : chapter._id
     );
-    setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40);
+    setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40 - 10);
   };
 
   useEffect(() => {
     const courseState = JSON.parse(localStorage.getItem("courseState")) || {};
     if (courseState) {
       setCurrentOpenChapterIndex(courseState.chapterId);
-      setCurrentOpenChapterHeight(courseState.topicsCount * 40 + 40);
+      setCurrentOpenChapterHeight(courseState.topicsCount * 40 + 40 - 10);
     } else {
       setCurrentOpenChapterIndex(chapterId);
     }
@@ -75,7 +75,7 @@ const AccordionItem = ({ chapter }) => {
       >
         <p>{chapter.title}</p>
       </Link>
-      <SubList chapter={chapter} params={params} />
+      <SubList topicIds={topicIds} chapter={chapter} params={params} />
     </motion.div>
   );
 };

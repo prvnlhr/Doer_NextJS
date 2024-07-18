@@ -8,7 +8,6 @@
   min-height: 40px;
   margin-top: 10px;
   overflow: hidden;
-  // @include transistion(min-height, 0.3s);
 
   &__titleWrapper {
     width: 100%;
@@ -31,46 +30,42 @@
   &__subTitleWrapper {
     width: 100%;
     height: 40px;
-    @include flex-container(flex-start, center);
-    padding-left: 8px;
     cursor: pointer;
-    // border: 1px solid blue;
+    display: grid;
+    grid-template-areas:
+      "iconCell subTitleCell"
+      "lineCell lineCell";
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: 30px 10px;
+    box-sizing: border-box;
+    // border: 1px solid red;
     overflow: hidden;
-
-    .lineDiv {
-      width: 20px;
+    .iconCell {
+      grid-area: iconCell;
+      // border: 1px solid red;
       height: 100%;
-      // border: 1px solid orange;
+      aspect-ratio: 1/1;
       @include flex-container(center, center);
-      position: relative;
+      .iconDiv {
+        aspect-ratio: 1/1;
+        width: 50%;
+        // border: 1px solid rebeccapurple;
+        @include flex-container(center, center);
 
-      .dotDiv {
-        width: 3px;
-        aspect-ratio: 1/2;
-        background-color: #635db0;
-        // border-radius: 50%;
-      }
-
-      &::after {
-        position: absolute;
-        content: "";
-        height: 40%;
-        width: 1px;
-        background-color: #a4adbb;
-        border-radius: 5px;
-        top: -10%;
-        z-index: 999;
+        .dotIcon {
+          width: 4px;
+          aspect-ratio: 1/1;
+          border-radius: 100%;
+          background-color: #a4adbb;
+        }
       }
     }
-
-    .linkDiv {
-      width: calc(100% - 20px);
-      height: 100%;
-      // border: 1px solid black;
+    .subTitleCell {
+      grid-area: subTitleCell;
+      @include fhw;
+      // border: 1px solid green;
       @include flex-container(flex-start, center);
-      overflow: hidden;
-
-      .linkElement {
+      .link {
         width: 100%;
         height: 100%;
         @include flex-container(flex-start, center);
@@ -89,9 +84,30 @@
         }
         .topicActive {
           color: #635db0;
+          font-weight: 500;
         }
         .topicInactive {
-          color: #919295;
+          color: #6b7584;
+          font-weight: 500;
+        }
+      }
+    }
+    .lineCell {
+      grid-area: lineCell;
+      @include fhw;
+      // border: 1px solid blue;
+      @include flex-container(flex-start, center);
+      .lineDiv {
+        width: 30px;
+        height: 100%;
+        @include flex-container(center, center);
+        // border: 1px solid red;
+
+        &::after {
+          content: "";
+          background-color: #a4adbb;
+          width: 2px;
+          height: 100%;
         }
       }
     }

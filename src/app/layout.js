@@ -4,6 +4,7 @@ import {
   Poppins,
   Montserrat,
   Source_Code_Pro,
+  Inter,
 } from "next/font/google";
 
 import "./globals.css";
@@ -12,6 +13,10 @@ import styles from "./app.module.scss";
 import { CombinedProviders } from "./providers";
 
 const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
+const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
@@ -38,7 +43,7 @@ export default function RootLayout({ children }) {
       <CombinedProviders>
         <body
           className={`
-          ${poppins.className} antialiased`}
+          ${inter.className} antialiased`}
         >
           <div className={styles.rootLayoutWrapper}>
             <MainHeader />
