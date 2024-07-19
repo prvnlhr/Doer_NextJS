@@ -6,9 +6,10 @@ import { useParams } from "next/navigation";
 import { useAppState } from "@/context/AppContext";
 import SubList from "./SubList";
 import { motion } from "framer-motion";
-const AccordionItem = ({ topicIds, chapter }) => {
+
+const AccordionItem = ({ chapter }) => {
   const params = useParams();
-  const { courseName, courseId, chapterId } = params;
+  const { chapterId } = params;
 
   const {
     currentOpenChapterIndex,
@@ -25,6 +26,8 @@ const AccordionItem = ({ topicIds, chapter }) => {
       chapterId: chapter._id,
       chapterName: chapter.title,
       topicsCount: chapter.topicsCount,
+      topicId: chapter.topics[0]._id,
+      topicName: chapter.topics[0].title,
     };
     localStorage.setItem("courseState", JSON.stringify(updatedState));
     setCurrentOpenChapterIndex((prevId) =>
@@ -75,7 +78,7 @@ const AccordionItem = ({ topicIds, chapter }) => {
       >
         <p>{chapter.title}</p>
       </Link>
-      <SubList topicIds={topicIds} chapter={chapter} params={params} />
+      <SubList chapter={chapter} params={params} />
     </motion.div>
   );
 };

@@ -35,10 +35,14 @@ const Sidebar = ({ params }) => {
     fetchUsersCourseProgressFetcher
   );
 
-  const { showTopicSidebar, setShowTopicSidebar } = useAppState();
-  const [topicIds, setTopicIds] = useState([]);
+  const {
+    showTopicSidebar,
+    setShowTopicSidebar,
+    setCourseProgressState,
+    setCompletedTopics,
+  } = useAppState();
 
-  const getAllTopicIds = (data) => {
+  const extractCompletedTopicsIds = (data) => {
     return data.reduce((acc, course) => {
       const chapterTopicIds = course.chapters.reduce((acc, chapter) => {
         const topicIds = chapter.topics.map((topic) => topic.topicId);
@@ -50,10 +54,9 @@ const Sidebar = ({ params }) => {
 
   useEffect(() => {
     if (userCourseProgressData && userCourseProgressData.length > 0) {
-      const topicIds = getAllTopicIds(userCourseProgressData);
-      setTopicIds(topicIds);
-    } else {
-      setTopicIds([]);
+      setCourseProgressState(userCourseProgressData);
+      const topicIds = extractCompletedTopicsIds(userCourseProgressData);
+      setCompletedTopics(topicIds);
     }
   }, [userCourseProgressData]);
 
@@ -76,11 +79,7 @@ const Sidebar = ({ params }) => {
       {chaptersLoading || userCourseProgressLoading ? (
         <AccordionSkeleton />
       ) : (
-        <Accordion
-          accordionListData={chaptersData}
-          params={params}
-          topicIds={topicIds}
-        />
+        <Accordion accordionListData={chaptersData} params={params} />
       )}
     </div>
   );

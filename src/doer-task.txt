@@ -555,3 +555,47 @@ localStorage courseState = {
             topicsCount : no need to set
       }
 
+----------------------------
+
+
+context
+- completedTopics : []
+
+
+CONCERNS::
+1. completed topics [Done] -> needs to test
+2. bookmark
+
+
+1)
+- topics page 
+- fetching => chapters and their topics list from DB
+           => completed topicsIds from DB
+
+    - marking a topic complete -> OK
+    - response is the id of marked topic itself
+
+    what if we checked the completed topic status from context's 'completedTopics :[]'
+
+
+    fetching completed topicsIds from DB and update context's completedTopics:[]
+    when we mark the topic complete then, on basis of reponse update context's  completedTopics
+
+    CRUX: keep context's completedTopics:[] and DB's completed topics sync
+
+
+2)
+- classrom page fetching all the bookmarks and showing -> OK
+
+topics page
+- book-marking the topic
+
+- to check if a topic is bookmarked we need
+  topics id in any array
+
+- on classroom page we need,
+- course name, chapterName, topicName
+- courseId, chapterId, topicId, topic duration
+
+
+

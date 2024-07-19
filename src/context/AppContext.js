@@ -14,6 +14,10 @@ export const AppStateProvider = ({ children }) => {
     topicName: "",
   });
 
+  const [courseProgressState, setCourseProgressState] = useState();
+  const [completedTopics, setCompletedTopics] = useState([]);
+  const [bookmarkedTopics, setBookmarkedTopics] = useState([]);
+
   const [showTopicSidebar, setShowTopicSidebar] = useState(false);
 
   const [currentOpenChapterIndex, setCurrentOpenChapterIndex] = useState("");
@@ -30,6 +34,12 @@ export const AppStateProvider = ({ children }) => {
         setCurrentOpenChapterIndex,
         currentOpenChapterHeight,
         setCurrentOpenChapterHeight,
+        setCompletedTopics,
+        completedTopics,
+        setCourseProgressState,
+        courseProgressState,
+        bookmarkedTopics,
+        setBookmarkedTopics,
       }}
     >
       {children}

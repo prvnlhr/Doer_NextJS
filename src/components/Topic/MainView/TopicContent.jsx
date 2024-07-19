@@ -15,11 +15,23 @@ import { useInView } from "react-intersection-observer";
 import { getLastMonday } from "@/lib/utils/dailyTimeSpentUtils";
 import BookmarkIcon from "@/components/Common/Icons/BookmarkIcon";
 import Spinner from "@/components/Common/Icons/Spinner";
+import { useAppState } from "@/context/AppContext";
 
-const TopicContent = ({ bookmark, topic }) => {
+const TopicContent = ({ bookmarks, topic }) => {
   const { data: session } = useSession();
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const [isBookmarking, setIsBookmarking] = useState(false);
+
+  const {
+    completedTopics,
+    setCompletedTopics,
+    setBookmarkedTopics,
+    bookmarkedTopics,
+  } = useAppState();
+
+  const [ref, inView] = useInView({
+    threshold: 0,
+  });
 
   const handleBookmarkBtnClicked = async () => {
     setIsBookmarking(true);
@@ -33,6 +45,19 @@ const TopicContent = ({ bookmark, topic }) => {
     };
     try {
       const res = await toggleBookmark(userId, bookmarkData);
+      console.log(res.message);
+      if (res && res.message === "Bookmark added") {
+        setBookmarkedTopics((prevBookmarks) => [
+          ...prevBookmarks,
+          bookmarkData,
+        ]);
+      } else if (res && res.message === "Bookmark removed") {
+        setBookmarkedTopics((prevBookmarks) =>
+          prevBookmarks.filter(
+            (bookmark) => bookmark.topicId !== bookmarkData.topicId
+          )
+        );
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -40,37 +65,22 @@ const TopicContent = ({ bookmark, topic }) => {
     }
   };
 
-  useEffect(() => {
-    document.querySelectorAll("pre code").forEach((block) => {
-      if (block.dataset.highlighted) {
-        delete block.dataset.highlighted;
-      }
-      hljs.highlightElement(block);
-      block.dataset.highlighted = "yes";
-    });
-  }, [topic.content]);
-
-  const [ref, inView] = useInView({
-    threshold: 0,
-  });
-
   const markTopicCompleted = async () => {
     const userId = session?.user?.userId;
     const progressData = JSON.parse(localStorage.getItem("courseState"));
+    if (completedTopics.includes(topic._id)) {
+      return;
+    }
+
     try {
       const response = await updateCourseProgress(userId, progressData);
-      // console.log(response);
+      if (response && response.message === "Course progress updated") {
+        setCompletedTopics((prevTopics) => [...prevTopics, topic._id]);
+      }
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (inView && !hasReachedEnd) {
-      setHasReachedEnd(true);
-      markTopicCompleted();
-    }
-  }, [inView, hasReachedEnd]);
 
   const syncAndResetData = async () => {
     const localStorageData = JSON.parse(
@@ -87,6 +97,23 @@ const TopicContent = ({ bookmark, topic }) => {
       console.error("Error updating user stats:", error);
     }
   };
+
+  useEffect(() => {
+    if (inView && !hasReachedEnd) {
+      setHasReachedEnd(true);
+      markTopicCompleted();
+    }
+  }, [inView, hasReachedEnd]);
+
+  useEffect(() => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      if (block.dataset.highlighted) {
+        delete block.dataset.highlighted;
+      }
+      hljs.highlightElement(block);
+      block.dataset.highlighted = "yes";
+    });
+  }, [topic.content]);
 
   useEffect(() => {
     const startTime = new Date().getTime();
@@ -124,6 +151,15 @@ const TopicContent = ({ bookmark, topic }) => {
       }
     };
   }, []);
+  useEffect(() => {
+    setBookmarkedTopics(bookmarks);
+  }, [bookmarks]);
+  const isBookmarked = () => {
+    return (
+      bookmarkedTopics &&
+      bookmarkedTopics.some((item) => item.topicId === topic._id)
+    );
+  };
 
   return (
     <div className={styles.contentWrapper}>
@@ -150,7 +186,7 @@ const TopicContent = ({ bookmark, topic }) => {
               <div className={styles.btnIconDiv}>
                 {isBookmarking ? (
                   <Spinner color="#635DB0" />
-                ) : bookmark.bookmarkId ? (
+                ) : isBookmarked() ? (
                   <BookmarkIconFilled />
                 ) : (
                   <BookmarkIcon />
@@ -158,7 +194,7 @@ const TopicContent = ({ bookmark, topic }) => {
               </div>
               {!isBookmarking && (
                 <div className={styles.btnTextDiv}>
-                  <p>{bookmark.bookmarkId ? "Remove" : "Bookmark"}</p>
+                  <p>{isBookmarked() ? "Remove" : "Bookmark"}</p>
                 </div>
               )}
             </button>

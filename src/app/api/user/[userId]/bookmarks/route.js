@@ -53,7 +53,10 @@ export async function POST(req, { params }) {
         ...bookmarkData,
       });
       await newBookmark.save();
-      return new Response(JSON.stringify(newBookmark), { status: 201 });
+      return new Response(
+        JSON.stringify({ message: "Bookmark added", newBookmark }),
+        { status: 201 }
+      );
     }
   } catch (error) {
     console.log(error);

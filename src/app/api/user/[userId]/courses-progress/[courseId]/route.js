@@ -3,7 +3,6 @@ import CourseProgress from "@/lib/db/models/CourseProgress";
 
 // Get user's course by id progress
 export async function GET(req, { params }) {
-  console.log("USERID............", params);
   await dbConnect();
   try {
     const { userId, courseId } = params;

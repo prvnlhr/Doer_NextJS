@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles/accordion.module.scss";
 import AccordionItem from "./AccordionItem";
 
-const Accordion = ({ topicIds, accordionListData, params }) => {
+const Accordion = ({ accordionListData, params }) => {
   return (
     <>
       <div className={styles.accordHeaderWrapper}>
@@ -15,11 +15,7 @@ const Accordion = ({ topicIds, accordionListData, params }) => {
           accordionListData.map(
             (chapter) =>
               chapter?.topicsCount > 0 && (
-                <AccordionItem
-                  topicIds={topicIds}
-                  key={chapter._id}
-                  chapter={chapter}
-                />
+                <AccordionItem key={chapter._id} chapter={chapter} />
               )
           )}
       </div>

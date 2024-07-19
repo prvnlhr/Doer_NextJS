@@ -7,8 +7,8 @@ import HighLightBadge from "@/components/Common/CardElements/HighLightBadge";
 const InProgressCard = ({ courseProgress }) => {
   const { courseName, courseId, totalChapters, chapters } = courseProgress;
 
-  const { chapterName, chapterId, topics } = chapters[0];
-  const { topicName, topicId } = topics[0];
+  const { chapterName, chapterId, topics } = chapters[0] || {};
+  const { topicName, topicId } = topics[0] || {};
 
   const percentOfCourseCompleted = (chapters.length / totalChapters) * 100;
 

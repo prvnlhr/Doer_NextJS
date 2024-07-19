@@ -7,8 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAppState } from "@/context/AppContext";
 import CheckedIcon from "@/components/Common/Icons/CheckedIcon";
 
-const SubList = ({ topicIds, chapter, params }) => {
-  const { setShowTopicSidebar, currentOpenChapterIndex } = useAppState();
+const SubList = ({ chapter, params }) => {
+  const { setShowTopicSidebar, currentOpenChapterIndex, completedTopics } =
+    useAppState();
 
   const handleClick = (topic) => {
     const storedCourseState = localStorage.getItem("courseState");
@@ -26,7 +27,7 @@ const SubList = ({ topicIds, chapter, params }) => {
   };
 
   const isTopicCompleted = (topicId) => {
-    return topicIds && topicIds.includes(topicId);
+    return completedTopics && completedTopics.includes(topicId);
   };
   return (
     <AnimatePresence>

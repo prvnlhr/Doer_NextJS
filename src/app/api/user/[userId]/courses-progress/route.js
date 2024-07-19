@@ -115,9 +115,12 @@ export async function POST(req, { params }) {
 
     await courseInProgress.save();
 
-    return new Response(JSON.stringify("Course progress updated"), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ courseInProgress, message: "Course progress updated" }),
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     console.error(error);
     return new Response(
