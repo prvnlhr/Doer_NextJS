@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./styles/classroomPage.module.scss";
 import TimeSpendingsGraph from "./Graph/TimeSpendingsGraph";
-
+import Link from "next/link";
+import ChevronRightIcon from "../Common/Icons/ChevronRightIcon";
 const ClassRoomLayout = async ({
   children,
   stats,
@@ -13,6 +14,28 @@ const ClassRoomLayout = async ({
 
   return (
     <div className={styles.layoutWrapper}>
+      <div className={styles.layoutHeader}>
+        <div className={styles.breadCrumbsContainer}>
+          <Link href={`/`} className={styles.link}>
+            <p>Home</p>
+          </Link>
+          <div className={styles.chevIconContainer}>
+            <div className={styles.chevIconDiv}>
+              <ChevronRightIcon color={"#3D4754"} />
+            </div>
+          </div>
+        </div>
+        <div className={styles.breadCrumbsContainer}>
+          <Link href={`/content/courses`} className={styles.link}>
+            <p>Course</p>
+          </Link>
+          <div className={styles.chevIconContainer}>
+            <div className={styles.chevIconDiv}>
+              <ChevronRightIcon color={"#3D4754"} />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={styles.layoutGrid}>
         <div className={styles.statsCell}>
           <div className={styles.cellLayout}>
