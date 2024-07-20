@@ -25,8 +25,10 @@ const Stats = async () => {
         <div className={styles.statsBoxContainer}>
           <div className={styles.statsBox}>
             <div className={styles.iconCell}>
-              <div className={styles.iconDiv}>
-                <DaysSpentIcon />
+              <div className={styles.iconWrapper}>
+                <div className={styles.iconDiv}>
+                  <DaysSpentIcon />
+                </div>
               </div>
             </div>
             <div className={styles.labelCell}>
@@ -38,12 +40,14 @@ const Stats = async () => {
           </div>
           <div className={styles.statsBox}>
             <div className={styles.iconCell}>
-              <div className={styles.iconDiv}>
-                <CourseCompletedIcon />
+              <div className={styles.iconWrapper}>
+                <div className={styles.iconDiv}>
+                  <CourseCompletedIcon />
+                </div>
               </div>
             </div>
             <div className={styles.labelCell}>
-              <p>Courses Completed</p>
+              <p>Completed</p>
             </div>
             <div className={styles.valueCell}>
               <p>

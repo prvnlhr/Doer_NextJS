@@ -6,6 +6,7 @@
   // border: 1px solid red;
   box-sizing: border-box;
   padding: 5px;
+
   .innerWrapper {
     @include fhw;
     // border: 1px solid red;
@@ -78,40 +79,53 @@
       padding-left: 10px;
       padding-top: 20px;
       @media (max-width: 768px) {
-        padding: 10px 20px;
+        padding: 0px 8px;
+        align-items: center;
+        justify-content: space-between;
       }
     }
   }
 }
 .statsBox {
   width: 30%;
-  height: 45%;
+  height: 60px;
   display: grid;
   grid-template-areas:
     "iconCell labelCell"
     "iconCell valueCell";
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: 60px minmax(0, 1fr);
   grid-template-rows: 50% 50%;
   box-sizing: border-box;
+  // border: 1px solid red;
+
   @media (max-width: 768px) {
-    width: 75%;
-    height: 45%;
+    grid-template-columns: 60px minmax(0, 1fr);
+    width: 48%;
+    height: 70px;
   }
 
   .iconCell {
     height: 100%;
-    aspect-ratio: 1/1;
+    width: 100%;
     grid-area: iconCell;
     // border: 1px solid springgreen;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ecf2ff;
-    border: 1px solid #d0d5dd;
-    border-radius: 12px;
+
+    .iconWrapper {
+      width: 80%;
+      aspect-ratio: 1/1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ecf2ff;
+      border: 1px solid #d0d5dd;
+      border-radius: 12px;
+    }
 
     .iconDiv {
-      width: 60%;
+      width: 70%;
       aspect-ratio: 1/1;
       display: flex;
       justify-content: center;
@@ -128,13 +142,26 @@
     align-items: center;
     box-sizing: border-box;
     padding: 0px 8px;
+
     p {
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       color: #101828;
       font-weight: 500;
-      @include small-device {
-        font-size: clamp(0.75rem, 0.25rem + 2.5vw, 1rem) !important;
+      white-space: nowrap;
+    }
+
+    @include small-device {
+      align-items: flex-end;
+      p {
+        font-size: clamp(
+          0.6rem,
+          -0.09999999999999998rem + 3.4999999999999996vw,
+          0.95rem
+        ) !important;
       }
+    }
+    @include small-device {
+      align-items: flex-end;
     }
   }
 
@@ -149,15 +176,23 @@
     box-sizing: border-box;
     padding: 0px 8px;
     p {
-      font-size: 0.8rem;
+      font-size: 1rem;
       color: #101828;
       font-weight: 500;
-      @include small-device {
-        font-size: clamp(0.75rem, 0.25rem + 2.5vw, 1rem) !important;
-      }
-
+      white-space: nowrap;
       span {
         color: #718199;
+      }
+    }
+    @include small-device {
+      align-items: flex-start;
+      p {
+        font-size: clamp(
+          0.8rem,
+          2.220446049250313e-16rem + 3.9999999999999996vw,
+          1.2rem
+        ) !important;
+        margin-top: 5px;
       }
     }
   }
