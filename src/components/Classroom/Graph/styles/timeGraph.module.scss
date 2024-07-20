@@ -26,10 +26,20 @@
       font-size: 1.2rem;
       color: #635db0;
       font-weight: 500;
+      @include small-device {
+        font-size: clamp(1.1rem, -0.6999999999999997rem + 9vw, 2rem) !important;
+      }
       span {
         font-size: 0.8rem;
         color: #7e8da4;
         margin-right: 2px;
+        @include small-device {
+          font-size: clamp(
+            0.55rem,
+            -0.34999999999999987rem + 4.5vw,
+            1rem
+          ) !important;
+        }
       }
     }
   }
@@ -129,7 +139,6 @@
   justify-content: flex-start;
   align-items: center;
   padding: 3px 5px;
-  box-sizing: border-box;
   border-radius: 3px;
   .labelWrapper {
     width: 100%;
@@ -148,6 +157,13 @@
       p {
         font-size: 0.6rem;
         color: #7e8da4;
+        @include small-device {
+          font-size: clamp(
+            0.6rem,
+            0.29999999999999993rem + 1.5000000000000002vw,
+            0.75rem
+          ) !important;
+        }
       }
     }
   }
@@ -162,6 +178,14 @@
     p {
       font-size: 0.6rem;
       white-space: nowrap;
+      color: white;
+      @include small-device {
+        font-size: clamp(
+          0.6rem,
+          0.29999999999999993rem + 1.5000000000000002vw,
+          0.75rem
+        ) !important;
+      }
     }
   }
 }

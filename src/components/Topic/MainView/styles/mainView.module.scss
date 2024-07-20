@@ -78,6 +78,13 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          -0.10000000000000031rem + 4.000000000000002vw,
+          1.1rem
+        ) !important;
+      }
     }
   }
   .chevIconContainer {

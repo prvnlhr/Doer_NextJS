@@ -8,6 +8,7 @@ const FeaturesSection = () => {
     <div className={styles.featuresSectionOuterWrapper}>
       <div className={styles.featuresSectionInnerWrapper}>
         <div className={styles.headingWrapper}>
+          <div className={styles.lineDiv}></div>
           <p>
             <span className={styles.spanText}>Features</span> you
           </p>
@@ -68,7 +69,7 @@ const FeaturesSection = () => {
               <div className={styles.cardDescWrapper}>
                 <p>
                   Track you course progress and analyze your productivity from
-                  classroom page with ease
+                  Classroom page with ease
                 </p>
               </div>
             </div>

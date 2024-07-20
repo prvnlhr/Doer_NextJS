@@ -38,7 +38,7 @@ const SubList = ({ chapter, params }) => {
             key={topic._id}
             className={styles.itemWrapper__subTitleWrapper}
             variants={{
-              hidden: { opacity: 0, translateY: -20 },
+              hidden: { opacity: 0, translateY: -30 },
               visible: { opacity: 1, translateY: 0 },
             }}
             initial="hidden"
@@ -50,6 +50,9 @@ const SubList = ({ chapter, params }) => {
               ease: [0.12, 0, 0.39, 0],
             }}
           >
+            <div className={styles.lineCell}>
+              <div className={styles.lineDiv}></div>
+            </div>
             <div className={styles.iconCell}>
               <div className={styles.iconDiv}>
                 {isTopicCompleted(topic._id) ? (
@@ -79,11 +82,6 @@ const SubList = ({ chapter, params }) => {
                 </p>
               </Link>
             </div>
-            {!(topicIndx === chapter.topicsCount - 1) && (
-              <div className={styles.lineCell}>
-                <div className={styles.lineDiv}></div>
-              </div>
-            )}
           </motion.div>
         ))}
     </AnimatePresence>

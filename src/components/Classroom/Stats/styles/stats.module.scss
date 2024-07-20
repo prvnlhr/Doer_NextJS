@@ -32,6 +32,13 @@
         p {
           font-size: 0.9rem;
           color: #718199;
+          @include small-device {
+            font-size: clamp(
+              1rem,
+              -0.3999999999999999rem + 6.999999999999999vw,
+              1.7rem
+            ) !important;
+          }
 
           span {
             font-weight: 500;
@@ -50,6 +57,13 @@
           font-size: 0.7rem;
           color: #635db0;
           font-weight: 500;
+          @include small-device {
+            font-size: clamp(
+              0.8rem,
+              2.220446049250313e-16rem + 3.9999999999999996vw,
+              1.2rem
+            ) !important;
+          }
         }
       }
     }
@@ -118,6 +132,9 @@
       font-size: 0.6rem;
       color: #101828;
       font-weight: 500;
+      @include small-device {
+        font-size: clamp(0.75rem, 0.25rem + 2.5vw, 1rem) !important;
+      }
     }
   }
 
@@ -135,6 +152,9 @@
       font-size: 0.8rem;
       color: #101828;
       font-weight: 500;
+      @include small-device {
+        font-size: clamp(0.75rem, 0.25rem + 2.5vw, 1rem) !important;
+      }
 
       span {
         color: #718199;

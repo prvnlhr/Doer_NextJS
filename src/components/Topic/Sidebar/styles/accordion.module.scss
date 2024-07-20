@@ -23,6 +23,13 @@
     p {
       font-size: 1.2rem;
       font-weight: 500;
+      @include small-device {
+        font-size: clamp(
+          1.2rem,
+          -0.40000000000000013rem + 8vw,
+          2rem
+        ) !important;
+      }
     }
     &::after {
       position: absolute;

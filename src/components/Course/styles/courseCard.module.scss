@@ -75,7 +75,18 @@
     // border: 1px solid red;
 
     p {
-      font-size: 0.8rem;
+      font-size: 1rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      @include small-device {
+        font-size: clamp(
+          0.8rem,
+          -0.3999999999999997rem + 5.999999999999998vw,
+          1.4rem
+        ) !important;
+      }
     }
   }
 
@@ -94,6 +105,14 @@
       -webkit-box-orient: vertical;
       white-space: normal;
       line-height: 1.8;
+
+      @include small-device {
+        font-size: clamp(
+          0.5rem,
+          -0.19999999999999996rem + 3.4999999999999996vw,
+          0.85rem
+        ) !important;
+      }
     }
   }
 

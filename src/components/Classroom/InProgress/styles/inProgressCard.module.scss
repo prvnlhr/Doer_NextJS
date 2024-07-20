@@ -50,6 +50,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      @include small-device {
+        font-size: clamp(1rem, 0rem + 5vw, 1.5rem) !important;
+      }
     }
   }
   &__progressBarWrapper {
@@ -108,12 +111,26 @@
       line-height: 100%;
       color: #635db0;
       // border: 1px solid red;
+      @include small-device {
+        font-size: clamp(
+          1.8rem,
+          -0.1999999999999995rem + 9.999999999999998vw,
+          2.8rem
+        ) !important;
+      }
     }
     span {
       font-size: 1rem;
       line-height: 100%;
       color: $secondary-text-color;
       //   border: 1px solid red;
+      @include small-device {
+        font-size: clamp(
+          0.9rem,
+          -0.09999999999999976rem + 4.999999999999999vw,
+          1.4rem
+        ) !important;
+      }
     }
   }
   .lableWrapper {
@@ -128,6 +145,14 @@
       font-weight: 500;
       letter-spacing: 0.5px;
       white-space: nowrap;
+
+      @include small-device {
+        font-size: clamp(
+          0.55rem,
+          -0.04999999999999982rem + 2.999999999999999vw,
+          0.85rem
+        ) !important;
+      }
     }
   }
 }

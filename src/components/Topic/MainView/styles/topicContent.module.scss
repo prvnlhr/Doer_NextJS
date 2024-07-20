@@ -65,6 +65,14 @@ $fontColorSecondary: #101828;
           font-size: 0.7rem;
           color: #011627;
           font-weight: 500;
+
+          @include small-device {
+            font-size: clamp(
+              0.7rem,
+              0.09999999999999987rem + 3.0000000000000004vw,
+              1rem
+            ) !important;
+          }
         }
       }
     }
@@ -95,6 +103,14 @@ $fontColorSecondary: #101828;
           font-size: 0.7rem;
           color: #011627;
           font-weight: 500;
+
+          @include small-device {
+            font-size: clamp(
+              0.7rem,
+              0.09999999999999987rem + 3.0000000000000004vw,
+              1rem
+            ) !important;
+          }
 
           span {
             color: #666;
@@ -129,6 +145,14 @@ $fontColorSecondary: #101828;
       word-break: break-all;
       width: 100%;
       font-weight: 400;
+
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          -0.10000000000000031rem + 4.000000000000002vw,
+          1.1rem
+        ) !important;
+      }
     }
 
     h1,
@@ -186,6 +210,13 @@ $fontColorSecondary: #101828;
         font-family: "Source Code Pro", monospace !important;
         font-size: $codeFontSize;
         white-space: unset !important;
+        @include small-device {
+          font-size: clamp(
+            0.7rem,
+            -0.10000000000000031rem + 4.000000000000002vw,
+            1.1rem
+          ) !important;
+        }
       }
     }
 

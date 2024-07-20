@@ -101,6 +101,13 @@
       color: #101828;
       letter-spacing: 4px;
       font-weight: 600;
+      @include small-device {
+        font-size: clamp(
+          0.8rem,
+          0.40000000000000013rem + 1.9999999999999998vw,
+          1rem
+        ) !important;
+      }
     }
 
     .headerLink {

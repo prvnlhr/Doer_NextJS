@@ -6,8 +6,10 @@
   // border: 1px solid black;
   height: 40px;
   min-height: 40px;
-  margin-top: 10px;
+  margin-top: 1%;
+  margin-bottom: 1%;
   overflow: hidden;
+  @include transistion(all, 0.5s);
 
   &__titleWrapper {
     width: 100%;
@@ -25,18 +27,25 @@
       overflow-x: hidden;
       white-space: nowrap;
       color: #101828;
+      @include small-device {
+        font-size: clamp(
+          1rem,
+          -0.20000000000000018rem + 6.000000000000001vw,
+          1.6rem
+        ) !important;
+      }
     }
   }
   &__subTitleWrapper {
     width: 100%;
-    height: 40px;
+    height: 50px;
     cursor: pointer;
     display: grid;
     grid-template-areas:
-      "iconCell subTitleCell"
-      "lineCell lineCell";
+      "lineCell lineCell"
+      "iconCell subTitleCell";
     grid-template-columns: auto minmax(0, 1fr);
-    grid-template-rows: 30px 10px;
+    grid-template-rows: 15px 35px;
     box-sizing: border-box;
     // border: 1px solid red;
     overflow: hidden;
@@ -48,12 +57,12 @@
       @include flex-container(center, center);
       .iconDiv {
         aspect-ratio: 1/1;
-        width: 50%;
+        width: 40%;
         // border: 1px solid rebeccapurple;
         @include flex-container(center, center);
 
         .dotIcon {
-          width: 4px;
+          width: 0.23rem;
           aspect-ratio: 1/1;
           border-radius: 100%;
           background-color: #a4adbb;
@@ -77,6 +86,13 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          @include small-device {
+            font-size: clamp(
+              0.8rem,
+              -0.3999999999999997rem + 5.999999999999998vw,
+              1.4rem
+            ) !important;
+          }
 
           &:hover {
             color: #635db0;
@@ -98,7 +114,7 @@
       // border: 1px solid blue;
       @include flex-container(flex-start, center);
       .lineDiv {
-        width: 30px;
+        width: 35px;
         height: 100%;
         @include flex-container(center, center);
         // border: 1px solid red;
@@ -106,7 +122,7 @@
         &::after {
           content: "";
           background-color: #a4adbb;
-          width: 2px;
+          width: 0.1rem;
           height: 100%;
         }
       }

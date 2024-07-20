@@ -8,7 +8,7 @@ import {
   getLastMonday,
 } from "@/lib/utils/dailyTimeSpentUtils";
 import { convertMinutesToHours } from "@/lib/utils/durationConvert";
-convertMinutesToHours
+convertMinutesToHours;
 const daysOfWeek = [
   "Monday",
   "Tuesday",

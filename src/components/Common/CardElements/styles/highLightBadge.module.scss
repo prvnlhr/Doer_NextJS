@@ -47,6 +47,14 @@
       line-height: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      @include small-device {
+        font-size: clamp(
+          0.45rem,
+          -0.14999999999999997rem + 3vw,
+          0.75rem
+        ) !important;
+      }
     }
   }
 }

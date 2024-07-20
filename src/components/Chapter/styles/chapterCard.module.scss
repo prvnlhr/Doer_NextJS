@@ -54,6 +54,17 @@
     @include fhw;
     p {
       font-size: 0.9rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      @include small-device {
+        font-size: clamp(
+          1.1rem,
+          -0.09999999999999964rem + 5.999999999999998vw,
+          1.7rem
+        ) !important;
+      }
     }
   }
   &__topicsListWrapper {
@@ -111,7 +122,13 @@
           color: $secondary-text-color;
           white-space: nowrap;
           text-overflow: ellipsis;
-          //   border: 1px solid red;
+          @include small-device {
+            font-size: clamp(
+              0.65rem,
+              0.15000000000000002rem + 2.5vw,
+              0.9rem
+            ) !important;
+          }
         }
       }
     }

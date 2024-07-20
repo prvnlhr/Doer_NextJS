@@ -33,14 +33,14 @@ const AccordionItem = ({ chapter }) => {
     setCurrentOpenChapterIndex((prevId) =>
       prevId === chapter._id ? null : chapter._id
     );
-    setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40 - 10);
+    setCurrentOpenChapterHeight(chapter?.topicsCount * 50 + 40);
   };
 
   useEffect(() => {
     const courseState = JSON.parse(localStorage.getItem("courseState")) || {};
     if (courseState) {
       setCurrentOpenChapterIndex(courseState.chapterId);
-      setCurrentOpenChapterHeight(courseState.topicsCount * 40 + 40 - 10);
+      setCurrentOpenChapterHeight(courseState.topicsCount * 50 + 40);
     } else {
       setCurrentOpenChapterIndex(chapterId);
     }
@@ -53,7 +53,7 @@ const AccordionItem = ({ chapter }) => {
         minHeight:
           chapter._id === currentOpenChapterIndex
             ? currentOpenChapterHeight
-            : "auto",
+            : "40px",
       }}
       variants={{
         visible: {

@@ -34,6 +34,13 @@
     @include flex-container(flex-start, center);
     p {
       font-size: 0.8rem;
+      @include small-device {
+        font-size: clamp(
+          0.65rem,
+          0.45000000000000007rem + 0.9999999999999999vw,
+          0.75rem
+        ) !important;
+      }
     }
     &__chevIconDiv {
       @include flex-container(center, center);
@@ -55,6 +62,13 @@
       overflow: hidden;
       white-space: nowrap;
       width: 95%;
+      @include small-device {
+        font-size: clamp(
+          0.8rem,
+          2.220446049250313e-16rem + 3.9999999999999996vw,
+          1.2rem
+        ) !important;
+      }
     }
   }
   &__durationWrapper {

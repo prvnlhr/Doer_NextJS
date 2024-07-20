@@ -113,7 +113,6 @@
 }
 
 @mixin flex($verticalPos, $horizontalPos, $direction: row) {
-  
   @if $direction == row {
     // Flex direction row
     @if $verticalPos == top {
@@ -174,3 +173,10 @@
 
   display: flex;
 }
+
+@mixin small-device {
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    @content;
+  }
+}
+

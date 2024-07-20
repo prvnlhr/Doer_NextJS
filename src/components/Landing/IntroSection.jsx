@@ -10,9 +10,9 @@ const IntroSection = () => {
           <div className={styles.upperTextWrapper}>
             <p className={styles.upperText}>
               Build your skills to advance your career path. Join the Way of
-              <span>Digital</span> Literacy. Choose
+              <span> Digital</span> Literacy. Choose
               <span className={styles.introSpanText}> Doer</span> for those who
-              wanna <span className={styles.introSpanText}>do</span>.{" "}
+              wanna <span className={styles.introSpanText}>Do</span>.{" "}
             </p>
           </div>
           <div className={styles.lowerTextWrapper}>
