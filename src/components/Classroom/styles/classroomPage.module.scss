@@ -17,7 +17,7 @@
     align-items: center;
     border-bottom: 1px solid #d0d5dd;
     box-sizing: border-box;
-    padding-left: 1%;
+    padding-left: 15px;
   }
 
   .layoutScrollWrapper {
@@ -27,7 +27,6 @@
     justify-content: flex-start;
     align-items: flex-start;
     // border: 1px solid red;
-
     @media (max-width: 768px) {
       @include scroll($dir: y);
       padding: 10px 10px;
@@ -171,13 +170,15 @@
   width: auto;
   height: 80%;
   // border: 1px solid red;
-  margin-left: 8px;
   @include flex-container(flex-start, center);
+  &:last-child {
+    margin-left: 8px;
+  }
   .link {
     width: auto;
     height: 100%;
     @include flex-container(flex-start, center);
-    // border: 1px solid blue;
+
     @media (max-width: 768px) {
       max-width: 150px;
       overflow: hidden;

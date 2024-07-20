@@ -11,18 +11,27 @@
   // background-color: #0d1321;
   border-bottom: 1px solid #d0d5dd;
 
-  &__appLogoWrapper {
-    height: 45px;
-    width: 45px;
-    @include flex-container(center, center);
-    margin-left: 2%;
-    display: flex;
-    // border: 1px solid red;
-  }
-  &__rightSection {
-    width: calc(100% - 45px);
+  &__leftSection {
     height: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     // border: 1px solid red;
+    .appLogoWrapper {
+      height: 50px;
+      aspect-ratio: 1/1;
+      @include flex-container(center, center);
+      display: flex;
+      // border: 1px solid orange;
+      margin-left: 15px;
+    }
+  }
+
+  &__rightSection {
+    width: calc(100% - 50px);
+    height: 100%;
+    // border: 1px solid blue;
     @include flex-container(flex-end, center);
     box-sizing: border-box;
     padding-right: 15px;

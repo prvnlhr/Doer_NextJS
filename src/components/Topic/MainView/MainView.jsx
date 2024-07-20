@@ -25,11 +25,13 @@ const MainView = ({ children, params }) => {
       }`}
     >
       <div className={styles.mainViewWrapper__breadcrumbsWrapper}>
-        <div
-          className={styles.toggleIconDiv}
-          onClick={() => setShowTopicSidebar((prev) => !prev)}
-        >
-          <SideBarToggleIcon />
+        <div className={styles.toggleIconContainer}>
+          <div
+            className={styles.toggleIconDiv}
+            onClick={() => setShowTopicSidebar((prev) => !prev)}
+          >
+            <SideBarToggleIcon />
+          </div>
         </div>
         <div className={styles.breadcrumbsGroup}>
           {/* BreadCrumb 1 */}

@@ -48,8 +48,10 @@ const MainHeader = () => {
   const isClassroomPage = pathname.includes("classroom");
   return (
     <nav className={styles.headerWrapper}>
-      <div className={styles.headerWrapper__appLogoWrapper}>
-        <AppLogo />
+      <div className={styles.headerWrapper__leftSection}>
+        <div className={styles.appLogoWrapper}>
+          <AppLogo />
+        </div>
       </div>
       <div className={styles.headerWrapper__rightSection}>
         {status === "authenticated" && !isClassroomPage ? (

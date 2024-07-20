@@ -18,14 +18,22 @@
     border-bottom: 1px solid #d0d5dd;
     @include flex-container(flex-start, center);
 
-    .toggleIconDiv {
-      display: none;
-      height: 35%;
-      aspect-ratio: 1/1;
-      box-sizing: border-box;
-      margin-right: 20px;
-      @media (max-width: 768px) {
-        @include flex-container(center, center);
+    .toggleIconContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 70%;
+      aspect-ratio: 1/2;
+      // border: 1px solid red;
+      margin-right: 15px;
+      .toggleIconDiv {
+        display: none;
+        width: 100%;
+        aspect-ratio: 1/1;
+        box-sizing: border-box;
+        @media (max-width: 768px) {
+          @include flex-container(center, center);
+        }
       }
     }
 
@@ -61,7 +69,6 @@
   width: auto;
   height: 80%;
   // border: 1px solid red;
-  margin-left: 8px;
   @include flex-container(flex-start, center);
   .link {
     width: auto;
@@ -90,7 +97,7 @@
   .chevIconContainer {
     height: 100%;
     aspect-ratio: 1/2;
-    @include flex-container(center, center);
+    @include flex-container(flex-start, center);
     // border: 1px solid orange;
 
     .chevIconDiv {
