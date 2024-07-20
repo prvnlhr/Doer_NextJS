@@ -10,7 +10,7 @@ const CoursesList = ({ courses, searchParams }) => {
       {searchParams && searchParams.search && <SearchPage />}
       <div className={styles.courseListWrapper}>
         <div className={styles.listHeader}>
-          <CommonHeading to="/" text="EXPLORE COURSES" />
+          <CommonHeading searchLink={``} to="/" text="EXPLORE COURSES" />
         </div>
         <div className={styles.mainListWrapper}>
           {courses.map(

@@ -23,6 +23,21 @@
     width: 100%;
     height: 30px;
     // border: 1px solid salmon;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right: 8px ;
+    .closeLink {
+      height: 60%;
+      aspect-ratio: 1/1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // border: 1px solid red;
+      background-color: #635db0;
+      border-radius: 100%;
+    }
   }
   .searchBarWrapper {
     width: 100%;

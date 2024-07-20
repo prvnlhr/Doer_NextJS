@@ -17,10 +17,7 @@ const CommonHeading = ({ to, text }) => {
           <div className={styles.lineDiv}></div>
         </div>
       </div>
-      <Link
-        href="/content/courses?search=true"
-        className={styles.searchBtnWrapper}
-      >
+      <Link href="?search=true" className={styles.searchBtnWrapper}>
         <div className={styles.textWrapper}>
           <p>SEARCH</p>
         </div>

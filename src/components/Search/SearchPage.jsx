@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./styles/search.module.scss";
 import SearchIcon from "../Common/Icons/SearchIcon";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import ChevronRightIcon from "../Common/Icons/ChevronRightIcon";
 import useSWR from "swr";
 import { search } from "@/lib/api/public/searchApi";
@@ -11,6 +11,7 @@ import ChapterResultElement from "./ChapterResultElement";
 import CourseResultElement from "./CourseResultElement";
 import TopicResultElement from "./TopicResultElement";
 import { useDebounce } from "./useDebounce";
+import CrossIcon from "../Common/Icons/CrossIcon";
 
 // Define search filters
 const searchFilters = [
@@ -26,6 +27,7 @@ const searchFetcher = (filterKey, searchQuery) =>
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const filterKey = searchParams.get("filter") || "course";
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -45,9 +47,14 @@ const SearchPage = () => {
       shouldRetryOnError: false,
     }
   );
+  console.log(pathname);
   return (
     <div className={styles.searchPageWrapper}>
-      <div className={styles.searchHeaderWrapper}></div>
+      <div className={styles.searchHeaderWrapper}>
+        <Link className={styles.closeLink} href={pathname}>
+          <CrossIcon />
+        </Link>
+      </div>
       <div className={styles.searchBarWrapper}>
         <div className={styles.searchIconWrapper}>
           <div className={styles.searchIconDiv}>
