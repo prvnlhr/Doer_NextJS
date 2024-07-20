@@ -6,14 +6,12 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  // border: 1px solid blue;
 
-  @media (max-width: 768px) {
-    @include scroll($dir: y);
-  }
   .layoutHeader {
     width: 100%;
     height: 40px;
-    // border: 1px solid blue;
+    // border: 1px solid green;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -21,53 +19,66 @@
     box-sizing: border-box;
     padding-left: 1%;
   }
-  .layoutGrid {
+
+  .layoutScrollWrapper {
     width: 98%;
     height: calc(100% - 40px);
-    display: grid;
-    grid-template-areas:
-      "statsCell graphCell"
-      "subPageCell bookmarksCell";
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 40% 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     // border: 1px solid red;
 
     @media (max-width: 768px) {
-      //   border: 1px solid red;
-      width: 98%;
-      height: 95%;
+      @include scroll($dir: y);
+      padding: 10px 10px;
+    }
+
+    .layoutGrid {
+      width: 100%;
+      height: 100%;
       display: grid;
       grid-template-areas:
-        "statsCell"
-        "graphCell"
-        "subPageCell"
-        "bookmarksCell";
-      grid-template-columns: 100%;
-      grid-template-rows: 40% auto 60% 60%;
+        "statsCell graphCell"
+        "subPageCell bookmarksCell";
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 40% 60%;
+      // border: 1px solid blue;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-areas:
+          "statsCell"
+          "graphCell"
+          "subPageCell"
+          "bookmarksCell";
+        grid-template-columns: 100%;
+        grid-template-rows: 300px auto 60vh 80vh;
+      }
     }
-  }
-  .statsCell {
-    grid-area: statsCell;
-    @include fhw;
-    // border: 1px solid slateblue;
-  }
-  .graphCell {
-    grid-area: graphCell;
-    @include fhw;
-    @media (max-width: 768px) {
-      width: 100%;
-      aspect-ratio: 1/1;
+    .statsCell {
+      grid-area: statsCell;
+      @include fhw;
+      // border: 1px solid slateblue;
     }
-  }
-  .subPageCell {
-    grid-area: subPageCell;
-    @include fhw;
-    // border: 1px solid lightskyblue;
-  }
-  .bookmarksCell {
-    grid-area: bookmarksCell;
-    @include fhw;
-    // border: 1px solid lightseagreen;
+    .graphCell {
+      grid-area: graphCell;
+      @include fhw;
+      @media (max-width: 768px) {
+        width: 100%;
+        aspect-ratio: 1/1;
+      }
+    }
+    .subPageCell {
+      grid-area: subPageCell;
+      @include fhw;
+      // border: 1px solid lightskyblue;
+    }
+    .bookmarksCell {
+      grid-area: bookmarksCell;
+      @include fhw;
+      // border: 1px solid lightseagreen;
+    }
   }
 }
 
@@ -178,6 +189,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       font-weight: 500;
+      &:hover {
+        text-decoration: underline;
+      }
       @include small-device {
         font-size: clamp(
           0.7rem,

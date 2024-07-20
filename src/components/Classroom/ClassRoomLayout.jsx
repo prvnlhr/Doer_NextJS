@@ -36,62 +36,63 @@ const ClassRoomLayout = async ({
           </div>
         </div>
       </div>
-      <div className={styles.layoutGrid}>
-        <div className={styles.statsCell}>
-          <div className={styles.cellLayout}>
-            <div className={styles.cellHeader}>
-              <div className={styles.titleWrapper}>
-                <div className={styles.titleDiv}>
-                  <p>STATS</p>
+      <div className={styles.layoutScrollWrapper}>
+        <div className={styles.layoutGrid}>
+          <div className={styles.statsCell}>
+            <div className={styles.cellLayout}>
+              <div className={styles.cellHeader}>
+                <div className={styles.titleWrapper}>
+                  <div className={styles.titleDiv}>
+                    <p>STATS</p>
+                  </div>
+                  <div className={styles.titleLine}></div>
                 </div>
-                <div className={styles.titleLine}></div>
               </div>
-            </div>
-            <div className={styles.cellMain}>{stats}</div>
-          </div>
-        </div>
-        <div className={styles.graphCell}>
-          <div className={styles.cellLayout}>
-            <div className={styles.cellHeader}>
-              <div className={styles.titleWrapper}>
-                <div className={styles.titleDiv}>
-                  <p>TIME SPENDINGS</p>
-                </div>
-                <div className={styles.titleLine}></div>
-              </div>
-            </div>
-            <div className={styles.cellMain}>
-              <div className={styles.graphContainer}>
-                <TimeSpendingsGraph params={params} />
-              </div>
+              <div className={styles.cellMain}>{stats}</div>
             </div>
           </div>
-        </div>
-        <div className={styles.subPageCell}>
-          <div className={styles.cellLayout}>
-            <div className={styles.cellHeader}>
-              {/* <SubPageTabsBar /> */}
-              <div className={styles.titleWrapper}>
-                <div className={styles.titleDiv}>
-                  <p>IN PROGRESS</p>
+          <div className={styles.graphCell}>
+            <div className={styles.cellLayout}>
+              <div className={styles.cellHeader}>
+                <div className={styles.titleWrapper}>
+                  <div className={styles.titleDiv}>
+                    <p>TIME SPENDINGS</p>
+                  </div>
+                  <div className={styles.titleLine}></div>
                 </div>
-                <div className={styles.titleLine}></div>
+              </div>
+              <div className={styles.cellMain}>
+                <div className={styles.graphContainer}>
+                  <TimeSpendingsGraph params={params} />
+                </div>
               </div>
             </div>
-            <div className={styles.cellMain}>{inprogress}</div>
           </div>
-        </div>
-        <div className={styles.bookmarksCell}>
-          <div className={styles.cellLayout}>
-            <div className={styles.cellHeader}>
-              <div className={styles.titleWrapper}>
-                <div className={styles.titleDiv}>
-                  <p>BOOKMARKS</p>
+          <div className={styles.subPageCell}>
+            <div className={styles.cellLayout}>
+              <div className={styles.cellHeader}>
+                <div className={styles.titleWrapper}>
+                  <div className={styles.titleDiv}>
+                    <p>IN PROGRESS</p>
+                  </div>
+                  <div className={styles.titleLine}></div>
                 </div>
-                <div className={styles.titleLine}></div>
               </div>
+              <div className={styles.cellMain}>{inprogress}</div>
             </div>
-            <div className={styles.cellMain}>{bookmarks}</div>
+          </div>
+          <div className={styles.bookmarksCell}>
+            <div className={styles.cellLayout}>
+              <div className={styles.cellHeader}>
+                <div className={styles.titleWrapper}>
+                  <div className={styles.titleDiv}>
+                    <p>BOOKMARKS</p>
+                  </div>
+                  <div className={styles.titleLine}></div>
+                </div>
+              </div>
+              <div className={styles.cellMain}>{bookmarks}</div>
+            </div>
           </div>
         </div>
       </div>

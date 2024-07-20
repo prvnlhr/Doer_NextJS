@@ -179,6 +179,9 @@
       font-size: 0.6rem;
       white-space: nowrap;
       color: white;
+      &:last-child {
+        margin-left: 2px;
+      }
       @include small-device {
         font-size: clamp(
           0.6rem,

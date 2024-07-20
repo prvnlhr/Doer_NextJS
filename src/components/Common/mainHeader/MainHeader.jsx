@@ -6,8 +6,10 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import PopUpMenuIcon from "../Icons/PopUpMenuIcon";
 import { usePathname } from "next/navigation";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 const MainHeader = () => {
+  const segment = useSelectedLayoutSegment();
   const { data: session, status } = useSession();
   const userId = session?.user?.userId;
   const pathname = usePathname();
@@ -27,7 +29,7 @@ const MainHeader = () => {
         setShowPopUp(false);
       }
     };
-
+    console.log(pathname);
     if (showPopUp) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -43,13 +45,14 @@ const MainHeader = () => {
     pathname === "/auth/signup" ||
     pathname === "/auth/verifyotp";
 
+  const isClassroomPage = pathname.includes("classroom");
   return (
     <nav className={styles.headerWrapper}>
       <div className={styles.headerWrapper__appLogoWrapper}>
         <AppLogo />
       </div>
       <div className={styles.headerWrapper__rightSection}>
-        {status === "authenticated" ? (
+        {status === "authenticated" && !isClassroomPage ? (
           <Link
             href={`/user/${session?.user?.userId}/classroom`}
             className={styles.navbarLink}

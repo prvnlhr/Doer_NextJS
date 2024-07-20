@@ -93,6 +93,8 @@ const TimeSpendingsGraph = ({ params }) => {
                       <p>
                         {convertMinutesToHoursAndMinutes(Math.ceil(time)).hours}
                         h
+                      </p>
+                      <p>
                         {
                           convertMinutesToHoursAndMinutes(Math.ceil(time))
                             .minutes
