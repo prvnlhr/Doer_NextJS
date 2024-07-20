@@ -2,10 +2,11 @@ import revalidateTagHandler from "@/app/revalidate";
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
-export async function fetchTopics(courseId, chapterId) {
+// Get all topics
+export async function fetchTopics(courseId, chapterId, searchKey) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics`
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics?search=${searchKey}`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);

@@ -2,7 +2,9 @@ import React from "react";
 import Datatable from "@/components/Admin/Datatable/Datatable";
 import { fetchTopics } from "@/lib/api/admin/topicsApi";
 
-const TopicsPage = async ({ params }) => {
+const TopicsPage = async ({ searchParams, params }) => {
+  const { search } = searchParams;
+
   const getEditUrl = (topicId) => {
     return `/admin/courses/${params.courseId}/chapters/${params.chapterId}/topics/${topicId}/edit`;
   };
@@ -16,7 +18,7 @@ const TopicsPage = async ({ params }) => {
   };
   const columns = ["title", "status"];
 
-  const topics = await fetchTopics(params.courseId, params.chapterId);
+  const topics = await fetchTopics(params.courseId, params.chapterId, search);
 
   return (
     <Datatable

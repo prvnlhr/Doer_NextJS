@@ -6,7 +6,23 @@ import cloudinary, { uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 export async function GET(req, res) {
   await dbConnect();
   try {
-    const courses = await Course.find();
+    const searchKey = req.nextUrl.searchParams.get("search");
+    console.log("searchKey2", searchKey, typeof searchKey, searchKey.length);
+    let query = {};
+    if (
+      searchKey &&
+      typeof searchKey === "string" &&
+      searchKey.trim().length > 0 &&
+      searchKey !== "undefined"
+    ) {
+      query = {
+        title: { $regex: searchKey, $options: "i" },
+      };
+    }
+    console.log("query", query);
+
+    const courses = await Course.find(query);
+    console.log(courses);
     return new Response(JSON.stringify(courses), { status: 200 });
   } catch (error) {
     console.log(error);

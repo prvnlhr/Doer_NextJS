@@ -2,7 +2,9 @@ import Datatable from "@/components/Admin/Datatable/Datatable";
 import { fetchChapters } from "@/lib/api/admin/chaptersApi";
 import React from "react";
 
-export default async function ChaptersPage({ params }) {
+export default async function ChaptersPage({ searchParams, params }) {
+  const { search } = searchParams;
+
   const getEditUrl = (chapterId) => {
     return `/admin/courses/${params.courseId}/chapters/${chapterId}/edit`;
   };
@@ -15,7 +17,7 @@ export default async function ChaptersPage({ params }) {
   };
 
   const columns = ["title", "topicsCount", "status"];
-  const chapters = await fetchChapters(params.courseId);
+  const chapters = await fetchChapters(params.courseId, search);
   return (
     <Datatable
       data={chapters}

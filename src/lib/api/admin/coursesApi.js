@@ -1,11 +1,16 @@
 import { revalidateTagHandler } from "@/app/revalidate";
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
-export async function fetchCourses() {
+export async function fetchCourses(searchKey) {
+  console.log("searchKey1", searchKey);
   try {
-    let response = await fetch(`${BASE_URL}/api/admin/courses`, {
-      next: { tags: ["fetchAdminCourses"] },
-    });
+    let response = await fetch(
+      `${BASE_URL}/api/admin/courses?search=${searchKey}`,
+      {
+        // next: { tags: ["fetchAdminCourses"] },
+        next: { revalidate: 0 },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch courses");

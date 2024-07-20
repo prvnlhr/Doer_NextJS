@@ -65,9 +65,21 @@ const updateChapterDurationAndTopicsCount = async (
 // Get all Topics
 export async function GET(req, { params }) {
   try {
-    const query = {
+    const searchKey = req.nextUrl.searchParams.get("search");
+
+    let query = {
       chapter: params.chapterId,
     };
+    if (
+      searchKey &&
+      typeof searchKey === "string" &&
+      searchKey.trim().length > 0 &&
+      searchKey !== "undefined"
+    ) {
+      query = {
+        title: { $regex: searchKey, $options: "i" },
+      };
+    }
     const topics = await Topic.find(query);
     return new Response(JSON.stringify(topics), { status: 200 });
   } catch (error) {

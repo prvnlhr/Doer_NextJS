@@ -54,6 +54,7 @@
           aspect-ratio: 1/1;
           @include flex-container(center, center);
           // border: 1px solid blue;
+          cursor: pointer;
 
           &__searchIconDiv {
             aspect-ratio: 1/1;

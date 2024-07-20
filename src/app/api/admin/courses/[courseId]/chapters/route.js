@@ -6,10 +6,20 @@ import Course from "@/lib/db/models/Course";
 export async function GET(req, { params }) {
   await dbConnect();
   try {
+    const searchKey = req.nextUrl.searchParams.get("search");
+
     const { courseId } = params;
     let query = {
       course: courseId,
     };
+    if (
+      searchKey &&
+      typeof searchKey === "string" &&
+      searchKey.trim().length > 0 &&
+      searchKey !== "undefined"
+    ) {
+      query.title = { $regex: searchKey, $options: "i" };
+    }
     const chapters = await Chapter.find(query);
     return new Response(JSON.stringify(chapters), { status: 200 });
   } catch (error) {

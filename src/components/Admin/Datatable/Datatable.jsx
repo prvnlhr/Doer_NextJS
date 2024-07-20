@@ -6,6 +6,7 @@ import DeleteIcon from "@/components/Common/Icons/DeleteIcon";
 import SearchIcon from "@/components/Common/Icons/SearchIcon";
 import AddIcon from "@/components/Common/Icons/styles/AddIcon";
 import Link from "next/link";
+import SearchBar from "./SearchBar";
 
 const StatusBadge = ({ value, color }) => {
   return (
@@ -39,17 +40,7 @@ const Datatable = ({ data, columns, getEditUrl, getAddUrl, getDeleteUrl }) => {
     <div className={styles.datatableWrapper}>
       <div className={styles.datatableContainer}>
         <div className={styles.datatableContainer__toolbar}>
-          <div className={styles.searchWrapper}>
-            <div className={styles.searchWrapper__inputWrapper}>
-              <input />
-            </div>
-            <div className={styles.searchWrapper__iconWrapper}>
-              <div className={styles.searchWrapper__iconWrapper__searchIconDiv}>
-                <SearchIcon />
-              </div>
-            </div>
-          </div>
-
+          <SearchBar />
           <Link href={getAddUrl()} className={styles.addBtn}>
             <p>Add</p>
             <div className={styles.addBtn__iconDiv}>
