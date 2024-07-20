@@ -29,7 +29,6 @@ const MainHeader = () => {
         setShowPopUp(false);
       }
     };
-    console.log(pathname);
     if (showPopUp) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {

@@ -6,6 +6,7 @@ import styles from "./styles/topicContent.module.scss";
 import ClockIcon from "@/components/Common/Icons/ClockIcon";
 import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
+import DOMPurify from "dompurify";
 
 import {
   toggleBookmark,
@@ -204,7 +205,7 @@ const TopicContent = ({ bookmarks, topic }) => {
       <div className={styles.topicContentWrapper}>
         <div
           dangerouslySetInnerHTML={{
-            __html: topic.content,
+            __html: DOMPurify.sanitize(topic.content),
           }}
         />
         <hr className={`${styles.endLine} `} ref={ref} />

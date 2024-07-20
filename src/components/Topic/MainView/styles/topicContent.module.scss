@@ -166,6 +166,7 @@ $fontColorSecondary: #101828;
       font-weight: bold;
       color: $fontColorSecondary;
       position: relative;
+
       &::after {
         position: absolute;
         content: "";
