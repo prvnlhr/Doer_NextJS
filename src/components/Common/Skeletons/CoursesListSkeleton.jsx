@@ -7,9 +7,7 @@ const CoursesListSkeleton = ({ children }) => {
     <div className={styles.courseListWrapper}>
       <div className={styles.listHeader}>
         <div className={styles.backBtnWrapper}>
-          <div className={styles.backBtnIconDiv}>
-            <ChevronRightIcon color="#3D4754" />
-          </div>
+          <div className={styles.backBtnIconDiv}></div>
           <div className={styles.backBtnTextDiv}>
             <div className={styles.textDiv}>
               <p></p>
