@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles/datatable.module.scss";
 import SearchIcon from "@/components/Common/Icons/SearchIcon";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
@@ -32,6 +31,7 @@ const SearchBar = () => {
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by Title"
         />
       </div>
       <div className={styles.searchWrapper__iconWrapper}>

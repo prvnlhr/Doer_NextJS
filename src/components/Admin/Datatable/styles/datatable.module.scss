@@ -47,6 +47,11 @@
             height: 100%;
             padding-left: 8px;
             outline: none;
+            &::placeholder {
+              color: #c2c2c2;
+              font-size: 0.7rem;
+              font-style: italic;
+            }
           }
         }
         &__iconWrapper {
