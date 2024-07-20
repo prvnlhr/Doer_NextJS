@@ -23,6 +23,6 @@ chapterSchema.pre("save", function (next) {
 });
 
 const Chapter =
-  mongoose.models.Chapters || mongoose.model("Chapters", chapterSchema);
+  mongoose.models.Chapter || mongoose.model("Chapter", chapterSchema);
 
 export default Chapter;

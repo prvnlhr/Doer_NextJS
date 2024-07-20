@@ -37,7 +37,7 @@ export const metadata = {
   description: "E-Learning app",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, search }) {
   return (
     <html lang="en">
       <CombinedProviders>
@@ -47,7 +47,10 @@ export default function RootLayout({ children }) {
         >
           <div className={styles.rootLayoutWrapper}>
             <MainHeader />
-            <div className={styles.contentWrapper}>{children}</div>
+            <div className={styles.contentWrapper}>
+              {search}
+              {children}
+            </div>
           </div>
         </body>
       </CombinedProviders>

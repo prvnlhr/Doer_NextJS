@@ -7,6 +7,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  // border: 1px solid red;
 
   .backBtnIconDiv {
     height: 80%;
@@ -56,6 +57,57 @@
         height: 3px;
         border-radius: 5px;
       }
+    }
+  }
+}
+
+.searchBtnWrapper {
+  width: auto;
+  height: 50%;
+  // border: 1px solid red;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  // padding: 5px;
+  margin-right: 20px;
+
+  .textWrapper {
+    width: auto;
+    height: 100%;
+    // border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+
+    p {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #667085;
+    }
+  }
+  .lineDiv {
+    width: 1px;
+    height: 80%;
+    background-color: #a4adbb;
+    margin: 0px 5px;
+  }
+  .iconWrapper {
+    height: 100%;
+    aspect-ratio: 1/1;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .iconDiv {
+      aspect-ratio: 1/1;
+      height: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // border: 1px solid red;
     }
   }
 }

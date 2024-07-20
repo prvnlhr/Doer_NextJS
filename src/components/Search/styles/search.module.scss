@@ -1,0 +1,210 @@
+@import "../../../styles/mixins.module";
+
+.searchPageWrapper {
+  position: absolute;
+  width: 400px;
+  aspect-ratio: 1/1.2;
+  background-color: white;
+  //   border: 1px solid red;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+  z-index: 999;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: calc(100% - 80px);
+    bottom: 0px;
+  }
+  .searchHeaderWrapper {
+    width: 100%;
+    height: 30px;
+    // border: 1px solid salmon;
+  }
+  .searchBarWrapper {
+    width: 100%;
+    height: 50px;
+    // border: 1px solid blue;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #d0d5dd;
+
+    .searchIconWrapper {
+      height: 100%;
+      aspect-ratio: 1/1;
+      // border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .searchIconDiv {
+        width: 34%;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .divisionLine {
+      width: 2px;
+      height: 40%;
+      background-color: #a4adbb;
+      margin: 0px 5px;
+    }
+    .searchInputWrappper {
+      flex: 1;
+      height: 100%;
+      // border: 1px solid green;
+
+      input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        // border-bottom: 1px solid red;
+        outline: none;
+        box-sizing: border-box;
+        padding: 0px 8px;
+
+        &::placeholder {
+          color: #c2c2c2;
+          font-size: 0.7rem;
+          font-style: italic;
+        }
+      }
+    }
+  }
+  .searchFilterWrapper {
+    width: 100%;
+    height: 30px;
+    // border: 1px solid green;
+    border-bottom: 1px solid #d0d5dd;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    box-sizing: border-box;
+    padding-left: 15px;
+
+    .filterLink {
+      width: auto;
+      height: 80%;
+      margin-right: 15px;
+      justify-content: center;
+      align-items: center;
+      padding: 2px;
+      border-bottom: 2px solid transparent;
+
+      p {
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      &--activeLink {
+        border-bottom: 2px solid #635db0;
+        p {
+          color: #635db0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .searchListWrapper {
+    width: 100%;
+    height: calc(100% - 110px);
+    // border: 1px solid salmon;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    @include scroll($dir: y);
+    padding: 15px 0px;
+  }
+}
+
+.searchItemWrapper {
+  width: 92%;
+  height: 70px;
+  // border: 1px solid salmon;
+  border-bottom: 1px solid #d0d5dd88;
+  // margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: #ecf2ff;
+  }
+
+  .searchedKeyWrapper {
+    width: 100%;
+    height: 50%;
+    // border: 1px solid springgreen;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    p {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+  .breadCrumbsRow {
+    width: 100%;
+    height: 50%;
+    // border: 1px solid #635db0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.breadcrumbsWrapper {
+  width: auto;
+  height: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .textWrapper {
+    width: auto;
+    max-width: 180px;
+    height: 100%;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    p {
+      font-size: 0.75rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      color: #667085;
+    }
+    &--active {
+      p {
+        color: #635db0;
+        font-weight: 600;
+      }
+    }
+  }
+  .chevIconWrapper {
+    height: 100%;
+    aspect-ratio: 1/2;
+    // border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .chevIconDiv {
+      width: 80%;
+      aspect-ratio: 1/1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

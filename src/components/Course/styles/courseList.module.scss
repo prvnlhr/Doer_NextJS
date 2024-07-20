@@ -13,6 +13,9 @@
     box-sizing: border-box;
     padding-left: 8px;
     border-bottom: 1px solid #d0d5dd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .mainListWrapper {
     width: 100%;
