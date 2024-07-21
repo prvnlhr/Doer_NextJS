@@ -17,9 +17,17 @@ const TopicsListItem = ({ topic }) => {
     </div>
   );
 };
-const ChapterCard = ({ chapter, index }) => {
+const ChapterCard = ({ chapter, index, searchParams }) => {
+  console.log("searchParams", searchParams, chapter._id);
+  const { item: searchedItemId } = searchParams || undefined;
   return (
-    <div className={styles.card}>
+    <div
+      className={`${styles.card} ${
+        searchedItemId &&
+        searchedItemId === chapter._id &&
+        styles["card--searchedItem"]
+      }`}
+    >
       <div className={styles.card__chapterNumWrapper}>
         <div>
           <HighLightBadge

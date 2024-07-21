@@ -37,6 +37,7 @@
       // border: 1px solid red;
       background-color: #635db0;
       border-radius: 100%;
+      cursor: pointer;
     }
   }
   .searchBarWrapper {
@@ -114,6 +115,14 @@
       p {
         font-size: 0.75rem;
         font-weight: 500;
+        font-size: 0.85rem;
+        @include small-device {
+          font-size: clamp(
+            0.75rem,
+            0.55rem + 0.9999999999999999vw,
+            0.85rem
+          ) !important;
+        }
       }
 
       &--activeLink {
@@ -139,14 +148,12 @@
   }
 }
 
-.searchItemWrapper {
+.searchItemLink {
   width: 100%;
   height: 70px;
-  // border: 1px solid salmon;
   border-bottom: 1px solid #d0d5dd88;
   padding: 0px 5%;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
@@ -155,25 +162,35 @@
     background-color: #ecf2ff;
   }
 
-  .searchedKeyWrapper {
+  .searchItemWrapper {
     width: 100%;
-    height: 50%;
-    // border: 1px solid springgreen;
+    height: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    p {
-      font-size: 1rem;
-      font-weight: 500;
-    }
-  }
-  .breadCrumbsRow {
-    width: 100%;
-    height: 50%;
-    // border: 1px solid #635db0;
-    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    box-sizing: border-box;
+
+    .searchedKeyWrapper {
+      width: 100%;
+      height: 50%;
+      // border: 1px solid springgreen;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      p {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+    .breadCrumbsRow {
+      width: 100%;
+      height: 50%;
+      // border: 1px solid #635db0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
   }
 }
 

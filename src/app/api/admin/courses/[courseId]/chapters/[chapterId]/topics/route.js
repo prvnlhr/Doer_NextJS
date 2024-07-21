@@ -106,6 +106,7 @@ export async function POST(req, { params }) {
     const updateChapter = await Chapter.findByIdAndUpdate(
       { _id: chapterId },
       {
+        $push: { topics: savedTopic._id },
         $inc: {
           duration: topicData.duration,
           topicsCount: 1,

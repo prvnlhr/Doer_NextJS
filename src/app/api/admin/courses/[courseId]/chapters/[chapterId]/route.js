@@ -51,13 +51,13 @@ export async function POST(req, { params }) {
 const intercept = () => {
   return new Response(JSON.stringify("OK"), { status: 200 });
 };
+
 // Delete Chapter
 export async function DELETE(req, { params }) {
   await dbConnect();
   try {
     const { courseId, chapterId } = params;
     const chapter = await Chapter.findById(chapterId);
-    intercept();
     const chapterDuration = chapter.duration;
     // Delete all topics of the chapter
     const topicsDeleteRes = await Topic.deleteMany({
@@ -70,6 +70,7 @@ export async function DELETE(req, { params }) {
         chaptersCount: -1,
         duration: -chapterDuration,
       },
+      $pull: { chapters: chapterId },
     });
 
     // Delete the chapter itself

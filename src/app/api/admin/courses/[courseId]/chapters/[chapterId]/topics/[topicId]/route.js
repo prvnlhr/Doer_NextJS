@@ -89,6 +89,7 @@ export async function DELETE(req, { params }) {
     const updateChapterRes = await Chapter.findByIdAndUpdate(
       chapterId,
       {
+        $pull: { topics: topicId },
         $inc: {
           duration: -topicDuration,
           topicsCount: -1,

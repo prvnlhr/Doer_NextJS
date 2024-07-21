@@ -17,7 +17,9 @@ const CoursesList = ({ courses, searchParams }) => {
             (course) =>
               course.chaptersCount > 0 && (
                 <>
-                  <CourseCard key={course.title} course={course} />
+                  <CourseCard
+                  searchParams={searchParams}
+                  key={course.title} course={course} />
                 </>
               )
           )}

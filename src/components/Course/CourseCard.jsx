@@ -10,9 +10,17 @@ import Image from "next/image";
 import { generateSlug } from "@/lib/utils/slugUtil";
 import { convertMinutesToHours } from "@/lib/utils/durationConvert";
 
-const CourseCard = ({ course }) => {
+const CourseCard = ({ course, searchParams }) => {
+  const { item: searchedItemId } = searchParams || undefined;
+
   return (
-    <div className={styles.card}>
+    <div
+      className={`${styles.card} ${
+        searchedItemId &&
+        searchedItemId === course._id &&
+        styles["card--searchedItem"]
+      }`}
+    >
       <div className={styles.card__logoWrapper}>
         <div>
           <Image

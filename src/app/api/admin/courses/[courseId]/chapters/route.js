@@ -49,7 +49,8 @@ export async function POST(req, { params }) {
     // 2. Update course -> chapters count
     await Course.findByIdAndUpdate(
       params.courseId,
-      { $inc: { chaptersCount: 1 } },
+      { $inc: { chaptersCount: 1 }, $push: { chapters: savedChapter._id } },
+
       { new: true }
     );
 

@@ -5,7 +5,8 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 export async function fetchChapters(courseId, searchKey) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters?search=${searchKey}`
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters?search=${searchKey}`,
+      { next: { revalidate: 0 } }
     );
     if (!response.ok) {
       console.log(response);
@@ -21,7 +22,8 @@ export async function fetchChapters(courseId, searchKey) {
 export async function fetchChapterById(courseId, chapterId) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
+      { next: { revalidate: 0 } }
     );
     if (!response.ok) {
       console.log(response);
@@ -64,6 +66,8 @@ export async function updateChapter(chapterData, courseId, chapterId) {
         headers: {
           "Content-Type": "application/json",
         },
+
+        next: { revalidate: 0 },
       }
     );
     if (!response.ok) {
@@ -82,6 +86,7 @@ export async function deleteChapter(courseId, chapterId, params) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
       {
         method: "DELETE",
+        next: { revalidate: 0 },
       }
     );
     if (!response.ok) {

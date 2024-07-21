@@ -6,7 +6,8 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 export async function fetchTopics(courseId, chapterId, searchKey) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics?search=${searchKey}`
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics?search=${searchKey}`,
+      { next: { revalidate: 0 } }
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -21,7 +22,8 @@ export async function fetchTopics(courseId, chapterId, searchKey) {
 export async function fetchTopicById(courseId, chapterId, topicId) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
+      { next: { revalidate: 0 } }
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -64,6 +66,7 @@ export async function updateTopic(topicData, courseId, chapterId, topicId) {
         headers: {
           "Content-Type": "application/json",
         },
+        next: { revalidate: 0 },
       }
     );
     if (!response.ok) {

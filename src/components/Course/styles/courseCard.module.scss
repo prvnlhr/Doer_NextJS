@@ -18,6 +18,10 @@
   background-color: white;
   @include card-bg-shadow;
 
+  &--searchedItem {
+    border: 2px solid #635db0;
+  }
+
   @media (max-width: 768px) {
     width: 90% !important;
     aspect-ratio: 1/1.4;

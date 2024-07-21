@@ -9,8 +9,6 @@ export async function GET(req, res) {
     const filterKey = req.nextUrl.searchParams.get("filter");
     const searchKey = req.nextUrl.searchParams.get("searchKey");
 
-    console.log(filterKey, searchKey);
-
     if (!filterKey || !searchKey) {
       return new Response(
         JSON.stringify({ error: "Missing filter or search key" }),
@@ -24,16 +22,18 @@ export async function GET(req, res) {
       const query = {
         title: { $regex: searchKey, $options: "i" }, // 'i' for case-insensitive
         status: true,
+        chaptersCount: { $gt: 0 },
       };
       result = await Course.find(query);
     } else if (filterKey === "chapter") {
       const query = {
         title: { $regex: searchKey, $options: "i" },
+        topicsCount: { $gt: 0 },
       };
       result = await Chapter.find(query).populate({
         path: "course",
-        match: { status: true },
-        select: "title",
+        match: { status: true, chaptersCount: { $gt: 0 } },
+        select: "title slug chaptersCount",
       });
     } else if (filterKey === "topic") {
       const query = {
@@ -41,12 +41,12 @@ export async function GET(req, res) {
       };
       result = await Topic.find(query).populate({
         path: "chapter",
-        match: { status: true },
-        select: "title course",
+        match: { status: true, topicsCount: { $gt: 0 } },
+        select: "title slug topicsCount course",
         populate: {
           path: "course",
-          match: { status: true },
-          select: "title",
+          match: { status: true, chaptersCount: { $gt: 0 } },
+          select: "title slug chaptersCount",
         },
       });
     } else {

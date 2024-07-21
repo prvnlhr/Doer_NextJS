@@ -4,7 +4,6 @@ import styles from "./styles/search.module.scss";
 import SearchIcon from "../Common/Icons/SearchIcon";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import ChevronRightIcon from "../Common/Icons/ChevronRightIcon";
 import useSWR from "swr";
 import { search } from "@/lib/api/public/searchApi";
 import ChapterResultElement from "./ChapterResultElement";
@@ -12,6 +11,7 @@ import CourseResultElement from "./CourseResultElement";
 import TopicResultElement from "./TopicResultElement";
 import { useDebounce } from "./useDebounce";
 import CrossIcon from "../Common/Icons/CrossIcon";
+import { useRouter } from "next/navigation";
 
 // Define search filters
 const searchFilters = [
@@ -27,6 +27,7 @@ const searchFetcher = (filterKey, searchQuery) =>
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const pathname = usePathname();
   const filterKey = searchParams.get("filter") || "course";
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,13 +48,18 @@ const SearchPage = () => {
       shouldRetryOnError: false,
     }
   );
-  console.log(pathname);
+  const handleCrossIconClicked = () => {
+    const url = new URL(window.location);
+    url.searchParams.delete("search");
+    url.searchParams.delete("filter");
+    router.replace(url.href);
+  };
   return (
     <div className={styles.searchPageWrapper}>
       <div className={styles.searchHeaderWrapper}>
-        <Link className={styles.closeLink} href={pathname}>
+        <div className={styles.closeLink} onClick={handleCrossIconClicked}>
           <CrossIcon />
-        </Link>
+        </div>
       </div>
       <div className={styles.searchBarWrapper}>
         <div className={styles.searchIconWrapper}>
