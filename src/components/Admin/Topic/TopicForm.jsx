@@ -168,6 +168,7 @@ const TopicForm = ({ topic }) => {
       topicData.duration = duration;
 
       let res;
+
       try {
         if (topic) {
           res = await updateTopic(

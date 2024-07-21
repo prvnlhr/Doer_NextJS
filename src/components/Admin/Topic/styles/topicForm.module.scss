@@ -1,5 +1,10 @@
 @import "../../../../styles/mixins.module";
 
+$fontSize: 0.9rem;
+$codeFontSize: 0.9rem;
+$fontColorPrimaary: #1c3553;
+$fontColorSecondary: #101828;
+
 .formWrapper {
   @include fhw;
   width: 100%;
@@ -247,12 +252,12 @@
         @include scroll($dir: y);
         p {
           margin-bottom: 10px;
-          line-height: 2;
-          color: #1c3553;
-          font-size: 0.8rem;
-          word-break: break-all;
-          // border: 1px solid blue;
           width: 80%;
+          color: $fontColorPrimaary;
+          font-size: $fontSize;
+          word-break: break-all;
+          font-weight: 400;
+          line-height: 1.8;
         }
 
         h1,
@@ -264,7 +269,7 @@
           margin-top: 20px;
           margin-bottom: 25px;
           font-weight: bold;
-          color: #101828;
+          color: $fontColorSecondary;
           position: relative;
           &::after {
             position: absolute;
@@ -277,11 +282,20 @@
             border-radius: 8px;
           }
         }
-
+        code {
+          color: #e31b54;
+          background-color: #ffe4e8;
+          padding: 2px 8px;
+          border-radius: 5px;
+          font-weight: 600;
+          font-family: "Source Code Pro", monospace !important;
+          font-size: $codeFontSize;
+          white-space: nowrap;
+        }
         pre {
           background-color: #011627;
           padding: 20px 20px;
-          border-radius: 5px;
+          border-radius: 0.8rem !important;
           @include scroll($dir: x);
           margin-top: 20px;
           margin-bottom: 20px;
@@ -292,12 +306,15 @@
             display: none;
           }
           code {
-            border-radius: 4px;
-            color: white !important;
+            color: white;
             background-color: transparent !important;
             padding: 0px !important;
-            // border: 1px solid red;
-            // display: none;
+            @include scroll($dir: x);
+            font-weight: 400 !important;
+            line-height: 1.5 !important;
+            font-family: "Source Code Pro", monospace !important;
+            font-size: $codeFontSize;
+            white-space: unset !important;
             @include scroll($dir: x);
           }
         }
@@ -316,16 +333,11 @@
           word-break: break-all;
         }
         li {
-          color: #1c3553;
-          font-size: 0.8rem;
+          color: $fontColorPrimaary;
+          font-size: $fontSize;
           word-break: break-all;
-        }
-        code {
-          color: #f0142f;
-          background-color: #ffe4e8;
-          padding: 2px 8px;
-          border-radius: 3px;
-          border-radius: 5px;
+          margin: 10px 0px;
+          line-height: 1.8;
         }
 
         hr {
@@ -340,6 +352,9 @@
           width: 100%;
           height: 100%;
           object-fit: contain;
+        }
+        strong {
+          color: #635db0;
         }
       }
 
