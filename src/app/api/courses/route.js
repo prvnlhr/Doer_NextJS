@@ -27,7 +27,6 @@ export async function POST(req) {
   await dbConnect();
   try {
     const FormData = await req.formData();
-    // console.log("FormData", FormData.get("title"));
     const courseData = {
       title: FormData.get("title"),
       description: FormData.get("description"),

@@ -1,7 +1,7 @@
 import React from "react";
 import CoursesList from "@/components/Course/CourseList";
 
-const CoursesListPage = async ({ searchParams }) => {
+const CoursesListPage = ({ searchParams }) => {
   return <CoursesList searchParams={searchParams} />;
 };
 

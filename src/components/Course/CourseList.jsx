@@ -9,18 +9,16 @@ const CoursesList = async ({ searchParams }) => {
   const courses = await fetchCourses();
   return (
     <>
-      {searchParams && searchParams.search && <SearchPage />}
+      {searchParams && searchParams?.search && <SearchPage />}
       <div className={styles.courseListWrapper}>
         <div className={styles.listHeader}>
-          <CommonHeading searchLink={``} to="/" text="EXPLORE COURSES" />
+          <CommonHeading to="/" text="EXPLORE COURSES" />
         </div>
         <div className={styles.mainListWrapper}>
           {courses.map(
             (course) =>
               course.chaptersCount > 0 && (
-                <>
-                  <CourseCard key={course.title} course={course} />
-                </>
+                <CourseCard key={course.title} course={course} />
               )
           )}
         </div>
