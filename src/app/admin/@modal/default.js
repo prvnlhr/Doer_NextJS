@@ -2,5 +2,4 @@ export default function Default() {
   return null;
 }
 
-
-// http://localhost:3000/admin/courses/[courseId]/chapters/[chapterId]/delete
+// http://127.0.0.1:3000/admin/courses/[courseId]/chapters/[chapterId]/delete

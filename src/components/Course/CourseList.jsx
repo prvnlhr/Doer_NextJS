@@ -3,8 +3,10 @@ import styles from "./styles/courseList.module.scss";
 import CourseCard from "./CourseCard";
 import CommonHeading from "../Common/Heading/CommonHeading";
 import SearchPage from "../Search/SearchPage";
+import { fetchCourses } from "@/lib/api/public/coursesApi";
 
-const CoursesList = ({ courses, searchParams }) => {
+const CoursesList = async ({ searchParams }) => {
+  const courses = await fetchCourses();
   return (
     <>
       {searchParams && searchParams.search && <SearchPage />}
@@ -17,9 +19,7 @@ const CoursesList = ({ courses, searchParams }) => {
             (course) =>
               course.chaptersCount > 0 && (
                 <>
-                  <CourseCard
-                  searchParams={searchParams}
-                  key={course.title} course={course} />
+                  <CourseCard key={course.title} course={course} />
                 </>
               )
           )}

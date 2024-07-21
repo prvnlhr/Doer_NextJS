@@ -9,8 +9,10 @@ import ClockIcon from "../Common/Icons/ClockIcon";
 import Image from "next/image";
 import { generateSlug } from "@/lib/utils/slugUtil";
 import { convertMinutesToHours } from "@/lib/utils/durationConvert";
+import { useSearchParams } from "next/navigation";
 
-const CourseCard = ({ course, searchParams }) => {
+const CourseCard = ({ course }) => {
+  const searchParams = useSearchParams();
   const { item: searchedItemId } = searchParams || undefined;
 
   return (

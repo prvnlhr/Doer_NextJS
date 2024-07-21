@@ -1,6 +1,6 @@
 import revalidateTagHandler, { revalidatePathHandler } from "@/app/revalidate";
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 // Get all topics
 export async function fetchTopics(courseId, chapterId, searchKey) {

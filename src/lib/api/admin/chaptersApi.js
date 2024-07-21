@@ -1,6 +1,6 @@
 import revalidateTagHandler, { revalidatePathHandler } from "@/app/revalidate";
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 export async function fetchChapters(courseId, searchKey) {
   try {
@@ -79,7 +79,7 @@ export async function updateChapter(chapterData, courseId, chapterId) {
       "/admin/courses/[courseId]/chapters/[chapterId]/edit",
       "page"
     );
-   
+
     await revalidatePathHandler("/", "layout");
     return response.json();
   } catch (error) {

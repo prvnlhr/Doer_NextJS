@@ -5,10 +5,9 @@ import Topic from "@/lib/db/models/Topic";
 // Get content
 export async function GET(req, res) {
   await dbConnect();
+  const filterKey = req.nextUrl.searchParams.get("filter");
+  const searchKey = req.nextUrl.searchParams.get("searchKey");
   try {
-    const filterKey = req.nextUrl.searchParams.get("filter");
-    const searchKey = req.nextUrl.searchParams.get("searchKey");
-
     if (!filterKey || !searchKey) {
       return new Response(
         JSON.stringify({ error: "Missing filter or search key" }),

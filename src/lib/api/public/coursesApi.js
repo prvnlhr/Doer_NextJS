@@ -1,8 +1,8 @@
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 export async function fetchCourses() {
   try {
-    let response = await fetch(`${BASE_URL}/api/courses`);
+    let response = await fetch(`${BASE_URL}/api/course`);
     if (!response.ok) {
       throw new Error("Failed to fetch courses");
     }

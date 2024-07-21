@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/db/dbConnect";
 import Course from "@/lib/db/models/Course";
-import cloudinary, { uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
+import { uploadToCloudinary } from "@/lib/utils/cloudinaryConfig";
 
 // Get all courses
 export async function GET(req, res) {
@@ -27,7 +27,7 @@ export async function POST(req) {
   await dbConnect();
   try {
     const FormData = await req.formData();
-    console.log("FormData", FormData.get("title"));
+    // console.log("FormData", FormData.get("title"));
     const courseData = {
       title: FormData.get("title"),
       description: FormData.get("description"),
@@ -35,7 +35,6 @@ export async function POST(req) {
     };
 
     const file = FormData.get("file");
-
     const cloudinaryResponse = await uploadToCloudinary(file);
     courseData.logoUrl = cloudinaryResponse.secure_url;
     courseData.cloudinary_id = cloudinaryResponse.public_id;

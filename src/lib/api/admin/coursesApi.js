@@ -1,5 +1,5 @@
 import { revalidatePathHandler, revalidateTagHandler } from "@/app/revalidate";
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 export async function fetchCourses(searchKey) {
   try {
@@ -41,7 +41,6 @@ export async function createCourse(formData) {
     await revalidatePathHandler("/admin/courses", "page");
     await revalidatePathHandler("/", "layout");
 
-
     return response.json();
   } catch (error) {
     throw new Error(`Create course error: ${error}`);
@@ -63,7 +62,6 @@ export async function updateCourse(formData, courseId) {
     await revalidatePathHandler("/admin/courses", "page");
     await revalidatePathHandler("/", "layout");
 
-
     return response.json();
   } catch (error) {
     throw new Error(`Fetch courses error: ${error}`);
@@ -83,7 +81,6 @@ export async function deleteCourse(courseId) {
     }
     await revalidatePathHandler("/admin/courses", "page");
     await revalidatePathHandler("/", "layout");
-
 
     return response.json();
   } catch (error) {

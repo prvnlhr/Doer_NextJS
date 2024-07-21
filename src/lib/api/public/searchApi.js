@@ -1,7 +1,6 @@
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 export async function search(filterKey, searchQuery) {
-  // console.log("Searching...", filterKey, searchQuery);
   try {
     let response = await fetch(
       `${BASE_URL}/api/search?filter=${filterKey}&searchKey=${searchQuery}`
