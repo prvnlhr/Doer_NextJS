@@ -23,7 +23,7 @@ export const sendOTPEmail = async (to, otpDigits) => {
             <title>DO.er - Authentication OTP</title>
             <style>
               body {
-                font-family: 'Poppins', Arial, sans-serif;
+                font-family: 'Inter', Arial, sans-serif;
                 background-color: #0D1321;
                 color: white;
                 margin: 0;

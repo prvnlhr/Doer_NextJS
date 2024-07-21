@@ -17,7 +17,7 @@ const InProgressCard = ({ courseProgress }) => {
   const fractionalCeil = fractionalPart ? Math.ceil(fractionalPart * 100) : 0;
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} key={courseProgress._id}>
       <div className={styles.card__typeWrapper}>
         <HighLightBadge text={"COURSE"} isHighlighted={true} />
       </div>

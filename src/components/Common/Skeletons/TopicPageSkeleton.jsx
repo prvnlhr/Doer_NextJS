@@ -18,8 +18,8 @@ const TopicPageSkeleton = () => {
         <div className={styles.titleDiv}>
           <Shimmer />
         </div>
-        {Array.from({ length: 10 }).map((ele) => (
-          <div className={styles.lineDiv}>
+        {Array.from({ length: 10 }).map((ele, indx) => (
+          <div className={styles.lineDiv} key={indx}>
             <Shimmer />
           </div>
         ))}

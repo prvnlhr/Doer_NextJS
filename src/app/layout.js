@@ -1,35 +1,13 @@
-import {
-  Raleway,
-  Work_Sans,
-  Poppins,
-  Montserrat,
-  Source_Code_Pro,
-  Inter,
-} from "next/font/google";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 import MainHeader from "@/components/Common/MainHeader/MainHeader";
 import styles from "./app.module.scss";
 import { CombinedProviders } from "./providers";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-});
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
-});
-const sourceCode = Source_Code_Pro({
-  subsets: ["latin"],
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-});
-
-const WorkSans = Work_Sans({
-  subsets: ["latin"],
 });
 
 export const metadata = {
