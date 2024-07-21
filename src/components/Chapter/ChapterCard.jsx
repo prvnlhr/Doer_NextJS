@@ -18,7 +18,7 @@ const TopicsListItem = ({ topic }) => {
   );
 };
 const ChapterCard = ({ chapter, index, searchParams }) => {
-  console.log("searchParams", searchParams, chapter._id);
+  // console.log("searchParams", searchParams, chapter._id);
   const { item: searchedItemId } = searchParams || undefined;
   return (
     <div
