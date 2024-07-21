@@ -44,7 +44,7 @@ const SignUpForm = () => {
           ...values,
         };
         const res = await signUp(userData);
-        console.log(res);
+        // console.log(res);
         if (res.message === "Sign Up Successful") {
           setShowOtpForm(true);
         } else {

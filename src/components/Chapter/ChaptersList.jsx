@@ -4,7 +4,6 @@ import ChapterCard from "./ChapterCard";
 import CommonHeading from "../Common/Heading/CommonHeading";
 import SearchPage from "../Search/SearchPage";
 const ChaptersList = ({ chapters, searchParams }) => {
-  console.log(searchParams);
   return (
     <>
       {searchParams && searchParams.search && <SearchPage />}

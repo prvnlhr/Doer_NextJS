@@ -46,7 +46,7 @@ const TopicContent = ({ bookmarks, topic }) => {
     };
     try {
       const res = await toggleBookmark(userId, bookmarkData);
-      console.log(res.message);
+      // console.log(res.message);
       if (res && res.message === "Bookmark added") {
         setBookmarkedTopics((prevBookmarks) => [
           ...prevBookmarks,

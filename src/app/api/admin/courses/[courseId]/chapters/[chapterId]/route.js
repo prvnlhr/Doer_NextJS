@@ -63,7 +63,7 @@ export async function DELETE(req, { params }) {
     const topicsDeleteRes = await Topic.deleteMany({
       chapter: chapterId,
     }).exec();
-    console.log(`${topicsDeleteRes.deletedCount} topics deleted`);
+    // console.log(`${topicsDeleteRes.deletedCount} topics deleted`);
 
     const updateCourseRes = await Course.findByIdAndUpdate(courseId, {
       $inc: {
@@ -75,7 +75,7 @@ export async function DELETE(req, { params }) {
 
     // Delete the chapter itself
     const deleteChapterRes = await Chapter.findByIdAndDelete(chapterId).exec();
-    console.log(`Chapter ${chapterId} deleted`);
+    // console.log(`Chapter ${chapterId} deleted`);
 
     return new Response(
       JSON.stringify({

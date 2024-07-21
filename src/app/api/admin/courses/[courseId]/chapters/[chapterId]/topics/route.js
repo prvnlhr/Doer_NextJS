@@ -4,7 +4,7 @@ import Topic from "@/lib/db/models/Topic";
 
 // // Utility function to update duration
 const updateDuration = (currentDuration, additionalDuration) => {
-  console.log(currentDuration, additionalDuration);
+  // console.log(currentDuration, additionalDuration);
 
   let { minutes, hours, days } = currentDuration;
   minutes += additionalDuration.minutes;

@@ -54,7 +54,7 @@ export async function GET(req, res) {
       });
     }
 
-    console.log(result);
+    // console.log(result);
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     console.log(error);

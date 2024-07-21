@@ -3,10 +3,10 @@ export async function GET(req) {
     const url = new URL(req.url);
 
     const query = url.searchParams.get("filter");
-    console.log(
-      "QUERY.............................................................",
-      query
-    );
+    // console.log(
+    //   "QUERY.............................................................",
+    //   query
+    // );
 
     return new Response(query, { status: 200 });
   } catch (error) {

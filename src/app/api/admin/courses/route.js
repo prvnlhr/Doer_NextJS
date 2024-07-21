@@ -18,10 +18,10 @@ export async function GET(req, res) {
         title: { $regex: searchKey, $options: "i" },
       };
     }
-    console.log("query", query);
+    // console.log("query", query);
 
     const courses = await Course.find(query);
-    console.log(courses);
+    // console.log(courses);
     return new Response(JSON.stringify(courses), { status: 200 });
   } catch (error) {
     console.log(error);

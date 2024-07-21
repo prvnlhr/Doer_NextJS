@@ -27,7 +27,7 @@ export async function POST(req, { params }) {
     const { topicId, chapterId, courseId } = params;
 
     const topicData = await req.json();
-    console.log(topicData);
+    // console.log(topicData);
     let filter = {
       _id: topicId,
     };

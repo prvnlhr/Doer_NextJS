@@ -26,7 +26,7 @@ const DeleteBtn = ({ deleteProps }) => {
       }
       setIsLoading(false);
       router.back();
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error);
       setIsLoading(false);

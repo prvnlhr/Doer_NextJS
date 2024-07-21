@@ -4,7 +4,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import Link from "next/link";
 
 const ChapterResultElement = ({ item }) => {
-  console.log(item);
+  // console.log(item);
   const {
     _id: chapterId,
     slug: chapterSlug,
