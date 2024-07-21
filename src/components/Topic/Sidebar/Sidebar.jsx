@@ -53,7 +53,7 @@ const Sidebar = ({ params }) => {
   };
 
   useEffect(() => {
-    if (userCourseProgressData && userCourseProgressData.length > 0) {
+    if (userCourseProgressData && userCourseProgressData?.length > 0) {
       setCourseProgressState(userCourseProgressData);
       const topicIds = extractCompletedTopicsIds(userCourseProgressData);
       setCompletedTopics(topicIds);
