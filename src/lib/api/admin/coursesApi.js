@@ -1,15 +1,10 @@
-import { revalidateTagHandler } from "@/app/revalidate";
+import { revalidatePathHandler, revalidateTagHandler } from "@/app/revalidate";
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchCourses(searchKey) {
-  console.log("searchKey1", searchKey);
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses?search=${searchKey}`,
-      {
-        // next: { tags: ["fetchAdminCourses"] },
-        next: { revalidate: 0 },
-      }
+      `${BASE_URL}/api/admin/courses?search=${searchKey}`
     );
 
     if (!response.ok) {
@@ -22,14 +17,11 @@ export async function fetchCourses(searchKey) {
 }
 export async function fetchCourseById(courseId) {
   try {
-    let response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`, {
-      next: { tags: ["fetchCourseById"] },
-    });
+    let response = await fetch(`${BASE_URL}/api/admin/courses/${courseId}`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch course by id");
     }
-    await revalidateTagHandler("fetchAdminCourses");
     return response.json();
   } catch (error) {
     throw new Error(`Fetch courses error: ${error}`);
@@ -46,9 +38,9 @@ export async function createCourse(formData) {
     if (!response.ok) {
       throw new Error("Failed to create course");
     }
+    await revalidatePathHandler("/admin/courses", "page");
+    await revalidatePathHandler("/", "layout");
 
-    await revalidateTagHandler("fetchClientCourses");
-    await revalidateTagHandler("fetchAdminCourses");
 
     return response.json();
   } catch (error) {
@@ -67,8 +59,10 @@ export async function updateCourse(formData, courseId) {
       console.log(response);
       throw new Error("Failed to fetch course by id");
     }
-    await revalidateTagHandler("fetchAdminCourses");
-    await revalidateTagHandler("fetchClientCourses");
+    await revalidatePathHandler("/admin/courses/[courseId]/edit", "page");
+    await revalidatePathHandler("/admin/courses", "page");
+    await revalidatePathHandler("/", "layout");
+
 
     return response.json();
   } catch (error) {
@@ -87,8 +81,10 @@ export async function deleteCourse(courseId) {
         " HTTP !  Error :: Failed to delete course and its content"
       );
     }
-    await revalidateTagHandler("fetchAdminCourses");
-    await revalidateTagHandler("fetchClientCourses");
+    await revalidatePathHandler("/admin/courses", "page");
+    await revalidatePathHandler("/", "layout");
+
+
     return response.json();
   } catch (error) {
     throw new Error(`Error in deleting the course ${error}`);

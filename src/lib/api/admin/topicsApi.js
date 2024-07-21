@@ -1,4 +1,4 @@
-import revalidateTagHandler from "@/app/revalidate";
+import revalidateTagHandler, { revalidatePathHandler } from "@/app/revalidate";
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
@@ -6,8 +6,7 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 export async function fetchTopics(courseId, chapterId, searchKey) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics?search=${searchKey}`,
-      { next: { revalidate: 0 } }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics?search=${searchKey}`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -22,8 +21,7 @@ export async function fetchTopics(courseId, chapterId, searchKey) {
 export async function fetchTopicById(courseId, chapterId, topicId) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
-      { next: { revalidate: 0 } }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`
     );
     if (!response.ok) {
       throw new Error(`fetch error ${response}`);
@@ -48,8 +46,17 @@ export async function createTopic(topicData, courseId, chapterId) {
       }
     );
     if (!response.ok) {
+      console.log(response);
       throw new Error(`HTTP error! Status: ${response}`);
     }
+    await revalidatePathHandler(
+      "/admin/courses/[courseId]/chapters/[chapterId]/topics",
+      "page"
+    );
+    await revalidatePathHandler("/admin/courses/[courseId]/chapters", "page");
+    await revalidatePathHandler("/", "layout");
+
+    return response.json();
   } catch (error) {
     console.log(error);
     throw new Error(`Create topic error : ${error}`);
@@ -66,13 +73,22 @@ export async function updateTopic(topicData, courseId, chapterId, topicId) {
         headers: {
           "Content-Type": "application/json",
         },
-        next: { revalidate: 0 },
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error("Failed to update topic");
     }
+    await revalidatePathHandler(
+      "/admin/courses/[courseId]/chapters/[chapterId]/topics/[topicId]/edit",
+      "page"
+    );
+    await revalidatePathHandler(
+      "/admin/courses/[courseId]/chapters/[chapterId]/topics",
+      "page"
+    );
+    await revalidatePathHandler("/", "layout");
+
     return response.json();
   } catch (error) {
     throw new Error(`Update topic error: ${error}`);
@@ -85,13 +101,18 @@ export async function deleteTopic(courseId, chapterId, topicId) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}/topics/${topicId}`,
       {
         method: "DELETE",
-        cache: "no-store",
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error("HTTP ! Error Failed to delete topic and its content");
     }
+    await revalidatePathHandler(
+      "/admin/courses/[courseId]/chapters/[chapterId]/topics",
+      "page"
+    );
+    await revalidatePathHandler("/admin/courses/[courseId]/chapters", "page");
+    await revalidatePathHandler("/", "layout");
 
     return response.json();
   } catch (error) {

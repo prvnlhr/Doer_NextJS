@@ -1,12 +1,11 @@
-import revalidateTagHandler from "@/app/revalidate";
+import revalidateTagHandler, { revalidatePathHandler } from "@/app/revalidate";
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 export async function fetchChapters(courseId, searchKey) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters?search=${searchKey}`,
-      { next: { revalidate: 0 } }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters?search=${searchKey}`
     );
     if (!response.ok) {
       console.log(response);
@@ -22,8 +21,7 @@ export async function fetchChapters(courseId, searchKey) {
 export async function fetchChapterById(courseId, chapterId) {
   try {
     let response = await fetch(
-      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
-      { next: { revalidate: 0 } }
+      `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`
     );
     if (!response.ok) {
       console.log(response);
@@ -50,6 +48,10 @@ export async function createChapter(chapterData, courseId) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    await revalidatePathHandler("/admin/courses/[courseId]/chapters", "page");
+    await revalidatePathHandler("/admin/courses", "page");
+    await revalidatePathHandler("/", "layout");
+
     return response.json();
   } catch (error) {
     throw new Error(`Create chapter error : ${error}`);
@@ -66,14 +68,19 @@ export async function updateChapter(chapterData, courseId, chapterId) {
         headers: {
           "Content-Type": "application/json",
         },
-
-        next: { revalidate: 0 },
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    await revalidatePathHandler("/admin/courses/[courseId]/chapters", "page");
+    await revalidatePathHandler(
+      "/admin/courses/[courseId]/chapters/[chapterId]/edit",
+      "page"
+    );
+   
+    await revalidatePathHandler("/", "layout");
     return response.json();
   } catch (error) {
     throw new Error(`Create chapter error : ${error}`);
@@ -86,13 +93,17 @@ export async function deleteChapter(courseId, chapterId, params) {
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
       {
         method: "DELETE",
-        next: { revalidate: 0 },
       }
     );
     if (!response.ok) {
       console.log(response);
       throw new Error("HTTP ! Error Failed to delete chapter and its content");
     }
+
+    await revalidatePathHandler("/admin/courses/[courseId]/chapters", "page");
+    await revalidatePathHandler("/admin/courses", "page");
+    await revalidatePathHandler("/", "layout");
+
     return response.json();
   } catch (error) {
     throw new Error(`Error in deleting the chapter ${error}`);

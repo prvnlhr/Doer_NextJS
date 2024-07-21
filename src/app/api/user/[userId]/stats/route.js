@@ -16,10 +16,10 @@ export async function GET(req, { params }) {
       completed: true,
     }).exec();
 
-    console.log(timeSpent);
-    console.log(totalCompleted);
+    // console.log(timeSpent);
+    // console.log(totalCompleted);
 
-    return new Response(JSON.stringify("bookmarks"), { status: 200 });
+    return new Response(JSON.stringify("OK"), { status: 200 });
   } catch (error) {
     console.log("Error fetching user's bookmarks", error);
     return new Response(

@@ -599,3 +599,46 @@ topics page
 
 
 
+------------------------------------------------------------------
+CACHING AND REVALIDATION
+
+COURSE ::
+- creating a new course
+  - all courses list
+
+- deleting a course
+  - all courses list
+
+- udpating a course
+  - the course which has been edited
+  - all courses list
+
+CHAPTER ::
+- creating a chapter
+  - all chapters list
+  - all courses list
+
+- deleting a chapter
+  - all chapters list
+  - all courses list
+
+- updating a topic
+  - chapter edit route
+  - all chapters list
+
+TOPIC :: 
+
+- updating a topic
+  - topic edit route
+  - all topics list
+
+- creating a new topic
+  - all topics list
+  - all chapters list
+
+- deleting a topic
+  - all topics list
+  - all chapters list
+
+
+

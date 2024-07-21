@@ -1,4 +1,4 @@
-import { revalidateTagHandler } from "@/app/revalidate";
+import { revalidatePathHandler, revalidateTagHandler } from "@/app/revalidate";
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
@@ -19,9 +19,7 @@ export async function fetchUserData(userId) {
 
 export async function fetchUsersBookmarks(userId) {
   try {
-    const response = await fetch(`${BASE_URL}/api/user/${userId}/bookmarks`, {
-      next: { revalidate: 0 },
-    });
+    const response = await fetch(`${BASE_URL}/api/user/${userId}/bookmarks`);
     if (!response.ok) {
       const errorMessage = await response.json();
       console.error("Fetch user's bookmarks error:", errorMessage);
@@ -39,17 +37,13 @@ export async function fetchUsersBookmarks(userId) {
 export async function fetchUsersBookmarkById(userId, topicId) {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/user/${userId}/bookmarks/${topicId}`,
-      {
-        next: { revalidate: 0 },
-      }
+      `${BASE_URL}/api/user/${userId}/bookmarks/${topicId}`
     );
     if (!response.ok) {
       const errorMessage = await response.json();
       console.error("Fetch user's bookmark by id error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
-    await revalidateTagHandler("fetchTopicById");
     return response.json();
   } catch (error) {
     console.log(error);
@@ -80,8 +74,7 @@ export async function fetchUsersCoursesProgressByCourseId(params) {
     const userId = params[0];
     const courseId = params[1];
     const response = await fetch(
-      `${BASE_URL}/api/user/${userId}/courses-progress/${courseId}`,
-      { cache: "no-store" }
+      `${BASE_URL}/api/user/${userId}/courses-progress/${courseId}`
     );
     if (!response.ok) {
       const errorMessage = await response.json();
@@ -124,8 +117,8 @@ export async function toggleBookmark(userId, bookmarkData) {
       console.error("Fetch user error:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
 
-    await revalidateTagHandler("fetchTopicById");
     return response.json();
   } catch (error) {
     console.error("Toogle bookmark error:", error);
@@ -150,6 +143,8 @@ export async function updateCourseProgress(userId, progressData) {
       console.error("Error in updating the course progress:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
+
     return response.json();
   } catch (error) {
     console.error("Error in updating the course progress:", error);
@@ -159,9 +154,7 @@ export async function updateCourseProgress(userId, progressData) {
 
 export async function fetchUsersStats(userId) {
   try {
-    const response = await fetch(`${BASE_URL}/api/user/${userId}/stats`, {
-      next: { revalidate: 0 },
-    });
+    const response = await fetch(`${BASE_URL}/api/user/${userId}/stats`);
     if (!response.ok) {
       const errorMessage = await response.json();
       console.error("Error in fetching user's stats:", errorMessage);
@@ -189,6 +182,7 @@ export async function updateUserStats(userId, timeSpentData) {
       console.error("Error in updating the user's stats:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
     return response.json();
   } catch (error) {
     console.error("Error in updating the user's stats:", error);

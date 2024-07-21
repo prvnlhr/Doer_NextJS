@@ -7,7 +7,6 @@ export async function GET(req, res) {
   await dbConnect();
   try {
     const searchKey = req.nextUrl.searchParams.get("search");
-    console.log("searchKey2", searchKey, typeof searchKey, searchKey.length);
     let query = {};
     if (
       searchKey &&

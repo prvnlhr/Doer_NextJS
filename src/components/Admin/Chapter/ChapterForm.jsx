@@ -41,8 +41,9 @@ const ChapterForm = ({ chapter }) => {
         } else {
           res = await createChapter(chapterData, params.courseId);
         }
-        router.back();
-        console.log(res);
+        if (res && res._id) {
+          router.push(`${res._id}/edit`);
+        }
       } catch (error) {
         console.log(error);
       }

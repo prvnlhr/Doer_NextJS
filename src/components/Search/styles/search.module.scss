@@ -65,10 +65,10 @@
       }
     }
     .divisionLine {
-      width: 2px;
+      width: 1px;
       height: 40%;
       background-color: #a4adbb;
-      margin: 0px 5px;
+      margin: 0px 0px;
     }
     .searchInputWrappper {
       flex: 1;
@@ -113,9 +113,8 @@
       border-bottom: 2px solid transparent;
 
       p {
-        font-size: 0.75rem;
         font-weight: 500;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         @include small-device {
           font-size: clamp(
             0.75rem,
@@ -179,7 +178,7 @@
       justify-content: flex-start;
       align-items: flex-end;
       p {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 500;
       }
     }

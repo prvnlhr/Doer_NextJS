@@ -16,6 +16,7 @@ import {
   FontBackgroundColor,
   FontColor,
   FontFamily,
+  FindAndReplace,
   FontSize,
   FullPage,
   GeneralHtmlSupport,
@@ -88,6 +89,7 @@ export default function CustomEditor({ content, setFieldValue }) {
       items: [
         "undo",
         "redo",
+        "findAndReplace",
         "|",
         "heading",
         "|",
@@ -144,6 +146,7 @@ export default function CustomEditor({ content, setFieldValue }) {
       FontBackgroundColor,
       FontColor,
       FontFamily,
+      FindAndReplace,
       FontSize,
       FullPage,
       GeneralHtmlSupport,

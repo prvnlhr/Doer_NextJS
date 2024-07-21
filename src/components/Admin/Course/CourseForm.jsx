@@ -108,10 +108,12 @@ const CourseForm = ({ course }) => {
             cloudinary_id: res.cloudinary_id,
           });
         } else {
-          console.log(values);
+          // console.log(values);
           res = await createCourse(formData);
           action.resetForm();
-          router.push(`/admin/courses`);
+          if (res && res._id) {
+            router.push(`${res._id}/edit`);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -133,7 +135,7 @@ const CourseForm = ({ course }) => {
 
   useEffect(() => {
     if (course) {
-      console.log(course);
+      // console.log(course);
       setCourseData({
         _id: course._id,
         title: course.title,

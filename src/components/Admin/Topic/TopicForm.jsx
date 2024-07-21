@@ -5,10 +5,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import CKeditor from "../CKeditor/CKeditor";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
 import Spinner from "@/components/Common/Icons/Spinner";
-//'Hasklug Nerd Font' ,'Source Code Pro'
+
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
     const higherValue = parseInt(formik.values[higherLabel] || 0) + amount;
@@ -85,6 +85,7 @@ const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
 };
 
 const TopicForm = ({ topic }) => {
+  const router = useRouter();
   const [initialDuration, setInitialDuration] = useState(0);
 
   const [selectedStatus, setSelectedStatus] = useState(
@@ -168,7 +169,6 @@ const TopicForm = ({ topic }) => {
       topicData.duration = duration;
 
       let res;
-
       try {
         if (topic) {
           res = await updateTopic(
@@ -180,6 +180,9 @@ const TopicForm = ({ topic }) => {
           setInitialDuration(res.duration);
         } else {
           res = await createTopic(topicData, params.courseId, params.chapterId);
+          if (res && res._id) {
+            router.push(`${res._id}/edit`);
+          }
         }
       } catch (error) {
         console.log(error);
