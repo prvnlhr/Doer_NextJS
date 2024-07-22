@@ -7,10 +7,10 @@ import ClockIcon from "@/components/Common/Icons/ClockIcon";
 import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
 import DOMPurify from "dompurify";
-
 import {
   toggleBookmark,
   updateCourseProgress,
+  updateUsersTimeSpentData,
 } from "@/lib/api/public/usersApi";
 import { useInView } from "react-intersection-observer";
 import { getLastMonday } from "@/lib/utils/dailyTimeSpentUtils";
@@ -92,7 +92,7 @@ const TopicContent = ({ bookmarks, topic }) => {
       localStorage.getItem("dailyTimeSpent")
     ) || [0, 0, 0, 0, 0, 0, 0];
     try {
-      await updateUserStats(userId, localStorageData);
+      await updateUsersTimeSpentData(userId, localStorageData);
       localStorage.setItem(
         "dailyTimeSpent",
         JSON.stringify([0, 0, 0, 0, 0, 0, 0])

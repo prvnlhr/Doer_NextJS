@@ -167,9 +167,9 @@ export async function fetchUsersStats(userId) {
   }
 }
 
-export async function updateUserStats(userId, timeSpentData) {
+export async function updateUsersTimeSpentData(userId, timeSpentData) {
   try {
-    console.log(userId, timeSpentData);
+    // console.log(userId, timeSpentData);
     const response = await fetch(`${BASE_URL}/api/user/${userId}/stats`, {
       method: "POST",
       headers: {
