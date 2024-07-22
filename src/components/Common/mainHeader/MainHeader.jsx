@@ -55,6 +55,7 @@ const MainHeader = () => {
       <div className={styles.headerWrapper__rightSection}>
         {status === "authenticated" && !isClassroomPage ? (
           <Link
+            prefetch={false}
             href={`/user/${session?.user?.userId}/classroom`}
             className={styles.navbarLink}
           >

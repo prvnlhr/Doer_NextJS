@@ -4,6 +4,8 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.AUTH_SECRET });
   const { pathname } = req.nextUrl;
+  console.log("Pathname:", pathname);
+  console.log("Token:", token);
 
   const authPaths = ["/auth/signin", "/auth/verifyotp", "/auth/signup"];
 
