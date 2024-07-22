@@ -6,8 +6,7 @@ import SearchPage from "../Search/SearchPage";
 import { fetchCourses } from "@/lib/api/public/coursesApi";
 
 const CoursesList = async ({ searchParams }) => {
-  // const courses = await fetchCourses();
-  const courses = [];
+  const courses = await fetchCourses();
   return (
     <>
       {searchParams && searchParams?.search && <SearchPage />}
