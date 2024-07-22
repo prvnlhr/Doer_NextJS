@@ -4,7 +4,8 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(req) {
   const token = await getToken({
     req,
-    secret: "fTAYuT04CuTa+ZSYxs5AYoIAcvKf0xy9Pkoj/WG60mk=",
+    secret: process.env.NEXTAUTH_SECRET,
+    cookieName: "next-auth.session-token",
   });
 
   const { pathname } = req.nextUrl;
