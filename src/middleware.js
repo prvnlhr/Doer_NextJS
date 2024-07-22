@@ -6,9 +6,9 @@ export async function middleware(req) {
     req,
     secret: process.env.NEXTAUTH_SECRET,
     cookieName:
-      process.env.NODE_ENV === "production"
-        ? "__Secure-next-auth.session-token"
-        : "next-auth.session-token",
+      process.env.VERCEL_ENV === "development"
+        ? "next-auth.session-token"
+        : "__Secure-next-auth.session-token",
   });
 
   const { pathname } = req.nextUrl;
