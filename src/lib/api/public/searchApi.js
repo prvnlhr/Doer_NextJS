@@ -1,4 +1,4 @@
-const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
+const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
 
 export async function search(filterKey, searchQuery) {
   try {
