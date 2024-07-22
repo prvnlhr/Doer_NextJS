@@ -11,6 +11,7 @@ export async function middleware(req) {
   console.log("Token:", token);
   console.log(process.env.AUTH_SECRET);
   console.log(process.env.NEXTAUTH_SECRET);
+  console.log(process.env.NEXT_PUBLIC_AUTH_SECRET);
 
   const authPaths = ["/auth/signin", "/auth/verifyotp", "/auth/signup"];
 
