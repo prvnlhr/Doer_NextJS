@@ -34,9 +34,10 @@ const TopicContent = ({ bookmarks, topic }) => {
     threshold: 0,
   });
 
+  const userId = session?.user?.userId;
+
   const handleBookmarkBtnClicked = async () => {
     setIsBookmarking(true);
-    const userId = session?.user?.userId;
     const storedCourseState = localStorage.getItem("courseState");
     const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
 
@@ -46,7 +47,6 @@ const TopicContent = ({ bookmarks, topic }) => {
     };
     try {
       const res = await toggleBookmark(userId, bookmarkData);
-      // console.log(res.message);
       if (res && res.message === "Bookmark added") {
         setBookmarkedTopics((prevBookmarks) => [
           ...prevBookmarks,
@@ -67,7 +67,6 @@ const TopicContent = ({ bookmarks, topic }) => {
   };
 
   const markTopicCompleted = async () => {
-    const userId = session?.user?.userId;
     if (!userId) {
       // Exit early if userId is not available
       return;
@@ -124,7 +123,6 @@ const TopicContent = ({ bookmarks, topic }) => {
     const startTime = new Date().getTime();
 
     return () => {
-      const userId = session?.user?.userId;
       if (!userId) return;
       const endTime = new Date().getTime();
       const difference = endTime - startTime;
@@ -140,7 +138,7 @@ const TopicContent = ({ bookmarks, topic }) => {
         );
         const currentMonday = getLastMonday();
         if (currentMonday > lastSyncDate) {
-          syncAndResetData(userId);
+          syncAndResetData();
         }
 
         // Update localStorage
