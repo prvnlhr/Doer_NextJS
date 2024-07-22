@@ -68,6 +68,10 @@ const TopicContent = ({ bookmarks, topic }) => {
 
   const markTopicCompleted = async () => {
     const userId = session?.user?.userId;
+    if (!userId) {
+      // Exit early if userId is not available
+      return;
+    }
     const progressData = JSON.parse(localStorage.getItem("courseState"));
     if (completedTopics.includes(topic._id)) {
       return;
@@ -152,9 +156,11 @@ const TopicContent = ({ bookmarks, topic }) => {
       }
     };
   }, []);
+
   useEffect(() => {
     setBookmarkedTopics(bookmarks);
   }, [bookmarks]);
+
   const isBookmarked = () => {
     return (
       bookmarkedTopics &&
