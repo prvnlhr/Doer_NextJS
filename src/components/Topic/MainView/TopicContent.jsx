@@ -124,6 +124,8 @@ const TopicContent = ({ bookmarks, topic }) => {
     const startTime = new Date().getTime();
 
     return () => {
+      const userId = session?.user?.userId;
+      if (!userId) return;
       const endTime = new Date().getTime();
       const difference = endTime - startTime;
       const minDiff = difference / 60000;
