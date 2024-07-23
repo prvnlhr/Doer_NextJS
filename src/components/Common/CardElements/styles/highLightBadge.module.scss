@@ -8,11 +8,19 @@
   grid-template-areas: "iconWrapper textWrapper";
   grid-template-rows: 100%;
   grid-template-columns: auto minmax(0, 1fr);
-  @include radius(0.2rem);
-  @include flex-container(center, center);
+  @include flex-container(flex-start, center);
   // border: 1px solid greenyellow;
   box-sizing: border-box;
-  padding: 0px 5px 0px 2px;
+  padding: 0px 5px 0px 5px;
+  border-radius: 0.5rem;
+
+  @include small-device {
+    border-radius: clamp(
+      0.3rem,
+      -0.10000000000000003rem + 2vw,
+      0.5rem
+    ) !important;
+  }
 
   &--highlightBg {
     background-color: #ecf2ff;
@@ -47,6 +55,7 @@
       line-height: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
+      @include flex-container(flex-start, center);
 
       @include small-device {
         font-size: clamp(

@@ -29,9 +29,9 @@
       color: #101828;
       @include small-device {
         font-size: clamp(
-          1rem,
-          -0.20000000000000018rem + 6.000000000000001vw,
-          1.6rem
+          0.95rem,
+          -0.15000000000000013rem + 5.500000000000001vw,
+          1.5rem
         ) !important;
       }
     }
@@ -88,9 +88,9 @@
           text-overflow: ellipsis;
           @include small-device {
             font-size: clamp(
-              0.8rem,
-              -0.3999999999999997rem + 5.999999999999998vw,
-              1.4rem
+              0.75rem,
+              -0.3500000000000001rem + 5.500000000000001vw,
+              1.3rem
             ) !important;
           }
 

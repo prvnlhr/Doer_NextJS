@@ -43,8 +43,15 @@
       outline: none;
       cursor: pointer;
       p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         color: white;
+        @include small-device {
+          font-size: clamp(
+            0.8rem,
+            0.5000000000000002rem + 1.4999999999999991vw,
+            0.95rem
+          ) !important;
+        }
       }
     }
 

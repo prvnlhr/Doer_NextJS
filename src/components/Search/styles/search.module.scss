@@ -21,7 +21,7 @@
   }
   .searchHeaderWrapper {
     width: 100%;
-    height: 30px;
+    height: 50px;
     // border: 1px solid salmon;
     display: flex;
     justify-content: flex-end;
@@ -29,7 +29,7 @@
     box-sizing: border-box;
     padding-right: 8px;
     .closeLink {
-      height: 60%;
+      height: 50%;
       aspect-ratio: 1/1;
       display: flex;
       justify-content: center;
@@ -57,7 +57,7 @@
       justify-content: center;
       align-items: center;
       .searchIconDiv {
-        width: 34%;
+        width: 40%;
         aspect-ratio: 1/1;
         display: flex;
         justify-content: center;
@@ -84,17 +84,32 @@
         box-sizing: border-box;
         padding: 0px 8px;
 
+        @include small-device {
+          font-size: clamp(
+            0.85rem,
+            0.34999999999999976rem + 2.5000000000000013vw,
+            1.1rem
+          ) !important;
+        }
+
         &::placeholder {
           color: #c2c2c2;
           font-size: 0.7rem;
           font-style: italic;
+          @include small-device {
+            font-size: clamp(
+              0.7rem,
+              0.19999999999999996rem + 2.5vw,
+              0.95rem
+            ) !important;
+          }
         }
       }
     }
   }
   .searchFilterWrapper {
     width: 100%;
-    height: 30px;
+    height: 40px;
     // border: 1px solid green;
     border-bottom: 1px solid #d0d5dd;
     display: flex;
@@ -115,11 +130,12 @@
       p {
         font-weight: 500;
         font-size: 0.75rem;
+
         @include small-device {
           font-size: clamp(
-            0.75rem,
-            0.55rem + 0.9999999999999999vw,
-            0.85rem
+            0.8rem,
+            0.40000000000000013rem + 1.9999999999999998vw,
+            1rem
           ) !important;
         }
       }
@@ -135,7 +151,7 @@
   }
   .searchListWrapper {
     width: 100%;
-    height: calc(100% - 110px);
+    height: calc(100% - 140px);
     // border: 1px solid salmon;
     display: flex;
     flex-direction: column;
@@ -178,8 +194,18 @@
       justify-content: flex-start;
       align-items: flex-end;
       p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         font-weight: 500;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        @include small-device {
+          font-size: clamp(
+            0.85rem,
+            0.34999999999999976rem + 2.5000000000000013vw,
+            1.1rem
+          ) !important;
+        }
       }
     }
     .breadCrumbsRow {
@@ -214,6 +240,13 @@
       overflow: hidden;
       white-space: nowrap;
       color: #667085;
+      @include small-device {
+        font-size: clamp(
+          0.75rem,
+          0.3500000000000001rem + 1.9999999999999998vw,
+          0.95rem
+        ) !important;
+      }
     }
     &--active {
       p {

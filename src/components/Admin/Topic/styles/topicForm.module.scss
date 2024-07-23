@@ -123,15 +123,17 @@ $fontColorSecondary: #101828;
               height: 100%;
               @include flex-container(flex-end, center);
 
-              button {
+              .previewBtn {
                 width: auto;
                 background-color: #635db0;
                 height: 60%;
                 padding: 0px 10px;
                 border: none;
                 outline: none;
-                color: white;
                 cursor: pointer;
+                p {
+                  color: white;
+                }
               }
             }
           }
@@ -213,13 +215,23 @@ $fontColorSecondary: #101828;
         width: 100%;
         // border: 1px solid red;
         display: inline-flex;
+        border-bottom: 1px solid #d0d5dd;
+        padding-right: 5px;
 
         &__toggleWrapper {
           height: 100%;
           aspect-ratio: 1/1;
           // border: 1px solid gold;
-          @include flex-container(center, center);
+          @include flex-container(flex-end, center);
           cursor: pointer;
+          .closePreviewBtnDiv {
+            height: 30%;
+            aspect-ratio: 1/1;
+            // border: 1px solid red;
+            @include flex-container(center, center);
+            background-color: #635db0;
+            border-radius: 50%;
+          }
         }
 
         &__textWrapper {
@@ -245,10 +257,6 @@ $fontColorSecondary: #101828;
         width: 100%;
         background-color: white;
         padding: 10px 20px;
-        word-break: break-all;
-        display: flex;
-        // @include scroll($dir: y);
-        // border: 1px solid red;
         @include scroll($dir: y);
         p {
           margin-bottom: 10px;

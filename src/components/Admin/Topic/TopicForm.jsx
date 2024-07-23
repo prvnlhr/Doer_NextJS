@@ -8,6 +8,7 @@ import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import { useParams, useRouter } from "next/navigation";
 import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
 import Spinner from "@/components/Common/Icons/Spinner";
+import CrossIcon from "@/components/Common/Icons/CrossIcon";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -167,6 +168,9 @@ const TopicForm = ({ topic }) => {
 
       const duration = durationInMinutes - initialDuration;
       topicData.duration = duration;
+
+      console.log(values);
+      return;
 
       let res;
       try {
@@ -405,7 +409,11 @@ const TopicForm = ({ topic }) => {
             <div
               onClick={togglePreviewPane}
               className={styles.previewWrapper__headerWrapper__toggleWrapper}
-            ></div>
+            >
+              <div className={styles.closePreviewBtnDiv}>
+                <CrossIcon />
+              </div>
+            </div>
           </div>
           <div className={styles.previewWrapper__contentWrapper}>
             <div

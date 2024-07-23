@@ -141,6 +141,7 @@
     grid-area: topicsCountWrapper;
     @include fhw;
     // border: 1px solid cyan;
+    padding: 2px 0px;
   }
   &__durationWrapper {
     grid-area: durationWrapper;

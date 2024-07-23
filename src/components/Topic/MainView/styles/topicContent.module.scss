@@ -18,14 +18,14 @@ $fontColorSecondary: #101828;
     width: 100%;
     height: 40px;
     border-bottom: 1px solid #d0d5dd81;
-    padding-right: 20px;
+    padding: 0px 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
     @media (max-width: 768px) {
       padding-right: unset;
-      padding-left: 20px;
+      padding: 0px 20px;
       justify-content: flex-start;
     }
 
@@ -87,18 +87,18 @@ $fontColorSecondary: #101828;
       width: auto;
       height: 80%;
       margin-right: 10px;
-      // border: 1px solid red;
       @include flex(center, left);
       .durationIconDiv {
-        height: 15px;
+        height: 20px;
         aspect-ratio: 1/1;
         @include flex(center, center);
+        // border: 1px solid red;
       }
       .durationTextDiv {
         width: auto;
         height: 100%;
         @include flex(center, left);
-        margin-left: 2px;
+        margin-left: 5px;
         p {
           font-size: 0.7rem;
           color: #011627;
@@ -198,6 +198,9 @@ $fontColorSecondary: #101828;
       margin: 20px 20px;
       position: relative;
       overflow-x: scroll;
+      @include small-device {
+        margin: 20px 0px;
+      }
       &::-webkit-scrollbar {
         display: none;
       }

@@ -19,6 +19,10 @@
   right: 0;
   margin-top: 20px;
   padding: 10px 10px;
+
+  @include small-device {
+    width: 80%;
+  }
   .formContainer {
     @include fhw;
     // border: 1px solid red;
@@ -125,11 +129,16 @@
             font-size: 1.2rem;
             color: #101828;
             font-weight: 500;
-          }
-          span {
-            font-size: 1.2rem;
-            color: #7e8da4;
-            font-weight: 500;
+            @include small-device {
+              font-size: clamp(
+                1.5rem,
+                0.09999999999999964rem + 7.000000000000002vw,
+                2.2rem
+              ) !important;
+            }
+            span {
+              color: #7e8da4;
+            }
           }
         }
       }
@@ -139,15 +148,32 @@
       @include fhw;
       @include flex-container(center, center);
       p {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         color: #101828;
+        @include small-device {
+          font-size: clamp(
+            0.7rem,
+            0.09999999999999987rem + 3.0000000000000004vw,
+            1rem
+          ) !important;
+        }
       }
       .footerLink {
         margin-left: 5px;
         p {
-          font-size: 0.7rem;
+          font-size: 0.9rem;
           color: #635db0;
-          font-weight: 500;
+          font-weight: 600;
+          &:hover {
+            text-decoration: underline;
+          }
+          @include small-device {
+            font-size: clamp(
+              0.7rem,
+              0.09999999999999987rem + 3.0000000000000004vw,
+              1rem
+            ) !important;
+          }
         }
       }
     }
@@ -200,6 +226,14 @@
         color: #101828;
         letter-spacing: 1px;
         font-weight: 500;
+
+        @include small-device {
+          font-size: clamp(
+            0.7rem,
+            0.19999999999999996rem + 2.5vw,
+            0.95rem
+          ) !important;
+        }
       }
     }
   }
@@ -213,10 +247,21 @@
       width: 100%;
       height: 100%;
       background: none;
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          0.19999999999999996rem + 2.5vw,
+          0.95rem
+        ) !important;
+      }
+
       &::placeholder {
         color: #c2c2c2;
         font-size: 0.7rem;
         font-style: italic;
+        @include small-device {
+          font-size: 0.8rem;
+        }
       }
     }
   }

@@ -6,22 +6,25 @@ import styles from "./styles/topicContent.module.scss";
 import ClockIcon from "@/components/Common/Icons/ClockIcon";
 import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
-import DOMPurify from "dompurify";
-import {
-  toggleBookmark,
-  updateCourseProgress,
-  updateUsersTimeSpentData,
-} from "@/lib/api/public/usersApi";
+import DOMPurify from "isomorphic-dompurify";
 import { useInView } from "react-intersection-observer";
 import { getLastMonday } from "@/lib/utils/dailyTimeSpentUtils";
 import BookmarkIcon from "@/components/Common/Icons/BookmarkIcon";
 import Spinner from "@/components/Common/Icons/Spinner";
 import { useAppState } from "@/context/AppContext";
+import parse from "html-react-parser";
+
+import {
+  toggleBookmark,
+  updateCourseProgress,
+  updateUsersTimeSpentData,
+} from "@/lib/api/public/usersApi";
 
 const TopicContent = ({ bookmarks, topic }) => {
   const { data: session } = useSession();
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const [isBookmarking, setIsBookmarking] = useState(false);
+  const [sanitizedHTML, setSanitizedHTML] = useState(null);
 
   const {
     completedTopics,
@@ -30,10 +33,7 @@ const TopicContent = ({ bookmarks, topic }) => {
     bookmarkedTopics,
   } = useAppState();
 
-  const [ref, inView] = useInView({
-    threshold: 0,
-  });
-
+  const [ref, inView] = useInView({ threshold: 0 });
   const userId = session?.user?.userId;
 
   const handleBookmarkBtnClicked = async () => {
@@ -41,48 +41,36 @@ const TopicContent = ({ bookmarks, topic }) => {
     const storedCourseState = localStorage.getItem("courseState");
     const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
 
-    const bookmarkData = {
-      topicDuration: topic?.duration,
-      ...currentState,
-    };
+    const bookmarkData = { topicDuration: topic?.duration, ...currentState };
     try {
       const res = await toggleBookmark(userId, bookmarkData);
-      if (res && res.message === "Bookmark added") {
-        setBookmarkedTopics((prevBookmarks) => [
-          ...prevBookmarks,
-          bookmarkData,
-        ]);
-      } else if (res && res.message === "Bookmark removed") {
+      if (res) {
         setBookmarkedTopics((prevBookmarks) =>
-          prevBookmarks.filter(
-            (bookmark) => bookmark.topicId !== bookmarkData.topicId
-          )
+          res.message === "Bookmark added"
+            ? [...prevBookmarks, bookmarkData]
+            : prevBookmarks.filter(
+                (bookmark) => bookmark.topicId !== bookmarkData.topicId
+              )
         );
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error toggling bookmark:", error);
     } finally {
       setIsBookmarking(false);
     }
   };
 
   const markTopicCompleted = async () => {
-    if (!userId) {
-      // Exit early if userId is not available
-      return;
-    }
-    const progressData = JSON.parse(localStorage.getItem("courseState"));
-    if (completedTopics.includes(topic._id)) {
-      return;
-    }
+    if (!userId || completedTopics.includes(topic._id)) return;
 
+    const progressData = JSON.parse(localStorage.getItem("courseState"));
     try {
       const response = await updateCourseProgress(userId, progressData);
-      if (response && response.message === "Course progress updated") {
+      if (response?.message === "Course progress updated") {
         setCompletedTopics((prevTopics) => [...prevTopics, topic._id]);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error updating course progress:", error);
     }
   };
 
@@ -110,16 +98,6 @@ const TopicContent = ({ bookmarks, topic }) => {
   }, [inView, hasReachedEnd]);
 
   useEffect(() => {
-    document.querySelectorAll("pre code").forEach((block) => {
-      if (block.dataset.highlighted) {
-        delete block.dataset.highlighted;
-      }
-      hljs.highlightElement(block);
-      block.dataset.highlighted = "yes";
-    });
-  }, [topic.content]);
-
-  useEffect(() => {
     const startTime = new Date().getTime();
 
     return () => {
@@ -128,45 +106,57 @@ const TopicContent = ({ bookmarks, topic }) => {
       const difference = endTime - startTime;
       const minDiff = difference / 60000;
 
-      if (startTime) {
-        const dayIndex = new Date().getDay();
-        const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+      const dayIndex = new Date().getDay();
+      const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+      const lastSyncDate = new Date(localStorage.getItem("lastSyncDate") || 0);
+      const currentMonday = getLastMonday();
 
-        // Check if data needs to be synced before updating localStorage
-        const lastSyncDate = new Date(
-          localStorage.getItem("lastSyncDate") || 0
-        );
-        const currentMonday = getLastMonday();
-        if (currentMonday > lastSyncDate) {
-          syncAndResetData();
-        }
-
-        // Update localStorage
-        const dailyTimeSpent = JSON.parse(
-          localStorage.getItem("dailyTimeSpent")
-        ) || [0, 0, 0, 0, 0, 0, 0];
-        dailyTimeSpent[adjustedCurrentDayIndex] += minDiff;
-        localStorage.setItem("dailyTimeSpent", JSON.stringify(dailyTimeSpent));
-
-        let prevTotalTime =
-          JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
-        const updateTotalTime = Math.ceil(prevTotalTime + minDiff);
-
-        localStorage.setItem("totalTimeSpent", JSON.stringify(updateTotalTime));
+      if (currentMonday > lastSyncDate) {
+        syncAndResetData();
       }
+
+      const dailyTimeSpent = JSON.parse(
+        localStorage.getItem("dailyTimeSpent")
+      ) || [0, 0, 0, 0, 0, 0, 0];
+      dailyTimeSpent[adjustedCurrentDayIndex] += minDiff;
+      localStorage.setItem("dailyTimeSpent", JSON.stringify(dailyTimeSpent));
+
+      const prevTotalTime =
+        JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
+      const updateTotalTime = Math.ceil(prevTotalTime + minDiff);
+
+      localStorage.setItem("totalTimeSpent", JSON.stringify(updateTotalTime));
     };
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     setBookmarkedTopics(bookmarks);
   }, [bookmarks]);
 
   const isBookmarked = () => {
-    return (
-      bookmarkedTopics &&
-      bookmarkedTopics.some((item) => item.topicId === topic._id)
-    );
+    return bookmarkedTopics.some((item) => item.topicId === topic._id);
   };
+
+  const sanitizeContentHelper = (content) => {
+    return DOMPurify.sanitize(content, { USE_PROFILES: { html: true } });
+  };
+
+  useEffect(() => {
+    const sanitizedContent = sanitizeContentHelper(topic.content);
+    setSanitizedHTML(sanitizedContent);
+  }, [topic.content]);
+
+  useEffect(() => {
+    if (sanitizedHTML) {
+      document.querySelectorAll("pre code").forEach((block) => {
+        if (block.dataset.highlighted) {
+          delete block.dataset.highlighted;
+        }
+        hljs.highlightElement(block);
+        block.dataset.highlighted = "yes";
+      });
+    }
+  }, [sanitizedHTML]);
 
   return (
     <div className={styles.contentWrapper}>
@@ -209,12 +199,8 @@ const TopicContent = ({ bookmarks, topic }) => {
         )}
       </div>
       <div className={styles.topicContentWrapper}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(topic.content),
-          }}
-        />
-        <hr className={`${styles.endLine} `} ref={ref} />
+        {sanitizedHTML ? parse(sanitizedHTML) : <p>Loading content...</p>}
+        <hr className={styles.endLine} ref={ref} />
       </div>
     </div>
   );

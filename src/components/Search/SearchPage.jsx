@@ -92,7 +92,7 @@ const SearchPage = () => {
       </div>
 
       <div className={styles.searchListWrapper}>
-        {isSearching && <p>Loading...</p>}
+        {isSearching && <p>Searching...</p>}
         {error && <p>Error fetching data</p>}
         {searchedData && searchedData.length === 0 && <p>No results found</p>}
         {searchedData &&
