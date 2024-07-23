@@ -46,8 +46,8 @@ export async function userSignIn(email) {
 export async function demoSignIn() {
   try {
     const res = await signIn("credentials", {
-      email: process.env.NEXT_PUBLIC_DEMO_LOGIN_ID,
-      otp: process.env.NEXT_PUBLIC_DEMO_LOGIN_OTP,
+      email: process.env.NEXT_DEMO_LOGIN_ID,
+      otp: process.env.NEXT_DEMO_LOGIN_OTP,
       redirect: false,
     });
     return res;

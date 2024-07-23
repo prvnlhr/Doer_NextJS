@@ -2,9 +2,11 @@ import dbConnect from "@/lib/db/dbConnect";
 import User from "@/lib/db/models/User";
 import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
+import { authConfig } from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  ...authConfig,
   providers: [
     Credentials({
       credentials: {
@@ -24,12 +26,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             throw new Error("OTP has expired. Try signing in again.");
           }
 
-          const isOtpValid = await bcrypt.compare(credentials.otp, user.otp);
+          const isOtpValid = await bcryptjs.compare(credentials.otp, user.otp);
           if (!isOtpValid) {
             throw new Error("Invalid OTP");
           }
-          const isDemoAccount =
-            user.email === process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
+          const isDemoAccount = user.email === process.env.NEXT_DEMO_LOGIN_ID;
 
           if (!isDemoAccount) {
             user.otp = null;
@@ -50,26 +51,4 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: "/auth/verifyotp",
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.userId = user.userId;
-        token.email = user.email;
-        token.name = user.name;
-        token.country = user.country;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user = token;
-      return session;
-    },
-  },
-  session: {
-    jwt: true,
-  },
-  secret: process.env.NEXTAUTH_SECRET,
 });

@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
 
 // Middleware to update OTP request count and timestamp before saving user
 UserSchema.pre("save", function (next) {
-  const demoEmail = process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
+  const demoEmail = process.env.NEXT_DEMO_LOGIN_ID;
 
   // Check if the user is not the demo account
   if (this.email !== demoEmail && this.isModified("otp")) {
