@@ -84,6 +84,7 @@ const TopicContent = ({ bookmarks, topic }) => {
         "dailyTimeSpent",
         JSON.stringify([0, 0, 0, 0, 0, 0, 0])
       );
+      localStorage.setItem("totalTimeSpent", JSON.stringify(0));
       localStorage.setItem("lastSyncDate", new Date().toISOString());
     } catch (error) {
       console.error("Error updating user stats:", error);
@@ -103,8 +104,7 @@ const TopicContent = ({ bookmarks, topic }) => {
     return () => {
       if (!userId) return;
       const endTime = new Date().getTime();
-      const difference = endTime - startTime;
-      const minDiff = difference / 60000;
+      const diffMilliSeconds = endTime - startTime;
 
       const dayIndex = new Date().getDay();
       const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
@@ -118,12 +118,13 @@ const TopicContent = ({ bookmarks, topic }) => {
       const dailyTimeSpent = JSON.parse(
         localStorage.getItem("dailyTimeSpent")
       ) || [0, 0, 0, 0, 0, 0, 0];
-      dailyTimeSpent[adjustedCurrentDayIndex] += minDiff;
+      console.log("CLOCKED TIME", diffMilliSeconds);
+      dailyTimeSpent[adjustedCurrentDayIndex] += diffMilliSeconds;
       localStorage.setItem("dailyTimeSpent", JSON.stringify(dailyTimeSpent));
 
       const prevTotalTime =
         JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
-      const updateTotalTime = Math.ceil(prevTotalTime + minDiff);
+      const updateTotalTime = Math.ceil(prevTotalTime + diffMilliSeconds);
 
       localStorage.setItem("totalTimeSpent", JSON.stringify(updateTotalTime));
     };

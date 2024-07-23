@@ -25,29 +25,33 @@ const TimeSpendingsGraph = ({ params }) => {
 
   const syncAndResetData = async (userId, data) => {
     try {
+      // 1. sync to DB
       await updateUsersTimeSpentData(userId, data);
+      // 2. reset the localStorage
       localStorage.setItem(
         "dailyTimeSpent",
         JSON.stringify([0, 0, 0, 0, 0, 0, 0])
       );
+      localStorage.setItem("totalTimeSpent", JSON.stringify(0));
       localStorage.setItem("lastSyncDate", getLastMonday().toISOString());
       setWeeklyTime([0, 0, 0, 0, 0, 0, 0]);
+      setTimeSpentData({ hours: 0, minutes: 0 });
     } catch (error) {
       console.error("Error updating user stats:", error);
     }
   };
 
   useEffect(() => {
-    const localStorageData = JSON.parse(
+    const dailyTimeSpent = JSON.parse(
       localStorage.getItem("dailyTimeSpent")
     ) || [0, 0, 0, 0, 0, 0, 0];
     const lastSyncDate = new Date(localStorage.getItem("lastSyncDate") || 0);
     const currentMonday = getLastMonday();
 
     if (currentMonday > lastSyncDate) {
-      syncAndResetData(userId, localStorageData);
+      syncAndResetData(userId, dailyTimeSpent);
     } else {
-      setWeeklyTime(localStorageData);
+      setWeeklyTime(dailyTimeSpent);
     }
 
     let totalTimeInMinutes =

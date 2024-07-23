@@ -7,8 +7,13 @@ export function getLastMonday() {
   return lastMonday;
 }
 
-export function convertMinutesToHoursAndMinutes(totalMinutes) {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = Math.ceil(totalMinutes % 60);
+export function convertMinutesToHoursAndMinutes(timeInMilliseconds) {
+  // const hours = Math.floor(totalMinutes / 60);
+  // const minutes = Math.ceil(totalMinutes % 60);
+
+  const hours = Math.floor(timeInMilliseconds / (1000 * 60 * 60));
+  const minutes = Math.floor(
+    (timeInMilliseconds % (1000 * 60 * 60)) / (1000 * 60)
+  );
   return { hours, minutes };
 }
