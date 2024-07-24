@@ -220,26 +220,29 @@
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: unset;
-    /* font-size: clamp(0.9rem, -0.5000000000000001rem + 7.000000000000001vw, 1.6rem) !important; */
-    font-size: clamp(0.9rem, -0.29999999999999993rem + 6vw, 1.5rem) !important;
+    font-size: clamp(
+      1.1rem,
+      -0.2999999999999998rem + 6.999999999999999vw,
+      1.8rem
+    ) !important;
   }
 
   .introSpanText {
     position: relative;
     color: #635db0;
     font-weight: 500;
-    font-size: clamp(0.9rem, -0.29999999999999993rem + 6vw, 1.5rem) !important;
+    font-size: clamp(
+      1.1rem,
+      -0.2999999999999998rem + 6.999999999999999vw,
+      1.8rem
+    ) !important;
   }
 
   .lowerText {
     width: 100%;
-    font-size: 0.95rem;
-    /* font-size: 0.65rem; */
-    font-size: 1.1rem;
-    /* font-size:clamp(0.65rem , -0.04999999999999993rem + 3.4999999999999996vw, 1.0rem) !important; */
     font-size: clamp(
-      0.65rem,
-      -0.2500000000000001rem + 4.500000000000001vw,
+      0.7rem,
+      -0.10000000000000031rem + 4.000000000000002vw,
       1.1rem
     ) !important;
   }

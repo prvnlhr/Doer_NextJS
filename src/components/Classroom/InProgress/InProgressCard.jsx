@@ -19,7 +19,11 @@ const InProgressCard = ({ courseProgress }) => {
   return (
     <div className={styles.card} key={courseProgress._id}>
       <div className={styles.card__typeWrapper}>
-        <HighLightBadge text={"COURSE"} isHighlighted={true} />
+        <HighLightBadge
+          text={"COURSE"}
+          isHighlighted={true}
+          type={"inprogress"}
+        />
       </div>
       <div className={styles.card__titleWrapper}>
         <p>{courseName}</p>

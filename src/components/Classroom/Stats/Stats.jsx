@@ -14,7 +14,8 @@ const Stats = async () => {
           <div className={styles.nameWrapper}>
             {session?.user?.name && (
               <p>
-                Hello, <span>{session.user.name}</span>
+                <span>Hi, </span>
+                {session.user.name}
               </p>
             )}
           </div>
@@ -31,11 +32,11 @@ const Stats = async () => {
                 </div>
               </div>
             </div>
-            <div className={styles.labelCell}>
-              <p>Days Spent</p>
-            </div>
             <div className={styles.valueCell}>
               <TotalTimeSpent />
+            </div>
+            <div className={styles.labelCell}>
+              <p>Days Spent</p>
             </div>
           </div>
           <div className={styles.statsBox}>
@@ -46,13 +47,11 @@ const Stats = async () => {
                 </div>
               </div>
             </div>
+            <div className={styles.valueCell}>
+              <p>2</p>
+            </div>
             <div className={styles.labelCell}>
               <p>Completed</p>
-            </div>
-            <div className={styles.valueCell}>
-              <p>
-                2 <span>Courses</span>
-              </p>
             </div>
           </div>
         </div>

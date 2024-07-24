@@ -110,14 +110,21 @@
       align-items: flex-end;
 
       p {
+        font-weight: 600;
         color: #7e8da4;
         font-size: 0.7rem;
+        @include small-device {
+          font-size: clamp(
+            0.65rem,
+            0.050000000000000155rem + 2.999999999999999vw,
+            0.95rem
+          ) !important;
+        }
       }
 
       &--activeLabelCell {
         p {
           color: #635db0 !important;
-          font-weight: 600;
         }
       }
     }

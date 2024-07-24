@@ -25,6 +25,7 @@ const BookmarkCard = ({ bookmark }) => {
             IconComponent={ClockIcon}
             text={`Duration ${bookmark.topicDuration} Min`}
             isHighlighted={true}
+            type={"bookmark"}
           />
         </div>
       </div>

@@ -64,6 +64,7 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
           IconComponent={TopicIcon}
           text={`${chapter.topicsCount} Topics`}
           isHighlighted={true}
+          type={"chapter"}
         />
       </div>
       <div className={styles.card__durationWrapper}>
@@ -71,6 +72,7 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
           IconComponent={ClockIcon}
           text={convertMinutesToHours(chapter.duration)}
           isHighlighted={false}
+          type={"chapter"}
         />
       </div>
       <div className={styles.card__linkBtnWrapper}>

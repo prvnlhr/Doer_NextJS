@@ -18,9 +18,7 @@ const TotalTimeSpent = () => {
 
   return (
     <>
-      <p>
-        {days} <span>Days</span>
-      </p>
+      <p>{days}</p>
     </>
   );
 };

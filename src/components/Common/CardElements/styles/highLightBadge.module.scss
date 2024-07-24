@@ -47,13 +47,50 @@
     align-items: center;
     overflow: hidden;
     padding-right: 2px;
+
     p {
-      font-size: 0.7rem;
       color: #6167a0;
       font-weight: 500;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+    }
+
+    &--courseText {
+      @include small-device {
+        font-size: clamp(
+          0.4rem,
+          -0.16000000000000003rem + 2.8000000000000003vw,
+          0.68rem
+        ) !important;
+      }
+    }
+    &--chapterText {
+      @include small-device {
+        font-size: clamp(
+          0.6rem,
+          -0.09999999999999998rem + 3.4999999999999996vw,
+          0.95rem
+        ) !important;
+      }
+    }
+    &--bookmarkText {
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          -0.10000000000000031rem + 4.000000000000002vw,
+          1.1rem
+        ) !important;
+      }
+    }
+    &--inprogressText {
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          -0.10000000000000031rem + 4.000000000000002vw,
+          1.1rem
+        ) !important;
+      }
     }
   }
 }

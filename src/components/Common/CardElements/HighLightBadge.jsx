@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles/highLightBadge.module.scss";
 
-const HighLightBadge = ({ text, IconComponent, isHighlighted }) => {
+const HighLightBadge = ({ text, IconComponent, isHighlighted, type }) => {
   return (
     <div
       className={`${styles.badgeWrapper} ${
@@ -14,7 +14,7 @@ const HighLightBadge = ({ text, IconComponent, isHighlighted }) => {
         </div>
       )}
       <div className={styles.textWrapper}>
-        <p>{text}</p>
+        <p className={styles[`textWrapper--${type}Text`]}>{text}</p>
       </div>
     </div>
   );

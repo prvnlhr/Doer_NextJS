@@ -57,6 +57,7 @@ const CourseCard = ({ course }) => {
             IconComponent={ChapterIcon}
             text={`${course.chaptersCount} Chapters`}
             isHighlighted={true}
+            type={"course"}
           />
         </div>
       </div>
@@ -66,6 +67,7 @@ const CourseCard = ({ course }) => {
             IconComponent={ClockIcon}
             text={convertMinutesToHours(course.duration)}
             isHighlighted={false}
+            type={"course"}
           />
         </div>
       </div>
