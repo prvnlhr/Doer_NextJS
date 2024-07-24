@@ -153,7 +153,7 @@ export async function toggleBookmark(userId, bookmarkData) {
 }
 // -------------------------------------------------------------
 
-export async function fetchUsersStats(userId) {
+export async function fetchUsersStatsData(userId) {
   try {
     const response = await fetch(`${BASE_URL}/api/user/${userId}/stats`);
     if (!response.ok) {
@@ -202,6 +202,7 @@ export async function fetchUserTimeSpent(userId) {
       console.error("Error in fetching user's time spendings:", errorMessage);
       throw new Error(`fetch error ${errorMessage}`);
     }
+    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
     return response.json();
   } catch (error) {
     console.error("Error in fetching user's time spendings:", error);

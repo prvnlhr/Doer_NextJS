@@ -5,8 +5,10 @@ import CourseCompletedIcon from "@/components/Common/Icons/CourseCompletedIcon";
 import { auth } from "../../../auth";
 import TotalTimeSpent from "./TotalTimeSpent";
 
-const Stats = async () => {
+const Stats = async ({ stats }) => {
   const session = await auth();
+  const userId = session?.user?.userId;
+  console.log("xxx", stats);
   return (
     <div className={styles.statsWrapper}>
       <div className={styles.innerWrapper}>
@@ -33,7 +35,10 @@ const Stats = async () => {
               </div>
             </div>
             <div className={styles.valueCell}>
-              <TotalTimeSpent />
+              <TotalTimeSpent
+                totalTimeSpent={stats ? stats?.totalTimeSpent : 0}
+                userId={userId}
+              />
             </div>
             <div className={styles.labelCell}>
               <p>Days Spent</p>
@@ -48,7 +53,7 @@ const Stats = async () => {
               </div>
             </div>
             <div className={styles.valueCell}>
-              <p>2</p>
+              <p>{stats.totalCompleted}</p>
             </div>
             <div className={styles.labelCell}>
               <p>Completed</p>

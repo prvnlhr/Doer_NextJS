@@ -21,9 +21,6 @@ export const isOldData = (weekStartDate, currentMonday) => {
 };
 
 export function convertMinutesToHoursAndMinutes(timeInMilliseconds) {
-  // const hours = Math.floor(totalMinutes / 60);
-  // const minutes = Math.ceil(totalMinutes % 60);
-
   const hours = Math.floor(timeInMilliseconds / (1000 * 60 * 60));
   const minutes = Math.floor(
     (timeInMilliseconds % (1000 * 60 * 60)) / (1000 * 60)
@@ -34,6 +31,5 @@ export function millisecondsToHoursAndMinutes(milliseconds) {
   const totalMinutes = Math.floor(milliseconds / 60000); // Convert milliseconds to minutes
   const hours = Math.floor(totalMinutes / 60); // Convert minutes to hours
   const minutes = totalMinutes % 60; // Remaining minutes
-
   return { hours, minutes };
 }

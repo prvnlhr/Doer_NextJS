@@ -7,19 +7,31 @@ export async function GET(req, { params }) {
   try {
     const { userId } = params;
 
-    const timeSpent = await UserTimeSpent.find({
-      userId,
-    }).exec();
+    if (!userId) {
+      return new Response(JSON.stringify({ error: "User ID is required" }), {
+        status: 400,
+      });
+    }
 
-    const totalCompleted = await CourseProgress.find({
+    const timeSpent = await UserTimeSpent.find(
+      { userId },
+      { totalTimeSpent: 1, _id: 0 }
+    ).exec();
+
+    const totalCompletedCount = await CourseProgress.countDocuments({
       userId,
       completed: true,
     }).exec();
 
-    // console.log(timeSpent);
-    // console.log(totalCompleted);
-
-    return new Response(JSON.stringify("OK"), { status: 200 });
+    let totalTimeSpent = 0;
+    if (timeSpent) {
+      totalTimeSpent = timeSpent[0].totalTimeSpent;
+    }
+    const statsData = {
+      totalTimeSpent,
+      totalCompleted: totalCompletedCount,
+    };
+    return new Response(JSON.stringify(statsData), { status: 200 });
   } catch (error) {
     console.log("Error fetching user's bookmarks", error);
     return new Response(

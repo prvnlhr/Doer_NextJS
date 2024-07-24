@@ -23,12 +23,22 @@ const TimeSpendingsGraph = ({ params }) => {
   });
   const { userId } = params;
 
+  const calulateTotalWeeklySpentTime = (weeklyTimeSpent) => {
+    if (weeklyTimeSpent && weeklyTimeSpent.length > 0) {
+      const totalTime = weeklyTimeSpent.reduce((acc, curr) => {
+        return (acc += curr);
+      }, 0);
+
+      setTotalTimeSpent(millisecondsToHoursAndMinutes(totalTime));
+    }
+  };
   const fetchAndInitializeTimeSpendingData = async (userId) => {
     try {
       const response = await fetchUserTimeSpent(userId);
-      const { weeklyTimeSpent, totalTimeSpent } = response;
+      const { weeklyTimeSpent } = response;
       setWeeklyTimeSpent(weeklyTimeSpent);
-      const { hours, minutes } = millisecondsToHoursAndMinutes(totalTimeSpent);
+      const { hours, minutes } = millisecondsToHoursAndMinutes(81771);
+      calulateTotalWeeklySpentTime(weeklyTimeSpent);
       setTotalTimeSpent({
         hours,
         minutes,
@@ -42,7 +52,7 @@ const TimeSpendingsGraph = ({ params }) => {
     if (userId) {
       fetchAndInitializeTimeSpendingData(userId);
     }
-  }, [userId]);
+  }, []);
 
   // Variables needed to plot graph
   const maxTime = Math.max(...weeklyTimeSpent, 1);
@@ -76,13 +86,8 @@ const TimeSpendingsGraph = ({ params }) => {
                 >
                   <div className={styles.tooltip}>
                     <div className={styles.valueWrapper}>
-                      <p>
-                        {millisecondsToHoursAndMinutes(Math.ceil(time)).hours}h
-                      </p>
-                      <p>
-                        {millisecondsToHoursAndMinutes(Math.ceil(time)).minutes}
-                        m
-                      </p>
+                      <p>{millisecondsToHoursAndMinutes(time).hours}h</p>
+                      <p>{millisecondsToHoursAndMinutes(time).minutes}m</p>
                     </div>
                     <div className={styles.labelWrapper}>
                       <div className={styles.labelDiv}>

@@ -57,6 +57,7 @@
     }
 
     &--courseText {
+      font-size: 0.58rem;
       @include small-device {
         font-size: clamp(
           0.4rem,
@@ -66,6 +67,7 @@
       }
     }
     &--chapterText {
+      font-size: 0.65rem;
       @include small-device {
         font-size: clamp(
           0.6rem,
@@ -75,6 +77,7 @@
       }
     }
     &--bookmarkText {
+      font-size: 0.7rem;
       @include small-device {
         font-size: clamp(
           0.7rem,
@@ -84,6 +87,7 @@
       }
     }
     &--inprogressText {
+      font-size: 0.7rem;
       @include small-device {
         font-size: clamp(
           0.7rem,
