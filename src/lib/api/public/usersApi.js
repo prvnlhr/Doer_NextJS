@@ -1,7 +1,7 @@
 import { revalidatePathHandler, revalidateTagHandler } from "@/app/revalidate";
 
-// const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
-const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
+const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
+// const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 export async function fetchUserData(userId) {
   try {
