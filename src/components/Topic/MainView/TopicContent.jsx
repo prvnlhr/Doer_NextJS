@@ -8,7 +8,6 @@ import BookmarkIconFilled from "@/components/Common/Icons/BookmarkIconFilled";
 import { useSession } from "next-auth/react";
 import DOMPurify from "isomorphic-dompurify";
 import { useInView } from "react-intersection-observer";
-import { getLastMonday } from "@/lib/utils/dailyTimeSpentUtils";
 import BookmarkIcon from "@/components/Common/Icons/BookmarkIcon";
 import Spinner from "@/components/Common/Icons/Spinner";
 import { useAppState } from "@/context/AppContext";
@@ -17,7 +16,7 @@ import parse from "html-react-parser";
 import {
   toggleBookmark,
   updateCourseProgress,
-  updateUsersTimeSpentData,
+  updateUserTimeSpendings,
 } from "@/lib/api/public/usersApi";
 
 const TopicContent = ({ bookmarks, topic }) => {
@@ -74,61 +73,12 @@ const TopicContent = ({ bookmarks, topic }) => {
     }
   };
 
-  const syncAndResetData = async () => {
-    const localStorageData = JSON.parse(
-      localStorage.getItem("dailyTimeSpent")
-    ) || [0, 0, 0, 0, 0, 0, 0];
-    try {
-      await updateUsersTimeSpentData(userId, localStorageData);
-      localStorage.setItem(
-        "dailyTimeSpent",
-        JSON.stringify([0, 0, 0, 0, 0, 0, 0])
-      );
-      localStorage.setItem("totalTimeSpent", JSON.stringify(0));
-      localStorage.setItem("lastSyncDate", new Date().toISOString());
-    } catch (error) {
-      console.error("Error updating user stats:", error);
-    }
-  };
-
   useEffect(() => {
     if (inView && !hasReachedEnd) {
       setHasReachedEnd(true);
       markTopicCompleted();
     }
   }, [inView, hasReachedEnd]);
-
-  useEffect(() => {
-    const startTime = new Date().getTime();
-
-    return () => {
-      if (!userId) return;
-      const endTime = new Date().getTime();
-      const diffMilliSeconds = endTime - startTime;
-
-      const dayIndex = new Date().getDay();
-      const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
-      const lastSyncDate = new Date(localStorage.getItem("lastSyncDate") || 0);
-      const currentMonday = getLastMonday();
-
-      if (currentMonday > lastSyncDate) {
-        syncAndResetData();
-      }
-
-      const dailyTimeSpent = JSON.parse(
-        localStorage.getItem("dailyTimeSpent")
-      ) || [0, 0, 0, 0, 0, 0, 0];
-      console.log("CLOCKED TIME", diffMilliSeconds);
-      dailyTimeSpent[adjustedCurrentDayIndex] += diffMilliSeconds;
-      localStorage.setItem("dailyTimeSpent", JSON.stringify(dailyTimeSpent));
-
-      const prevTotalTime =
-        JSON.parse(localStorage.getItem("totalTimeSpent")) || 0;
-      const updateTotalTime = Math.ceil(prevTotalTime + diffMilliSeconds);
-
-      localStorage.setItem("totalTimeSpent", JSON.stringify(updateTotalTime));
-    };
-  }, [userId]);
 
   useEffect(() => {
     setBookmarkedTopics(bookmarks);
@@ -158,6 +108,30 @@ const TopicContent = ({ bookmarks, topic }) => {
       });
     }
   }, [sanitizedHTML]);
+
+  useEffect(() => {
+    const startTime = new Date().getTime();
+    return async () => {
+      if (!userId) return;
+      const endTime = new Date().getTime();
+      const diffMilliSeconds = endTime - startTime;
+      const dayIndex = new Date().getDay();
+      const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
+      try {
+        console.log("updating...", adjustedCurrentDayIndex, diffMilliSeconds);
+        const updateRes = await updateUserTimeSpendings(userId, {
+          dayIndex: adjustedCurrentDayIndex,
+          timeSpent: diffMilliSeconds,
+        });
+        console.log("updateRes", updateRes);
+      } catch (error) {
+        console.error(
+          "Error updating time spent data at Topic Content page:",
+          error
+        );
+      }
+    };
+  }, []);
 
   return (
     <div className={styles.contentWrapper}>

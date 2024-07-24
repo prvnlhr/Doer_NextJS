@@ -1,6 +1,7 @@
 import { revalidatePathHandler, revalidateTagHandler } from "@/app/revalidate";
 
-const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
+// const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3000";
 
 export async function fetchUserData(userId) {
   try {
@@ -87,6 +88,31 @@ export async function fetchUsersCoursesProgressByCourseId(params) {
     throw new Error(`${error.message}`);
   }
 }
+export async function updateCourseProgress(userId, progressData) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/user/${userId}/courses-progress`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(progressData),
+      }
+    );
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Error in updating the course progress:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
+
+    return response.json();
+  } catch (error) {
+    console.error("Error in updating the course progress:", error);
+    throw new Error(`${error.message}`);
+  }
+}
 
 export async function fetchUsersLastopened(userId) {
   try {
@@ -125,32 +151,7 @@ export async function toggleBookmark(userId, bookmarkData) {
     throw new Error(`${error.message}`);
   }
 }
-
-export async function updateCourseProgress(userId, progressData) {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/api/user/${userId}/courses-progress`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(progressData),
-      }
-    );
-    if (!response.ok) {
-      const errorMessage = await response.json();
-      console.error("Error in updating the course progress:", errorMessage);
-      throw new Error(`fetch error ${errorMessage}`);
-    }
-    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
-
-    return response.json();
-  } catch (error) {
-    console.error("Error in updating the course progress:", error);
-    throw new Error(`${error.message}`);
-  }
-}
+// -------------------------------------------------------------
 
 export async function fetchUsersStats(userId) {
   try {
@@ -186,6 +187,52 @@ export async function updateUsersTimeSpentData(userId, timeSpentData) {
     return response.json();
   } catch (error) {
     console.error("Error in updating the user's stats:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
+// New
+export async function fetchUserTimeSpent(userId) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/user/${userId}/timespendings`
+    );
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error("Error in fetching user's time spendings:", errorMessage);
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Error in fetching user's time spendings:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
+export async function updateUserTimeSpendings(userId, data) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/user/${userId}/timespendings`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    if (!response.ok) {
+      const errorMessage = await response.json();
+      console.error(
+        "Error in updating the user's timespendings:",
+        errorMessage
+      );
+      throw new Error(`fetch error ${errorMessage}`);
+    }
+    await revalidatePathHandler("/(public)/user/[userId]/classroom", "layout");
+    return response.json();
+  } catch (error) {
+    console.error("Error in updating the user's timespendings:", error);
     throw new Error(`${error.message}`);
   }
 }

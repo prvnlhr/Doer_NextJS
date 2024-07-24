@@ -1,13 +1,13 @@
 import dbConnect from "@/lib/db/dbConnect";
 import CourseProgress from "@/lib/db/models/CourseProgress";
-import TimeSpent from "@/lib/db/models/TimeSpent";
+import UserTimeSpent from "@/lib/db/models/UserTimeSpent";
 
 export async function GET(req, { params }) {
   await dbConnect();
   try {
     const { userId } = params;
 
-    const timeSpent = await TimeSpent.find({
+    const timeSpent = await UserTimeSpent.find({
       userId,
     }).exec();
 
@@ -50,7 +50,7 @@ export async function POST(req, { params }) {
       );
     }
 
-    let timeSpentDoc = await TimeSpent.findOne({ userId: userId });
+    let timeSpentDoc = await UserTimeSpent.findOne({ userId: userId });
 
     if (!timeSpentDoc) {
       timeSpentDoc = new TimeSpent({

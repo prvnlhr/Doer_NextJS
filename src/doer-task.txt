@@ -770,5 +770,9 @@ we need to maintain a key which tell when was the data last synced
 -------------------------------------------------
  
 
-  
+- TopicPage mount and unmount
+
+- TopicContent mount and unmount
+
+- Graph component mount and unmount
 

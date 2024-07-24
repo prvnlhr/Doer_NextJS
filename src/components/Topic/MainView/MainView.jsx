@@ -5,6 +5,7 @@ import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import Link from "next/link";
 import { useAppState } from "@/context/AppContext";
+import { useSession } from "next-auth/react";
 
 const MainView = ({ children, params }) => {
   const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
@@ -16,6 +17,7 @@ const MainView = ({ children, params }) => {
       setTopicName(storedState?.topicName || "");
     }
   }, []);
+
   return (
     <div
       className={`${styles.mainViewWrapper} ${
