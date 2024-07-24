@@ -6,19 +6,27 @@ import ChapterIcon from "../Common/Icons/ChapterIcon";
 import ClockIcon from "../Common/Icons/ClockIcon";
 import { convertMinutesToHours } from "@/lib/utils/durationConvert";
 import { generateSlug } from "@/lib/utils/slugUtil";
+import TopicIcon from "../Common/Icons/TopicIcon";
 
-const TopicsListItem = ({ topic }) => {
+const TopicsListItem = ({ topic, index }) => {
   return (
     <div className={styles.topicItemWrapper}>
-      <div className={styles.topicItemWrapper__dotIndicatorDiv}>
-        <div></div>
+      <div
+        className={styles.topicItemWrapper__bulletElement}
+        style={{ opacity: 1 - index * 0.3 }}
+      >
+        <div className={styles.lineDiv}></div>
       </div>
-      <p>{topic.title}</p>
+      <div
+        className={styles.topicItemWrapper__textDiv}
+        style={{ opacity: 1 - index * 0.3 }}
+      >
+        <p>{topic.title}</p>
+      </div>
     </div>
   );
 };
 const ChapterCard = ({ chapter, index, searchParams }) => {
-  // console.log("searchParams", searchParams, chapter._id);
   const { item: searchedItemId } = searchParams || undefined;
   return (
     <div
@@ -30,10 +38,10 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
     >
       <div className={styles.card__chapterNumWrapper}>
         <div>
-          <HighLightBadge
-            text={`CHAPTER ${index <= 9 ? " 0" + (index + 1) : index + 1}`}
-            isHighlighted={true}
-          />
+          <p>
+            {index <= 9 ? " 0" + (index + 1) : index + 1}
+            <span>.</span>
+          </p>
         </div>
       </div>
       <div className={styles.card__bookmarkIconWrapper}></div>
@@ -44,7 +52,7 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
         <div className={styles.listInnerWrapper}>
           {chapter && chapter.topics && chapter.topics.length > 0 ? (
             chapter.topics.map((topic, index) => (
-              <TopicsListItem key={topic._id} topic={topic} />
+              <TopicsListItem key={topic._id} topic={topic} index={index} />
             ))
           ) : (
             <TopicsListItem key={"0"} topic={{ title: "No Topics" }} />
@@ -53,7 +61,7 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
       </div>
       <div className={styles.card__topicsCountWrapper}>
         <HighLightBadge
-          IconComponent={ChapterIcon}
+          IconComponent={TopicIcon}
           text={`${chapter.topicsCount} Topics`}
           isHighlighted={true}
         />

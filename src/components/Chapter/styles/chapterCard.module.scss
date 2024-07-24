@@ -44,6 +44,15 @@
       width: auto;
       height: 100%;
       @include flex-container(flex-start, center);
+      p {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #101828;
+        span {
+          color: #635db0;
+          margin-left: 2px;
+        }
+      }
     }
   }
   &__bookmarkIconWrapper {
@@ -61,6 +70,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      font-weight: 500;
 
       @include small-device {
         font-size: clamp(
@@ -76,14 +86,18 @@
     @include fhw;
     // border: 1px solid salmon;
     @include scroll($dir: y, $display: none);
-    @include flex-container(flex-start, center);
+    @include flex-container(flex-start, flex-start);
 
     .listInnerWrapper {
       width: 95%;
-      height: 70%;
-      //   border: 1px solid black;
-      @include flex-container($direction: column);
+      height: 90%;
+      // border: 1px solid black;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
       @include scroll($dir: y);
+      padding-bottom: 10px;
 
       .topicItemWrapper {
         // border: 1px solid red;
@@ -94,44 +108,52 @@
         @include flex-container(flex-start, center);
         margin-top: 5px;
 
-        &__dotIndicatorDiv {
+        &__bulletElement {
           position: relative;
-          height: 20px;
+          height: 100%;
           aspect-ratio: 1/1;
+          // border: 1px solid black;
+          position: relative;
           @include flex-container(center, center);
-          //   border: 1px solid black;
-          div {
-            width: 3.5px;
-            border-radius: 50%;
-            aspect-ratio: 1/1;
-            background-color: #635db0;
-          }
-
           &::before {
             position: absolute;
             content: "";
-            left: 0;
+            background-color: #a4adbb;
+            top: 0;
+            height: 10px;
+            width: 0.05rem;
+          }
+          &::after {
+            position: absolute;
+            content: "";
+            background-color: #a4adbb;
+            width: 10px;
+            height: 0.05rem;
             right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #7e8da47f;
-            width: 1.5px;
-            height: 50%;
-            top: -25%;
           }
         }
 
-        p {
-          font-size: 0.6rem;
-          color: $secondary-text-color;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          @include small-device {
-            font-size: clamp(
-              0.65rem,
-              0.15000000000000002rem + 2.5vw,
-              0.9rem
-            ) !important;
+        &__textDiv {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          height: 20px;
+          width: auto;
+          // border: 1px solid blue;
+          p {
+            font-size: 0.6rem;
+            color: $secondary-text-color;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-left: 5px;
+            color: #667085;
+            @include small-device {
+              font-size: clamp(
+                0.65rem,
+                0.15000000000000002rem + 2.5vw,
+                0.9rem
+              ) !important;
+            }
           }
         }
       }
@@ -141,7 +163,6 @@
     grid-area: topicsCountWrapper;
     @include fhw;
     // border: 1px solid cyan;
-    padding: 2px 0px;
   }
   &__durationWrapper {
     grid-area: durationWrapper;

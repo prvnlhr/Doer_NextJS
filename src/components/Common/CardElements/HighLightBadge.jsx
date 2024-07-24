@@ -5,7 +5,7 @@ const HighLightBadge = ({ text, IconComponent, isHighlighted }) => {
   return (
     <div
       className={`${styles.badgeWrapper} ${
-        isHighlighted && styles["badgeWrapper--highlightBg"]
+        isHighlighted && styles["badgeWrapper--highlightBadge"]
       }`}
     >
       {IconComponent && (

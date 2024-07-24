@@ -6,16 +6,17 @@ import SearchIcon from "../Icons/SearchIcon";
 const CommonHeading = ({ to, text }) => {
   return (
     <>
-      <div className={styles.backBtnWrapper}>
-        <Link href={to ? to : "#"} className={styles.backBtnIconDiv}>
-          <ChevronRightIcon color="#3D4754" />
-        </Link>
-        <div className={styles.backBtnTextDiv}>
-          <div className={styles.textDiv}>
-            <p>{text}</p>
+      <div className={styles.backBtnWrapperGrid}>
+        <Link href={to ? to : "#"} className={styles.iconCell}>
+          <div className={styles.chevIconDiv}>
+            <ChevronRightIcon />
           </div>
-          <div className={styles.lineDiv}></div>
+        </Link>
+        <div className={styles.textCell}>
+          <p>{text}</p>
         </div>
+        <div className={styles.lineCell}></div>
+        <div className={styles.emptyCell}></div>
       </div>
       <Link href="?search=true" className={styles.searchBtnWrapper}>
         <div className={styles.textWrapper}>

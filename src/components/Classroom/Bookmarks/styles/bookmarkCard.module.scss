@@ -78,7 +78,7 @@
     @include flex-container(flex-start, center);
     &__badgeContainer {
       width: auto;
-      height: 80%;
+      height: 100%;
       // border: 1px solid red;
     }
   }
