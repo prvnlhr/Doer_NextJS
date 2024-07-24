@@ -134,6 +134,7 @@ $fontColorSecondary: #101828;
     @include scroll($dir: y);
     @media (max-width: 768px) {
       width: 100%;
+      padding: 20px 30px;
     }
 
     p {
@@ -142,14 +143,14 @@ $fontColorSecondary: #101828;
       // color: #1c3553;
       color: $fontColorPrimaary;
       font-size: $fontSize;
-      word-break: break-all;
+      // word-break: break-all;
       width: 100%;
-      font-weight: 400;
+      font-weight: 500;
 
       @include small-device {
         font-size: clamp(
-          0.7rem,
-          -0.10000000000000031rem + 4.000000000000002vw,
+          0.8rem,
+          0.19999999999999996rem + 3.0000000000000004vw,
           1.1rem
         ) !important;
       }
@@ -235,14 +236,23 @@ $fontColorSecondary: #101828;
     ol {
       margin-bottom: 10px;
       padding-left: 20px;
-      word-break: break-all;
+      // word-break: break-all;
     }
     li {
       color: $fontColorPrimaary;
       font-size: $fontSize;
-      word-break: break-all;
+      // word-break: break-all;
       margin: 10px 0px;
       line-height: 1.8;
+      font-weight: 500;
+      color: #1c3553;
+      @include small-device {
+        font-size: clamp(
+          0.8rem,
+          0.19999999999999996rem + 3.0000000000000004vw,
+          1.1rem
+        ) !important;
+      }
     }
 
     hr {

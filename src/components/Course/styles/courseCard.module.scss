@@ -83,6 +83,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      font-weight: 500;
 
       @include small-device {
         font-size: clamp(

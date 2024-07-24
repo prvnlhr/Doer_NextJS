@@ -22,11 +22,11 @@
 
     p {
       font-size: 0.9rem;
-      // font-weight: 500;
+      font-weight: 600;
       text-overflow: ellipsis;
       overflow-x: hidden;
       white-space: nowrap;
-      color: #101828;
+      color: #1c3553;
       @include small-device {
         font-size: clamp(
           0.95rem,
@@ -62,7 +62,7 @@
         @include flex-container(center, center);
 
         .dotIcon {
-          width: 0.23rem;
+          width: 0.35rem;
           aspect-ratio: 1/1;
           border-radius: 100%;
           background-color: #a4adbb;
@@ -103,7 +103,7 @@
           font-weight: 500;
         }
         .topicInactive {
-          color: #6b7584;
+          color: #667085;
           font-weight: 500;
         }
       }
