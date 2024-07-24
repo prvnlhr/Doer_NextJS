@@ -8,7 +8,6 @@ import TotalTimeSpent from "./TotalTimeSpent";
 const Stats = async ({ stats }) => {
   const session = await auth();
   const userId = session?.user?.userId;
-  console.log("xxx", stats);
   return (
     <div className={styles.statsWrapper}>
       <div className={styles.innerWrapper}>
