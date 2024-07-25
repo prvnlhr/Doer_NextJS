@@ -81,10 +81,11 @@
     }
 
     p {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      font-weight: 500;
       @include small-device {
         font-size: clamp(
           0.7rem,

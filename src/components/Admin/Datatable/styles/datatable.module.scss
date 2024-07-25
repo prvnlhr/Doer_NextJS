@@ -278,11 +278,12 @@
 }
 
 .actionBtnsWrapper {
-  height: 20px;
+  height: 21px;
   width: auto;
   display: inline-flex;
   align-items: center;
   // border: 1px solid red;
+
   &__actionButton {
     height: 85%;
     aspect-ratio: 1/1;
@@ -290,6 +291,7 @@
     cursor: pointer;
     background: none;
     border: none;
+    // border: 1px solid red;
 
     &:first-of-type {
       margin-right: 8px;
