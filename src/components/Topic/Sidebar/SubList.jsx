@@ -8,14 +8,16 @@ import { useAppState } from "@/context/AppContext";
 import CheckedIcon from "@/components/Common/Icons/CheckedIcon";
 
 const SubList = ({ chapter, params }) => {
-  const { setShowTopicSidebar, currentOpenChapterIndex, completedTopics } =
-    useAppState();
+  const {
+    setShowTopicSidebar,
+    currentOpenChapterIndex,
+    completedTopics,
+    setCourseState,
+  } = useAppState();
 
   const handleClick = (topic) => {
     const storedCourseState = localStorage.getItem("courseState");
-
     const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
-
     const updatedState = {
       ...currentState,
       topicId: topic._id,
@@ -24,6 +26,7 @@ const SubList = ({ chapter, params }) => {
 
     localStorage.setItem("courseState", JSON.stringify(updatedState));
     setShowTopicSidebar(false);
+    setCourseState(updatedState);
   };
 
   const isTopicCompleted = (topicId) => {

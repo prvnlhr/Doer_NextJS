@@ -16,6 +16,7 @@ const AccordionItem = ({ chapter }) => {
     setCurrentOpenChapterIndex,
     currentOpenChapterHeight,
     setCurrentOpenChapterHeight,
+    setCourseState,
   } = useAppState();
 
   const handleClick = () => {
@@ -34,6 +35,7 @@ const AccordionItem = ({ chapter }) => {
       prevId === chapter._id ? null : chapter._id
     );
     setCurrentOpenChapterHeight(chapter?.topicsCount * 50 + 40);
+    setCourseState(updatedState);
   };
 
   useEffect(() => {
@@ -44,6 +46,7 @@ const AccordionItem = ({ chapter }) => {
     } else {
       setCurrentOpenChapterIndex(chapterId);
     }
+    setCourseState(courseState);
   }, []);
 
   return (

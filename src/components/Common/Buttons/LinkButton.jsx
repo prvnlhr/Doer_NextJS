@@ -3,8 +3,10 @@ import React from "react";
 import Link from "next/link";
 import { animate, motion } from "framer-motion";
 import styles from "./styles/linkButton.module.scss";
+import { useAppState } from "@/context/AppContext";
 
 const LinkButton = ({ to, linkProps }) => {
+  const { setCourseState, courseState } = useAppState();
   const handleClick = () => {
     const storedCourseState = localStorage.getItem("courseState");
     const currentState = storedCourseState ? JSON.parse(storedCourseState) : {};
@@ -13,6 +15,7 @@ const LinkButton = ({ to, linkProps }) => {
       ...linkProps,
     };
     localStorage.setItem("courseState", JSON.stringify(updatedState));
+    setCourseState(updatedState);
   };
 
   const animationVariant = {

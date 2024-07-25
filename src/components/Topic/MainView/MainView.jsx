@@ -1,22 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./styles/mainView.module.scss";
 import SideBarToggleIcon from "@/components/Common/Icons/SideBarToggleIcon";
 import ChevronRightIcon from "@/components/Common/Icons/ChevronRightIcon";
 import Link from "next/link";
 import { useAppState } from "@/context/AppContext";
-import { useSession } from "next-auth/react";
 
 const MainView = ({ children, params }) => {
   const { showTopicSidebar, setShowTopicSidebar, courseState } = useAppState();
-  const [topicName, setTopicName] = useState("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedState = JSON.parse(localStorage?.getItem("courseState"));
-      setTopicName(storedState?.topicName || "");
-    }
-  }, []);
 
   return (
     <div
@@ -69,7 +60,9 @@ const MainView = ({ children, params }) => {
               href={`/content/courses/${params.courseName}/${params.courseId}/chapters`}
               className={styles.link}
             >
-              <p style={{ color: "#635db0", fontWeight: 500 }}>{topicName}</p>
+              <p style={{ color: "#635db0", fontWeight: 500 }}>
+                {courseState.topicName}
+              </p>
             </Link>
             <div className={styles.chevIconContainer}>
               <div className={styles.chevIconDiv}>

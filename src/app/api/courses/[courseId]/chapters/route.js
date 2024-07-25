@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
 import dbConnect from "@/lib/db/dbConnect";
-const { default: Chapter } = require("@/lib/db/models/Chapter");
-
+import Chapter from "@/lib/db/models/Chapter";
 export async function GET(req, { params }) {
   await dbConnect();
   const { courseId } = params;

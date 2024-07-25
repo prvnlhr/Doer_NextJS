@@ -6,15 +6,21 @@ import HighLightBadge from "@/components/Common/CardElements/HighLightBadge";
 
 const InProgressCard = ({ courseProgress }) => {
   const { courseName, courseId, totalChapters, chapters } = courseProgress;
-
   const { chapterName, chapterId, topics } = chapters[0] || {};
   const { topicName, topicId } = topics[0] || {};
 
-  const percentOfCourseCompleted = (chapters.length / totalChapters) * 100;
+  const completedChapters = chapters.filter(
+    (ch) => ch.completed === true
+  ).length;
+  // console.log(completedChapters);
+
+  const percentOfCourseCompleted = (completedChapters / totalChapters) * 100;
 
   const integerPart = Math.floor(percentOfCourseCompleted);
   const fractionalPart = percentOfCourseCompleted - integerPart;
   const fractionalCeil = fractionalPart ? Math.ceil(fractionalPart * 100) : 0;
+
+  // console.log("courseProgress", courseProgress);
 
   return (
     <div className={styles.card} key={courseProgress._id}>
@@ -50,7 +56,7 @@ const InProgressCard = ({ courseProgress }) => {
       <div className={styles.card__completedWrapper}>
         <div className={styles.valueWrapper}>
           <p>
-            {chapters.length}
+            {completedChapters}
             <span>/{totalChapters}</span>
           </p>
         </div>
@@ -67,6 +73,8 @@ const InProgressCard = ({ courseProgress }) => {
               chapterName
             )}/${chapterId}/topic/${generateSlug(topicName)}/${topicId}`}
             linkProps={{
+              courseId,
+              courseName,
               chapterId,
               chapterName,
               topicId,

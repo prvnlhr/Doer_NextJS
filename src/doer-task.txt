@@ -776,3 +776,56 @@ we need to maintain a key which tell when was the data last synced
 
 - Graph component mount and unmount
 
+-----------------------------------------------
+
+
+chapterId
+chapterName
+chaptersCount
+courseId
+courseName
+topicId
+topicName
+topicsCount
+
+
+when we click on any link button
+- course card
+    - courseId
+    - courseName
+
+- chapter card
+    - chapterId
+    - chapterName
+    - chapter's first topic Id
+    - chapter's first topic Name 
+    - chapter's topics count
+
+- bookmark card
+    - courseId
+    - courseName
+    - chapterId
+    - chapterName
+    - bookmarkTopicId
+    - bookmarkTopicName
+    - x topic's count in chapter to which this topic belongs
+
+- inprogress course card
+    - inprogressCourseId
+    - inprogressCourseName
+    - inprogressChapterId
+    - inprogressChapterName
+    - inprogressTopicId
+    - inprogressTopicName
+    - course's first chapter's first topic and its topics count
+
+- accordion chapter name
+    - chapterId
+    - chapterName
+    - x
+
+- accordion topic name
+    - topicId
+    - topicName
+    - x
+

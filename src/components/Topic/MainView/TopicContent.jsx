@@ -60,11 +60,15 @@ const TopicContent = ({ bookmarks, topic }) => {
   };
 
   const markTopicCompleted = async () => {
+    console.log(completedTopics);
     if (!userId || completedTopics.includes(topic._id)) return;
 
     const progressData = JSON.parse(localStorage.getItem("courseState"));
+    // console.log("progressData", progressData);
     try {
+      // console.log("marking...");
       const response = await updateCourseProgress(userId, progressData);
+      // console.log("response", response);
       if (response?.message === "Course progress updated") {
         setCompletedTopics((prevTopics) => [...prevTopics, topic._id]);
       }
@@ -118,12 +122,12 @@ const TopicContent = ({ bookmarks, topic }) => {
       const dayIndex = new Date().getDay();
       const adjustedCurrentDayIndex = dayIndex === 0 ? 6 : dayIndex - 1;
       try {
-        console.log("updating...", adjustedCurrentDayIndex, diffMilliSeconds);
+        // console.log("updating...", adjustedCurrentDayIndex, diffMilliSeconds);
         const updateRes = await updateUserTimeSpendings(userId, {
           dayIndex: adjustedCurrentDayIndex,
           timeSpent: diffMilliSeconds,
         });
-        console.log("updateRes", updateRes);
+        // console.log("updateRes", updateRes);
       } catch (error) {
         console.error(
           "Error updating time spent data at Topic Content page:",

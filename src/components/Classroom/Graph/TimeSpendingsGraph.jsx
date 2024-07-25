@@ -37,12 +37,7 @@ const TimeSpendingsGraph = ({ params }) => {
       const response = await fetchUserTimeSpent(userId);
       const { weeklyTimeSpent } = response;
       setWeeklyTimeSpent(weeklyTimeSpent);
-      const { hours, minutes } = millisecondsToHoursAndMinutes(81771);
       calulateTotalWeeklySpentTime(weeklyTimeSpent);
-      setTotalTimeSpent({
-        hours,
-        minutes,
-      });
     } catch (error) {
       console.error("Error fetching data:", error);
     }
