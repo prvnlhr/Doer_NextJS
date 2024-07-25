@@ -1,7 +1,9 @@
+export const revalidate = 0;
+
+import { revalidatePathHandler } from "@/app/revalidate";
 import { signIn } from "next-auth/react";
 
-const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
-
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:3000";
 export async function signUp(userData) {
   try {
     const response = await fetch(`${BASE_URL}/api/auth/signup`, {
@@ -43,11 +45,35 @@ export async function userSignIn(email) {
   }
 }
 
+export async function adminSignin(email) {
+  // console.log("adminSiginIn", email);
+  try {
+    const response = await fetch(`${BASE_URL}/api/auth/admin/signin`, {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    });
+
+    if (!response.ok) {
+      // console.log(response);
+      const errorMessage = await response.json();
+      console.error("Sign-in failed:", errorMessage);
+      throw new Error(errorMessage.message || "Admin Sign-in failed");
+    }
+    // await revalidatePathHandler("/admin/auth/signin", "page");
+    const res = await response.json();
+    return res;
+  } catch (error) {
+    console.error("Admin Sign-in error:", error);
+    throw new Error(`${error.message}`);
+  }
+}
+
 export async function demoSignIn() {
+  // console.log(process.env.NEXT_PUBLIC_DEMO_LOGIN_ID);
   try {
     const res = await signIn("credentials", {
-      email: process.env.NEXT_DEMO_LOGIN_ID,
-      otp: process.env.NEXT_DEMO_LOGIN_OTP,
+      email: process.env.NEXT_PUBLIC_DEMO_LOGIN_ID,
+      otp: process.env.NEXT_PUBLIC_DEMO_LOGIN_OTP,
       redirect: false,
     });
     return res;

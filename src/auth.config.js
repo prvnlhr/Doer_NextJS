@@ -9,6 +9,7 @@ export const authConfig = {
         token.email = user.email;
         token.name = user.name;
         token.country = user.country;
+        token.role = user.role;
       }
       return token;
     },

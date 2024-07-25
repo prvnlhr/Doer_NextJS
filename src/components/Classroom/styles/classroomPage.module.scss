@@ -59,6 +59,9 @@
       grid-area: statsCell;
       @include fhw;
       // border: 1px solid slateblue;
+      @include small-device {
+        min-height: 100px;
+      }
     }
     .graphCell {
       grid-area: graphCell;

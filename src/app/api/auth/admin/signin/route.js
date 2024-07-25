@@ -1,7 +1,7 @@
+import User from "@/doer-rough";
 import dbConnect from "@/lib/db/dbConnect";
-import User from "@/lib/db/models/User";
-import bcrypt from "bcrypt";
 import { sendOTPEmail } from "@/lib/utils/sendMail";
+import bcrypt from "bcrypt";
 
 const generateOTP = async () => {
   const otp = Math.floor(10000 + Math.random() * 90000);
@@ -13,7 +13,9 @@ const generateOTP = async () => {
 
 // SIGNIN USER
 export async function POST(req) {
+  // console.log("req", req);
   const { email } = await req.json();
+  // console.log("email", email);
   await dbConnect();
   try {
     if (!email) {
@@ -33,9 +35,18 @@ export async function POST(req) {
         status: 400,
       });
     }
-    // -----------------------------------------------------------
+    // -----------------------------------------------------
+    const isAuthorized = user.role === "admin";
 
-    //----------------------------------------------------------------
+    if (!isAuthorized) {
+      console.log("Admin Sign-in : Admin access denied for this email");
+      return new Response(
+        JSON.stringify({ message: "Admin access denied for this email" }),
+        {
+          status: 400,
+        }
+      );
+    }
 
     const currentTime = new Date();
     const oneHourAgo = new Date(currentTime.getTime() - 60 * 60 * 1000);

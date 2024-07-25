@@ -12,6 +12,7 @@ const MainHeader = () => {
   const segment = useSelectedLayoutSegment();
   const { data: session, status } = useSession();
   const userId = session?.user?.userId;
+  const isAdmin = session?.user?.role === "admin";
   const pathname = usePathname();
 
   const [showPopUp, setShowPopUp] = useState(false);
@@ -44,6 +45,9 @@ const MainHeader = () => {
     pathname === "/auth/signup" ||
     pathname === "/auth/verifyotp";
 
+  const isAdminPath =
+    pathname.startsWith("/admin") || pathname.startsWith("/auth");
+
   const isClassroomPage = pathname.includes("classroom");
   return (
     <nav className={styles.headerWrapper}>
@@ -53,7 +57,7 @@ const MainHeader = () => {
         </div>
       </div>
       <div className={styles.headerWrapper__rightSection}>
-        {status === "authenticated" && !isClassroomPage ? (
+        {status === "authenticated" && !isClassroomPage && !isAdminPath ? (
           <Link
             prefetch={false}
             href={`/user/${session?.user?.userId}/classroom`}
@@ -85,7 +89,10 @@ const MainHeader = () => {
           <div className={styles.popUpMenu} ref={popupRef}>
             <div className={styles.userNameWrapper}>
               <p>Logged in as -</p>
-              <p>{session && session.user.name}</p>
+              <p>
+                {session && session.user.name}
+                <span>{isAdmin && " (Admin)"}</span>
+              </p>
             </div>
             <div className={styles.logoutBtnWrapper}>
               <button type="button" onClick={() => signOut()}>

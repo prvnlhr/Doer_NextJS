@@ -5,12 +5,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Spinner from "../Common/Icons/Spinner";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { resendOtp } from "@/lib/api/auth/authApi";
 
 const VerifyOtpForm = ({ email }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const isAdminSignin = pathname.split("/")[2] === "admin" || false;
 
   const initialOtp = Array(5).fill("");
   const [otp, setOtp] = useState(initialOtp);
@@ -39,7 +41,12 @@ const VerifyOtpForm = ({ email }) => {
           throw new Error(error);
         } else {
           console.log("Successfully signed in", res);
-          router.push("/");
+
+          if (isAdminSignin) {
+            router.push("/admin/courses/");
+          } else {
+            router.push("/");
+          }
         }
       } catch (error) {
         console.error("Sign-in error:", error.message);

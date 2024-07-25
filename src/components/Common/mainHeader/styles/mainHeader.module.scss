@@ -118,11 +118,19 @@
       font-size: 0.8rem;
       font-weight: 500;
       margin-top: 5px;
+      white-space: nowrap;
+
+      span {
+        color: #635db0;
+        font-style: italic;
+        font-weight: 600;
+      }
+
       @include small-device {
         font-size: clamp(
-          0.9rem,
-          0.09999999999999998rem + 4vw,
-          1.3rem
+          0.75rem,
+          -0.1499999999999999rem + 4.5vw,
+          1.2rem
         ) !important;
       }
     }

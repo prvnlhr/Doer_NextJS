@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema(
     fullname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     country: { type: String, required: true },
+    role: { type: String, default: "user", enum: ["user", "admin"] }, // Add role field with default value and enum
     otp: { type: String },
     otpExpiry: { type: Date },
     otpRequestCount: { type: Number, default: 0 },
@@ -15,7 +16,7 @@ const UserSchema = new mongoose.Schema(
 
 // Middleware to update OTP request count and timestamp before saving user
 UserSchema.pre("save", function (next) {
-  const demoEmail = process.env.NEXT_DEMO_LOGIN_ID;
+  const demoEmail = process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
 
   // Check if the user is not the demo account
   if (this.email !== demoEmail && this.isModified("otp")) {

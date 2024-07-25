@@ -3,23 +3,48 @@ import React, { useState } from "react";
 import styles from "./styles/signInForm.module.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { demoSignIn, userSignIn } from "@/lib/api/auth/authApi";
+import { adminSignin, demoSignIn, userSignIn } from "@/lib/api/auth/authApi";
 import EmailIcon from "../Common/Icons/EmailIcon";
 import SubmitBtnIcon from "../Common/Icons/SubmitBtnIcon";
 import Link from "next/link";
 import Spinner from "../Common/Icons/Spinner";
 import VerifyOtpForm from "./VerifyOtpForm";
 import CrossIcon from "../Common/Icons/CrossIcon";
-import { useRouter } from "next/navigation";
-
+import { useRouter, useParams, usePathname } from "next/navigation";
 const SignInForm = () => {
   const router = useRouter();
+  const pathname = usePathname();
+  const isAdminSignin = pathname.split("/")[2] === "admin" || false;
+
   const [isDemoLogin, setIsDemoLogin] = useState(false);
   const [showOtpForm, setShowOtpForm] = useState(false);
   const initialValues = {
     email: "",
   };
-
+  const handleDemoLogin = async () => {
+    try {
+      formik.setSubmitting(true);
+      const demoRes = await demoSignIn();
+      // console.log(demoRes);
+      if (demoRes.error) {
+        formik.setErrors({ formError: demoRes.message || "Unexpected error" });
+      } else {
+        if (isAdminSignin) {
+          router.push("/admin/courses");
+        } else {
+          router.push("/");
+        }
+      }
+    } catch (error) {
+      console.error("Demo sign-in error:", error);
+      formik.setErrors({
+        formError: error.message || "Failed to sign in with demo account",
+      });
+    } finally {
+      formik.setSubmitting(false);
+      setIsDemoLogin(false);
+    }
+  };
   const signInSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address")
@@ -36,40 +61,31 @@ const SignInForm = () => {
 
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        const res = await userSignIn(values.email);
-        if (res.message === "OTP sent successfully") {
+        let res;
+        if (isAdminSignin) {
+          if (values.email === process.env.NEXT_PUBLIC_DEMO_LOGIN_ID) {
+            handleDemoLogin();
+            return;
+          } else {
+            res = await adminSignin(values.email);
+          }
+        } else {
+          res = await userSignIn(values.email);
+        }
+        if (!isAdminSignin && res?.message === "OTP sent successfully") {
           setShowOtpForm(true);
         } else {
-          setErrors({ formError: res.message || "Unexpected error" });
+          setErrors({ formError: res?.message || "Unexpected error" });
         }
       } catch (error) {
         console.error("Sign-in error:", error);
-        setErrors({ formError: error.message || "SignIn error" });
+        setErrors({ formError: error?.message || "SignIn error" });
       } finally {
         setSubmitting(false);
       }
     },
   });
 
-  const handleDemoLogin = async () => {
-    try {
-      formik.setSubmitting(true);
-      const demoRes = await demoSignIn();
-      if (demoRes.error) {
-        formik.setErrors({ formError: demoRes.message || "Unexpected error" });
-      } else {
-        router.push("/");
-      }
-    } catch (error) {
-      console.error("Demo sign-in error:", error);
-      formik.setErrors({
-        formError: error.message || "Failed to sign in with demo account",
-      });
-    } finally {
-      formik.setSubmitting(false);
-      setIsDemoLogin(false);
-    }
-  };
   return (
     <div className={styles.pageWrapper}>
       {showOtpForm ? (
@@ -140,10 +156,14 @@ const SignInForm = () => {
               </div>
             </div>
             <div className={styles.footerCell}>
-              <p>Not yet Registered ?</p>
-              <Link className={styles.footerLink} href="/auth/signup">
-                <p>SignUp</p>
-              </Link>
+              {!isAdminSignin && (
+                <>
+                  <p>Not yet Registered ?</p>
+                  <Link className={styles.footerLink} href="/auth/signup">
+                    <p>SignUp</p>
+                  </Link>
+                </>
+              )}
             </div>
             <div className={styles.demoLoginCell}>
               <button

@@ -17,6 +17,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         try {
           await dbConnect();
 
+          // console.log(credentials.email, process.env.NEXT_PUBLIC_DEMO_LOGIN_ID);
+
           const user = await User.findOne({ email: credentials.email });
           if (!user) {
             throw new Error("No user found with the email");
@@ -30,7 +32,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           if (!isOtpValid) {
             throw new Error("Invalid OTP");
           }
-          const isDemoAccount = user.email === process.env.NEXT_DEMO_LOGIN_ID;
+          const isDemoAccount =
+            user.email === process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
 
           if (!isDemoAccount) {
             user.otp = null;
@@ -43,6 +46,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             email: user.email,
             name: user.fullname,
             country: user.country,
+            role: user.role,
           };
         } catch (error) {
           console.error("Error authorizing user:", error.message);

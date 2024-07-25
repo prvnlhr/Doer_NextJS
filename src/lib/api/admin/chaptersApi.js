@@ -1,6 +1,7 @@
 import revalidateTagHandler, { revalidatePathHandler } from "@/app/revalidate";
 
-const BASE_URL = process.env.BASE_URL || "https://doer-next.vercel.app";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://doer-next.vercel.app";
 
 export async function fetchChapters(courseId, searchKey) {
   try {
