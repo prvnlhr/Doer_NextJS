@@ -9,18 +9,22 @@ import { generateSlug } from "@/lib/utils/slugUtil";
 import TopicIcon from "../Common/Icons/TopicIcon";
 
 const TopicsListItem = ({ topic, index }) => {
+  const MIN_OPACITY = 0.2;
+  const MAX_OPACITY = 1;
+  const fadeFactor = 0.2; // The factor by which the opacity decreases per item
+
+  // Calculate opacity based on the index
+  const opacity = Math.max(MAX_OPACITY - index * fadeFactor, MIN_OPACITY);
+
   return (
     <div className={styles.topicItemWrapper}>
       <div
         className={styles.topicItemWrapper__bulletElement}
-        style={{ opacity: 1 - index * 0.3 }}
+        style={{ opacity }}
       >
         <div className={styles.lineDiv}></div>
       </div>
-      <div
-        className={styles.topicItemWrapper__textDiv}
-        style={{ opacity: 1 - index * 0.3 }}
-      >
+      <div className={styles.topicItemWrapper__textDiv} style={{ opacity }}>
         <p>{topic.title}</p>
       </div>
     </div>
