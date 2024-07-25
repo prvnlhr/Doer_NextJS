@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles/tabsBar.module.scss";
 import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";

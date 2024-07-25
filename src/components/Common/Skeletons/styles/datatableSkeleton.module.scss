@@ -1,0 +1,161 @@
+@import "../../../../styles/mixins.module";
+
+.datatableWrapper {
+  width: 100%;
+  height: 100%;
+  @include flex-container(flex-start, flex-start);
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    @include flex-container(center, flex-start);
+  }
+
+  .datatableContainer {
+    width: 80%;
+    height: 90%;
+    margin-left: 20px;
+
+    @media (max-width: 768px) {
+      width: 95%;
+      height: 95%;
+      // border: 1px solid red;
+      margin: unset;
+    }
+
+    &__toolbar {
+      width: 100%;
+      height: 50px;
+      @include flex-container(flex-start, center);
+      justify-content: space-between;
+    }
+
+    .tableContentWrapper {
+      width: 100%;
+      height: calc(100% - 50px);
+      max-height: calc(100% - 50px);
+      position: relative;
+      @include flex-container(flex-start, flex-start, $direction: column);
+
+      .tableScrollWrapper {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        position: relative;
+        @include scroll();
+        border: 1px solid #d0d5dd;
+        background-color: white;
+        border-radius: 8px;
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        thead {
+          height: 50px;
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          // background-color: #101828;
+          // border-bottom: 1px solid red;
+
+          &::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 1px;
+            bottom: 0px;
+            background-color: #1018283f;
+          }
+
+          th {
+            text-align: start;
+            padding: 15px;
+            background-color: #f6f8fa;
+            background-color: #eaecf5;
+            div {
+              height: 10px;
+              //   width: auto;
+              //   border: 1px solid red;
+              max-width: 80px;
+            }
+
+            position: relative;
+
+            &:not(:last-child)::after {
+              content: "";
+              background-color: #1018283f;
+              position: absolute;
+              width: 0.04rem;
+              height: 100%;
+              right: 0;
+              top: 0;
+              bottom: 0px;
+              margin-top: auto;
+              margin-bottom: auto;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid #d0d5dd;
+            max-height: 50px;
+          }
+
+          tr:nth-child(even) {
+            background-color: #e1eaf92c;
+            &:hover {
+              background-color: #e1eaf92c;
+            }
+          }
+
+          tr:nth-child(odd) {
+            &:hover {
+              background-color: #e1eaf92c;
+            }
+          }
+
+          td {
+            padding: 0px 15px;
+            height: 50px;
+            border-bottom: 1px solid #d0d5dd;
+
+            .textDiv {
+              width: 80%;
+              height: 10px;
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.actionBtnsWrapper {
+  height: 30px;
+  aspect-ratio: 1/1;
+  display: inline-flex;
+  align-items: center;
+  //   border: 1px solid green;
+
+  &__actionButton {
+    height: 80%;
+    aspect-ratio: 1/1;
+    @include flex-container(center, center);
+    cursor: pointer;
+    background: none;
+    border: none;
+    // border: 1px solid red;
+
+    &:first-of-type {
+      margin-right: 8px;
+    }
+
+    &:last-of-type {
+      margin-left: 8px;
+    }
+  }
+}

@@ -17,6 +17,7 @@ $fontColorSecondary: #101828;
     @include flex-container(flex-start, flex-start);
     position: relative;
     overflow: hidden;
+    // border: 1px solid red;
 
     .formContainer {
       height: 100%;
@@ -33,6 +34,8 @@ $fontColorSecondary: #101828;
       @media (max-width: 768px) {
         // background-color: rgba(135, 207, 235, 0.466);
         @include transistion($type: left, $time: 0.5s);
+        // border: 1px solid orange;
+
         position: absolute;
 
         width: 100%;
@@ -46,6 +49,7 @@ $fontColorSecondary: #101828;
       }
 
       .formGridContainer {
+        // border: 1px solid blue;
         width: 95%;
         height: 100%;
         display: grid;
@@ -69,7 +73,7 @@ $fontColorSecondary: #101828;
             "editorCell"
             "buttonCell";
           grid-template-columns: 100%;
-          grid-template-rows: 120px 20% 20% auto 50px;
+          grid-template-rows: 120px 120px 120px auto 50px;
           grid-gap: unset;
           grid-column-gap: 10px;
         }
@@ -107,14 +111,22 @@ $fontColorSecondary: #101828;
 
             @include flex-container(flex-start, center);
             background-color: white;
-            padding: 0px 20px;
+            padding: 0px 10px;
             &__labelWrapper {
               width: 50%;
               height: 100%;
               @include flex-container(flex-start, center);
               p {
-                color: #101828;
-                font-size: 0.7rem;
+                font-size: 0.8rem;
+                color: #667085;
+                font-weight: 500;
+                @include small-device {
+                  font-size: clamp(
+                    0.7rem,
+                    0.09999999999999987rem + 3.0000000000000004vw,
+                    1rem
+                  ) !important;
+                }
               }
             }
 
@@ -122,6 +134,7 @@ $fontColorSecondary: #101828;
               width: 50%;
               height: 100%;
               @include flex-container(flex-end, center);
+              // border: 1px solid red;
 
               .previewBtn {
                 width: auto;
@@ -147,6 +160,10 @@ $fontColorSecondary: #101828;
             border: 1px solid #b4b2b270;
             border-radius: 0px 0px 8px 8px;
             background-color: white;
+
+            @include small-device {
+              height: 500px;
+            }
           }
           &__errorGroup {
             width: 100%;
@@ -154,10 +171,17 @@ $fontColorSecondary: #101828;
             @include flex-container(flex-start, center);
             // border: 1px solid green;
             p {
-              color: #f0142f;
+              color: #a82525;
               font-size: 0.7rem;
               font-weight: 500;
               margin-left: 5px;
+              @include small-device {
+                font-size: clamp(
+                  0.7rem,
+                  0.3999999999999999rem + 1.5000000000000002vw,
+                  0.85rem
+                ) !important;
+              }
             }
           }
         }
@@ -225,7 +249,7 @@ $fontColorSecondary: #101828;
           @include flex-container(flex-end, center);
           cursor: pointer;
           .closePreviewBtnDiv {
-            height: 30%;
+            height: 18px;
             aspect-ratio: 1/1;
             // border: 1px solid red;
             @include flex-container(center, center);
@@ -248,6 +272,13 @@ $fontColorSecondary: #101828;
             // border: 1px solid orange;
             padding: 0;
             margin-left: 8px;
+            @include small-device {
+              font-size: clamp(
+                0.6rem,
+                0.19999999999999984rem + 2.000000000000001vw,
+                0.8rem
+              ) !important;
+            }
           }
         }
       }
@@ -260,12 +291,21 @@ $fontColorSecondary: #101828;
         @include scroll($dir: y);
         p {
           margin-bottom: 10px;
-          width: 80%;
+          line-height: 1.8;
+          // color: #1c3553;
           color: $fontColorPrimaary;
           font-size: $fontSize;
-          word-break: break-all;
-          font-weight: 400;
-          line-height: 1.8;
+          // word-break: break-all;
+          width: 100%;
+          font-weight: 500;
+
+          @include small-device {
+            font-size: clamp(
+              0.8rem,
+              0.19999999999999996rem + 3.0000000000000004vw,
+              1.1rem
+            ) !important;
+          }
         }
 
         h1,
@@ -279,17 +319,19 @@ $fontColorSecondary: #101828;
           font-weight: bold;
           color: $fontColorSecondary;
           position: relative;
+
           &::after {
             position: absolute;
             content: "";
             left: 0px;
             bottom: -10px;
             background-color: #635db0;
-            width: 10%;
+            width: 30px;
             height: 3px;
             border-radius: 8px;
           }
         }
+
         code {
           color: #e31b54;
           background-color: #ffe4e8;
@@ -300,16 +342,18 @@ $fontColorSecondary: #101828;
           font-size: $codeFontSize;
           white-space: nowrap;
         }
+
         pre {
           background-color: #011627;
           padding: 20px 20px;
           border-radius: 0.8rem !important;
           @include scroll($dir: x);
-          margin-top: 20px;
-          margin-bottom: 20px;
+          margin: 20px 0px;
           position: relative;
           overflow-x: scroll;
-
+          @include small-device {
+            margin: 20px 0px;
+          }
           &::-webkit-scrollbar {
             display: none;
           }
@@ -323,7 +367,13 @@ $fontColorSecondary: #101828;
             font-family: "Source Code Pro", monospace !important;
             font-size: $codeFontSize;
             white-space: unset !important;
-            @include scroll($dir: x);
+            @include small-device {
+              font-size: clamp(
+                0.7rem,
+                -0.10000000000000031rem + 4.000000000000002vw,
+                1.1rem
+              ) !important;
+            }
           }
         }
 
@@ -338,14 +388,23 @@ $fontColorSecondary: #101828;
         ol {
           margin-bottom: 10px;
           padding-left: 20px;
-          word-break: break-all;
+          // word-break: break-all;
         }
         li {
           color: $fontColorPrimaary;
           font-size: $fontSize;
-          word-break: break-all;
+          // word-break: break-all;
           margin: 10px 0px;
           line-height: 1.8;
+          font-weight: 500;
+          color: #1c3553;
+          @include small-device {
+            font-size: clamp(
+              0.8rem,
+              0.19999999999999996rem + 3.0000000000000004vw,
+              1.1rem
+            ) !important;
+          }
         }
 
         hr {
@@ -398,16 +457,26 @@ $fontColorSecondary: #101828;
       width: 100%;
       height: 20px;
       p {
-        color: #101828;
-        font-size: 0.7rem;
+        color: #667085;
+        font-weight: 500;
+        font-size: 0.8rem;
+
+        @include small-device {
+          font-size: clamp(
+            0.7rem,
+            0.09999999999999987rem + 3.0000000000000004vw,
+            1rem
+          ) !important;
+        }
       }
     }
     &__inputDiv {
       width: 100%;
       height: calc(100% - 20px);
-      background-color: skyblue;
+
       @include flex-container(flex-start, center);
-      background-color: #ecf2ffb9;
+      background-color: #f2f4f7;
+      background-color: #f2f4f7;
       border-radius: 8px;
 
       input {
@@ -417,6 +486,14 @@ $fontColorSecondary: #101828;
         background: none;
         outline: none;
         padding: 0px 10px;
+        font-weight: 500;
+        @include small-device {
+          font-size: clamp(
+            0.9rem,
+            0.4999999999999999rem + 2.000000000000001vw,
+            1.1rem
+          ) !important;
+        }
       }
     }
   }
@@ -428,10 +505,17 @@ $fontColorSecondary: #101828;
     @include flex-container(flex-start, center);
 
     p {
-      color: #f0142f;
+      color: #a82525;
       font-size: 0.7rem;
       font-weight: 500;
       margin-left: 5px;
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          0.3999999999999999rem + 1.5000000000000002vw,
+          0.85rem
+        ) !important;
+      }
     }
   }
 }
@@ -448,10 +532,17 @@ $fontColorSecondary: #101828;
     @include flex-container(flex-start, center);
 
     p {
-      color: #f0142f;
+      color: #a82525;
       font-size: 0.7rem;
       font-weight: 500;
       margin-left: 5px;
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          0.3999999999999999rem + 1.5000000000000002vw,
+          0.85rem
+        ) !important;
+      }
     }
   }
 }
@@ -472,8 +563,17 @@ $fontColorSecondary: #101828;
     width: 100%;
     // border: 1px solid red;
     p {
-      color: #101828;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
+
+      color: #667085;
+      font-weight: 500;
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          0.09999999999999987rem + 3.0000000000000004vw,
+          1rem
+        ) !important;
+      }
     }
   }
   .inputBtnGroup {
@@ -492,11 +592,20 @@ $fontColorSecondary: #101828;
         width: 100%;
         height: 100%;
         outline: none;
-        background-color: #ecf2ffb9;
+        background-color: #f2f4f7;
         border-radius: 5px;
         border: none;
         text-align: center;
         -moz-appearance: textfield;
+        font-weight: 500;
+
+        @include small-device {
+          font-size: clamp(
+            0.9rem,
+            0.4999999999999999rem + 2.000000000000001vw,
+            1.1rem
+          ) !important;
+        }
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
@@ -549,8 +658,17 @@ $fontColorSecondary: #101828;
     width: 100%;
     height: 30px;
     p {
-      color: #101828;
-      font-size: 0.7rem;
+      color: #667085;
+      font-weight: 500;
+      font-size: 0.8rem;
+
+      @include small-device {
+        font-size: clamp(
+          0.7rem,
+          0.09999999999999987rem + 3.0000000000000004vw,
+          1rem
+        ) !important;
+      }
     }
   }
   &__inputBtnWrapper {
@@ -576,6 +694,15 @@ $fontColorSecondary: #101828;
 
       p {
         font-size: 0.7rem;
+        font-weight: 500;
+
+        @include small-device {
+          font-size: clamp(
+            0.8rem,
+            0.19999999999999996rem + 3.0000000000000004vw,
+            1.1rem
+          ) !important;
+        }
       }
 
       &--activeBtn {

@@ -20,10 +20,20 @@
       // border: 1px solid green;
       @include flex-container(flex-start, center);
 
-      &--normalText {
+      p {
         font-size: 0.8rem;
-        font-weight: 500;
         letter-spacing: 0.3px;
+        font-weight: 500;
+        @include small-device {
+          font-size: clamp(
+            0.7rem,
+            -0.10000000000000031rem + 4.000000000000002vw,
+            1.1rem
+          ) !important;
+        }
+      }
+
+      &--normalText {
         color: #7e8da4;
         border: 1px solid transparent;
         &:hover {
@@ -32,9 +42,6 @@
       }
 
       &--currentText {
-        font-size: 0.8rem;
-        font-weight: 500;
-        letter-spacing: 0.3px;
         color: #635db0;
         border: none !important;
       }

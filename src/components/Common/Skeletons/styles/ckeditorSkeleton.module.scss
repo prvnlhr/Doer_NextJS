@@ -1,0 +1,71 @@
+@import "../../../../styles/mixins.module";
+
+.editorWrapper {
+  @include fhw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  //   border: 1px solid #b4b2b270;
+  border-radius: 0px 0px 8px 8px;
+
+  .editorHeader {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #b4b2b270;
+
+    .btnSection1,
+    .btnSection2 {
+      width: 50px;
+      height: 100%;
+      border-right: 1px solid #b4b2b270;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 5px;
+    //   border: 1px solid orange;
+    }
+    .btnSection3,
+    .btnSection4 {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 5px;
+    //   border: 1px solid blue;
+    }
+  }
+  .editorBodyWrapper {
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px 15px;
+
+    .fakeH1 {
+      width: 80%;
+      max-width: 200px;
+      height: 30px;
+      display: flex;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .fakeP {
+      width: 80%;
+      height: 10px;
+      display: flex;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+  }
+}

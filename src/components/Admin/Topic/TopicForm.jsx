@@ -9,6 +9,7 @@ import { useParams, useRouter } from "next/navigation";
 import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
 import Spinner from "@/components/Common/Icons/Spinner";
 import CrossIcon from "@/components/Common/Icons/CrossIcon";
+import CkeditorSkeleton from "@/components/Common/Skeletons/CkeditorSkeleton";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {
@@ -291,7 +292,7 @@ const TopicForm = ({ topic }) => {
               <div
                 className={`
                   ${styles.inputGroup}
-                   ${styles.statusInputGroup}`}
+                  ${styles.statusInputGroup}`}
               >
                 <div className={styles.statusInputGroup__labelDiv}>
                   <p>Status</p>
@@ -375,6 +376,7 @@ const TopicForm = ({ topic }) => {
                   content={topic ? topic.content : ""}
                   setFieldValue={formik.setFieldValue}
                 />
+                {/* <CkeditorSkeleton /> */}
               </div>
               <div className={styles.editorCell__errorGroup}>
                 {formik.errors.content && formik.touched.content && (

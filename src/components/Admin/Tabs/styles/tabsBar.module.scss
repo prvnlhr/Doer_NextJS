@@ -12,9 +12,22 @@
     margin-left: 10px;
     margin-right: 20px;
     border: 2px solid transparent;
-
     @include flex-container(center, center);
 
+    p {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 5px 5px;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      @include small-device {
+        font-size: clamp(
+          0.6rem,
+          0.19999999999999984rem + 2.000000000000001vw,
+          0.8rem
+        ) !important;
+      }
+    }
     &--active {
       // border-bottom: 2px solid #635db0;
       position: relative;
@@ -26,13 +39,6 @@
         bottom: 0;
         position: absolute;
       }
-    }
-    p {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 5px 5px;
-      letter-spacing: 3px;
-      white-space: nowrap;
     }
   }
 }

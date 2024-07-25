@@ -1,7 +1,8 @@
+import DatatableSkeleton from "@/components/Common/Skeletons/DatatableSkeleton";
 import React from "react";
 
 const loading = () => {
-  return <div>loading....</div>;
+  return <DatatableSkeleton />;
 };
 
 export default loading;

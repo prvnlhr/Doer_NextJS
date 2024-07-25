@@ -1,5 +1,4 @@
 @import "../../../../styles/mixins.module";
-@import "../../../../styles/variables.module";
 
 .formWrapper {
   width: 100%;
@@ -51,16 +50,16 @@
       border-radius: 8px;
 
       padding: 5px;
-      button {
+      .button {
         height: 30px;
-        width: auto;
+        width: 100px;
         padding-left: 10px;
         padding-right: 10px;
-        background-color: #635db0;
         outline: none;
         border: none;
         color: white;
         cursor: pointer;
+        border: 1px solid #d0d5dd37;
 
         &:disabled {
           background-color: #635db0;
@@ -93,17 +92,14 @@
     // border: 1px solid red;
     padding: 0px 5px;
     @include flex-container(flex-start, center);
-    p {
-      color: #101828;
-      font-size: 0.8rem;
-
-      @include small-device {
-        font-size: clamp(
-          0.7rem,
-          0.09999999999999987rem + 3.0000000000000004vw,
-          1rem
-        ) !important;
-      }
+    .labelTextDiv {
+      width: 80px;
+      height: 15px;
+      //   border: 1px solid red;
+      display: flex;
+      border: 1px solid #d0d5dd37;
+      border-radius: 10px;
+      overflow: hidden;
     }
   }
 
@@ -116,13 +112,15 @@
     background-color: #f2f4f7;
     border-radius: inherit;
     font-weight: 500;
-
-    @include small-device {
-      font-size: clamp(
-        0.9rem,
-        0.4999999999999999rem + 2.000000000000001vw,
-        1.1rem
-      ) !important;
+    display: flex;
+    align-items: center;
+    .inputTextDiv {
+      width: 200px;
+      height: 15px;
+      display: flex;
+      border: 1px solid #d0d5dd37;
+      border-radius: 10px;
+      overflow: hidden;
     }
   }
 }
@@ -134,20 +132,6 @@
   @include flex-container(flex-start, center);
   overflow: hidden;
   max-width: 100%;
-  p {
-    color: #a82525;
-    font-size: 0.7rem;
-    font-weight: 500;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    @include small-device {
-      font-size: clamp(
-        0.7rem,
-        0.3999999999999999rem + 1.5000000000000002vw,
-        0.85rem
-      ) !important;
-    }
-  }
 }
 
 .statusInputGroup {
@@ -155,18 +139,14 @@
   &__labelDiv {
     width: 100%;
     height: 30px;
-    p {
-      color: #667085;
-      font-weight: 500;
-      font-size: 0.8rem;
-
-      @include small-device {
-        font-size: clamp(
-          0.7rem,
-          0.09999999999999987rem + 3.0000000000000004vw,
-          1rem
-        ) !important;
-      }
+    .labelTextDiv {
+      width: 80px;
+      height: 15px;
+      //   border: 1px solid red;
+      display: flex;
+      border: 1px solid #d0d5dd37;
+      border-radius: 10px;
+      overflow: hidden;
     }
   }
   &__inputBtnWrapper {
@@ -188,19 +168,6 @@
 
       &:last-child {
         margin-left: 20px;
-      }
-
-      p {
-        font-size: 0.7rem;
-        font-weight: 500;
-
-        @include small-device {
-          font-size: clamp(
-            0.8rem,
-            0.19999999999999996rem + 3.0000000000000004vw,
-            1.1rem
-          ) !important;
-        }
       }
 
       &--activeBtn {
@@ -226,7 +193,9 @@
           aspect-ratio: 1/1;
           width: 70%;
           border-radius: 50%;
-          background-color: #a4adbb;
+          //   background-color: #a4adbb;
+          overflow: hidden;
+          border: 1px solid #d0d5dd37;
 
           &--activeDot {
             background-color: #789980 !important;
@@ -235,6 +204,12 @@
             background-color: #d27e67 !important;
           }
         }
+      }
+
+      .statusLabelDiv {
+        height: 10px;
+        width: 40px;
+        // border: 1px solid red;
       }
     }
   }
