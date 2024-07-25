@@ -37,7 +37,7 @@
         width: 100%;
         border-radius: 5px;
         overflow: hidden;
-        border: 1px solid #d0d5dd66;
+        // border: 1px solid #d0d5dd66;
       }
     }
     &__subTitleWrapper {
@@ -86,7 +86,7 @@
           width: 100%;
           height: 100%;
           @include flex-container(flex-start, center);
-          border: 1px solid #d0d5dd66;
+          // border: 1px solid #d0d5dd66;
           border-radius: 5px;
           overflow: hidden;
           .topicTitleText {
