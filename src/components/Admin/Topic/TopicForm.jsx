@@ -169,10 +169,6 @@ const TopicForm = ({ topic }) => {
 
       const duration = durationInMinutes - initialDuration;
       topicData.duration = duration;
-
-      console.log(values);
-      return;
-
       let res;
       try {
         if (topic) {
