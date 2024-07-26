@@ -57,7 +57,10 @@ const SearchPage = () => {
   return (
     <div className={styles.searchPageWrapper}>
       <div className={styles.searchHeaderWrapper}>
-        <div className={styles.closeLink} onClick={handleCrossIconClicked}>
+        <div
+          className={styles.closeBtnIconDiv}
+          onClick={handleCrossIconClicked}
+        >
           <CrossIcon />
         </div>
       </div>
@@ -70,7 +73,7 @@ const SearchPage = () => {
         <div className={styles.divisionLine}></div>
         <div className={styles.searchInputWrappper}>
           <input
-            value={searchQuery} // Control the input value
+            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search Course, Chapter, Topic"
           />

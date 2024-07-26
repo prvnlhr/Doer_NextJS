@@ -5,20 +5,35 @@ import CommonHeading from "../Common/Heading/CommonHeading";
 import SearchPage from "../Search/SearchPage";
 import { fetchCourses } from "@/lib/api/public/coursesApi";
 
-const CoursesList = async ({ searchParams }) => {
-  const courses = await fetchCourses();
+const CoursesList = async ({ courses, searchParams }) => {
+  const { item: searchedItemId } = searchParams || {};
+  const sortedCourses = searchedItemId
+    ? [...courses].sort((a, b) => {
+        if (a._id === searchedItemId) return -1;
+        if (b._id === searchedItemId) return 1;
+        return 0;
+      })
+    : courses;
   return (
     <>
       {searchParams && searchParams?.search && <SearchPage />}
       <div className={styles.courseListWrapper}>
         <div className={styles.listHeader}>
-          <CommonHeading to="/" text="EXPLORE COURSES" />
+          <CommonHeading
+            searchParams={searchParams}
+            to="/"
+            text="EXPLORE COURSES"
+          />
         </div>
         <div className={styles.mainListWrapper}>
-          {courses.map(
+          {sortedCourses.map(
             (course) =>
               course.chaptersCount > 0 && (
-                <CourseCard key={course.title} course={course} />
+                <CourseCard
+                  searchParams={searchParams}
+                  key={course.title}
+                  course={course}
+                />
               )
           )}
         </div>

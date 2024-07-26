@@ -257,6 +257,7 @@ $fontColorSecondary: #101828;
             @include flex-container(center, center);
             background-color: #635db0;
             border-radius: 50%;
+            padding: 3px;
           }
         }
 

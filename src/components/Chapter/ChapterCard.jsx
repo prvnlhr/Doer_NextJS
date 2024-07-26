@@ -34,10 +34,17 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
   const { item: searchedItemId } = searchParams || undefined;
   return (
     <div
-      className={`${styles.card} ${
+      className={`
+      ${styles.card} 
+      ${
         searchedItemId &&
         searchedItemId === chapter._id &&
         styles["card--searchedItem"]
+      }
+      ${
+        searchedItemId && searchedItemId !== chapter._id
+          ? styles["card--blur"]
+          : ""
       }`}
     >
       <div className={styles.card__chapterNumWrapper}>

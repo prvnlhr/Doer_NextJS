@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import styles from "./styles/courseCard.module.scss";
 import LinkButton from "../Common/Buttons/LinkButton";
@@ -9,18 +8,23 @@ import ClockIcon from "../Common/Icons/ClockIcon";
 import Image from "next/image";
 import { generateSlug } from "@/lib/utils/slugUtil";
 import { convertMinutesToHours } from "@/lib/utils/durationConvert";
-import { useSearchParams } from "next/navigation";
 
-const CourseCard = ({ course }) => {
-  const searchParams = useSearchParams();
-  const { item: searchedItemId } = searchParams || undefined;
+const CourseCard = ({ course, searchParams }) => {
+  const { item: searchedItemId } = searchParams || {};
 
   return (
     <div
-      className={`${styles.card} ${
+      className={`
+      ${styles.card} 
+      ${
         searchedItemId &&
         searchedItemId === course._id &&
         styles["card--searchedItem"]
+      }    
+      ${
+        searchedItemId && searchedItemId !== course._id
+          ? styles["card--blur"]
+          : ""
       }`}
     >
       <div className={styles.card__logoWrapper}>

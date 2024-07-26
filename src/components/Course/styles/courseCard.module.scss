@@ -20,6 +20,13 @@
 
   &--searchedItem {
     border: 2px solid #635db0;
+    box-shadow: $card-hover-box-shadow !important;
+  }
+  &--blur {
+    opacity: 0.6;
+    &:hover {
+      box-shadow: unset !important;
+    }
   }
 
   @media (max-width: 768px) {
