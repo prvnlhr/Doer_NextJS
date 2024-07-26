@@ -4,7 +4,6 @@
   position: relative;
   width: 80%;
   height: 95%;
-  //   border: 1px solid red;
   @include flex-container(flex-start, center);
   &__link {
     height: auto;
@@ -13,11 +12,12 @@
     margin-right: 20px;
     border: 2px solid transparent;
     @include flex-container(center, center);
-
+    // border: 1px solid gray;
+    box-sizing: border-box;
     p {
       font-size: 0.7rem;
       font-weight: 600;
-      padding: 5px 5px;
+      padding: 5px 0px;
       letter-spacing: 3px;
       white-space: nowrap;
       @include small-device {

@@ -63,7 +63,13 @@ export async function POST(req, { params }) {
       }
     );
 
-    return new Response(JSON.stringify(updatedTopic), { status: 200 });
+    return new Response(
+      JSON.stringify({
+        message: "Topic Updated sucessfully",
+        data: updatedTopic,
+      }),
+      { status: 200 }
+    );
   } catch (error) {
     return new Response(
       JSON.stringify({ error: "Error fetching chapter by id" }),

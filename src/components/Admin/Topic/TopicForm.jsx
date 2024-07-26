@@ -88,14 +88,14 @@ const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
 
 const TopicForm = ({ topic }) => {
   const router = useRouter();
-  const [initialDuration, setInitialDuration] = useState(0);
+  const params = useParams();
 
+  const [showPreviewPane, setShowPreviewPane] = useState(true);
+  const [initialDuration, setInitialDuration] = useState(0);
   const [selectedStatus, setSelectedStatus] = useState(
     topic ? topic.status : true
   );
-  const [showPreviewPane, setShowPreviewPane] = useState(true);
 
-  const params = useParams();
   function convertToMinutes(days, hours, minutes) {
     const minutesPerDay = 24 * 60;
     const minutesPerHour = 60;
@@ -122,11 +122,6 @@ const TopicForm = ({ topic }) => {
     days: 0,
     status: topic ? topic.status : true,
     content: topic ? topic.content : "",
-  };
-
-  const toggleStatus = () => {
-    formik.setFieldValue("status", formik.values.status === 1 ? 0 : 1);
-    setSelectedStatus((prev) => !prev);
   };
 
   const togglePreviewPane = () => {
@@ -166,7 +161,6 @@ const TopicForm = ({ topic }) => {
         formik.values.hours,
         formik.values.minutes
       );
-
       const duration = durationInMinutes - initialDuration;
       topicData.duration = duration;
       let res;
@@ -178,11 +172,12 @@ const TopicForm = ({ topic }) => {
             params.chapterId,
             params.topicId
           );
-          setInitialDuration(res.duration);
+          setInitialDuration(res?.data?.duration);
+          console.log(res);
         } else {
           res = await createTopic(topicData, params.courseId, params.chapterId);
-          if (res && res._id) {
-            router.push(`${res._id}/edit`);
+          if (res && res?.data?._id) {
+            router.push(`${res.data._id}/edit`);
           }
         }
       } catch (error) {
@@ -298,7 +293,10 @@ const TopicForm = ({ topic }) => {
                     type="radio"
                     id="activeStatus"
                     checked={selectedStatus === true}
-                    onChange={toggleStatus}
+                    onChange={() => {
+                      setSelectedStatus(true);
+                      formik.setFieldValue("status", true);
+                    }}
                   />
                   <label
                     className={`${styles.btnWrapper} ${
@@ -319,7 +317,10 @@ const TopicForm = ({ topic }) => {
                     type="radio"
                     id="inactiveStatus"
                     checked={selectedStatus === false}
-                    onChange={toggleStatus}
+                    onChange={() => {
+                      setSelectedStatus(false);
+                      formik.setFieldValue("status", false);
+                    }}
                   />
                   <label
                     className={`${styles.btnWrapper} ${

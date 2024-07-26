@@ -15,7 +15,7 @@ const CourseForm = ({ course }) => {
     id: "",
     title: "",
     description: "",
-    status: null,
+    status: true,
     logoUrl: null,
     cloudinary_id: "",
   });

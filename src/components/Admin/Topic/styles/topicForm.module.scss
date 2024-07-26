@@ -138,14 +138,16 @@ $fontColorSecondary: #101828;
 
               .previewBtn {
                 width: auto;
-                background-color: #635db0;
+                background: transparent;
                 height: 60%;
                 padding: 0px 10px;
-                border: none;
+                border: 1px solid #b4b2b2ab;
                 outline: none;
                 cursor: pointer;
+                border-radius: 3px;
                 p {
-                  color: white;
+                  color: #635db0;
+                  font-weight: 600;
                 }
               }
             }

@@ -23,18 +23,20 @@ export async function GET(req, { params }) {
   }
 }
 
-// Update Chapter
+// Update Chapter by id
 export async function POST(req, { params }) {
   await dbConnect();
   try {
     const { chapterId } = params;
     const chapterData = await req.json();
+    // console.log("chapterData", chapterData);
     let filter = {
       _id: chapterId,
     };
     const chapter = await Chapter.updateOne(filter, {
       $set: {
         title: chapterData.title,
+        status: chapterData.status,
       },
     });
     return new Response(JSON.stringify(chapter), { status: 200 });
