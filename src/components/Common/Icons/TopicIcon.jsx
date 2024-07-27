@@ -4,29 +4,33 @@ const TopicIcon = () => {
   return (
     <svg
       className={styles.icon}
-      viewBox="0 0 24 24"
+      viewBox="0 0 25 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M20 7H4"
-        stroke="#635DB0"
-        strokeWidth="3.482"
-        strokeLinejoin="round"
+        d="M3.2998 7.19482H21.2998"
+        stroke="#7776B3"
+        stroke-width="1.5"
+        stroke-linecap="round"
       />
       <path
-        opacity="0.7"
-        d="M15 12.0005H4"
-        stroke="#635DB0"
-        strokeWidth="3.482"
-        strokeLinejoin="round"
+        d="M9.79004 12.1948H21.3"
+        stroke="#7776B3"
+        stroke-width="1.5"
+        stroke-linecap="round"
       />
       <path
-        opacity="0.4"
-        d="M9 17.001H4"
-        stroke="#635DB0"
-        strokeWidth="3.482"
-        strokeLinejoin="round"
+        d="M3.2998 12.1948H6.2898"
+        stroke="#7776B3"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M3.2998 17.1948H21.2998"
+        stroke="#7776B3"
+        stroke-width="1.5"
+        stroke-linecap="round"
       />
     </svg>
   );
