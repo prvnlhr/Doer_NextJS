@@ -11,7 +11,7 @@ const ChevronRightIcon = ({ color }) => {
     >
       <path
         d="M3.23438 6.89062L5.76562 4.5L3.23438 2.10938"
-        stroke={color ? color : "black"}
+        stroke={color ? color : ""}
         strokeWidth="0.84375"
         strokeLinejoin="round"
       />

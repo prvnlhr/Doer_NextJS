@@ -21,7 +21,7 @@ const ClassRoomLayout = async ({
           </Link>
           <div className={styles.chevIconContainer}>
             <div className={styles.chevIconDiv}>
-              <ChevronRightIcon color={"#3D4754"} />
+              <ChevronRightIcon color={"white"} />
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@ const ClassRoomLayout = async ({
           </Link>
           <div className={styles.chevIconContainer}>
             <div className={styles.chevIconDiv}>
-              <ChevronRightIcon color={"#3D4754"} />
+              <ChevronRightIcon color={"white"} />
             </div>
           </div>
         </div>

@@ -102,7 +102,7 @@
         @include flex-container(center, center);
         cursor: pointer;
         p {
-          color: #635db0;
+          color: $app-scheme-color;
           font-weight: 600;
           font-size: 0.7rem;
         }
@@ -161,7 +161,7 @@
           outline: none;
           border: none;
           border-radius: 50%;
-          background-color: #635db0;
+          background-color: $app-scheme-color;
           margin-left: 5px;
         }
         .textDiv {
@@ -197,7 +197,7 @@
         margin-left: 5px;
         p {
           font-size: 0.7rem;
-          color: #635db0;
+          color: $app-scheme-color;
           font-weight: 500;
         }
       }
@@ -228,7 +228,7 @@
     font-weight: 500;
     -moz-appearance: textfield;
     &:focus {
-      border: 0.15rem solid #635db0;
+      border: 0.15rem solid $app-scheme-color;
     }
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {

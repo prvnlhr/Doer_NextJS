@@ -1,3 +1,4 @@
+@import "../../../styles/variables.module";
 .introSectionOuterWrapper {
   width: 100%;
   height: 60%;
@@ -44,7 +45,7 @@
 .upperText {
   width: 100%;
   font-size: 30px;
-  color: #101828;
+  color: $primary-color;
   font-weight: 600;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -55,7 +56,7 @@
 
 .introSpanText {
   position: relative;
-  color: #635db0;
+  color: $app-scheme-color;
   font-weight: 400;
 }
 
@@ -72,7 +73,7 @@
 .lowerText {
   width: 80%;
   font-size: 0.95rem;
-  color: #51637d;
+  color: $secondary-color;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -109,14 +110,14 @@
 }
 
 .exploreText {
-  color: #101828;
+  color: $primary-color;
   font-size: 2rem;
   font-weight: 500;
 }
 
 .coursesText {
   position: relative;
-  color: #635db0;
+  color: $app-scheme-color;
   font-size: 1.1rem;
   font-weight: 500;
 }
@@ -131,7 +132,7 @@
 .coursesText::after {
   content: "";
   position: absolute;
-  background-color: #635db0;
+  background-color: $app-scheme-color;
   aspect-ratio: 1/1;
   width: 4.5px;
   bottom: 20%;
@@ -154,7 +155,7 @@
   justify-content: center;
   align-items: center;
   width: 55%;
-  background-color: #6167a0;
+  background-color: $app-scheme-color;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -213,7 +214,7 @@
 
   .upperText {
     width: 100%;
-    color: #101828;
+    color: $primary-color;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
@@ -227,7 +228,7 @@
 
   .introSpanText {
     position: relative;
-    color: #635db0;
+    color: $app-scheme-color;
     font-weight: 500;
     font-size: clamp(
       1.1rem,

@@ -15,7 +15,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid #d0d5dd;
+    @include division-border();
     box-sizing: border-box;
     padding-left: 15px;
   }
@@ -115,7 +115,7 @@
 .titleWrapper {
   width: auto;
   height: 80%;
-  //   border: 1px solid red;
+  // border: 1px solid red;
   @include flex(top, left, column);
 
   .titleDiv {
@@ -125,7 +125,7 @@
 
     p {
       font-size: 0.8rem;
-      color: #101828;
+      color: $primary-color;
       letter-spacing: 4px;
       font-weight: 600;
       @include small-device {
@@ -161,7 +161,7 @@
       width: 25px;
       height: 3px;
       border-radius: 5px;
-      background-color: #635db0;
+      background-color: $app-scheme-color;
     }
   }
 }
@@ -193,6 +193,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       font-weight: 500;
+      color: $primary-color;
       &:hover {
         text-decoration: underline;
       }

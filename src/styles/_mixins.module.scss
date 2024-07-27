@@ -30,9 +30,8 @@
   width: 100%;
 }
 
-@mixin card-bg-shadow {
-  box-shadow: $card-box-shadow;
-  background-color: $card-bg;
+@mixin card-box-shadow {
+  box-shadow: $card-box-shadow-primary;
 }
 
 @mixin flex-container(
@@ -180,3 +179,35 @@
   }
 }
 
+@mixin division-border($pos: bottom, $width: 1px) {
+  @if $pos == top {
+    border-top: $width solid $division-border-color;
+  } @else if $pos == bottom {
+    border-bottom: $width solid $division-border-color;
+  } @else if $pos == left {
+    border-left: $width solid $division-border-color;
+  } @else if $pos == right {
+    border-right: $width solid $division-border-color;
+  }
+}
+
+@mixin themed { 
+  @each $theme, $map in $themes { 
+    :global(.theme--#{$theme}) & { 
+      $theme-map: () !global; 
+ 
+      @each $key, $submap in $map { 
+        $value: map.get($map, $key); 
+        $theme-map: map.merge( 
+          $theme-map, 
+          ( 
+            $key: $value, 
+          ) 
+        ) !global; 
+      } 
+      @content; 
+ 
+      $theme-map: null !global; 
+    } 
+  } 
+}

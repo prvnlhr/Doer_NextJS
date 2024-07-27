@@ -1,5 +1,6 @@
 @import "../../../styles/mixins.module";
 @import "../../../styles/variables.module";
+@import "../../../styles/themes.module";
 
 .courseListWrapper {
   @include fhw;
@@ -12,7 +13,10 @@
     height: 50px;
     box-sizing: border-box;
     padding-left: 8px;
-    border-bottom: 1px solid #d0d5dd;
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +30,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
-    @include scroll($display: show);
+    @include scroll;
     box-sizing: border-box;
 
     @media (max-width: 768px) {

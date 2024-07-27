@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .adminLayoutWrapper {
   width: 100%;
@@ -24,7 +25,10 @@
   .sidebarCell {
     @include fhw;
     grid-area: sidebarCell;
-    border-right: 1px solid #d0d5dd;
+    @include themed() {
+      border-right: 1px solid t(division-border-color);
+    }
+
     @media (max-width: 768px) {
       display: none;
     }
@@ -32,12 +36,16 @@
   .breadcrumbsCell {
     @include fhw;
     grid-area: breadcrumbsCell;
-    border-bottom: 1px solid #d0d5dd;
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
   }
   .tabsbarCell {
     @include fhw;
     grid-area: tabsbarCell;
-    border-bottom: 1px solid #d0d5dd;
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
   }
   .subPagesCell {
     @include fhw;

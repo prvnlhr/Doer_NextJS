@@ -22,12 +22,12 @@
     .btnSection2 {
       width: 50px;
       height: 100%;
-      border-right: 1px solid #b4b2b270;
+      @include division-border(right);
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       padding: 5px;
-    //   border: 1px solid orange;
+      //   border: 1px solid orange;
     }
     .btnSection3,
     .btnSection4 {
@@ -37,7 +37,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       padding: 5px;
-    //   border: 1px solid blue;
+      //   border: 1px solid blue;
     }
   }
   .editorBodyWrapper {

@@ -1,5 +1,6 @@
 @import "../styles/mixins.module";
 @import "../styles/variables.module";
+@import "../styles/themes.module";
 
 .rootLayoutWrapper {
   position: relative;
@@ -14,8 +15,21 @@
     "headerWrapper"
     "contentWrapper";
   z-index: 1;
-  background: $app-bg;
+  // background: $app-bg;
   box-sizing: border-box;
+  @include themed() {
+    background-color: t(app-bg);
+  }
+  // background-color: #f0f0f0;
+
+  // background-image: linear-gradient(
+  //   to right top,
+  //   #f0f0f0,
+  //   #f2f2f2,
+  //   #f3f3f5,
+  //   #f4f5f8,
+  //   #f5f7fa
+  // );
 
   // width: 90vw;
   // height: 90dvh;

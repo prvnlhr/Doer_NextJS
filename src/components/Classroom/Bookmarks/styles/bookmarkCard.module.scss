@@ -17,8 +17,8 @@
 
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: white;
-  @include card-bg-shadow;
+  background-color: $card-bg-primary;
+  @include card-box-shadow;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -34,6 +34,7 @@
     @include flex-container(flex-start, center);
     p {
       font-size: 0.8rem;
+      color: $primary-color;
       @include small-device {
         font-size: clamp(
           0.7rem,
@@ -62,6 +63,7 @@
       overflow: hidden;
       white-space: nowrap;
       width: 95%;
+      color: $primary-color;
       @include small-device {
         // font-size: clamp(
         //   0.8rem,

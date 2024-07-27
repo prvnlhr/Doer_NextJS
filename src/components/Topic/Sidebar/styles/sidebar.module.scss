@@ -1,17 +1,18 @@
 @import "../../../.././styles/mixins.module";
 @import "../../../.././styles/variables.module";
-
+@import "../../../.././styles/themes.module";
 .sidebarWrapper {
   width: 20%;
   height: 100%;
   // background-color: skyblue;
-  border-right: 1px solid #d0d5dd;
-
+  @include themed() {
+    border-right: 1px solid t(division-border-color);
+  }
   &__sidebarHeader {
     width: 100%;
     height: 8%;
     @include flex-container(flex-end, center);
-    // border-bottom: 1px solid #d0d5dd;
+    // @Include division-border();
 
     .toggleIconDiv {
       display: none;

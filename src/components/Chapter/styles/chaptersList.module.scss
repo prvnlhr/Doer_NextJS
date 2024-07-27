@@ -1,5 +1,6 @@
 @import "../../../styles/mixins.module";
 @import "../../../styles/variables.module";
+@import "../../../styles/themes.module";
 
 .chaptersListWrapper {
   @include fhw;
@@ -13,7 +14,10 @@
     height: 50px;
     box-sizing: border-box;
     padding-left: 8px;
-    border-bottom: 1px solid #d0d5dd;
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,7 +27,7 @@
     height: calc(100% - 50px);
     padding-left: 20px;
     padding-top: 20px;
-    @include scroll($display: show);
+    @include scroll;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;

@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .formWrapper {
   width: 100%;
@@ -45,7 +46,10 @@
     }
     &__buttonCell {
       grid-area: buttonCell;
-      border: 1px solid #b4b2b270;
+      @include themed() {
+        border: 1px solid t(form-group-border);
+      }
+
       @include fhw;
       @include flex-container(flex-end, center);
       border-radius: 8px;
@@ -56,14 +60,20 @@
         width: auto;
         padding-left: 10px;
         padding-right: 10px;
-        background-color: #635db0;
+        @include themed() {
+          background-color: t(app-scheme-color);
+        }
+
         outline: none;
         border: none;
         color: white;
         cursor: pointer;
 
         &:disabled {
-          background-color: #635db0;
+          @include themed() {
+            background-color: t(app-scheme-color);
+          }
+
           cursor: not-allowed;
         }
 
@@ -80,8 +90,11 @@
 .inputGroup {
   width: 100%;
   height: calc(100% - 30px);
-  background-color: white;
-  border: 1px solid #b4b2b270;
+  @include themed() {
+    background-color: t(form-group-bg);
+    border: 1px solid t(form-group-border);
+  }
+
   border-radius: 8px;
   overflow: hidden;
   padding: 10px;
@@ -94,7 +107,10 @@
     padding: 0px 5px;
     @include flex-container(flex-start, center);
     p {
-      color: #101828;
+      @include themed() {
+        color: t(secondary-color);
+      }
+
       font-size: 0.8rem;
 
       @include small-device {
@@ -113,10 +129,13 @@
     border: none;
     outline: none;
     padding: 0px 10px;
-    background-color: #f2f4f7;
+    @include themed() {
+      background-color: t(form-input-bg);
+      color: t(primary-color);
+    }
+
     border-radius: inherit;
     font-weight: 500;
-
     @include small-device {
       font-size: clamp(
         0.9rem,
@@ -156,7 +175,10 @@
     width: 100%;
     height: 30px;
     p {
-      color: #667085;
+      @include themed() {
+        color: t(secondary-color);
+      }
+
       font-weight: 500;
       font-size: 0.8rem;
 
@@ -193,6 +215,9 @@
       p {
         font-size: 0.7rem;
         font-weight: 500;
+        @include themed() {
+          color: t(primary-color);
+        }
 
         @include small-device {
           font-size: clamp(
@@ -206,14 +231,18 @@
       &--activeBtn {
         border: 1px solid #789980;
         background-color: #deeedc;
-        color: #789980;
+        p {
+          color: #789980;
+        }
       }
 
       &--inactiveBtn {
         margin-left: 10px;
         border: 1px solid #d27e67;
         background-color: #fde7ea;
-        color: #d5765c;
+        p {
+          color: #d5765c;
+        }
       }
 
       .radioDotDiv {

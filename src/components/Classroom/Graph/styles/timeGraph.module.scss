@@ -24,14 +24,14 @@
 
     p {
       font-size: 1.2rem;
-      color: #635db0;
+      color: $app-scheme-color;
       font-weight: 500;
       @include small-device {
         font-size: clamp(1.1rem, -0.6999999999999997rem + 9vw, 2rem) !important;
       }
       span {
         font-size: 0.8rem;
-        color: #7e8da4;
+        color: $secondary-color;
         margin-right: 2px;
         @include small-device {
           font-size: clamp(
@@ -77,14 +77,14 @@
       align-items: flex-end;
 
       &:hover .valueBar {
-        background-color: #635db0;
+        background-color: $app-scheme-color;
       }
       &:hover .tooltip {
         display: flex;
       }
       .valueBar {
         width: 3px;
-        background-color: #d0d5dd;
+        background-color: $card-bg-secondary;
         border-radius: 5px 5px 0px 0px;
         position: relative;
         display: flex;
@@ -92,7 +92,7 @@
         align-items: flex-start;
 
         &--activeDay {
-          background-color: #635db0;
+          background-color: $app-scheme-color;
         }
 
         // &:hover .tooltip {
@@ -111,7 +111,7 @@
 
       p {
         font-weight: 600;
-        color: #7e8da4;
+        color: $tertiary-color;
         font-size: 0.7rem;
         @include small-device {
           font-size: clamp(
@@ -124,7 +124,7 @@
 
       &--activeLabelCell {
         p {
-          color: #635db0 !important;
+          color: $app-scheme-color !important;
         }
       }
     }
@@ -133,8 +133,8 @@
 
 .tooltip {
   position: absolute;
-  background-color: #222222;
-  color: #fff;
+  background-color: $card-bg-secondary;
+  color: $primary-color;
   width: auto;
   height: 35px;
   border-radius: 2px;
@@ -163,7 +163,7 @@
       align-items: center;
       p {
         font-size: 0.6rem;
-        color: #7e8da4;
+        color: $secondary-color;
         @include small-device {
           font-size: clamp(
             0.6rem,
@@ -185,7 +185,7 @@
     p {
       font-size: 0.6rem;
       white-space: nowrap;
-      color: white;
+      color: $primary-color;
       &:last-child {
         margin-left: 2px;
       }

@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module.scss";
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/themes.module.scss";
 
 .itemWrapper {
   width: 80%;
@@ -26,7 +27,10 @@
       text-overflow: ellipsis;
       overflow-x: hidden;
       white-space: nowrap;
-      color: #1c3553;
+      @include themed() {
+        color: t(primary-color);
+      }
+
       @include small-device {
         font-size: clamp(
           0.95rem,
@@ -65,7 +69,9 @@
           width: 0.35rem;
           aspect-ratio: 1/1;
           border-radius: 100%;
-          background-color: #a4adbb;
+          @include themed() {
+            background-color: t(secondary-color);
+          }
         }
       }
     }
@@ -95,15 +101,21 @@
           }
 
           &:hover {
-            color: #635db0;
+            @include themed() {
+              color: t(app-scheme-color);
+            }
           }
         }
-        .topicActive {
-          color: #635db0;
+        .topicInactive {
+          @include themed() {
+            color: t(secondary-color);
+          }
           font-weight: 500;
         }
-        .topicInactive {
-          color: #667085;
+        .topicActive {
+          @include themed() {
+            color: t(app-scheme-color);
+          }
           font-weight: 500;
         }
       }
@@ -121,7 +133,9 @@
 
         &::after {
           content: "";
-          background-color: #a4adbb;
+          @include themed() {
+            background-color: t(secondary-color);
+          }
           width: 0.1rem;
           height: 100%;
         }

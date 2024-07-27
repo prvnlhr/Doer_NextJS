@@ -15,7 +15,7 @@
   padding: 0.8rem;
   box-sizing: border-box;
   background-color: white;
-  @include card-bg-shadow;
+  @include card-box-shadow;
 
   &__continueWrapper {
     grid-area: continueWrapper;

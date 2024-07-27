@@ -11,7 +11,7 @@
     height: 50px;
     box-sizing: border-box;
     padding-left: 8px;
-    border-bottom: 1px solid #d0d5dd;
+    @include division-border();
 
     .backBtnWrapper {
       width: auto;
@@ -63,7 +63,7 @@
 
           &::after {
             content: "";
-            // background-color: #635db0;
+            // background-color: $app-scheme-color;
             width: 20px;
             height: 3px;
             border-radius: 5px;

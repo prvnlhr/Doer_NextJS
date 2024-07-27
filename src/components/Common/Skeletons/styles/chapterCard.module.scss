@@ -14,8 +14,8 @@
   grid-template-rows: 15% 20% 45% 20%;
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: white;
-  @include card-bg-shadow;
+  background-color: $card-bg-primary;
+  @include card-box-shadow;
 
   @media (max-width: 768px) {
     width: 85% !important;

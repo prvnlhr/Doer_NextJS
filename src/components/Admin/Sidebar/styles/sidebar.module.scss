@@ -5,7 +5,7 @@
   width: 20%;
   height: 100%;
   max-height: 100%;
-  border-right: 1px solid #d0d5dd;
+  @include division-border(right): 1px solid #d0d5dd;
 
   &__sidebarHeader {
     width: 100%;

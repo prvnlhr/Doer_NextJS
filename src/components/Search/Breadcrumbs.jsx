@@ -13,7 +13,7 @@ const Breadcrumbs = ({ text, highlight }) => {
       </div>
       <div className={styles.chevIconWrapper}>
         <div className={styles.chevIconDiv}>
-          <ChevronRightIcon />
+          <ChevronRightIcon color="white" />
         </div>
       </div>
     </div>

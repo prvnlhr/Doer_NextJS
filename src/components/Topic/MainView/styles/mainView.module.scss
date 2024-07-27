@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module.scss";
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/themes.module.scss";
 
 .mainViewWrapper {
   height: 100%;
@@ -15,7 +16,10 @@
   &__breadcrumbsWrapper {
     grid-area: breadcrumbsWrapper;
     @include fhw;
-    border-bottom: 1px solid #d0d5dd;
+
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
     @include flex-container(flex-start, center);
 
     .toggleIconContainer {
@@ -86,12 +90,20 @@
       text-overflow: ellipsis;
       overflow: hidden;
       font-weight: 500;
+      @include themed() {
+        color: t(primary-color);
+      }
       @include small-device {
         font-size: clamp(
           0.7rem,
           -0.10000000000000031rem + 4.000000000000002vw,
           1.1rem
         ) !important;
+      }
+    }
+    .topicNameText {
+      @include themed() {
+        color: t(app-scheme-color);
       }
     }
   }

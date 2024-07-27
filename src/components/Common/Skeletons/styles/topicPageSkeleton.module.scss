@@ -70,7 +70,7 @@ $fontColorSecondary: #101828;
     }
     .verticalLine {
       height: 50%;
-      background-color: #635db0;
+      background-color: $app-scheme-color;
       width: 1px;
       margin-left: 5px;
       margin-right: 5px;
@@ -156,7 +156,7 @@ $fontColorSecondary: #101828;
         content: "";
         left: 0px;
         bottom: -10px;
-        background-color: #635db0;
+        background-color: $app-scheme-color;
         width: 30px;
         height: 3px;
         border-radius: 8px;
@@ -233,7 +233,7 @@ $fontColorSecondary: #101828;
       object-fit: contain;
     }
     strong {
-      color: #635db0;
+      color: $app-scheme-color;
     }
   }
 }
