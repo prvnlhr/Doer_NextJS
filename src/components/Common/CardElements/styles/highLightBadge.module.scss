@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .badgeWrapper {
   width: 100%;
@@ -49,7 +50,9 @@
     padding-right: 2px;
 
     p {
-      color: $app-scheme-color;
+      @include themed() {
+        color: t(app-scheme-color);
+      }
       font-weight: 500;
       white-space: nowrap;
       text-overflow: ellipsis;

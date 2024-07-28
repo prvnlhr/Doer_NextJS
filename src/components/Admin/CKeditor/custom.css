@@ -7,6 +7,7 @@
 
   /* Helper variables to avoid duplication in the colors. */
   --ck-custom-background: hsl(270, 1%, 29%);
+  --ck-custom-background: white;
   --ck-custom-foreground: hsl(255, 3%, 18%);
   --ck-custom-border: hsl(300, 1%, 22%);
   --ck-custom-white: hsl(0, 0%, 100%);
@@ -14,10 +15,10 @@
   /* -- Overrides generic colors. ------------------------------------------------------------- */
 
   --ck-color-base-foreground: var(--ck-custom-background);
-  --ck-color-focus-border: hsl(208, 90%, 62%);
-  --ck-color-text: hsl(0, 0%, 98%);
+  --ck-color-focus-border: hsla(208, 90%, 62%, 0);
   --ck-color-shadow-drop: hsla(0, 0%, 0%, 0.2);
   --ck-color-shadow-inner: hsla(0, 0%, 0%, 0.1);
+  --ck-color-text: black;
 
   /* -- Overrides the default .ck-button class colors. ---------------------------------------- */
 
@@ -110,4 +111,26 @@
   /* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */
 
   --ck-color-link-default: hsl(190, 100%, 75%);
+
+  /* ----LIGHT COLORS --------------------------------------- */
+
+  --ck-color-button-on-background: red;
+  --ck-color-button-on-hover-background: yellow;
+  --ck-color-button-on-active-background: green;
+  --ck-color-button-default-active-background: red;
+
+  --ck-color-button-default-hover-background: #a399f262;
+  --ck-color-base-background: white;
+  --ck-custom-background: white;
+  --ck-color-text: #1c3553;
+  --ck-content-p: #1c3553;
+  --ck-content-h: #1c3553;
+  --ck-content-li: #1c3553;
+  --ck-content-pre-bg: #1d1f2a;
+  --ck-content-pre-border: #30343d;
+  --ck-content-code-text: white;
+  --ck-content-strong: #635db0;
+  --ck-content-td: #1c3553;
+
+  /* ----LIGHT COLORS --------------------------------------- */
 }

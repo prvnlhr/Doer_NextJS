@@ -181,7 +181,7 @@ $codeFontSize: 0.9rem;
       margin-bottom: 25px;
       font-weight: bold;
       @include themed() {
-        color: t(app-scheme-color);
+        color: t(primary-color);
       }
 
       position: relative;

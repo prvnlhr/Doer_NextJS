@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .btnWrapper {
   width: 100%;
@@ -11,7 +12,9 @@
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background-color: $link-btn-bg;
+    @include themed() {
+      background-color: t(link-btn-bg);
+    }
     @include flex-container(center, center);
     cursor: pointer;
 
