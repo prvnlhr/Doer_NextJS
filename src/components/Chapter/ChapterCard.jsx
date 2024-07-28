@@ -73,7 +73,9 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
       <div className={styles.card__topicsCountWrapper}>
         <HighLightBadge
           IconComponent={TopicIcon}
-          text={`${chapter.topicsCount} Topics`}
+          text={`${chapter.topicsCount} ${
+            chapter.topicsCount > 1 ? "Topics" : "Topic"
+          }`}
           isHighlighted={true}
           type={"chapter"}
         />

@@ -59,7 +59,9 @@ const CourseCard = ({ course, searchParams }) => {
         <div className={styles.card__chapterWrapper__innerDiv}>
           <HighLightBadge
             IconComponent={ChapterIcon}
-            text={`${course.chaptersCount} Chapters`}
+            text={`${course.chaptersCount} ${
+              course.chaptersCount > 1 ? "Chapters" : "Chapter"
+            }`}
             isHighlighted={true}
             type={"course"}
           />
