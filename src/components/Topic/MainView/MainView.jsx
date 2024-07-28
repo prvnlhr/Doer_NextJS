@@ -34,7 +34,7 @@ const MainView = ({ children, params }) => {
             </Link>
             <div className={styles.chevIconContainer}>
               <div className={styles.chevIconDiv}>
-                <ChevronRightIcon color={"#3D4754"} />
+                <ChevronRightIcon color={"#667085"} />
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@ const MainView = ({ children, params }) => {
             </Link>
             <div className={styles.chevIconContainer}>
               <div className={styles.chevIconDiv}>
-                <ChevronRightIcon color={"#3D4754"} />
+                <ChevronRightIcon color={"#667085"} />
               </div>
             </div>
           </div>
@@ -60,13 +60,13 @@ const MainView = ({ children, params }) => {
               href={`/content/courses/${params.courseName}/${params.courseId}/chapters`}
               className={styles.link}
             >
-              <p style={{ color: "#6167a0", fontWeight: 500 }}>
+              <p className={styles.topicNameText}>
                 {courseState.topicName}
               </p>
             </Link>
             <div className={styles.chevIconContainer}>
               <div className={styles.chevIconDiv}>
-                <ChevronRightIcon color={"#3D4754"} />
+                <ChevronRightIcon color={"#8b98a5"} />
               </div>
             </div>
           </div>

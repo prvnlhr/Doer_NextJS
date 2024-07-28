@@ -1,44 +1,45 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/mainHeader.module.scss";
+import popUpStyles from "./styles/popUpMenu.module.scss";
 import AppLogo from "../logo/AppLogo";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import PopUpMenuIcon from "../Icons/PopUpMenuIcon";
 import { usePathname } from "next/navigation";
-import { useSelectedLayoutSegment } from "next/navigation";
-
+import PopUpMenu from "./PopUpMenu";
+import { useTheme } from "@/context/ThemeContext";
+import SunIcon from "../Icons/SunIcon";
+import MoonIcon from "../Icons/MoonIcon";
+import UserIcon from "../Icons/UserIcon";
 const MainHeader = () => {
-  const segment = useSelectedLayoutSegment();
+  const { toggleTheme, theme } = useTheme();
   const { data: session, status } = useSession();
-  const userId = session?.user?.userId;
-  const isAdmin = session?.user?.role === "admin";
   const pathname = usePathname();
 
   const [showPopUp, setShowPopUp] = useState(false);
   const popupRef = useRef(null);
   const iconRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        popupRef.current &&
-        !popupRef.current.contains(event.target) &&
-        iconRef.current &&
-        !iconRef.current.contains(event.target)
-      ) {
-        setShowPopUp(false);
-      }
-    };
-    if (showPopUp) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+  const handleClickOutside = (event) => {
+    if (
+      popupRef.current &&
+      !popupRef.current.contains(event.target) &&
+      !iconRef.current.contains(event.target)
+    ) {
+      setShowPopUp(false);
     }
+  };
+
+  useEffect(() => {
+    // Add event listener for clicks outside the pop-up menu
+    document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
+      // Clean up event listener on component unmount
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPopUp]);
+  }, []);
 
   const isAuthPage =
     pathname === "/auth/signin" ||
@@ -86,17 +87,39 @@ const MainHeader = () => {
         )}
 
         {showPopUp && (
-          <div className={styles.popUpMenu} ref={popupRef}>
-            <div className={styles.userNameWrapper}>
-              <p>Logged in as -</p>
-              <p>
-                {session && session.user.name}
-                <span>{isAdmin && " (Admin)"}</span>
-              </p>
+          <div className={popUpStyles.popMenuWrapper} ref={popupRef}>
+            <div className={popUpStyles.themeToggleCell}>
+              <div
+                className={`${popUpStyles.themeToggleBtnWrapper} `}
+                onClick={toggleTheme}
+              >
+                <div
+                  className={`${popUpStyles.toggleBtn} ${
+                    popUpStyles[
+                      `toggleBtn--${theme === "dark" ? "dark" : "light"}`
+                    ]
+                  }`}
+                >
+                  <div className={popUpStyles.btnIconDiv}>
+                    {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+                  </div>
+                  <div className={popUpStyles.btnTextDiv}>
+                    <p>{theme === "dark" ? "Dark" : "Light"}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className={styles.logoutBtnWrapper}>
+            <div className={popUpStyles.nameCell}>
+              <div>
+                <p>Logged in as -</p>
+              </div>
+              <div>
+                <p>Praveen Lohar</p>
+              </div>
+            </div>
+            <div className={popUpStyles.logoutCell}>
               <button type="button" onClick={() => signOut()}>
-                Logout
+                <p>Logout</p>
               </button>
             </div>
           </div>

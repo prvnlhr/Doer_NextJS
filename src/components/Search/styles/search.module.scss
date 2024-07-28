@@ -1,10 +1,14 @@
 @import "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+@import "../../../styles/themes.module";
 
 .searchPageWrapper {
   position: absolute;
   width: 400px;
   aspect-ratio: 1/1.2;
-  background-color: white;
+  @include themed() {
+    background-color: t(card-bg-secondary);
+  }
   //   border: 1px solid red;
   margin-left: auto;
   margin-right: auto;
@@ -12,7 +16,9 @@
   right: 0;
   margin-top: 20px;
   z-index: 999;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  @include themed() {
+    box-shadow: t(card-box-shadow-secondary);
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -35,7 +41,9 @@
       justify-content: center;
       align-items: center;
       // border: 1px solid red;
-      background-color: #6167a0;
+      @include themed() {
+        background-color: t(app-scheme-color);
+      }
       border-radius: 100%;
       cursor: pointer;
       margin-right: 2px;
@@ -49,7 +57,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid #d0d5dd;
+    @include division-border();
 
     .searchIconWrapper {
       height: 100%;
@@ -69,7 +77,9 @@
     .divisionLine {
       width: 1px;
       height: 40%;
-      background-color: #a4adbb;
+      @include themed() {
+        background-color: t(secondary-color);
+      }
       margin: 0px 0px;
     }
     .searchInputWrappper {
@@ -85,6 +95,10 @@
         outline: none;
         box-sizing: border-box;
         padding: 0px 8px;
+        background: none;
+        @include themed() {
+          color: t(primary-color);
+        }
 
         @include small-device {
           font-size: clamp(
@@ -113,7 +127,7 @@
     width: 100%;
     height: 40px;
     // border: 1px solid green;
-    border-bottom: 1px solid #d0d5dd;
+    @include division-border();
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -132,6 +146,9 @@
       p {
         font-weight: 500;
         font-size: 0.75rem;
+        @include themed() {
+          color: t(primary-color);
+        }
 
         @include small-device {
           font-size: clamp(
@@ -143,9 +160,13 @@
       }
 
       &--activeLink {
-        border-bottom: 2px solid #6167a0;
+        @include themed() {
+          border-bottom: 2px solid t(app-scheme-color);
+        }
         p {
-          color: #6167a0;
+          @include themed() {
+            color: t(app-scheme-color);
+          }
           font-weight: 500;
         }
       }
@@ -168,7 +189,7 @@
 .searchItemLink {
   width: 100%;
   height: 70px;
-  border-bottom: 1px solid #d0d5dd88;
+  @include division-border();
   padding: 0px 5%;
   display: flex;
   justify-content: flex-start;
@@ -176,7 +197,7 @@
   box-sizing: border-box;
 
   &:hover {
-    background-color: #ecf2ff;
+    background-color: #6167a027;
   }
 
   .searchItemWrapper {
@@ -201,6 +222,9 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        @include themed() {
+          color: t(primary-color);
+        }
         @include small-device {
           font-size: clamp(
             0.85rem,
@@ -213,7 +237,7 @@
     .breadCrumbsRow {
       width: 100%;
       height: 50%;
-      // border: 1px solid #6167a0;
+      // border: 1px solid $app-scheme-color;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
@@ -241,7 +265,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: #667085;
+      @include themed() {
+        color: t(secondary-color);
+      }
       @include small-device {
         font-size: clamp(
           0.75rem,
@@ -252,7 +278,9 @@
     }
     &--active {
       p {
-        color: #6167a0;
+        @include themed() {
+          color: t(app-scheme-color);
+        }
         font-weight: 600;
       }
     }

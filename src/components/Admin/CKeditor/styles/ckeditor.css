@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
+@import "../custom.css";
 @media print {
   body {
     margin: 0 !important;
@@ -27,10 +27,8 @@
   border-left: none !important;
   border-right: none !important;
   border-bottom: none !important;
-  /* border: none !important; */
-
-  /* border-radius: 0px 0px 10px 10px !important; */
 }
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .ck-content {
     height: 455px !important;
@@ -203,4 +201,35 @@
 
 .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
   box-shadow: none !important;
+}
+
+.ck-content p {
+  color: var(--ck-content-p);
+}
+
+.ck-content h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--ck-content-h);
+}
+
+.ck-content li {
+  color: var(--ck-content-li);
+}
+
+.ck-content pre {
+  background-color: var(--ck-content-pre-bg) !important;
+  border: 1px solid var(--ck-content-pre-border);
+}
+.ck-content code {
+  color: var(--ck-content-code-text);
+}
+.ck-content strong {
+  color: var(--ck-content-strong);
+}
+.ck-content td {
+  color: var(--ck-content-td);
 }

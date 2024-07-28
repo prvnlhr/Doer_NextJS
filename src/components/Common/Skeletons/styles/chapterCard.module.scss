@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .card {
   width: 280px;
@@ -14,8 +15,11 @@
   grid-template-rows: 15% 20% 45% 20%;
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: white;
-  @include card-bg-shadow;
+  @include themed() {
+    background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-primary);
+  }
+  @include card-box-shadow;
 
   @media (max-width: 768px) {
     width: 85% !important;

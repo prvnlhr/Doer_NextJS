@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .card {
   width: 180px;
@@ -14,8 +15,11 @@
   grid-template-rows: auto 20% 30% 15%;
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: white;
-  @include card-bg-shadow;
+  @include themed() {
+    background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-primary);
+  }
+  @include card-box-shadow;
 
   @media (max-width: 768px) {
     width: 90% !important;
@@ -25,7 +29,9 @@
   }
 
   &:hover {
-    box-shadow: $card-hover-box-shadow;
+    @include themed() {
+      box-shadow: t(card-box-shadow-primary);
+    }
   }
 
   &__logoWrapper {
@@ -52,7 +58,6 @@
     grid-area: linkBtnWrapper;
     @include fhw;
     @include flex-container(flex-end, flex-start);
-    // border: 1px solid red;
 
     .buttonWrapper {
       aspect-ratio: 1/1;
@@ -68,6 +73,9 @@
     // position: relative;
     padding: 10px 0px;
     overflow: hidden;
+    // border: 1px solid red;
+    // background-color: red;
+    border-radius: 10px;
   }
 
   &__descWrapper {
@@ -103,3 +111,9 @@
     }
   }
 }
+
+/*
+hsl 0 0% 98% 0.1
+
+    animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+*/

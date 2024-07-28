@@ -1,4 +1,7 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
+
 .datatableWrapper {
   width: 100%;
   height: 100%;
@@ -28,12 +31,14 @@
       justify-content: space-between;
 
       .searchWrapper {
-        border: 1px solid #d0d5dd;
         width: 150px;
         height: 60%;
         display: inline-flex;
         border-radius: 5px;
-        background-color: #f8f9fc;
+        @include themed() {
+          background-color: t(form-input-bg);
+          border: 1px solid t(form-group-border);
+        }
 
         &__inputWrapper {
           width: auto;
@@ -88,7 +93,9 @@
         height: 60%;
         @include flex-container(flex-start, center);
         padding: 0px 10px;
-        background-color: #6167a0;
+        @include themed() {
+          background-color: t(app-scheme-color);
+        }
         outline: none;
         border: none;
         margin-right: 2px;
@@ -123,8 +130,10 @@
         max-height: 100%;
         position: relative;
         @include scroll();
-        border: 1px solid #d0d5dd;
-        background-color: white;
+        @include themed() {
+          border: 1px solid t(division-border-color);
+        }
+
         border-radius: 8px;
 
         table {
@@ -137,29 +146,32 @@
           position: sticky;
           top: 0;
           z-index: 1;
-          // background-color: #101828;
-          // border-bottom: 1px solid red;
-
           &::after {
             position: absolute;
             content: "";
             width: 100%;
             height: 1px;
             bottom: 0px;
-            background-color: #1018283f;
+            @include themed() {
+              background-color: t(table-border);
+            }
           }
 
           th {
             text-align: start;
             padding: 15px;
-            background-color: #f6f8fa;
-            background-color: #eaecf5;
+            @include themed() {
+              background-color: t(table-th-bg);
+            }
 
             position: relative;
 
             &:not(:last-child)::after {
               content: "";
-              background-color: #1018283f;
+              @include themed() {
+                background-color: t(table-border);
+              }
+
               position: absolute;
               width: 0.04rem;
               height: 100%;
@@ -174,34 +186,46 @@
               margin: 0;
               font-size: 0.8rem;
               font-weight: 500;
-              color: #101828;
+              @include themed() {
+                color: t(primary-color);
+              }
             }
           }
         }
 
         tbody {
           tr {
-            border-bottom: 1px solid #d0d5dd;
             max-height: 50px;
+            @include themed() {
+              background-color: t(table-row-bg);
+              border-bottom: 1px solid t(division-border-color);
+            }
           }
 
           tr:nth-child(even) {
-            background-color: #e1eaf92c;
             &:hover {
-              background-color: #e1eaf92c;
+              @include themed() {
+                background-color: t(table-row-hover);
+              }
             }
           }
 
           tr:nth-child(odd) {
             &:hover {
-              background-color: #e1eaf92c;
+              @include themed() {
+                background-color: t(table-row-hover);
+              }
             }
           }
 
           td {
             padding: 0px 15px;
             height: 50px;
-            border-bottom: 1px solid #d0d5dd;
+
+            @include themed() {
+              border-bottom: 1px solid t(division-border-color);
+            }
+
             p {
               font-size: 0.8rem;
               width: 100%;
@@ -209,7 +233,10 @@
               white-space: nowrap;
               overflow: hidden;
               margin: 0;
-              color: #101828;
+              @include themed() {
+                color: t(primary-color);
+              }
+
               font-weight: 500;
               @include small-device {
                 font-size: clamp(
@@ -236,6 +263,7 @@
   display: inline-flex;
   padding: 0px 10px;
   border-radius: 8px;
+  // border: 1px solid red;
 
   &--activeBg {
     background-color: #deeedc;
@@ -268,11 +296,11 @@
     }
 
     .activeText {
-      color: #789980;
+      color: #789980 !important;
     }
 
     .inactiveText {
-      color: #7e8da4;
+      color: #7e8da4 !important;
     }
   }
 }

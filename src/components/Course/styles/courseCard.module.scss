@@ -1,5 +1,6 @@
 @import "../../../styles/mixins.module";
 @import "../../../styles/variables.module";
+@import "../../../styles/themes.module";
 
 .card {
   width: 180px;
@@ -15,12 +16,17 @@
   grid-template-rows: auto 20% 30% 15%;
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: white;
-  @include card-bg-shadow;
+  @include themed() {
+    background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-primary);
+  }
+  @include card-box-shadow;
 
   &--searchedItem {
-    border: 2px solid #6167a0;
-    box-shadow: $card-hover-box-shadow !important;
+    @include themed {
+      box-shadow: t(card-box-shadow-primary) !important;
+      border: 2px solid t(app-scheme-color);
+    }
   }
   &--blur {
     opacity: 0.6;
@@ -37,26 +43,23 @@
   }
 
   &:hover {
-    box-shadow: $card-hover-box-shadow;
+    @include themed {
+      box-shadow: t(card-box-shadow-primary);
+    }
   }
 
   &__logoWrapper {
     grid-area: logoWrapper;
-    // @include fhw;
     width: 100%;
-    // border: 1px solid red;
     aspect-ratio: 1/1;
 
     div {
       width: 100%;
       aspect-ratio: 1/1;
       @include flex-container(flex-start, center);
-      // border: 1px solid blue;
       border-radius: 10px;
       overflow: hidden;
       position: relative;
-      border: 1px solid #d3cee9;
-      // background-color: #f7f5ff;
 
       img {
         width: 100%;
@@ -70,7 +73,6 @@
     grid-area: linkBtnWrapper;
     @include fhw;
     @include flex-container(flex-end, flex-start);
-    // border: 1px solid red;
 
     .buttonWrapper {
       aspect-ratio: 1/1;
@@ -83,7 +85,6 @@
     grid-area: titleWrapper;
     @include fhw;
     @include flex-container(flex-start, center);
-    // border: 1px solid red;
 
     p {
       font-size: 1rem;
@@ -91,6 +92,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       font-weight: 500;
+      @include themed {
+        color: t(primary-color);
+      }
 
       @include small-device {
         font-size: clamp(
@@ -110,14 +114,15 @@
 
     p {
       font-size: 0.6rem;
-      color: $secondary-text-color;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       white-space: normal;
       line-height: 1.8;
-      color: #667085;
+      @include themed {
+        color: t(secondary-color);
+      }
 
       @include small-device {
         font-size: clamp(
@@ -133,11 +138,10 @@
     grid-area: chapterWrapper;
     @include fhw;
     @include flex-container(center, center);
-    // border: 1px solid black;
+
     &__innerDiv {
       width: 100%;
       height: 80%;
-      // border: 1px solid black;
     }
   }
 
@@ -145,11 +149,10 @@
     grid-area: durationWrapper;
     @include fhw;
     @include flex-container(center, center);
-    // border: 1px solid red;
+
     &__innerDiv {
       width: auto;
       height: 80%;
-      // border: 1px solid black;
     }
   }
 }

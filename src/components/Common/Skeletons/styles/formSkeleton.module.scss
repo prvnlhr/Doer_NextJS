@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .formWrapper {
   width: 100%;
@@ -53,24 +54,12 @@
       .button {
         height: 30px;
         width: 100px;
-        padding-left: 10px;
-        padding-right: 10px;
         outline: none;
         border: none;
         color: white;
         cursor: pointer;
         border: 1px solid #d0d5dd37;
-
-        &:disabled {
-          background-color: #6167a0;
-          cursor: not-allowed;
-        }
-
-        .spinnerDiv {
-          // border: 1px solid red;
-          height: 80%;
-          @include flex-container(center, center);
-        }
+        padding: 5px;
       }
     }
   }
@@ -79,8 +68,11 @@
 .inputGroup {
   width: 100%;
   height: calc(100% - 30px);
-  background-color: white;
-  border: 1px solid #b4b2b270;
+  @include themed() {
+    background-color: t(form-group-bg);
+    border: 1px solid t(form-group-border);
+  }
+
   border-radius: 8px;
   overflow: hidden;
   padding: 10px;
@@ -97,7 +89,7 @@
       height: 15px;
       //   border: 1px solid red;
       display: flex;
-      border: 1px solid #d0d5dd37;
+      // border: 1px solid #d0d5dd37;
       border-radius: 10px;
       overflow: hidden;
     }
@@ -109,16 +101,18 @@
     border: none;
     outline: none;
     padding: 0px 10px;
-    background-color: #f2f4f7;
     border-radius: inherit;
     font-weight: 500;
     display: flex;
     align-items: center;
+    @include themed() {
+      background-color: t(form-input-bg);
+    }
+
     .inputTextDiv {
       width: 200px;
       height: 15px;
       display: flex;
-      border: 1px solid #d0d5dd37;
       border-radius: 10px;
       overflow: hidden;
     }
@@ -144,7 +138,6 @@
       height: 15px;
       //   border: 1px solid red;
       display: flex;
-      border: 1px solid #d0d5dd37;
       border-radius: 10px;
       overflow: hidden;
     }
@@ -187,7 +180,7 @@
         height: 100%;
         aspect-ratio: 1/2;
         @include flex-container(center, center);
-        margin-right: 5px;
+        margin-right: 5px;c
 
         .radioDot {
           aspect-ratio: 1/1;
@@ -195,7 +188,7 @@
           border-radius: 50%;
           //   background-color: #a4adbb;
           overflow: hidden;
-          border: 1px solid #d0d5dd37;
+          // border: 1px solid #d0d5dd37;
 
           &--activeDot {
             background-color: #789980 !important;

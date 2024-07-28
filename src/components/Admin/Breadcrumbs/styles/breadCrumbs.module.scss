@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .breadCrumbsBar {
   width: 100%;
@@ -34,7 +35,9 @@
       }
 
       &--normalText {
-        color: #7e8da4;
+        @include themed() {
+          color: t(primary-color);
+        }
         border: 1px solid transparent;
         &:hover {
           border-bottom: 1px solid #7e8da4;
@@ -42,7 +45,9 @@
       }
 
       &--currentText {
-        color: #6167a0;
+        @include themed() {
+          color: t(app-scheme-color);
+        }
         border: none !important;
       }
     }

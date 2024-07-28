@@ -15,11 +15,11 @@ const CommonHeading = ({ to, text, searchParams }) => {
     const url = new URL(window.location);
     if (searchedItemId) {
       url.searchParams.delete("item");
-      console.log(url.href);
+      // console.log(url.href);
       router.replace(url.href);
     } else {
       url.searchParams.append("search", true);
-      console.log(url.href);
+      // console.log(url.href);
       router.replace(url.href);
     }
   };
@@ -29,7 +29,7 @@ const CommonHeading = ({ to, text, searchParams }) => {
       <div className={styles.backBtnWrapperGrid}>
         <Link href={to ? to : "#"} className={styles.iconCell}>
           <div className={styles.chevIconDiv}>
-            <ChevronRightIcon />
+            <ChevronRightIcon color="white" />
           </div>
         </Link>
         <div className={styles.textCell}>

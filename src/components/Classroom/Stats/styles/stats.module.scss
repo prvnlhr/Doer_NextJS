@@ -34,7 +34,7 @@
 
         p {
           font-size: 1rem;
-          color: #101828;
+          color: $primary-color;
           @include small-device {
             font-size: clamp(
               1rem,
@@ -45,7 +45,7 @@
 
           span {
             font-weight: 500;
-            color: #718199;
+            color: $secondary-color;
           }
         }
       }
@@ -58,7 +58,7 @@
         align-items: flex-start;
         p {
           font-size: 0.85rem;
-          color: #6167a0;
+          color: $app-scheme-color;
           font-weight: 500;
           @include small-device {
             font-size: clamp(
@@ -119,8 +119,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #ecf2ff;
-      border: 1px solid #d0d5dd;
+      background-color: $card-bg-secondary;
+      // border: 1px solid red;
       border-radius: 12px;
     }
 
@@ -148,7 +148,7 @@
       font-size: 0.8rem;
       font-weight: 500;
       white-space: nowrap;
-      color: #667085;
+      color: $secondary-color;
       line-height: 100%;
     }
 
@@ -177,7 +177,7 @@
       font-size: 2rem;
       font-weight: 500;
       white-space: nowrap;
-      color: #1c3553;
+      color: $primary-color;
     }
     @include small-device {
       align-items: flex-start;

@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .backBtnWrapperGrid {
   width: auto;
@@ -40,7 +41,9 @@
     justify-content: flex-start;
     align-items: center;
     p {
-      color: #101828;
+      @include themed() {
+        color: t(primary-color);
+      }
       font-size: 0.9rem;
       letter-spacing: 4px;
       font-weight: 600;
@@ -60,7 +63,9 @@
       content: "";
       width: 20px;
       height: 3px;
-      background-color: #6167a0;
+      @include themed() {
+        background-color: t(app-scheme-color);
+      }
       border-radius: 5px;
       // margin-left: 5px;
     }

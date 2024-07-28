@@ -1,4 +1,6 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .headerWrapper {
   grid-area: headerWrapper;
@@ -9,7 +11,9 @@
   @include flex-container(flex-start, center);
   // border: 1px solid blue;
   // background-color: #0d1321;
-  border-bottom: 1px solid #d0d5dd;
+  // @include themed() {
+  //   border-bottom: 1px solid t(division-border-color);
+  // }
 
   &__leftSection {
     height: 100%;
@@ -38,8 +42,9 @@
 
     .navbarLink {
       padding: 5px 12px;
-      background-color: #6167a0;
-      // background-color: #6167a0;
+      @include themed() {
+        background-color: t(app-scheme-color);
+      }
       border: none;
       outline: none;
       cursor: pointer;
@@ -96,7 +101,7 @@
     height: 50px;
     padding: 5px 10px;
     @include flex-container(center, flex-start, $direction: column);
-    border-bottom: 1px solid #d0d5dd;
+    @include division-border();
     @include small-device {
       height: 70%;
     }
@@ -122,7 +127,7 @@
       white-space: nowrap;
 
       span {
-        color: #6167a0;
+        color: $app-scheme-color;
         font-style: italic;
         font-weight: 600;
       }

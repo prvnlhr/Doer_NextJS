@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .datatableWrapper {
   width: 100%;
@@ -43,8 +44,10 @@
         max-height: 100%;
         position: relative;
         @include scroll();
-        border: 1px solid #d0d5dd;
-        background-color: white;
+
+        @include themed() {
+          border: 1px solid t(division-border-color);
+        }
         border-radius: 8px;
 
         table {
@@ -66,14 +69,17 @@
             width: 100%;
             height: 1px;
             bottom: 0px;
-            background-color: #1018283f;
+            @include themed() {
+              background-color: t(table-border);
+            }
           }
 
           th {
             text-align: start;
             padding: 15px;
-            background-color: #f6f8fa;
-            background-color: #eaecf5;
+            @include themed() {
+              background-color: t(table-th-bg);
+            }
             div {
               height: 10px;
               //   width: auto;
@@ -85,7 +91,7 @@
 
             &:not(:last-child)::after {
               content: "";
-              background-color: #1018283f;
+
               position: absolute;
               width: 0.04rem;
               height: 100%;
@@ -94,33 +100,44 @@
               bottom: 0px;
               margin-top: auto;
               margin-bottom: auto;
+              @include themed() {
+                background-color: t(table-border);
+              }
             }
           }
         }
 
         tbody {
           tr {
-            border-bottom: 1px solid #d0d5dd;
             max-height: 50px;
+            @include themed() {
+              background-color: t(table-row-bg);
+              border-bottom: 1px solid t(division-border-color);
+            }
           }
 
           tr:nth-child(even) {
-            background-color: #e1eaf92c;
             &:hover {
-              background-color: #e1eaf92c;
+              @include themed() {
+                background-color: t(table-row-hover);
+              }
             }
           }
 
           tr:nth-child(odd) {
             &:hover {
-              background-color: #e1eaf92c;
+              @include themed() {
+                background-color: t(table-row-hover);
+              }
             }
           }
 
           td {
             padding: 0px 15px;
             height: 50px;
-            border-bottom: 1px solid #d0d5dd;
+            @include themed() {
+              border-bottom: 1px solid t(division-border-color);
+            }
 
             .textDiv {
               width: 80%;

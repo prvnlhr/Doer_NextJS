@@ -1,0 +1,102 @@
+@use "sass:map";
+@import "./color.module";
+
+$themes: (
+  light: (
+    app-bg: $app-bg-light,
+    app-scheme-color: $app-scheme-color-light,
+    primary-color: $primary-color-light,
+    secondary-color: $secondary-color-light,
+    tertiary-color: $tertiary-color-light,
+    card-bg-primary: $card-bg-primary-light,
+    card-bg-secondary: $card-bg-secondary-light,
+    card-bg-tertiary: $card-bg-tertiary-light,
+    card-box-shadow-primary: $card-box-shadow-primary-light,
+    card-box-shadow-secondary: $card-box-shadow-secondary-light,
+    division-border-color: $division-border-color-light,
+    link-btn-bg: $link-btn-bg-light,
+    table-th-bg: $table-th-bg-light,
+    table-row-bg: $table-row-bg-light,
+    table-row-bg-odd: $table-row-bg-odd-light,
+    form-group-border: $form-group-border-light,
+    form-group-bg: $form-group-bg-light,
+    form-input-bg: $form-input-bg-light,
+    code-block-bg: $code-block-bg-light,
+    theme-toggle-track-bg: $theme-toggle-track-light,
+    theme-toggle-btn-bg: $theme-toggle-btn-bg-light,
+    theme-toggle-btn-border: $theme-toggle-btn-border-light,
+    shimmer-one: $shimmer-one-light,
+    shimmer-two: $shimmer-two-light,
+  ),
+  dark: (
+    app-bg: $app-bg-dark,
+    app-scheme-color: $app-scheme-color-dark,
+    primary-color: $primary-color-dark,
+    secondary-color: $secondary-color-dark,
+    tertiary-color: $tertiary-color-dark,
+    card-bg-primary: $card-bg-primary-dark,
+    card-bg-secondary: $card-bg-secondary-dark,
+    card-bg-tertiary: $card-bg-tertiary-dark,
+    card-box-shadow-primary: $card-box-shadow-primary-dark,
+    card-box-shadow-secondary: $card-box-shadow-secondary-dark,
+    division-border-color: $division-border-color-dark,
+    link-btn-bg: $link-btn-bg-dark,
+    table-th-bg: $table-th-bg-dark,
+    table-row-bg: $table-row-bg-dark,
+    table-row-bg-odd: $table-row-bg-odd-dark,
+    form-group-border: $form-group-border-dark,
+    form-group-bg: $form-group-bg-dark,
+    form-input-bg: $form-input-bg-dark,
+    code-block-bg: $code-block-bg-dark,
+    theme-toggle-track-bg: $theme-toggle-track-dark,
+    theme-toggle-btn-bg: $theme-toggle-btn-bg-dark,
+    theme-toggle-btn-border: $theme-toggle-btn-border-dark,
+    shimmer-one: $shimmer-one-dark,
+    shimmer-two: $shimmer-two-dark,
+  ),
+);
+
+@mixin themed {
+  @each $theme, $map in $themes {
+    :global(.theme--#{$theme}) & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $value: map.get($map, $key);
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin gthemed {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $value: map.get($map, $key);
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+
+      $theme-map: null !global;
+    }
+  }
+}
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

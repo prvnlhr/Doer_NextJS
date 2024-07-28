@@ -18,8 +18,8 @@
     "progressPercWrapper progressPercWrapper completedWrapper completedWrapper";
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: white;
-  @include card-bg-shadow;
+  background-color: $card-bg-primary;
+  @include card-box-shadow;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -51,6 +51,7 @@
       font-weight: 500;
       text-overflow: ellipsis;
       white-space: nowrap;
+      color: $primary-color;
       @include small-device {
         font-size: clamp(1rem, 0rem + 5vw, 1.5rem) !important;
       }
@@ -64,14 +65,14 @@
     .progressBarTrack {
       width: 80%;
       height: 4px;
-      background-color: #eceff2;
+      background-color: rgba(112, 128, 144, 0.209);
       border-radius: 3px;
       @include flex-container(flex-start, center);
       overflow: hidden;
       &__progressBar {
         width: 50%;
         height: 100%;
-        background: #6167a0;
+        background: $app-scheme-color;
       }
     }
   }
@@ -110,7 +111,7 @@
     p {
       font-size: 1.5rem;
       line-height: 100%;
-      color: #6167a0;
+      color: $app-scheme-color;
       // border: 1px solid red;
       @include small-device {
         font-size: clamp(
@@ -123,7 +124,7 @@
     span {
       font-size: 1rem;
       line-height: 100%;
-      color: $secondary-text-color;
+      color: $secondary-color;
       //   border: 1px solid red;
       @include small-device {
         font-size: clamp(
@@ -146,6 +147,7 @@
       font-weight: 500;
       letter-spacing: 0.5px;
       white-space: nowrap;
+      color: $primary-color;
 
       @include small-device {
         font-size: clamp(

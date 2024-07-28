@@ -1,9 +1,12 @@
 @import "../../../styles/variables.module";
 @import "../../../styles/mixins.module";
+@import "../../../styles/themes.module";
 
 .topicPageWrapper {
   @include fhw;
-  // border: 1px solid red;
+  @include themed() {
+    border-top: 1px solid t(division-border-color);
+  }
   @include flex-container(center, center);
 
   &__pageInnerWrapper {

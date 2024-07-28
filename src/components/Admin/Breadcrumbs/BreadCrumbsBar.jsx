@@ -50,7 +50,7 @@ const BreadCrumbsBar = () => {
               className={styles.breadcrumbWrapper__iconWrapper__iconDiv}
               style={{ width: "15px", height: "15px" }}
             >
-              <ChevronRightIcon />
+              <ChevronRightIcon color={"#8b98a5"} />
             </div>
           </div>
         </div>

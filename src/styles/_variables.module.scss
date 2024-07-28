@@ -1,12 +1,6 @@
-$primary-text-color: #101828;
-$secondary-text-color: #667085;
-$card-bg: white;
-$card-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-$card-hover-box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-$link-btn-bg: #6167a0;
-$link-btn-bg: #6167a0;
 $scrollbar-color: #8581b4;
 
+// Light theme color pallete
 $app-bg: linear-gradient(
   to right top,
   #e0f2fe,
@@ -15,6 +9,58 @@ $app-bg: linear-gradient(
   #fafbff,
   #ffffff
 );
-// $app-bg: radial-gradient(circle, #f5f7f8, #f3f7fa, #f1f7fb, #eff7fd, #eef7ff);
-// $app-bg: linear-gradient(to bottom, #f5f7f8, #f4f7f9, #f3f7fa, #f3f7fc, #f3f7fd, #f4f8fe, #f6f8fe, #f7f9ff, #f9faff, #fcfcff, #fdfdff, #ffffff);
-// $app-bg: #f8f8f8;
+$app-scheme-color: #6167a0;
+
+$primary-color: #1c3553;
+$secondary-color: #667085;
+$tertiary-color: #a2a8b2;
+
+$card-bg-primary: white;
+$card-bg-secondary: white;
+$card-bg-tertiary: white;
+$card-box-shadow-primary: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+$card-box-shadow-secondary: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+$division-border-color: #d0d5dd;
+
+$link-btn-bg: #6167a0;
+
+$table-th-bg: #eaecf5;
+$table-row-bg: #e1eaf92c;
+$table-row-bg-odd: #e1eaf92c;
+
+$form-group-border: #b4b2b270;
+$form-group-border: #e2e2e3;
+$form-group-bg: white;
+$form-input-bg: #f2f4f7;
+
+// Dark theme color pallete
+$app-bg: #161719;
+$app-scheme-color: #7776b3;
+
+$primary-color: #e0e5eb;
+$secondary-color: #8b98a5;
+$tertiary-color: #686d76;
+
+$card-bg-primary: #232529;
+$card-bg-secondary: #1d1f2b;
+$card-bg-tertiary: #30343d;
+$card-box-shadow-primary: unset;
+$card-box-shadow-secondary: unset;
+
+$division-border-color: #24262e;
+
+$link-btn-bg: #7776b3;
+
+$form-group-border: #30343d;
+$form-group-bg: #232529;
+$form-input-bg: #30343d;
+
+$table-th-bg: #232529;
+$table-row-bg: #30343d;
+$table-row-bg-odd: #30343d;
+$table-border: #30343d;
+$table-row-hover: #6167a027;
+
+$shimmer-bg-on: #2a2c2e;
+$shimmer-bg-off: #232729;

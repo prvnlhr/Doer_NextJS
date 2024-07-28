@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .accordHeaderWrapper {
   width: 100%;
@@ -62,17 +63,6 @@
           // background-color: #a4adbb45;
           // border-radius: 50%;
         }
-
-        &::after {
-          position: absolute;
-          content: "";
-          height: 40%;
-          width: 1px;
-          background-color: #a4adbb74;
-          border-radius: 5px;
-          top: -10%;
-          z-index: 999;
-        }
       }
 
       .linkDiv {
@@ -89,23 +79,6 @@
           // border: 1px solid #d0d5dd66;
           border-radius: 5px;
           overflow: hidden;
-          .topicTitleText {
-            font-size: 0.8rem;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            &:hover {
-              color: #6167a0;
-            }
-          }
-          .topicActive {
-            color: #6167a0;
-          }
-          .topicInactive {
-            color: #919295;
-          }
         }
       }
     }

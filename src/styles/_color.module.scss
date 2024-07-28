@@ -1,0 +1,94 @@
+$scrollbar-color: #8581b4;
+
+//|> Light theme color pallete------------------------------------------------------------------
+$app-bg-light: linear-gradient(
+  to right top,
+  #e0f2fe,
+  #eaf4ff,
+  #f3f7ff,
+  #fafbff,
+  #ffffff
+);
+
+$app-scheme-color-light: #6167a0;
+$primary-color-light: #1c3553;
+$secondary-color-light: #667085;
+$tertiary-color-light: #a2a8b2;
+
+$card-bg-primary-light: white;
+$card-bg-secondary-light: white;
+$card-bg-tertiary-light: white;
+$card-box-shadow-primary-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+$card-box-shadow-secondary-light: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+$division-border-color-light: #d0d5dd;
+
+$link-btn-bg-light: #6167a0;
+
+$table-th-bg-light: #eaecf5;
+$table-row-bg-light: #e1eaf92c;
+$table-row-bg-odd-light: #e1eaf92c;
+
+$form-group-border-light: #b4b2b270;
+$form-group-border-light: #e2e2e3;
+$form-group-bg-light: white;
+$form-input-bg-light: #f2f4f7;
+
+$shimmer-bg-on-dark: #2a2c2e;
+$shimmer-bg-off-dark: #232729;
+
+$code-block-bg-light: #1d1f2b;
+
+//|> Dark theme color pallete------------------------------------------------------------------
+
+$app-bg-dark: #161719;
+// $app-scheme-color-dark: #7776b3;
+// $app-scheme-color-dark: #a399f2;
+// $app-scheme-color-dark: #6167a0;
+$app-scheme-color-dark: #a399f2;
+
+$primary-color-dark: #e0e5eb;
+$secondary-color-dark: #8b98a5;
+$tertiary-color-dark: #686d76;
+
+$card-bg-primary-dark: #232529;
+$card-bg-secondary-dark: #1d1f2b;
+$card-bg-tertiary-dark: #30343d;
+$card-box-shadow-primary-dark: unset;
+$card-box-shadow-secondary-dark: unset;
+
+$division-border-color-dark: #24262e;
+
+// $link-btn-bg-dark: #7776b3;
+// $link-btn-bg-dark: #6167a0;
+$link-btn-bg-dark: #a399f2;
+
+$form-group-border-dark: #30343d;
+$form-group-bg-dark: #232529;
+$form-input-bg-dark: #30343d;
+
+$table-th-bg-dark: #28292e;
+$table-row-bg-dark: #121212;
+$table-row-bg-odd-dark: #161719;
+$table-border-dark: #30343d;
+$table-row-hover-dark: #6167a027;
+
+$shimmer-bg-on-dark: #2a2c2e;
+$shimmer-bg-off-dark: #232729;
+
+$code-block-bg-dark: #1d1f2b;
+
+$theme-toggle-track-light: #f2f4f7;
+$theme-toggle-track-dark: #30343d;
+
+$theme-toggle-btn-bg-light: white;
+$theme-toggle-btn-bg-dark: #232529;
+
+$theme-toggle-btn-border-light: #d0d5dd;
+$theme-toggle-btn-border-dark: #7e8da4;
+
+$shimmer-one-light: #f2f4f7;
+$shimmer-two-light: #fcfcfd;
+
+$shimmer-one-dark: #30353e;
+$shimmer-two-dark: #24282f;

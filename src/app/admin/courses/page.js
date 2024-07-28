@@ -1,4 +1,5 @@
 import Datatable from "@/components/Admin/Datatable/Datatable";
+import DatatableSkeleton from "@/components/Common/Skeletons/DatatableSkeleton";
 import { fetchCourses } from "@/lib/api/admin/coursesApi";
 import React from "react";
 
@@ -34,6 +35,7 @@ const CoursesPage = async ({ searchParams }) => {
       getAddUrl={getAddUrl}
       getDeleteUrl={getDeleteUrl}
     />
+    // <DatatableSkeleton />
   );
 };
 
