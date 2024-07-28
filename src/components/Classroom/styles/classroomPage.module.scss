@@ -1,4 +1,5 @@
 @import "../../../styles/mixins.module";
+@import "../../../styles/themes.module";
 
 .layoutWrapper {
   @include fhw;
@@ -125,7 +126,9 @@
 
     p {
       font-size: 0.8rem;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
       letter-spacing: 4px;
       font-weight: 600;
       @include small-device {
@@ -139,12 +142,16 @@
 
     .headerLink {
       p {
-        color: #667085;
+        @include themed() {
+          color: t(secondary-color);
+        }
       }
 
       &--active {
         p {
-          color: #101828;
+          @include themed() {
+            color: t(primary-color);
+          }
         }
       }
     }
@@ -161,7 +168,9 @@
       width: 25px;
       height: 3px;
       border-radius: 5px;
-      background-color: $app-scheme-color;
+      @include themed() {
+        background-color: t(app-scheme-color);
+      }
     }
   }
 }
@@ -193,7 +202,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       font-weight: 500;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
       &:hover {
         text-decoration: underline;
       }

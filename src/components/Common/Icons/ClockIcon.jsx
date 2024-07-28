@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./styles/clockIcon.module.scss";
 import { useTheme } from "@/context/ThemeContext";
 const ClockIcon = () => {
-  const { theme } = useTheme();
   return (
     <svg
       className={styles.icon}

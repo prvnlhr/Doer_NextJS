@@ -1,12 +1,16 @@
 @import "../../../styles/mixins.module";
+@import "../../../styles/themes.module";
+
 .verifyOtpFormWrapper {
   position: absolute;
   width: 300px;
   // aspect-ratio: 2/2.2;
   height: auto;
   @include flex-container(flex-start, center, $direction: column);
-  background-color: white;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  @include themed() {
+    background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-secondary);
+  }
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -35,7 +39,9 @@
       // border: 1px solid springgreen;
       @include flex-container(flex-start, center);
       p {
-        color: #101828;
+        @include themed() {
+          color: t(primary-color);
+        }
         font-size: 1.5rem;
         font-weight: 500;
       }
@@ -49,13 +55,17 @@
       justify-content: space-evenly;
 
       p:first-child {
-        color: #667085;
+        @include themed() {
+          color: t(secondary-color);
+        }
         font-size: 0.7rem;
         font-weight: 500;
       }
 
       p:last-child {
-        color: #101828;
+        @include themed() {
+          color: t(primary-color);
+        }
         font-size: 0.7rem;
         font-weight: 500;
       }
@@ -102,7 +112,9 @@
         @include flex-container(center, center);
         cursor: pointer;
         p {
-          color: $app-scheme-color;
+          @include themed() {
+            color: t(app-scheme-color);
+          }
           font-weight: 600;
           font-size: 0.7rem;
         }
@@ -118,16 +130,25 @@
         width: auto;
         height: 30px;
         @include flex-container(center, center);
+        p {
+          @include themed() {
+            color: t(primary-color);
+          }
+        }
 
         .timeDiv {
           aspect-ratio: 1/1.2;
           height: 100%;
           @include flex-container(center, center);
-          background-color: #e7effc;
+          @include themed() {
+            background-color: t(form-input-bg);
+          }
           border-radius: 5px;
           p {
             font-size: 0.65rem;
-            color: #101828;
+            @include themed() {
+              color: t(primary-color);
+            }
             font-weight: 600;
           }
           &:first-child {
@@ -161,7 +182,10 @@
           outline: none;
           border: none;
           border-radius: 50%;
-          background-color: $app-scheme-color;
+
+          @include themed() {
+            background-color: t(app-scheme-color);
+          }
           margin-left: 5px;
         }
         .textDiv {
@@ -173,7 +197,9 @@
 
           p {
             font-size: 1.2rem;
-            color: #101828;
+            @include themed() {
+              color: t(primary-color);
+            }
             font-weight: 500;
           }
           span {
@@ -191,13 +217,18 @@
       @include flex-container(center, center);
       p {
         font-size: 0.7rem;
-        color: #101828;
+        @include themed() {
+          color: t(app-scheme-color);
+        }
       }
       .footerLink {
         margin-left: 5px;
         p {
           font-size: 0.7rem;
-          color: $app-scheme-color;
+
+          @include themed() {
+            color: t(app-scheme-color);
+          }
           font-weight: 500;
         }
       }
@@ -222,13 +253,19 @@
     border-radius: 12px;
     border: none;
     outline: none;
-    background-color: #e7effc;
+
+    @include themed() {
+      color: t(primary-color);
+      background-color: t(form-input-bg);
+    }
     text-align: center;
     font-size: 1.2rem;
     font-weight: 500;
     -moz-appearance: textfield;
     &:focus {
-      border: 0.15rem solid $app-scheme-color;
+      @include themed() {
+        border: 0.15rem solid t(form-input-bg);
+      }
     }
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {

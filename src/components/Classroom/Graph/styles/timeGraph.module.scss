@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.module";
+@import "../../../../styles/themes.module";
 
 .graphWrapper {
   width: 50%;
@@ -24,14 +25,18 @@
 
     p {
       font-size: 1.2rem;
-      color: $app-scheme-color;
+      @include themed() {
+        color: t(app-scheme-color);
+      }
       font-weight: 500;
       @include small-device {
         font-size: clamp(1.1rem, -0.6999999999999997rem + 9vw, 2rem) !important;
       }
       span {
         font-size: 0.8rem;
-        color: $secondary-color;
+        @include themed() {
+          color: t(secondary-color);
+        }
         margin-right: 2px;
         @include small-device {
           font-size: clamp(
@@ -77,14 +82,18 @@
       align-items: flex-end;
 
       &:hover .valueBar {
-        background-color: $app-scheme-color;
+        @include themed() {
+          background-color: t(app-scheme-color);
+        }
       }
       &:hover .tooltip {
         display: flex;
       }
       .valueBar {
         width: 3px;
-        background-color: $card-bg-secondary;
+        @include themed() {
+          background-color: t(card-bg-secondary);
+        }
         border-radius: 5px 5px 0px 0px;
         position: relative;
         display: flex;
@@ -92,7 +101,9 @@
         align-items: flex-start;
 
         &--activeDay {
-          background-color: $app-scheme-color;
+          @include themed() {
+            background-color: t(app-scheme-color);
+          }
         }
 
         // &:hover .tooltip {
@@ -111,7 +122,9 @@
 
       p {
         font-weight: 600;
-        color: $tertiary-color;
+        @include themed() {
+          color: t(tertiary-color);
+        }
         font-size: 0.7rem;
         @include small-device {
           font-size: clamp(
@@ -124,7 +137,9 @@
 
       &--activeLabelCell {
         p {
-          color: $app-scheme-color !important;
+          @include themed() {
+            color: t(app-scheme-color) !important;
+          }
         }
       }
     }
@@ -133,8 +148,10 @@
 
 .tooltip {
   position: absolute;
-  background-color: $card-bg-secondary;
-  color: $primary-color;
+  @include themed() {
+    background-color: t(card-bg-secondary);
+    color: t(primary-color);
+  }
   width: auto;
   height: 35px;
   border-radius: 2px;
@@ -163,7 +180,9 @@
       align-items: center;
       p {
         font-size: 0.6rem;
-        color: $secondary-color;
+        @include themed() {
+          color: t(secondary-color);
+        }
         @include small-device {
           font-size: clamp(
             0.6rem,
@@ -185,7 +204,9 @@
     p {
       font-size: 0.6rem;
       white-space: nowrap;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
       &:last-child {
         margin-left: 2px;
       }

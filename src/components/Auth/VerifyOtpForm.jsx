@@ -187,7 +187,7 @@ const VerifyOtpForm = ({ email }) => {
               <div className={styles.timeDiv}>
                 <p>{minutes}</p>
               </div>
-              :
+              <p>:</p>
               <div className={styles.timeDiv}>
                 <p>{seconds}</p>
               </div>

@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .card {
   width: 40%;
@@ -17,7 +18,9 @@
 
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: $card-bg-primary;
+  @include themed() {
+    background-color: t(card-bg-primary);
+  }
   @include card-box-shadow;
 
   @media (max-width: 768px) {
@@ -63,7 +66,9 @@
       overflow: hidden;
       white-space: nowrap;
       width: 95%;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
       @include small-device {
         // font-size: clamp(
         //   0.8rem,

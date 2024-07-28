@@ -9,9 +9,9 @@
     background-color: t(card-bg-primary);
     box-shadow: t(card-box-shadow-primary);
   }
+  height: auto;
   padding: 5px;
   top: 80px;
-  aspect-ratio: 1/0.9;
   right: 25px;
   z-index: 100;
   display: grid;

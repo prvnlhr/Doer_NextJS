@@ -75,16 +75,14 @@ const MainHeader = () => {
           )
         )}
 
-        {status === "authenticated" && (
-          <div className={styles.menuIconWrapper} ref={iconRef}>
-            <div
-              className={styles.popUpIconDiv}
-              onClick={() => setShowPopUp((prev) => !prev)}
-            >
-              <PopUpMenuIcon />
-            </div>
+        <div className={styles.menuIconWrapper} ref={iconRef}>
+          <div
+            className={styles.popUpIconDiv}
+            onClick={() => setShowPopUp((prev) => !prev)}
+          >
+            <PopUpMenuIcon />
           </div>
-        )}
+        </div>
 
         {showPopUp && (
           <div className={popUpStyles.popMenuWrapper} ref={popupRef}>
@@ -109,19 +107,23 @@ const MainHeader = () => {
                 </div>
               </div>
             </div>
-            <div className={popUpStyles.nameCell}>
-              <div>
-                <p>Logged in as -</p>
-              </div>
-              <div>
-                <p>Praveen Lohar</p>
-              </div>
-            </div>
-            <div className={popUpStyles.logoutCell}>
-              <button type="button" onClick={() => signOut()}>
-                <p>Logout</p>
-              </button>
-            </div>
+            {status === "authenticated" && (
+              <>
+                <div className={popUpStyles.nameCell}>
+                  <div>
+                    <p>Logged in as -</p>
+                  </div>
+                  <div>
+                    <p>Praveen Lohar</p>
+                  </div>
+                </div>
+                <div className={popUpStyles.logoutCell}>
+                  <button type="button" onClick={() => signOut()}>
+                    <p>Logout</p>
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>

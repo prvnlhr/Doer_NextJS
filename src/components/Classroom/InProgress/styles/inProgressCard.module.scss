@@ -1,5 +1,6 @@
 @import "../../../../styles/mixins.module";
 @import "../../../../styles/variables.module";
+@import "../../../../styles/themes.module";
 
 .card {
   width: 250px;
@@ -18,8 +19,10 @@
     "progressPercWrapper progressPercWrapper completedWrapper completedWrapper";
   padding: 0.8rem;
   box-sizing: border-box;
-  background-color: $card-bg-primary;
-  @include card-box-shadow;
+  @include themed() {
+    background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-primary);
+  }
 
   @media (max-width: 768px) {
     width: 90%;
@@ -51,7 +54,9 @@
       font-weight: 500;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
       @include small-device {
         font-size: clamp(1rem, 0rem + 5vw, 1.5rem) !important;
       }
@@ -72,7 +77,10 @@
       &__progressBar {
         width: 50%;
         height: 100%;
-        background: $app-scheme-color;
+
+        @include themed() {
+          background: t(app-scheme-color);
+        }
       }
     }
   }
@@ -111,7 +119,9 @@
     p {
       font-size: 1.5rem;
       line-height: 100%;
-      color: $app-scheme-color;
+      @include themed() {
+        color: t(app-scheme-color);
+      }
       // border: 1px solid red;
       @include small-device {
         font-size: clamp(
@@ -124,7 +134,9 @@
     span {
       font-size: 1rem;
       line-height: 100%;
-      color: $secondary-color;
+      @include themed() {
+        color: t(secondary-color);
+      }
       //   border: 1px solid red;
       @include small-device {
         font-size: clamp(
@@ -147,7 +159,9 @@
       font-weight: 500;
       letter-spacing: 0.5px;
       white-space: nowrap;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
 
       @include small-device {
         font-size: clamp(

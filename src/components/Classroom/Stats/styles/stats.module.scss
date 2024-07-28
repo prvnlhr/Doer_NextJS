@@ -34,7 +34,9 @@
 
         p {
           font-size: 1rem;
-          color: $primary-color;
+          @include themed() {
+            color: t(primary-color);
+          }
           @include small-device {
             font-size: clamp(
               1rem,
@@ -45,7 +47,9 @@
 
           span {
             font-weight: 500;
-            color: $secondary-color;
+            @include themed() {
+              color: t(secondary-color);
+            }
           }
         }
       }
@@ -58,7 +62,9 @@
         align-items: flex-start;
         p {
           font-size: 0.85rem;
-          color: $app-scheme-color;
+          @include themed() {
+            color: t(app-scheme-color);
+          }
           font-weight: 500;
           @include small-device {
             font-size: clamp(
@@ -119,7 +125,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: $card-bg-secondary;
+      @include themed() {
+        background-color: t(card-bg-secondary);
+      }
       // border: 1px solid red;
       border-radius: 12px;
     }
@@ -148,7 +156,9 @@
       font-size: 0.8rem;
       font-weight: 500;
       white-space: nowrap;
-      color: $secondary-color;
+      @include themed() {
+        color: t(secondary-color);
+      }
       line-height: 100%;
     }
 
@@ -177,7 +187,9 @@
       font-size: 2rem;
       font-weight: 500;
       white-space: nowrap;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
     }
     @include small-device {
       align-items: flex-start;
