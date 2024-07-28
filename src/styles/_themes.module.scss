@@ -27,6 +27,11 @@ $themes: (
     theme-toggle-btn-border: $theme-toggle-btn-border-light,
     shimmer-one: $shimmer-one-light,
     shimmer-two: $shimmer-two-light,
+    graph-tooltip-bg: $graph-tooltip-bg-light,
+    graph-tooltip-label: $graph-tooltip-label-light,
+    graph-tooltip-value: $graph-tooltip-value-light,
+    graph-bar-bg: $graph-bar-bg-light,
+    graph-bar-label-color: $graph-bar-label-color-light,
   ),
   dark: (
     app-bg: $app-bg-dark,
@@ -53,6 +58,11 @@ $themes: (
     theme-toggle-btn-border: $theme-toggle-btn-border-dark,
     shimmer-one: $shimmer-one-dark,
     shimmer-two: $shimmer-two-dark,
+    graph-tooltip-bg: $graph-tooltip-bg-dark,
+    graph-tooltip-label: $graph-tooltip-label-dark,
+    graph-tooltip-value: $graph-tooltip-value-dark,
+    graph-bar-bg: $graph-bar-bg-dark,
+    graph-bar-label-color: $graph-bar-label-color-dark,
   ),
 );
 

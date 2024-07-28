@@ -20,6 +20,7 @@
   box-sizing: border-box;
   @include themed() {
     background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-primary);
   }
   @include card-box-shadow;
 
@@ -37,7 +38,9 @@
     @include flex-container(flex-start, center);
     p {
       font-size: 0.8rem;
-      color: $primary-color;
+      @include themed() {
+        color: t(primary-color);
+      }
       @include small-device {
         font-size: clamp(
           0.7rem,

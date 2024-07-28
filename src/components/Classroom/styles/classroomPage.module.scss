@@ -16,7 +16,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    @include division-border();
+    @include themed() {
+      border-top: 1px solid t(division-border-color);
+      border-bottom: 1px solid t(division-border-color);
+    }
     box-sizing: border-box;
     padding-left: 15px;
   }

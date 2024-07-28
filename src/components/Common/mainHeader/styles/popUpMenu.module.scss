@@ -19,7 +19,7 @@
     "themeToggleCell"
     "nameCell"
     "logoutCell";
-  grid-template-rows: 35px minmax(0, 1fr) 35px;
+  grid-template-rows: 35px 50px 35px;
   grid-template-columns: 100%;
 
   .themeToggleCell {

@@ -80,10 +80,12 @@ const TimeSpendingsGraph = ({ params }) => {
                   transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                   <div className={styles.tooltip}>
+                    {/* tooltip value */}
                     <div className={styles.valueWrapper}>
                       <p>{millisecondsToHoursAndMinutes(time).hours}h</p>
                       <p>{millisecondsToHoursAndMinutes(time).minutes}m</p>
                     </div>
+                    {/* tooltip labelc */}
                     <div className={styles.labelWrapper}>
                       <div className={styles.labelDiv}>
                         <p>{daysOfWeek[indx]}</p>
