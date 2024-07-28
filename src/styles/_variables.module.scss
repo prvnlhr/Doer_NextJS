@@ -1,7 +1,14 @@
 $scrollbar-color: #8581b4;
 
 // Light theme color pallete
-$app-bg: #f5f7fa;
+$app-bg: linear-gradient(
+  to right top,
+  #e0f2fe,
+  #eaf4ff,
+  #f3f7ff,
+  #fafbff,
+  #ffffff
+);
 $app-scheme-color: #635db0;
 
 $primary-color: #1c3553;
