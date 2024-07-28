@@ -22,6 +22,10 @@ $themes: (
     form-group-bg: $form-group-bg-light,
     form-input-bg: $form-input-bg-light,
     code-block-bg: $code-block-bg-light,
+    theme-toggle-track-bg: $theme-toggle-track-light,
+    theme-toggle-btn-bg: $theme-toggle-btn-bg-light,
+    theme-toggle-btn-border: $theme-toggle-btn-border-light,
+
   ),
   dark: (
     app-bg: $app-bg-dark,
@@ -43,6 +47,9 @@ $themes: (
     form-group-bg: $form-group-bg-dark,
     form-input-bg: $form-input-bg-dark,
     code-block-bg: $code-block-bg-dark,
+    theme-toggle-track-bg: $theme-toggle-track-dark,
+    theme-toggle-btn-bg: $theme-toggle-btn-bg-dark,
+    theme-toggle-btn-border: $theme-toggle-btn-border-dark,
   ),
 );
 
