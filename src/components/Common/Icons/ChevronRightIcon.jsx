@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import styles from "./styles/chevronIcon.module.scss";
+import { useTheme } from "@/context/ThemeContext";
 
 const ChevronRightIcon = ({ color }) => {
+  const { theme } = useTheme();
   return (
     <svg
       className={styles.icon}
@@ -11,7 +14,7 @@ const ChevronRightIcon = ({ color }) => {
     >
       <path
         d="M3.23438 6.89062L5.76562 4.5L3.23438 2.10938"
-        stroke={color ? color : ""}
+        stroke={theme === "light" ? "#667085" : "#8b98a5"}
         strokeWidth="0.84375"
         strokeLinejoin="round"
       />

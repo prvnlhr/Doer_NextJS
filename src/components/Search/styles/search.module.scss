@@ -1,11 +1,14 @@
 @import "../../../styles/mixins.module";
 @import "../../../styles/variables.module";
+@import "../../../styles/themes.module";
 
 .searchPageWrapper {
   position: absolute;
   width: 400px;
   aspect-ratio: 1/1.2;
-  background-color: $card-bg-secondary;
+  @include themed() {
+    background-color: t(card-bg-secondary);
+  }
   //   border: 1px solid red;
   margin-left: auto;
   margin-right: auto;
@@ -13,7 +16,9 @@
   right: 0;
   margin-top: 20px;
   z-index: 999;
-  box-shadow: $card-box-shadow-secondary;
+  @include themed() {
+    box-shadow: t(card-box-shadow-secondary);
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -36,7 +41,9 @@
       justify-content: center;
       align-items: center;
       // border: 1px solid red;
-      background-color: $app-scheme-color;
+      @include themed() {
+        background-color: t(app-scheme-color);
+      }
       border-radius: 100%;
       cursor: pointer;
       margin-right: 2px;
@@ -70,7 +77,9 @@
     .divisionLine {
       width: 1px;
       height: 40%;
-      background-color: $secondary-color;
+      @include themed() {
+        background-color: t(secondary-color);
+      }
       margin: 0px 0px;
     }
     .searchInputWrappper {
@@ -87,7 +96,9 @@
         box-sizing: border-box;
         padding: 0px 8px;
         background: none;
-        color: $primary-color;
+        @include themed() {
+          color: t(primary-color);
+        }
 
         @include small-device {
           font-size: clamp(
@@ -135,7 +146,9 @@
       p {
         font-weight: 500;
         font-size: 0.75rem;
-        color: $primary-color;
+        @include themed() {
+          color: t(primary-color);
+        }
 
         @include small-device {
           font-size: clamp(
@@ -147,9 +160,13 @@
       }
 
       &--activeLink {
-        border-bottom: 2px solid $app-scheme-color;
+        @include themed() {
+          border-bottom: 2px solid t(app-scheme-color);
+        }
         p {
-          color: $app-scheme-color;
+          @include themed() {
+            color: t(app-scheme-color);
+          }
           font-weight: 500;
         }
       }
@@ -205,7 +222,9 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        color: $primary-color;
+        @include themed() {
+          color: t(primary-color);
+        }
         @include small-device {
           font-size: clamp(
             0.85rem,
@@ -246,7 +265,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: $secondary-color;
+      @include themed() {
+        color: t(secondary-color);
+      }
       @include small-device {
         font-size: clamp(
           0.75rem,
@@ -257,7 +278,9 @@
     }
     &--active {
       p {
-        color: $app-scheme-color;
+        @include themed() {
+          color: t(app-scheme-color);
+        }
         font-weight: 600;
       }
     }

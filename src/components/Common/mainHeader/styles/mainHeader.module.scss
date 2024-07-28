@@ -42,7 +42,9 @@
 
     .navbarLink {
       padding: 5px 12px;
-      background-color: #a399f2;
+      @include themed() {
+        background-color: t(app-scheme-color);
+      }
       border: none;
       outline: none;
       cursor: pointer;

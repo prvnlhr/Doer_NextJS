@@ -16,15 +16,16 @@
   grid-template-rows: auto 20% 30% 15%;
   padding: 0.8rem;
   box-sizing: border-box;
-  @include themed {
+  @include themed() {
     background-color: t(card-bg-primary);
+    box-shadow: t(card-box-shadow-primary);
   }
   @include card-box-shadow;
 
   &--searchedItem {
     @include themed {
-      border: 2px solid t(app-scheme-color);
       box-shadow: t(card-box-shadow-primary) !important;
+      border: 2px solid t(app-scheme-color);
     }
   }
   &--blur {

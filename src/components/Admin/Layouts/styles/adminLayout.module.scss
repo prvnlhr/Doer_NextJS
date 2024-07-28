@@ -4,7 +4,6 @@
 .adminLayoutWrapper {
   width: 100%;
   height: 100%;
-  // border: 1px solid red;
   display: grid;
   grid-template-areas:
     "sidebarCell breadcrumbsCell"
@@ -12,6 +11,10 @@
     "sidebarCell subPagesCell";
   grid-template-columns: 15% 85%;
   grid-template-rows: 50px 50px minmax(0, 1fr);
+
+  @include themed() {
+    border-top: 1px solid t(division-border-color);
+  }
 
   @media (max-width: 768px) {
     grid-template-areas:

@@ -1,6 +1,9 @@
+"use client";
 import React from "react";
 import styles from "./styles/topicIcon.module.scss";
+import { useTheme } from "@/context/ThemeContext";
 const TopicIcon = () => {
+  const { theme } = useTheme();
   return (
     <svg
       className={styles.icon}
@@ -10,25 +13,25 @@ const TopicIcon = () => {
     >
       <path
         d="M3.2998 7.19482H21.2998"
-        stroke="#A399F2"
+        stroke={theme === "dark" ? "#c7bafd" : "#635db0"}
         stroke-width="1.5"
         stroke-linecap="round"
       />
       <path
         d="M9.79004 12.1948H21.3"
-        stroke="#A399F2"
+        stroke={theme === "dark" ? "#c7bafd" : "#635db0"}
         stroke-width="1.5"
         stroke-linecap="round"
       />
       <path
         d="M3.2998 12.1948H6.2898"
-        stroke="#A399F2"
+        stroke={theme === "dark" ? "#c7bafd" : "#635db0"}
         stroke-width="1.5"
         stroke-linecap="round"
       />
       <path
         d="M3.2998 17.1948H21.2998"
-        stroke="#A399F2"
+        stroke={theme === "dark" ? "#c7bafd" : "#635db0"}
         stroke-width="1.5"
         stroke-linecap="round"
       />

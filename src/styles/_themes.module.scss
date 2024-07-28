@@ -25,7 +25,8 @@ $themes: (
     theme-toggle-track-bg: $theme-toggle-track-light,
     theme-toggle-btn-bg: $theme-toggle-btn-bg-light,
     theme-toggle-btn-border: $theme-toggle-btn-border-light,
-
+    shimmer-one: $shimmer-one-light,
+    shimmer-two: $shimmer-two-light,
   ),
   dark: (
     app-bg: $app-bg-dark,
@@ -50,6 +51,8 @@ $themes: (
     theme-toggle-track-bg: $theme-toggle-track-dark,
     theme-toggle-btn-bg: $theme-toggle-btn-bg-dark,
     theme-toggle-btn-border: $theme-toggle-btn-border-dark,
+    shimmer-one: $shimmer-one-dark,
+    shimmer-two: $shimmer-two-dark,
   ),
 );
 

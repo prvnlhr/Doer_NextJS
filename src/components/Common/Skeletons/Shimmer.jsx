@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./styles/shimmer.module.scss";
+import "./styles/shimmer.css";
 const Shimmer = () => {
-  return <div className={styles.shimmer}></div>;
+  return <div className="shimmer"></div>;
 };
 
 export default Shimmer;
