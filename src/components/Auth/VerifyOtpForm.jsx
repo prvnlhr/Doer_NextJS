@@ -176,7 +176,7 @@ const VerifyOtpForm = ({ email }) => {
             <button type="button" onClick={resendOtpHandler}>
               {formik.isSubmitting ? (
                 <div className={styles.resendSpinnerDiv}>
-                  <Spinner color="#635DB0" />
+                  <Spinner color="#6167a0" />
                 </div>
               ) : (
                 <p>Resend OTP</p>

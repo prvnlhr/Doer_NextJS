@@ -42,7 +42,7 @@ const AppLogo = () => {
           cx="150.159"
           cy="200.072"
           r="11.366"
-          fill={theme === "dark" ? "#c7bafd" : "#635db0"}
+          fill={theme === "dark" ? "#a399f2" : "#6167a0"}
         />
       </svg>
     </Link>
