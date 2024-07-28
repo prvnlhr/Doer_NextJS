@@ -34,7 +34,7 @@ const AppLogo = () => {
           stroke="black"
           strokeWidth="8.86551"
         />
-        <circle cx="150.159" cy="200.072" r="11.366" fill="#635DB0" />
+        <circle cx="150.159" cy="200.072" r="11.366" fill="#635db0" />
       </svg>
     </Link>
   );
