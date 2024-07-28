@@ -28,14 +28,14 @@ const CoursesPage = async ({ searchParams }) => {
       3. getEditUrl -> Function to generate the edit URL for each row
       4. getAddUrl -> Function to generate the URL for adding a new row
     */
-    // <Datatable
-    //   data={courses}
-    //   columns={columns}
-    //   getEditUrl={getEditUrl}
-    //   getAddUrl={getAddUrl}
-    //   getDeleteUrl={getDeleteUrl}
-    // />
-    <DatatableSkeleton />
+    <Datatable
+      data={courses}
+      columns={columns}
+      getEditUrl={getEditUrl}
+      getAddUrl={getAddUrl}
+      getDeleteUrl={getDeleteUrl}
+    />
+    // <DatatableSkeleton />
   );
 };
 

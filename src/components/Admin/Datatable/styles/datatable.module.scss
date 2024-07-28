@@ -263,6 +263,7 @@
   display: inline-flex;
   padding: 0px 10px;
   border-radius: 8px;
+  // border: 1px solid red;
 
   &--activeBg {
     background-color: #deeedc;
@@ -295,11 +296,11 @@
     }
 
     .activeText {
-      color: #789980;
+      color: #789980 !important;
     }
 
     .inactiveText {
-      color: #7e8da4;
+      color: #7e8da4 !important;
     }
   }
 }
