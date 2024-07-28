@@ -24,7 +24,7 @@
 
     p {
       font-size: 1.2rem;
-      color: #635db0;
+      color: #6167a0;
       font-weight: 500;
       @include small-device {
         font-size: clamp(1.1rem, -0.6999999999999997rem + 9vw, 2rem) !important;
@@ -77,7 +77,7 @@
       align-items: flex-end;
 
       &:hover .valueBar {
-        background-color: #635db0;
+        background-color: #6167a0;
       }
       &:hover .tooltip {
         display: flex;
@@ -92,7 +92,7 @@
         align-items: flex-start;
 
         &--activeDay {
-          background-color: #635db0;
+          background-color: #6167a0;
         }
 
         // &:hover .tooltip {
@@ -124,7 +124,7 @@
 
       &--activeLabelCell {
         p {
-          color: #635db0 !important;
+          color: #6167a0 !important;
         }
       }
     }

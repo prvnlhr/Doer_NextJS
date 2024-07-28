@@ -10,25 +10,25 @@ const TopicIcon = () => {
     >
       <path
         d="M3.2998 7.19482H21.2998"
-        stroke="#7776B3"
+        stroke="#6167a0"
         stroke-width="1.5"
         stroke-linecap="round"
       />
       <path
         d="M9.79004 12.1948H21.3"
-        stroke="#7776B3"
+        stroke="#6167a0"
         stroke-width="1.5"
         stroke-linecap="round"
       />
       <path
         d="M3.2998 12.1948H6.2898"
-        stroke="#7776B3"
+        stroke="#6167a0"
         stroke-width="1.5"
         stroke-linecap="round"
       />
       <path
         d="M3.2998 17.1948H21.2998"
-        stroke="#7776B3"
+        stroke="#6167a0"
         stroke-width="1.5"
         stroke-linecap="round"
       />

@@ -71,7 +71,7 @@
       &__progressBar {
         width: 50%;
         height: 100%;
-        background: #635db0;
+        background: #6167a0;
       }
     }
   }
@@ -110,7 +110,7 @@
     p {
       font-size: 1.5rem;
       line-height: 100%;
-      color: #635db0;
+      color: #6167a0;
       // border: 1px solid red;
       @include small-device {
         font-size: clamp(

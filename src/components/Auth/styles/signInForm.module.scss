@@ -53,7 +53,7 @@
           height: 80%;
           aspect-ratio: 1/1;
           @include flex-container(center, center);
-          background-color: #635db0;
+          background-color: #6167a0;
           border-radius: 50%;
         }
       }
@@ -105,7 +105,7 @@
           outline: none;
           border: none;
           border-radius: 50%;
-          background-color: #635db0;
+          background-color: #6167a0;
         }
         .textDiv {
           width: auto;
@@ -151,7 +151,7 @@
         margin-left: 5px;
         p {
           font-size: 0.9rem;
-          color: #635db0;
+          color: #6167a0;
           font-weight: 600;
           &:hover {
             text-decoration: underline;
@@ -201,7 +201,7 @@
           p {
             font-size: 0.7rem;
             font-weight: 600;
-            color: #635db0;
+            color: #6167a0;
             @include small-device {
               font-size: clamp(
                 0.7rem,

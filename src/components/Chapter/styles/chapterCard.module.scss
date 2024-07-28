@@ -19,7 +19,7 @@
   @include card-bg-shadow;
 
   &--searchedItem {
-    border: 2px solid #635db0;
+    border: 2px solid #6167a0;
     box-shadow: $card-hover-box-shadow !important;
   }
   &--blur {
@@ -56,7 +56,7 @@
         font-weight: 600;
         color: #101828;
         span {
-          color: #635db0;
+          color: #6167a0;
           margin-left: 2px;
         }
       }

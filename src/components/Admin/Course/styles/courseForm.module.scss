@@ -79,14 +79,14 @@
         width: auto;
         padding-left: 10px;
         padding-right: 10px;
-        background-color: #635db0;
+        background-color: #6167a0;
         outline: none;
         border: none;
         color: white;
         cursor: pointer;
 
         &:disabled {
-          background-color: #635db0;
+          background-color: #6167a0;
           cursor: not-allowed;
         }
 
@@ -212,7 +212,7 @@
     @include flex-container(center, center);
     aspect-ratio: 1/1;
     width: 100%;
-    border: 1.5px dashed #635db0;
+    border: 1.5px dashed #6167a0;
     border-radius: inherit;
     background-color: #f2f4f7;
     cursor: pointer;

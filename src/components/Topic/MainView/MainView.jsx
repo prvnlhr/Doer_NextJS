@@ -60,7 +60,7 @@ const MainView = ({ children, params }) => {
               href={`/content/courses/${params.courseName}/${params.courseId}/chapters`}
               className={styles.link}
             >
-              <p style={{ color: "#635db0", fontWeight: 500 }}>
+              <p style={{ color: "#6167a0", fontWeight: 500 }}>
                 {courseState.topicName}
               </p>
             </Link>

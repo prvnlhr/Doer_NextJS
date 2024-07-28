@@ -161,7 +161,7 @@ const TopicContent = ({ bookmarks, topic }) => {
             >
               <div className={styles.btnIconDiv}>
                 {isBookmarking ? (
-                  <Spinner color="#635db0" />
+                  <Spinner color="#6167a0" />
                 ) : isBookmarked() ? (
                   <BookmarkIconFilled />
                 ) : (

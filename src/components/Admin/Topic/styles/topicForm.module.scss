@@ -146,7 +146,7 @@ $fontColorSecondary: #101828;
                 cursor: pointer;
                 border-radius: 3px;
                 p {
-                  color: #635db0;
+                  color: #6167a0;
                   font-weight: 600;
                 }
               }
@@ -198,13 +198,13 @@ $fontColorSecondary: #101828;
             width: auto;
             padding-left: 10px;
             padding-right: 10px;
-            background-color: #635db0;
+            background-color: #6167a0;
             outline: none;
             border: none;
             color: white;
             cursor: pointer;
             &:disabled {
-              background-color: #635db0;
+              background-color: #6167a0;
               cursor: not-allowed;
             }
 
@@ -255,7 +255,7 @@ $fontColorSecondary: #101828;
             aspect-ratio: 1/1;
             // border: 1px solid red;
             @include flex-container(center, center);
-            background-color: #635db0;
+            background-color: #6167a0;
             border-radius: 50%;
             padding: 3px;
           }
@@ -328,7 +328,7 @@ $fontColorSecondary: #101828;
             content: "";
             left: 0px;
             bottom: -10px;
-            background-color: #635db0;
+            background-color: #6167a0;
             width: 30px;
             height: 3px;
             border-radius: 8px;
@@ -424,7 +424,7 @@ $fontColorSecondary: #101828;
           object-fit: contain;
         }
         strong {
-          color: #635db0;
+          color: #6167a0;
         }
       }
 

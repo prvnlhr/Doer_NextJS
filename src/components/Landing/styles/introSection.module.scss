@@ -55,7 +55,7 @@
 
 .introSpanText {
   position: relative;
-  color: #635db0;
+  color: #6167a0;
   font-weight: 400;
 }
 
@@ -116,7 +116,7 @@
 
 .coursesText {
   position: relative;
-  color: #635db0;
+  color: #6167a0;
   font-size: 1.1rem;
   font-weight: 500;
 }
@@ -131,7 +131,7 @@
 .coursesText::after {
   content: "";
   position: absolute;
-  background-color: #635db0;
+  background-color: #6167a0;
   aspect-ratio: 1/1;
   width: 4.5px;
   bottom: 20%;
@@ -154,7 +154,7 @@
   justify-content: center;
   align-items: center;
   width: 55%;
-  background-color: #635db0;
+  background-color: #6167a0;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -227,7 +227,7 @@
 
   .introSpanText {
     position: relative;
-    color: #635db0;
+    color: #6167a0;
     font-weight: 500;
     font-size: clamp(
       1.1rem,

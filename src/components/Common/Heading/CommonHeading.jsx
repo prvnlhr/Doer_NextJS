@@ -49,7 +49,7 @@ const CommonHeading = ({ to, text, searchParams }) => {
         <div className={styles.lineDiv}></div>
         <div className={styles.iconWrapper}>
           <div className={styles.iconDiv}>
-            {searchedItemId ? <CrossIcon color="#635db0" /> : <SearchIcon />}
+            {searchedItemId ? <CrossIcon color="#6167a0" /> : <SearchIcon />}
           </div>
         </div>
       </div>

@@ -180,7 +180,7 @@ const SignInForm = () => {
                 </div>
                 <div className={styles.demoBtnIconDiv}>
                   {formik.isSubmitting && isDemoLogin ? (
-                    <Spinner color={"#635db0"} />
+                    <Spinner color={"#6167a0"} />
                   ) : (
                     <svg
                       width="14"
