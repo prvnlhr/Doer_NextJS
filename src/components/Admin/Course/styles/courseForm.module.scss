@@ -279,7 +279,7 @@
     height: 30px;
     p {
       @include themed() {
-        color: T(secondary-color);
+        color: t(secondary-color);
       }
 
       font-weight: 500;
@@ -334,7 +334,7 @@
         border: 1px solid #789980;
         background-color: #deeedc;
         p {
-          color: #789980;
+          color: #789980 !important;
         }
       }
 
@@ -343,7 +343,7 @@
         border: 1px solid #d27e67;
         background-color: #fde7ea;
         p {
-          color: #d5765c;
+          color: #d5765c !important;
         }
       }
 

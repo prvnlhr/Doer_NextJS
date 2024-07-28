@@ -195,10 +195,10 @@
 
         tbody {
           tr {
-            @include division-border();
             max-height: 50px;
             @include themed() {
               background-color: t(table-row-bg);
+              border-bottom: 1px solid t(division-border-color);
             }
           }
 
