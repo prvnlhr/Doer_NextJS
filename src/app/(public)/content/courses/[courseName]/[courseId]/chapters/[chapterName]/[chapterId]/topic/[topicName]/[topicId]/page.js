@@ -3,6 +3,7 @@ import { fetchTopicById } from "@/lib/api/public/topicsApi";
 import { fetchUsersBookmarks } from "@/lib/api/public/usersApi";
 import React from "react";
 import { auth } from "../../../../../../../../../../../../auth";
+import TopicPageSkeleton from "@/components/Common/Skeletons/TopicPageSkeleton";
 
 const Page = async ({ params }) => {
   const topic = await fetchTopicById(params);
@@ -16,6 +17,7 @@ const Page = async ({ params }) => {
     bookmarks = await fetchUsersBookmarks(userId);
   }
   return <TopicContent bookmarks={bookmarks} topic={topic} />;
+  // return <TopicPageSkeleton />;
 };
 
 export default Page;

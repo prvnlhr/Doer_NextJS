@@ -9,11 +9,9 @@
   max-height: 80px;
 
   @include flex-container(flex-start, center);
-  // border: 1px solid blue;
-  // background-color: #0d1321;
-  // @include themed() {
-  //   border-bottom: 1px solid t(division-border-color);
-  // }
+  @include themed() {
+    border-bottom: 1px solid t(division-border-color);
+  }
 
   &__leftSection {
     height: 100%;

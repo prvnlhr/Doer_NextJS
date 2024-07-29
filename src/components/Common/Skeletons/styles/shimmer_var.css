@@ -1,8 +1,8 @@
 :root {
-  --shimmer-color-1: #f2f4f7;
-  --shimmer--color-2: #fcfcfd;
+  --shimmer-color-1: #efefef;
+  --shimmer--color-2: #e1e1e128;
 }
 .theme--dark {
   --shimmer-color-1: #30353e;
-  --shimmer--color-2: #24282f;
+  --shimmer--color-2: #24282f93;
 }

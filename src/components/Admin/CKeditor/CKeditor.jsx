@@ -14,6 +14,7 @@ const CKeditor = ({ content, setFieldValue }) => {
   return (
     <>
       <CustomEditor content={content} setFieldValue={setFieldValue} />
+      {/* <CkeditorSkeleton /> */}
     </>
   );
 };

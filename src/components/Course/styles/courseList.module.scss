@@ -13,9 +13,9 @@
     height: 50px;
     box-sizing: border-box;
     padding-left: 8px;
-    // @include themed() {
-    //   border-bottom: 1px solid t(division-border-color);
-    // }
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
 
     display: flex;
     justify-content: space-between;

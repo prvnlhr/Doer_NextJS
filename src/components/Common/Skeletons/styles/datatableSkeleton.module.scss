@@ -60,9 +60,6 @@
           position: sticky;
           top: 0;
           z-index: 1;
-          // background-color: #101828;
-          // border-bottom: 1px solid red;
-
           &::after {
             position: absolute;
             content: "";
@@ -80,17 +77,14 @@
             @include themed() {
               background-color: t(table-th-bg);
             }
-            div {
-              height: 10px;
-              //   width: auto;
-              //   border: 1px solid red;
-              max-width: 80px;
-            }
 
             position: relative;
 
             &:not(:last-child)::after {
               content: "";
+              @include themed() {
+                background-color: t(table-border);
+              }
 
               position: absolute;
               width: 0.04rem;
@@ -100,9 +94,6 @@
               bottom: 0px;
               margin-top: auto;
               margin-bottom: auto;
-              @include themed() {
-                background-color: t(table-border);
-              }
             }
           }
         }

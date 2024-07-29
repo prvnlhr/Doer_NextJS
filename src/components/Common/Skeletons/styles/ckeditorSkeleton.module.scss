@@ -8,6 +8,9 @@
   align-items: flex-start;
   flex-direction: column;
   background-color: white;
+  @include themed() {
+    background-color: t(card-bg-primary);
+  }
   //   border: 1px solid #b4b2b270;
   border-radius: 0px 0px 8px 8px;
 
@@ -17,13 +20,17 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid #b4b2b270;
+    @include themed() {
+      border-bottom: 1px solid t(division-border-color);
+    }
 
     .btnSection1,
     .btnSection2 {
       width: 50px;
       height: 100%;
-      @include division-border(right);
+      @include themed() {
+        border-right: 1px solid t(division-border-color);
+      }
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;

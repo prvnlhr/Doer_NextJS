@@ -10,9 +10,6 @@ const CoursesListPage = async ({ searchParams }) => {
   // return (
   //   <CoursesListSkeleton>
   //     <CourseCardSkeleton />
-  //     <CourseCardSkeleton />
-  //     <CourseCardSkeleton />
-  //     <CourseCardSkeleton />
   //   </CoursesListSkeleton>
   // );
 };

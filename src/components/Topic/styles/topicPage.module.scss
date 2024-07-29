@@ -4,9 +4,9 @@
 
 .topicPageWrapper {
   @include fhw;
-  @include themed() {
-    border-top: 1px solid t(division-border-color);
-  }
+  // @include themed() {
+  //   border-top: 1px solid t(division-border-color);
+  // }
   @include flex-container(center, center);
 
   &__pageInnerWrapper {

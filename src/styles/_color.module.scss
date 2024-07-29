@@ -1,15 +1,39 @@
 $scrollbar-color: #8581b4;
 
 //|> Light theme color pallete------------------------------------------------------------------
-$app-bg-light: linear-gradient(
-  to right top,
-  #e0f2fe,
-  #eaf4ff,
-  #f3f7ff,
-  #fafbff,
-  #ffffff
+// $app-bg-light: linear-gradient(
+//   to right top,
+//   #e0f2fe,
+//   #eaf4ff,
+//   #f3f7ff,
+//   #fafbff,
+//   #ffffff
+// );
+// $app-bg-light: linear-gradient(
+//   to right top,
+//   #f5f5f5,
+//   #f6f6f6,
+//   #f7f7f7,
+//   #f7f7f7,
+//   #f8f8f8
+// );
+// $app-bg-light: linear-gradient(
+//   to right top,
+//   #f5f5f5,
+//   #f4f4f5,
+//   #f3f3f5,
+//   #f1f3f5,
+//   #eff2f5
+// );
+// $app-bg-light: #f6f6f6;
+$app-bg-light: radial-gradient(
+  circle,
+  #f5f5f5,
+  #f6f6f6,
+  #f7f7f7,
+  #f7f7f7,
+  #f8f8f8
 );
-
 $app-scheme-color-light: #6167a0;
 $primary-color-light: #1c3553;
 $secondary-color-light: #667085;
@@ -19,7 +43,8 @@ $card-bg-primary-light: white;
 $card-bg-secondary-light: white;
 $card-bg-tertiary-light: white;
 $card-box-shadow-primary-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-$card-box-shadow-secondary-light: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+$card-box-shadow-secondary-light: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+  rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 
 $division-border-color-light: #d0d5dd;
 
@@ -85,7 +110,7 @@ $theme-toggle-btn-bg-light: white;
 $theme-toggle-btn-bg-dark: #232529;
 
 $theme-toggle-btn-border-light: #d0d5dd;
-$theme-toggle-btn-border-dark: #7e8da4;
+$theme-toggle-btn-border-dark: #7e8da442;
 
 $shimmer-one-light: #f2f4f7;
 $shimmer-two-light: #fcfcfd;

@@ -52,6 +52,9 @@
             height: 100%;
             padding-left: 8px;
             outline: none;
+            @include themed() {
+              color: t(primary-color);
+            }
             @include small-device {
               font-size: clamp(
                 0.9rem,

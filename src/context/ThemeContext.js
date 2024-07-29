@@ -3,7 +3,6 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  // Initialize the theme state from localStorage or default to "light"
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
       return localStorage.getItem("theme") || "light";

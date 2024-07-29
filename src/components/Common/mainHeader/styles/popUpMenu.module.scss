@@ -7,8 +7,9 @@
   width: 150px;
   @include themed() {
     background-color: t(card-bg-primary);
-    box-shadow: t(card-box-shadow-primary);
+    box-shadow: t(card-box-shadow-secondary);
   }
+
   height: auto;
   padding: 5px;
   top: 80px;
