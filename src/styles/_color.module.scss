@@ -35,14 +35,15 @@ $app-bg-light: radial-gradient(
   #eceff3,
   #e8ecf0
 );
-$app-bg-light: linear-gradient(
-  to bottom,
-  #f7f9fd,
-  #f3f6fa,
-  #f0f2f7,
-  #eceff3,
-  #e8ecf0
-);
+// $app-bg-light: linear-gradient(
+//   to bottom,
+//   #f7f9fd,
+//   #f3f6fa,
+//   #f0f2f7,
+//   #eceff3,
+//   #e8ecf0
+// );
+$app-bg-light: #f8f8f8;
 $app-scheme-color-light: #6167a0;
 $primary-color-light: #1c3553;
 $secondary-color-light: #667085;

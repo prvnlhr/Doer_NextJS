@@ -131,7 +131,9 @@
 }
 
 .cardTitleWrapper p {
-  color: $primary-color;
+  @include themed() {
+    color: t(primary-color);
+  }
   font-size: 1rem;
   text-align: center;
 }
