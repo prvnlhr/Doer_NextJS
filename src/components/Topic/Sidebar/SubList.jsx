@@ -61,7 +61,11 @@ const SubList = ({ chapter, params }) => {
                 {isTopicCompleted(topic._id) ? (
                   <CheckedIcon />
                 ) : (
-                  <div className={styles.dotIcon}></div>
+                  <div
+                    className={`${styles.dotIcon} ${
+                      topic._id === params.topicId && styles.activeDot
+                    }`}
+                  ></div>
                 )}
               </div>
             </div>

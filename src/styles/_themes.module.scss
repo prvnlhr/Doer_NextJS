@@ -32,6 +32,7 @@ $themes: (
     graph-tooltip-value: $graph-tooltip-value-light,
     graph-bar-bg: $graph-bar-bg-light,
     graph-bar-label-color: $graph-bar-label-color-light,
+    list-element-color: $list-element-light,
   ),
   dark: (
     app-bg: $app-bg-dark,
@@ -63,6 +64,7 @@ $themes: (
     graph-tooltip-value: $graph-tooltip-value-dark,
     graph-bar-bg: $graph-bar-bg-dark,
     graph-bar-label-color: $graph-bar-label-color-dark,
+    list-element-color: $list-element-dark,
   ),
 );
 

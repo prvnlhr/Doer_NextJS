@@ -66,11 +66,16 @@
         @include flex-container(center, center);
 
         .dotIcon {
-          width: 0.35rem;
+          width: 0.32rem;
           aspect-ratio: 1/1;
-          border-radius: 100%;
+          border-radius: 50%;
           @include themed() {
-            background-color: t(secondary-color);
+            background-color: t(list-element-color);
+          }
+        }
+        .activeDot {
+          @include themed() {
+            background-color: t(app-scheme-color);
           }
         }
       }
@@ -134,8 +139,9 @@
         &::after {
           content: "";
           @include themed() {
-            background-color: t(secondary-color);
+            background-color: t(list-element-color);
           }
+
           width: 0.1rem;
           height: 100%;
         }

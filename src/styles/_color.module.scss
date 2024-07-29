@@ -25,14 +25,23 @@ $scrollbar-color: #8581b4;
 //   #f1f3f5,
 //   #eff2f5
 // );
-// $app-bg-light: #f6f6f6;
+// $app-bg-light: #f7f9fd;
+// $app-bg-light: #e8ecf0;
 $app-bg-light: radial-gradient(
   circle,
-  #f5f5f5,
-  #f6f6f6,
-  #f7f7f7,
-  #f7f7f7,
-  #f8f8f8
+  #f7f9fd,
+  #f3f6fa,
+  #f0f2f7,
+  #eceff3,
+  #e8ecf0
+);
+$app-bg-light: linear-gradient(
+  to bottom,
+  #f7f9fd,
+  #f3f6fa,
+  #f0f2f7,
+  #eceff3,
+  #e8ecf0
 );
 $app-scheme-color-light: #6167a0;
 $primary-color-light: #1c3553;
@@ -132,3 +141,6 @@ $graph-bar-bg-dark: #282a2f;
 
 $graph-bar-label-color-light: #d0d5dd;
 $graph-bar-label-color-dark: #3b3e45;
+
+$list-element-light: #9ca0aa;
+$list-element-dark: #4a5764;
