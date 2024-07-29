@@ -195,7 +195,9 @@
 .searchItemLink {
   width: 100%;
   height: 70px;
-  @include division-border();
+  @include themed() {
+    // border-bottom: 1px solid t(division-border-color);
+  }
   padding: 0px 5%;
   display: flex;
   justify-content: flex-start;

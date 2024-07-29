@@ -24,7 +24,7 @@
 
   &--searchedItem {
     @include themed {
-      box-shadow: t(card-box-shadow-primary) !important;
+      box-shadow: t(card-box-shadow-secondary) !important;
       border: 2px solid t(app-scheme-color);
     }
   }
@@ -44,7 +44,7 @@
 
   &:hover {
     @include themed {
-      box-shadow: t(card-box-shadow-primary);
+      box-shadow: t(card-box-shadow-secondary);
     }
   }
 
