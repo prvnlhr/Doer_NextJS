@@ -49,7 +49,7 @@ const SubList = ({ chapter, params }) => {
             exit="hidden"
             transition={{
               duration: 0.3,
-              delay: topicIndx * 0.1,
+              delay: topicIndx * 0.12,
               ease: [0.12, 0, 0.39, 0],
             }}
           >

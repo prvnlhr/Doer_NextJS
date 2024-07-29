@@ -34,7 +34,7 @@ const AccordionItem = ({ chapter }) => {
     setCurrentOpenChapterIndex((prevId) =>
       prevId === chapter._id ? null : chapter._id
     );
-    setCurrentOpenChapterHeight(chapter?.topicsCount * 50 + 40);
+    setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40);
     setCourseState(updatedState);
   };
 
@@ -42,7 +42,7 @@ const AccordionItem = ({ chapter }) => {
     const courseState = JSON.parse(localStorage.getItem("courseState")) || {};
     if (courseState) {
       setCurrentOpenChapterIndex(courseState.chapterId);
-      setCurrentOpenChapterHeight(courseState.topicsCount * 50 + 40);
+      setCurrentOpenChapterHeight(courseState.topicsCount * 40 + 40);
     } else {
       setCurrentOpenChapterIndex(chapterId);
     }

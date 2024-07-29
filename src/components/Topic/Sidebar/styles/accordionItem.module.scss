@@ -42,14 +42,14 @@
   }
   &__subTitleWrapper {
     width: 100%;
-    height: 50px;
+    height: 40px;
     cursor: pointer;
     display: grid;
     grid-template-areas:
       "lineCell lineCell"
       "iconCell subTitleCell";
     grid-template-columns: auto minmax(0, 1fr);
-    grid-template-rows: 15px 35px;
+    grid-template-rows: 10px 30px;
     box-sizing: border-box;
     // border: 1px solid red;
     overflow: hidden;
@@ -131,7 +131,7 @@
       // border: 1px solid blue;
       @include flex-container(flex-start, center);
       .lineDiv {
-        width: 35px;
+        width: 30px;
         height: 100%;
         @include flex-container(center, center);
         // border: 1px solid red;
