@@ -11,7 +11,7 @@ import { convertMinutesToHours } from "@/lib/utils/durationConvert";
 
 const CourseCard = ({ course, searchParams }) => {
   const { item: searchedItemId } = searchParams || {};
-
+  const time = convertMinutesToHours(course.duration);
   return (
     <div
       className={`
@@ -59,9 +59,8 @@ const CourseCard = ({ course, searchParams }) => {
         <div className={styles.card__chapterWrapper__innerDiv}>
           <HighLightBadge
             IconComponent={ChapterIcon}
-            text={`${course.chaptersCount} ${
-              course.chaptersCount > 1 ? "Chapters" : "Chapter"
-            }`}
+            text={`${course.chaptersCount > 1 ? "Chapters" : "Chapter"}`}
+            spanText={course.chaptersCount}
             isHighlighted={true}
             type={"course"}
           />
@@ -71,7 +70,8 @@ const CourseCard = ({ course, searchParams }) => {
         <div className={styles.card__durationWrapper__innerDiv}>
           <HighLightBadge
             IconComponent={ClockIcon}
-            text={convertMinutesToHours(course.duration)}
+            text={time.unit}
+            spanText={time.number}
             isHighlighted={false}
             type={"course"}
           />

@@ -12,7 +12,7 @@ const LogoSvg = () => {
   }, [theme]);
 
   const strokeColor = clientTheme === "dark" ? "white" : "black";
-  const fillColor = clientTheme === "dark" ? "#a399f2" : "#6167a0";
+  const fillColor = clientTheme === "dark" ? "#7776b3" : "#6167a0";
 
   return (
     <svg

@@ -57,6 +57,11 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      span {
+        @include themed() {
+          color: t(primary-color);
+        }
+      }
     }
 
     &--courseText {

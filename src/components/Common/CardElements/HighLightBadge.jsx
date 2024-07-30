@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./styles/highLightBadge.module.scss";
 
-const HighLightBadge = ({ text, IconComponent, isHighlighted, type }) => {
+const HighLightBadge = ({
+  text,
+  spanText,
+  IconComponent,
+  isHighlighted,
+  type,
+}) => {
   return (
     <div
       className={`${styles.badgeWrapper} ${
@@ -14,7 +20,10 @@ const HighLightBadge = ({ text, IconComponent, isHighlighted, type }) => {
         </div>
       )}
       <div className={styles.textWrapper}>
-        <p className={styles[`textWrapper--${type}Text`]}>{text}</p>
+        <p className={styles[`textWrapper--${type}Text`]}>
+          {spanText && <span>{spanText} </span>}
+          {text}
+        </p>
       </div>
     </div>
   );

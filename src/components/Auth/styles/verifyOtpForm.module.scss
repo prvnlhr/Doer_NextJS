@@ -141,7 +141,7 @@
           height: 100%;
           @include flex-container(center, center);
           @include themed() {
-            background-color: t(form-input-bg);
+            background-color: t(form-group-bg);
           }
           border-radius: 5px;
           p {
@@ -256,7 +256,7 @@
 
     @include themed() {
       color: t(primary-color);
-      background-color: t(form-input-bg);
+      background-color: t(form-group-bg);
     }
     text-align: center;
     font-size: 1.2rem;
@@ -264,7 +264,7 @@
     -moz-appearance: textfield;
     &:focus {
       @include themed() {
-        border: 0.15rem solid t(form-input-bg);
+        border: 0.15rem solid t(app-scheme-color);
       }
     }
     &::-webkit-outer-spin-button,

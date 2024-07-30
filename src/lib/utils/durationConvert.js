@@ -10,9 +10,18 @@ export function convertMinutesToHours(minutes) {
 
     const roundedFraction = Math.round(fraction * 2) / 2; // Round to nearest 0.5
     const totalHours = hours + roundedFraction;
-
-    return `${totalHours} Hour${totalHours !== 1 ? "s" : ""}`; // Pluralize "Hour" if necessary
+    const res = {
+      number: totalHours,
+      unit: `Hours${totalHours !== 1 ? "s" : ""}`,
+    };
+    // return `${totalHours} Hour${totalHours !== 1 ? "s" : ""}`;
+    return res;
   } else {
-    return `${minutes} Minute${minutes !== 1 ? "s" : ""}`; // Pluralize "Minute" if necessary
+    const res = {
+      number: minutes,
+      unit: `Minute${minutes !== 1 ? "s" : ""}`,
+    };
+    return res;
+    // return `${minutes} Minute${minutes !== 1 ? "s" : ""}`;
   }
 }

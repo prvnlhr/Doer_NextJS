@@ -73,9 +73,8 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
       <div className={styles.card__topicsCountWrapper}>
         <HighLightBadge
           IconComponent={TopicIcon}
-          text={`${chapter.topicsCount} ${
-            chapter.topicsCount > 1 ? "Topics" : "Topic"
-          }`}
+          text={`${chapter.topicsCount > 1 ? "Topics" : "Topic"}`}
+          spanText={chapter.topicsCount}
           isHighlighted={true}
           type={"chapter"}
         />
@@ -83,7 +82,8 @@ const ChapterCard = ({ chapter, index, searchParams }) => {
       <div className={styles.card__durationWrapper}>
         <HighLightBadge
           IconComponent={ClockIcon}
-          text={convertMinutesToHours(chapter.duration)}
+          text={convertMinutesToHours(chapter.duration).unit}
+          spanText={convertMinutesToHours(chapter.duration).number}
           isHighlighted={false}
           type={"chapter"}
         />

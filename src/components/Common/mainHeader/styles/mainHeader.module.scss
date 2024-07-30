@@ -33,7 +33,6 @@
   &__rightSection {
     width: calc(100% - 50px);
     height: 100%;
-    // border: 1px solid blue;
     @include flex-container(flex-end, center);
     box-sizing: border-box;
     padding-right: 15px;

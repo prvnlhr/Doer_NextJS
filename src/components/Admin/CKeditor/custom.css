@@ -3,12 +3,12 @@
 
 .theme--dark {
   --ck-color-text: hsl(0, 0%, 98%);
-  --ck-color-button-default-hover-background: #a399f2;
+  --ck-color-button-default-hover-background: #7776b3;
   --ck-color-button-on-color: white;
-  --ck-color-button-on-background: #a399f2;
-  --ck-color-button-on-hover-background: #a399f2;
-  --ck-color-button-on-active-background: #a399f2;
-  --ck-color-button-default-active-background: #a399f2;
+  --ck-color-button-on-background: #7776b3;
+  --ck-color-button-on-hover-background: #7776b3;
+  --ck-color-button-on-active-background: #7776b3;
+  --ck-color-button-default-active-background: #7776b3;
   --ck-color-tooltip-text: white;
 
   --ck-content-p: white;

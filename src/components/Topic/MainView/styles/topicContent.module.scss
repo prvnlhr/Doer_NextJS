@@ -198,13 +198,20 @@ $codeFontSize: 0.9rem;
 
     code {
       color: #d92d20;
-      background-color: #ea51512b;
+      background-color: #d92c201d;
       padding: 2px 8px;
       border-radius: 5px;
-      font-weight: 600;
+      font-weight: 500;
       font-family: "Source Code Pro", monospace !important;
-      font-size: $codeFontSize;
+      font-size: $fontSize;
       white-space: nowrap;
+      @include small-device {
+        font-size: clamp(
+          0.8rem,
+          0.19999999999999996rem + 3.0000000000000004vw,
+          1.1rem
+        ) !important;
+      }
     }
 
     pre {
