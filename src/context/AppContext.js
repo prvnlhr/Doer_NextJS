@@ -20,7 +20,7 @@ export const AppStateProvider = ({ children }) => {
 
   const [showTopicSidebar, setShowTopicSidebar] = useState(false);
 
-  const [currentOpenChapterIndex, setCurrentOpenChapterIndex] = useState("");
+  const [currentOpenChapterId, setCurrentOpenChapterId] = useState("");
   const [currentOpenChapterHeight, setCurrentOpenChapterHeight] = useState();
 
   return (
@@ -30,8 +30,8 @@ export const AppStateProvider = ({ children }) => {
         setCourseState,
         showTopicSidebar,
         setShowTopicSidebar,
-        currentOpenChapterIndex,
-        setCurrentOpenChapterIndex,
+        currentOpenChapterId,
+        setCurrentOpenChapterId,
         currentOpenChapterHeight,
         setCurrentOpenChapterHeight,
         setCompletedTopics,

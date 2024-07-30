@@ -12,8 +12,8 @@ const AccordionItem = ({ chapter }) => {
   const { chapterId } = params;
 
   const {
-    currentOpenChapterIndex,
-    setCurrentOpenChapterIndex,
+    currentOpenChapterId,
+    setCurrentOpenChapterId,
     currentOpenChapterHeight,
     setCurrentOpenChapterHeight,
     setCourseState,
@@ -31,7 +31,7 @@ const AccordionItem = ({ chapter }) => {
       topicName: chapter.topics[0].title,
     };
     localStorage.setItem("courseState", JSON.stringify(updatedState));
-    setCurrentOpenChapterIndex((prevId) =>
+    setCurrentOpenChapterId((prevId) =>
       prevId === chapter._id ? null : chapter._id
     );
     setCurrentOpenChapterHeight(chapter?.topicsCount * 40 + 40);
@@ -41,10 +41,10 @@ const AccordionItem = ({ chapter }) => {
   useEffect(() => {
     const courseState = JSON.parse(localStorage.getItem("courseState")) || {};
     if (courseState) {
-      setCurrentOpenChapterIndex(courseState.chapterId);
+      setCurrentOpenChapterId(courseState.chapterId);
       setCurrentOpenChapterHeight(courseState.topicsCount * 40 + 40);
     } else {
-      setCurrentOpenChapterIndex(chapterId);
+      setCurrentOpenChapterId(chapterId);
     }
     setCourseState(courseState);
   }, []);
@@ -54,7 +54,7 @@ const AccordionItem = ({ chapter }) => {
       className={styles.itemWrapper}
       style={{
         minHeight:
-          chapter._id === currentOpenChapterIndex
+          chapter._id === currentOpenChapterId
             ? currentOpenChapterHeight
             : "40px",
       }}
@@ -68,7 +68,7 @@ const AccordionItem = ({ chapter }) => {
         hidden: { opacity: 1 },
       }}
       initial="hidden"
-      animate={currentOpenChapterIndex === chapter._id ? "visible" : "hidden"}
+      animate={currentOpenChapterId === chapter._id ? "visible" : "hidden"}
     >
       <Link
         className={styles.itemWrapper__titleWrapper}
