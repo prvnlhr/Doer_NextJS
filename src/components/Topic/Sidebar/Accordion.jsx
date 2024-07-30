@@ -45,7 +45,7 @@ const Accordion = ({ accordionListData, params }) => {
       </div>
       <div className={styles.mainList}>
         {accordionListData.map((chapter) => (
-          <>
+          <React.Fragment key={chapter._id}>
             <div key={chapter._id} className={styles.mainList__chapterWrapper}>
               <Link
                 href={
@@ -60,7 +60,7 @@ const Accordion = ({ accordionListData, params }) => {
               </Link>
             </div>
             <SubList params={params} chapter={chapter} />
-          </>
+          </React.Fragment>
         ))}
       </div>
     </>

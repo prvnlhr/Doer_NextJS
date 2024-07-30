@@ -45,6 +45,7 @@ const SubList = ({ chapter, params }) => {
     >
       {chapter.topics.map((topic) => (
         <Link
+          key={topic._id}
           onClick={() => handleClick(topic)}
           href={`/content/courses/${generateSlug(params.courseName)}/${
             params.courseId
