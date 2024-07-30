@@ -14,6 +14,7 @@ const SubList = ({ chapter, params }) => {
     currentOpenChapterId,
     completedTopics,
     setCourseState,
+    courseState,
   } = useAppState();
 
   const handleClick = (topic) => {
@@ -44,9 +45,16 @@ const SubList = ({ chapter, params }) => {
       }}
     >
       {chapter.topics.map((topic) => (
-        <div className={styles.topicNameWrapper}>
+        <Link
+          href="#"
+          className={`${styles.topicNameWrapper}  
+            ${
+              courseState.topicId === topic._id &&
+              styles["topicNameWrapper--active"]
+            }`}
+        >
           <p>{topic.title}</p>
-        </div>
+        </Link>
       ))}
     </div>
   );

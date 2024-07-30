@@ -74,7 +74,6 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      cursor: pointer;
       p {
         color: white;
         font-size: 0.9rem;
@@ -92,6 +91,7 @@
     padding: 0px;
     margin-bottom: 10px;
     overflow-y: hidden;
+    overflow-x: visible;
 
     .topicNameWrapper {
       width: 100%;
@@ -100,11 +100,21 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      z-index: 1;
       position: relative;
-      border-left: 1px solid #272929;
-      overflow: hidden;
-
+      border-left: 2px solid #272929;
+      z-index: 1;
+      &--active {
+        &::before {
+          content: "";
+          width: 2px;
+          min-width: 2px;
+          position: absolute;
+          left: -2px;
+          height: 50%;
+          background-color: white;
+          z-index: 2;
+        }
+      }
       p {
         color: #aaacb3;
         font-size: 0.8rem;
@@ -122,9 +132,9 @@
         }
         &::before {
           content: "";
-          width: 1px;
+          width: 2px;
           position: absolute;
-          left: -1px;
+          left: -2px;
           height: 50%;
           background-color: salmon;
           z-index: 3;
@@ -138,18 +148,6 @@
           z-index: 1;
           left: -10px;
           z-index: 2;
-        }
-      }
-
-      &--active {
-        &::before {
-          content: "";
-          width: 1px;
-          position: absolute;
-          left: -1px;
-          height: 50%;
-          background-color: white;
-          z-index: 1;
         }
       }
     }
