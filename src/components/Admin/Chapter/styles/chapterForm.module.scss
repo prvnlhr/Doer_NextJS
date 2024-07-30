@@ -46,9 +46,9 @@
     }
     &__buttonCell {
       grid-area: buttonCell;
-      @include themed() {
-        border: 1px solid t(form-group-border);
-      }
+      // @include themed() {
+      //   border: 1px solid t(form-group-border);
+      // }
 
       @include fhw;
       @include flex-container(flex-end, center);
@@ -92,7 +92,7 @@
   height: calc(100% - 30px);
   @include themed() {
     background-color: t(form-group-bg);
-    border: 1px solid t(form-group-border);
+    // border: 1px solid t(form-group-border);
   }
 
   border-radius: 8px;
@@ -228,19 +228,19 @@
       }
 
       &--activeBtn {
-        border: 1px solid #789980;
-        background-color: #deeedc;
+        border: 1px solid #039855;
+        background-color: #12b76a43;
         p {
-          color: #789980 !important;
+          color: white !important;
         }
       }
 
       &--inactiveBtn {
         margin-left: 10px;
-        border: 1px solid #d27e67;
-        background-color: #fde7ea;
+        border: 1px solid #f04438;
+        background-color: #f044382b;
         p {
-          color: #d5765c !important;
+          color: white !important;
         }
       }
 
@@ -257,10 +257,10 @@
           background-color: #a4adbb;
 
           &--activeDot {
-            background-color: #789980 !important;
+            background-color: #12b76a !important;
           }
           &--inactiveDot {
-            background-color: #d27e67 !important;
+            background-color: #c4320a !important;
           }
         }
       }

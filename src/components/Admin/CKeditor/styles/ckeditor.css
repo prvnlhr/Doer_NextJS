@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import "../custom.css";
 @media print {
   body {
@@ -8,7 +6,6 @@
 }
 
 .main-container {
-  font-family: "Lato";
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -19,19 +16,19 @@
 }
 
 .ck-content {
-  font-family: "Lato";
   line-height: 1.6;
   word-break: break-word;
   padding: 0px 25px !important;
-  height: 355px !important;
+  height: 350px !important;
   border-left: none !important;
   border-right: none !important;
   border-bottom: none !important;
+  /* border: 1px solid red !important; */
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .ck-content {
-    height: 455px !important;
+    height: 450px !important;
   }
 }
 .ck-content::-webkit-scrollbar {
@@ -39,7 +36,7 @@
 }
 
 .ck-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f1f11a;
 }
 
 .ck-content::-webkit-scrollbar-thumb {
@@ -222,7 +219,7 @@ h6 {
 
 .ck-content pre {
   background-color: var(--ck-content-pre-bg) !important;
-  border: 1px solid var(--ck-content-pre-border);
+  border: 1px solid var(--ck-content-pre-border) !important;
 }
 .ck-content code {
   color: var(--ck-content-code-text);

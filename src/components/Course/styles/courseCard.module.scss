@@ -113,13 +113,13 @@
     padding-right: 2%;
 
     p {
-      font-size: 0.6rem;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       white-space: normal;
       line-height: 1.8;
+      font-size: 0.7rem;
       @include themed {
         color: t(secondary-color);
       }

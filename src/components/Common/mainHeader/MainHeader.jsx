@@ -75,18 +75,20 @@ const MainHeader = () => {
           )
         )}
 
-        <div className={styles.menuIconWrapper} ref={iconRef}>
-          <div
-            className={styles.popUpIconDiv}
-            onClick={() => setShowPopUp((prev) => !prev)}
-          >
-            <PopUpMenuIcon />
+        {status === "authenticated" && (
+          <div className={styles.menuIconWrapper} ref={iconRef}>
+            <div
+              className={styles.popUpIconDiv}
+              onClick={() => setShowPopUp((prev) => !prev)}
+            >
+              <PopUpMenuIcon />
+            </div>
           </div>
-        </div>
+        )}
 
         {showPopUp && (
           <div className={popUpStyles.popMenuWrapper} ref={popupRef}>
-            <div className={popUpStyles.themeToggleCell}>
+            {/* <div className={popUpStyles.themeToggleCell}>
               <div
                 className={`${popUpStyles.themeToggleBtnWrapper} `}
                 onClick={toggleTheme}
@@ -106,7 +108,7 @@ const MainHeader = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {status === "authenticated" && (
               <>
                 <div className={popUpStyles.nameCell}>

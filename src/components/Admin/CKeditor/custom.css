@@ -2,8 +2,6 @@
 }
 
 .theme--dark {
-  --ck-color-base-background: #232529;
-
   --ck-color-text: hsl(0, 0%, 98%);
   --ck-color-button-default-hover-background: #a399f2;
   --ck-color-button-on-color: white;
@@ -16,8 +14,8 @@
   --ck-content-p: white;
   --ck-content-h: white;
   --ck-content-li: white;
-  --ck-content-pre-bg: #1d1f2a;
-  --ck-content-pre-border: #30343d;
+  --ck-content-pre-bg: #15181d;
+  --ck-content-pre-border: #393939;
   --ck-content-code-text: white;
   --ck-content-strong: white;
   --ck-content-td: white;
@@ -25,7 +23,7 @@
   --ck-color-base-foreground: hsl(0, 0%, 20%);
 
   /* --ck-color-base-background: hsl(0, 0%, 10%); */
-  --ck-color-base-background: #232529;
+  --ck-color-base-background: #22262c;
 
   --ck-color-base-border: hsl(220, 6%, 30%);
   --ck-color-base-action: hsl(104, 50.2%, 60%);

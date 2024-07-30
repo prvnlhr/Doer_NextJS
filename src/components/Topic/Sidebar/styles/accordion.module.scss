@@ -67,7 +67,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    // border: 1px solid salmon;
+    margin-top: 10px;
     padding: 0;
     .chapterNameWrapper {
       width: 100%;
@@ -75,10 +75,18 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
+
       p {
-        color: white;
-        font-size: 0.9rem;
+        @include themed() {
+          color: t(accordion-chapter-color);
+        }
+        font-size: 1rem;
         margin-left: 9%;
+        // font-weight: 500;
+
+        @include small-device {
+          font-size: clamp(1rem, 0rem + 5vw, 1.5rem) !important;
+        }
       }
     }
   }
@@ -115,7 +123,10 @@
         .indicatorLine {
           width: 1px;
           height: 100%;
-          background-color: #272929;
+
+          @include themed() {
+            background-color: t(accordion-line);
+          }
           position: relative;
 
           &--active {
@@ -125,7 +136,9 @@
               min-width: 2px;
               position: absolute;
               height: 40%;
-              background-color: white;
+              @include themed() {
+                background-color: t(accordion-indicator);
+              }
               z-index: 2;
               top: 0;
               bottom: 0;
@@ -152,13 +165,24 @@
         justify-content: flex-start;
         align-items: center;
         p {
-          color: #aaacb3;
-          font-size: 0.8rem;
+          @include themed() {
+            color: t(accordion-topic-color);
+            font-weight: t(topic-p-weight);
+          }
+          font-size: 0.85rem;
           margin-left: 0px;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
           width: 80%;
+
+          @include small-device {
+            font-size: clamp(
+              0.7rem,
+              -0.30000000000000004rem + 5vw,
+              1.2rem
+            ) !important;
+          }
         }
       }
 
@@ -174,6 +198,7 @@
           position: absolute;
           height: 100%;
           background-color: #34201d4f;
+          // background-color: #e1f2fb;
           z-index: 1;
           left: 0px;
           right: 0px;

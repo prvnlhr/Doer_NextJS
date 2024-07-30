@@ -106,10 +106,9 @@ $fontColorSecondary: #101828;
             height: 50px;
             width: 100%;
             @include themed() {
-              border-left: 1px solid t(form-group-border);
-              border-top: 1px solid t(form-group-border);
-
-              border-right: 1px solid t(division-border-color);
+              // border-left: 1px solid t(form-group-border);
+              // border-top: 1px solid t(form-group-border);
+              // border-right: 1px solid t(division-border-color);
               background-color: t(form-group-bg);
             }
 
@@ -170,10 +169,13 @@ $fontColorSecondary: #101828;
             @include flex-container(flex-start, center);
             // background-color: white;
             // border: 2px solid darkred;
-            @include themed() {
-              border: 1px solid t(form-group-border);
-              background-color: t(form-group-bg);
-            }
+            // border: 1px solid lightgreen;
+            background-color: #23262b;
+
+            // @include themed() {
+            //   background-color: t(form-group-bg);
+            //   // border: 1px solid t(form-group-border);
+            // }
             border-radius: 0px 0px 8px 8px;
 
             @include small-device {
@@ -327,9 +329,8 @@ $fontColorSecondary: #101828;
         p {
           margin-bottom: 10px;
           line-height: 1.8;
-          // color: #1c3553;
           @include themed() {
-            color: t(primary-color);
+            color: t(topic-p-color);
           }
           font-size: $fontSize;
           // word-break: break-all;
@@ -355,7 +356,7 @@ $fontColorSecondary: #101828;
           margin-bottom: 25px;
           font-weight: bold;
           @include themed() {
-            color: t(secondary-color);
+            color: t(primary-color);
           }
 
           position: relative;
@@ -409,7 +410,7 @@ $fontColorSecondary: #101828;
             font-weight: 400 !important;
             line-height: 1.5 !important;
             font-family: "Source Code Pro", monospace !important;
-            font-size: $codeFontSize;
+            font-size: 0.8rem;
             white-space: unset !important;
             @include small-device {
               font-size: clamp(
@@ -436,7 +437,7 @@ $fontColorSecondary: #101828;
         }
         li {
           @include themed() {
-            color: t(primary-color);
+            color: t(topic-li-color);
           }
           font-size: $fontSize;
           margin: 10px 0px;
@@ -466,7 +467,7 @@ $fontColorSecondary: #101828;
         }
         strong {
           @include themed() {
-            color: t(app-scheme-color);
+            color: t(topic-strong-color);
           }
         }
       }
@@ -498,7 +499,7 @@ $fontColorSecondary: #101828;
     border-radius: 10px;
     @include themed() {
       background-color: t(form-group-bg);
-      border: 1px solid t(form-group-border);
+      // border: 1px solid t(form-group-border);
     }
 
     &__labelDiv {
@@ -612,7 +613,7 @@ $fontColorSecondary: #101828;
 
   @include themed() {
     background-color: t(form-group-bg);
-    border: 1px solid t(form-group-border);
+    // border: 1px solid t(form-group-border);
   }
 
   .labelGroup {
@@ -680,7 +681,7 @@ $fontColorSecondary: #101828;
       aspect-ratio: 1/2;
       height: 100%;
       @include flex-container(flex-start, flex-start, $direction: column);
-      //   border: 1px solid black;
+      // border: 1px solid black;
 
       .btnContainer {
         height: 100%;
@@ -712,8 +713,8 @@ $fontColorSecondary: #101828;
   // border: 1px solid red;
   height: calc(100% - 30px);
   @include themed() {
-    border: 1px solid t(form-group-border);
     background-color: t(form-group-bg);
+    // border: 1px solid t(form-group-border);
   }
   border-radius: 8px;
   padding: 10px;
@@ -775,19 +776,19 @@ $fontColorSecondary: #101828;
       }
 
       &--activeBtn {
-        border: 1px solid #789980;
-        background-color: #deeedc;
+        border: 1px solid #039855;
+        background-color: #12b76a43;
         p {
-          color: #789980 !important;
+          color: white !important;
         }
       }
 
       &--inactiveBtn {
         margin-left: 10px;
-        border: 1px solid #d27e67;
-        background-color: #fde7ea;
+        border: 1px solid #f04438;
+        background-color: #f044382b;
         p {
-          color: #d5765c !important;
+          color: white !important;
         }
       }
 
@@ -804,10 +805,10 @@ $fontColorSecondary: #101828;
           background-color: #a4adbb;
 
           &--activeDot {
-            background-color: #789980 !important;
+            background-color: #12b76a !important;
           }
           &--inactiveDot {
-            background-color: #d27e67 !important;
+            background-color: #c4320a !important;
           }
         }
       }

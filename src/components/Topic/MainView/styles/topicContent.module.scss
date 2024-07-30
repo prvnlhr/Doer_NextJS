@@ -13,7 +13,7 @@ $codeFontSize: 0.9rem;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  // background-color: #18181a;
+  // background-color: #ffffff;
 
   .topicHeaderWrapper {
     width: 100%;
@@ -71,7 +71,6 @@ $codeFontSize: 0.9rem;
             color: t(primary-color);
           }
           font-weight: 500;
-
           @include small-device {
             font-size: clamp(
               0.7rem,
@@ -152,16 +151,12 @@ $codeFontSize: 0.9rem;
     p {
       margin-bottom: 10px;
       line-height: 1.8;
-      // color: #1c3553;
-      // @include themed() {
-      //   color: t(primary-color);
-      // }
-      color: #aaacb3;
-
+      @include themed() {
+        color: t(topic-p-color);
+      }
       font-size: $fontSize;
-      // word-break: break-all;
       width: 100%;
-      // font-weight: 500;
+      font-weight: 500;
 
       @include small-device {
         font-size: clamp(
@@ -180,12 +175,12 @@ $codeFontSize: 0.9rem;
     h6 {
       margin-top: 20px;
       margin-bottom: 25px;
-      font-weight: bold;
       @include themed() {
         color: t(primary-color);
       }
 
       position: relative;
+      font-weight: 500;
 
       &::after {
         position: absolute;
@@ -195,7 +190,6 @@ $codeFontSize: 0.9rem;
         @include themed() {
           background-color: t(app-scheme-color);
         }
-
         width: 30px;
         height: 3px;
         border-radius: 8px;
@@ -215,7 +209,7 @@ $codeFontSize: 0.9rem;
 
     pre {
       @include themed() {
-        background-color: t(code-block-bg);
+        background-color: t(card-bg-secondary);
       }
       padding: 20px 20px;
       border-radius: 0.8rem !important;
@@ -263,16 +257,13 @@ $codeFontSize: 0.9rem;
       // word-break: break-all;
     }
     li {
-      // @include themed() {
-      //   color: t(primary-color);
-      // }
-      color: #aaacb3;
-
+      @include themed() {
+        color: t(topic-li-color);
+      }
       font-size: $fontSize;
-      // word-break: break-all;
       margin: 10px 0px;
       line-height: 1.8;
-      // font-weight: 500;
+      font-weight: 500;
       @include small-device {
         font-size: clamp(
           0.8rem,
@@ -297,7 +288,7 @@ $codeFontSize: 0.9rem;
     }
     strong {
       @include themed() {
-        color: t(app-scheme-color);
+        color: t(topic-strong-color);
       }
     }
   }

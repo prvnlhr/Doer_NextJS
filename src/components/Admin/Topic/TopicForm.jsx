@@ -335,7 +335,7 @@ const TopicForm = ({ topic }) => {
                         }`}
                       ></div>
                     </div>
-                    <p>Inative</p>
+                    <p>Inactive</p>
                   </label>
                 </div>
               </div>

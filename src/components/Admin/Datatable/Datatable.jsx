@@ -85,7 +85,7 @@ const Datatable = ({ data, columns, getEditUrl, getAddUrl, getDeleteUrl }) => {
                             <StatusBadge
                               value={row[colName]}
                               color={
-                                row[colName] === true ? "#789980" : "#7E8DA4"
+                                row[colName] === true ? "#12b76a" : "#c4320a"
                               }
                             />
                           ) : colName === "chapters" ? (

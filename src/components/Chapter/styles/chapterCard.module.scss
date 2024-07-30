@@ -154,10 +154,11 @@
           width: auto;
           @include themed() {
             p {
-              font-size: 0.7rem;
+              font-size: 0.75rem;
               white-space: nowrap;
               text-overflow: ellipsis;
               margin-left: 5px;
+              font-weight: 500;
               color: t(secondary-color);
 
               @include small-device {

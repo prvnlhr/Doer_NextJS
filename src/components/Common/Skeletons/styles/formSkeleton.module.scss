@@ -45,11 +45,10 @@
     }
     &__buttonCell {
       grid-area: buttonCell;
-      border: 1px solid #b4b2b270;
+      // border: 1px solid #b4b2b270;
       @include fhw;
       @include flex-container(flex-end, center);
       border-radius: 8px;
-
       padding: 5px;
       .button {
         height: 30px;
@@ -58,8 +57,8 @@
         border: none;
         color: white;
         cursor: pointer;
-        border: 1px solid #d0d5dd37;
-        padding: 5px;
+        // border: 1px solid #d0d5dd37;
+        padding: 3px;
       }
     }
   }
@@ -70,7 +69,7 @@
   height: calc(100% - 30px);
   @include themed() {
     background-color: t(form-group-bg);
-    border: 1px solid t(form-group-border);
+    // border: 1px solid t(form-group-border);
   }
 
   border-radius: 8px;
@@ -156,7 +155,8 @@
       padding: 0px 10px 0px 10px;
       border-radius: 8px;
       @include flex-container(center, center);
-      border: 1px solid #b4b2b25c;
+      border: 1px solid rgba(112, 128, 144, 0.285);
+
       cursor: pointer;
 
       &:last-child {
@@ -180,9 +180,8 @@
         height: 100%;
         aspect-ratio: 1/2;
         @include flex-container(center, center);
-        margin-right: 5px;c
-
-        .radioDot {
+        margin-right: 5px;
+        c .radioDot {
           aspect-ratio: 1/1;
           width: 70%;
           border-radius: 50%;

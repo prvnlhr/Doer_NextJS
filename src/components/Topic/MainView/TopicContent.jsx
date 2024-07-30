@@ -178,8 +178,14 @@ const TopicContent = ({ bookmarks, topic }) => {
         )}
       </div>
       <div className={styles.topicContentWrapper}>
-        {sanitizedHTML ? parse(sanitizedHTML) : <p>Loading content...</p>}
-        <hr className={styles.endLine} ref={ref} />
+        {sanitizedHTML ? (
+          <>
+            {parse(sanitizedHTML)}
+            <hr className={styles.endLine} ref={ref} />
+          </>
+        ) : (
+          <p>Loading content...</p>
+        )}
       </div>
     </div>
   );
