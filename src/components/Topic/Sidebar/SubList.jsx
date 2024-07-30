@@ -25,7 +25,6 @@ const SubList = ({ chapter, params }) => {
       topicId: topic._id,
       topicName: topic.title,
     };
-
     localStorage.setItem("courseState", JSON.stringify(updatedState));
     setShowTopicSidebar(false);
     setCourseState(updatedState);
@@ -46,12 +45,22 @@ const SubList = ({ chapter, params }) => {
     >
       {chapter.topics.map((topic) => (
         <Link
-          href="#"
-          className={`${styles.topicNameWrapper}  
+          onClick={() => handleClick(topic)}
+          href={`/content/courses/${generateSlug(params.courseName)}/${
+            params.courseId
+          }/chapters/${generateSlug(params.chapterName)}/${
+            params.chapterId
+          }/topic/${generateSlug(topic.title)}/${topic._id}`}
+          className={`
+            ${styles.topicNameWrapper}  
             ${
               courseState.topicId === topic._id &&
               styles["topicNameWrapper--active"]
-            }`}
+            }
+              
+            ${styles["topicNameWrapper--showIndicator"]}
+            
+            `}
         >
           <p>{topic.title}</p>
         </Link>

@@ -1,10 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./styles/accordion.module.scss";
-import AccordionItem from "./AccordionItem";
 import SubList from "./SubList";
 import Link from "next/link";
-import { chapters } from "@/components/courseData";
 import { useAppState } from "@/context/AppContext";
 
 const Accordion = ({ accordionListData, params }) => {
@@ -46,7 +44,7 @@ const Accordion = ({ accordionListData, params }) => {
         </div>
       </div>
       <div className={styles.mainList}>
-        {accordionListData.map((chapter, index) => (
+        {accordionListData.map((chapter) => (
           <>
             <div key={chapter._id} className={styles.mainList__chapterWrapper}>
               <Link
@@ -61,7 +59,7 @@ const Accordion = ({ accordionListData, params }) => {
                 <p>{chapter.title}</p>
               </Link>
             </div>
-            <SubList chapter={chapter} />
+            <SubList params={params} chapter={chapter} />
           </>
         ))}
       </div>
