@@ -12,9 +12,9 @@
   grid-template-columns: 15% 85%;
   grid-template-rows: 50px 50px minmax(0, 1fr);
 
-  @include themed() {
-    border-top: 1px solid t(division-border-color);
-  }
+  // @include themed() {
+  //   border-top: 1px solid t(division-border-color);
+  // }
 
   @media (max-width: 768px) {
     grid-template-areas:
