@@ -51,18 +51,25 @@ const SubList = ({ chapter, params }) => {
           }/chapters/${generateSlug(params.chapterName)}/${
             params.chapterId
           }/topic/${generateSlug(topic.title)}/${topic._id}`}
-          className={`
-            ${styles.topicNameWrapper}  
-            ${
-              courseState.topicId === topic._id &&
-              styles["topicNameWrapper--active"]
-            }
-              
-            ${styles["topicNameWrapper--showIndicator"]}
-            
-            `}
+          className={`${styles.topicNameWrapper}`}
         >
-          <p>{topic.title}</p>
+          <div className={styles.indicatorDiv}>
+            {isTopicCompleted(topic._id) ? (
+              <div className={styles.checkedIconDiv}>
+                <CheckedIcon />
+              </div>
+            ) : (
+              <div
+                className={`${styles.indicatorLine} ${
+                  courseState.topicId === topic._id &&
+                  styles["indicatorLine--active"]
+                }`}
+              ></div>
+            )}
+          </div>
+          <div className={styles.topicTitleDiv}>
+            <p>{topic.title}</p>
+          </div>
         </Link>
       ))}
     </div>

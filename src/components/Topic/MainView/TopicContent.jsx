@@ -146,7 +146,7 @@ const TopicContent = ({ bookmarks, topic }) => {
           </div>
           <div className={styles.durationTextDiv}>
             <p>
-              {topic.duration} <span>min read</span>
+              {topic.duration} <span>min</span>
             </p>
           </div>
         </div>
