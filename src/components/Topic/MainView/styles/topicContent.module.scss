@@ -191,7 +191,7 @@ $codeFontSize: 0.9rem;
           background-color: t(app-scheme-color);
         }
         width: 30px;
-        height: 3px;
+        height: 2px;
         border-radius: 8px;
       }
     }
@@ -297,6 +297,11 @@ $codeFontSize: 0.9rem;
       @include themed() {
         color: t(topic-strong-color);
       }
+    }
+    hr {
+      height: 1px;
+      background-color: #24262e;
+      border: none;
     }
   }
 }

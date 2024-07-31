@@ -24,7 +24,6 @@
       p {
         font-size: 0.8rem;
         letter-spacing: 0.3px;
-        font-weight: 500;
         @include small-device {
           font-size: clamp(
             0.7rem,
@@ -35,9 +34,10 @@
       }
 
       &--normalText {
-        @include themed() {
-          color: t(primary-color);
-        }
+        // @include themed() {
+        //   color: t(primary-color);
+        // }
+        color: #aaacb3;
         border: 1px solid transparent;
         &:hover {
           border-bottom: 1px solid #7e8da4;
@@ -48,6 +48,7 @@
         @include themed() {
           color: t(app-scheme-color);
         }
+        font-weight: 500 !important;
         border: none !important;
       }
     }

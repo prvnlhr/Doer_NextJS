@@ -62,7 +62,7 @@
     &::before {
       content: "";
       width: 20px;
-      height: 3px;
+      height: 2px;
       @include themed() {
         background-color: t(app-scheme-color);
       }

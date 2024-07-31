@@ -38,7 +38,7 @@
     &::after {
       position: absolute;
       content: "";
-      height: 3px;
+      height: 2px;
       width: 20px;
       @include themed() {
         background-color: t(app-scheme-color);
@@ -124,6 +124,7 @@
         justify-content: center;
         align-items: center;
         // border: 1px solid white;
+        z-index: 2;
 
         .indicatorLine {
           width: 1px;
@@ -144,7 +145,6 @@
               @include themed() {
                 background-color: t(accordion-indicator);
               }
-              z-index: 2;
               top: 0;
               bottom: 0;
               left: -0.5px;
@@ -169,6 +169,8 @@
         // border: 1px solid red;
         justify-content: flex-start;
         align-items: center;
+        z-index: 2;
+
         p {
           @include themed() {
             color: t(accordion-topic-color);
@@ -193,8 +195,9 @@
 
       &:hover {
         p {
-          color: #e67e4e;
-          z-index: 4;
+          // color: #e67e4e !important;
+          color: #ab9ef6 !important;
+          z-index: 1;
         }
 
         &::after {
@@ -202,8 +205,8 @@
           width: 95%;
           position: absolute;
           height: 100%;
-          background-color: #34201d4f;
-          // background-color: #e1f2fb;
+          // background-color: #34201d4f;
+          background-color: #13131a;
           z-index: 1;
           left: 0px;
           right: 0px;
