@@ -5,105 +5,161 @@
 .popMenuWrapper {
   position: absolute;
   width: 150px;
-  @include themed() {
-    background-color: t(card-bg-primary);
-    box-shadow: t(card-box-shadow-secondary);
-  }
-
+  // @include themed() {
+  //   background-color: t(card-bg-primary);
+  // box-shadow: t(card-box-shadow-secondary);
+  // }
+  background-color: #2a2b32;
   height: auto;
   padding: 5px;
-  top: 80px;
+  top: 70px;
   right: 25px;
   z-index: 100;
   display: grid;
   grid-template-areas:
-    "themeToggleCell"
-    "nameCell"
+    "userInfoCell"
     "logoutCell";
-  // grid-template-rows: 35px 50px 35px;
-  grid-template-rows: 0px 50px 35px;
+  grid-template-rows: 50px 35px;
   grid-template-columns: 100%;
 
-  .themeToggleCell {
-    grid-area: themeToggleCell;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // border: 1px solid red;
-    @include fhw;
+  @include small-device {
+    width: clamp(8rem, 0rem + 40vw, 12rem) !important;
   }
-  .nameCell {
-    grid-area: nameCell;
+
+  .userInfoCell {
+    grid-area: userInfoCell;
     @include fhw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    // border: 1px solid white;
+    display: grid;
+    grid-template-areas:
+      "userIconCell userNameCell"
+      "userIconCell userEmailCell";
+    grid-template-rows: 60% 40%;
+    grid-template-columns: auto minmax(0, 1fr);
 
-    div {
-      flex: 1;
+    .userIconCell {
+      grid-area: userIconCell;
       height: 100%;
+      aspect-ratio: 1/1;
+      // border: 1px solid skyblue;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      // border: 1px solid red;
-      overflow: hidden;
-
-      p {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        margin-left: 5px;
-      }
-
-      &:first-child {
-        width: 100%;
-        height: 50%;
+      .userBadgeDiv {
+        width: 70%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        // border: 1px solid white;
         display: flex;
+        justify-content: center;
         align-items: center;
-
+        background-color: #ab9ef6;
         p {
-          @include themed() {
-            color: t(secondary-color);
-          }
-          font-size: 0.6rem;
-        }
-      }
-
-      &:last-child {
-        width: 100%;
-        height: 50%;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: flex-start;
-        p {
-          @include themed() {
-            color: t(primary-color);
+          font-size: 1rem;
+          font-weight: 600;
+          color: #06060e;
+          @include small-device {
+            font-size: 1.2rem;
           }
         }
       }
     }
+    .userNameCell {
+      grid-area: userNameCell;
+      @include fhw;
+      // border: 1px solid salmon;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      p {
+        font-size: 0.9rem;
+        width: 95%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        @include small-device {
+          font-size: clamp(
+            0.9rem,
+            0.4999999999999999rem + 2.000000000000001vw,
+            1.1rem
+          ) !important;
+        }
+      }
+    }
+    .userEmailCell {
+      grid-area: userEmailCell;
+      @include fhw;
+      // border: 1px solid lightgreen;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      p {
+        font-size: 0.6rem;
+        width: 95%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        @include small-device {
+          font-size: clamp(
+            0.6rem,
+            0.29999999999999993rem + 1.5000000000000002vw,
+            0.75rem
+          ) !important;
+        }
+      }
+    }
   }
+
   .logoutCell {
     grid-area: logoutCell;
     display: flex;
-    // border: 1px solid red;
+    border-top: 1px solid rgba(112, 128, 144, 0.321);
     @include fhw;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    button {
-      width: 100%;
-      height: 100%;
-      background-color: #b42318;
-      border: none;
+    &:hover {
+      background-color: #13131a;
+    }
+    .logoutBtn {
+      width: 85%;
+      height: 90%;
+      background: none;
       outline: none;
+      display: grid;
+      grid-template-areas: "lgIconCell lgTextCell";
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-rows: 100%;
+      border: none;
       cursor: pointer;
-      p {
-        font-size: 0.8rem;
-        color: white;
+
+      .lgIconCell {
+        grid-area: lgIconCell;
+        height: 100%;
+        aspect-ratio: 1/1;
+        // border: 1px solid lightgreen;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+      }
+      .lgTextCell {
+        grid-area: lgTextCell;
+        @include fhw;
+        // border: 1px solid salmon;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        p {
+          font-size: 0.8rem;
+          @include small-device {
+            font-size: clamp(
+              0.8rem,
+              0.19999999999999996rem + 3.0000000000000004vw,
+              1.1rem
+            ) !important;
+          }
+        }
       }
     }
   }

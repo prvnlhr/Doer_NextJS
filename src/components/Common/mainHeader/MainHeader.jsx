@@ -16,7 +16,6 @@ const MainHeader = () => {
   const { toggleTheme, theme } = useTheme();
   const { data: session, status } = useSession();
   const pathname = usePathname();
-
   const [showPopUp, setShowPopUp] = useState(false);
   const popupRef = useRef(null);
   const iconRef = useRef(null);
@@ -74,7 +73,6 @@ const MainHeader = () => {
             </Link>
           )
         )}
-
         {status === "authenticated" && (
           <div className={styles.menuIconWrapper} ref={iconRef}>
             <div
@@ -88,44 +86,60 @@ const MainHeader = () => {
 
         {showPopUp && (
           <div className={popUpStyles.popMenuWrapper} ref={popupRef}>
-            {/* <div className={popUpStyles.themeToggleCell}>
-              <div
-                className={`${popUpStyles.themeToggleBtnWrapper} `}
-                onClick={toggleTheme}
-              >
-                <div
-                  className={`${popUpStyles.toggleBtn} ${
-                    popUpStyles[
-                      `toggleBtn--${theme === "dark" ? "dark" : "light"}`
-                    ]
-                  }`}
-                >
-                  <div className={popUpStyles.btnIconDiv}>
-                    {theme === "dark" ? <MoonIcon /> : <SunIcon />}
-                  </div>
-                  <div className={popUpStyles.btnTextDiv}>
-                    <p>{theme === "dark" ? "Dark" : "Light"}</p>
-                  </div>
+            <div className={popUpStyles.userInfoCell}>
+              <div className={popUpStyles.userIconCell}>
+                <div className={popUpStyles.userBadgeDiv}>
+                  <p>{session?.user?.name.charAt(0)}</p>
                 </div>
               </div>
-            </div> */}
-            {status === "authenticated" && (
-              <>
-                <div className={popUpStyles.nameCell}>
-                  <div>
-                    <p>Logged in as -</p>
-                  </div>
-                  <div>
-                    <p>Praveen Lohar</p>
-                  </div>
+              <div className={popUpStyles.userNameCell}>
+                <p>{session.user.name}</p>
+              </div>
+              <div className={popUpStyles.userEmailCell}>
+                <p>{session.user.email}</p>
+              </div>
+            </div>
+            <div className={popUpStyles.logoutCell}>
+              <button type="button" className={popUpStyles.logoutBtn}>
+                <div className={popUpStyles.lgIconCell}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g opacity="0.4">
+                      <path
+                        d="M17.4395 14.62L19.9995 12.06L17.4395 9.5"
+                        stroke="#AB9EF6"
+                        stroke-width="1.5"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M9.75977 12.0596H19.9298"
+                        stroke="#AB9EF6"
+                        stroke-width="1.5"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </g>
+                    <path
+                      d="M11.7598 20C7.33977 20 3.75977 17 3.75977 12C3.75977 7 7.33977 4 11.7598 4"
+                      stroke="#AB9EF6"
+                      stroke-width="1.5"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
-                <div className={popUpStyles.logoutCell}>
-                  <button type="button" onClick={() => signOut()}>
-                    <p>Logout</p>
-                  </button>
+                <div className={popUpStyles.lgTextCell}>
+                  <p>Sign out</p>
                 </div>
-              </>
-            )}
+              </button>
+            </div>
           </div>
         )}
       </div>
