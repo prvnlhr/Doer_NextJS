@@ -56,7 +56,7 @@ const LinkButton = ({ to, linkProps }) => {
           <g clipPath="url(#clip0_211_155)">
             <path
               d="M1 14.6714L14.3201 1M14.3201 1V14.1246M14.3201 1H1.5328"
-              stroke="white"
+              stroke="#06060E"
               strokeWidth="1.53696"
               strokeLinejoin="round"
             />

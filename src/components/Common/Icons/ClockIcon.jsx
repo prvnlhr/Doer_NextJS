@@ -7,21 +7,21 @@ const ClockIcon = () => {
   return (
     <svg
       className={styles.icon}
-      viewBox="0 0 22 22"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M10.75 0C4.81294 0 0 4.81294 0 10.75C0 16.6871 4.81294 21.5 10.75 21.5C16.6871 21.5 21.5 16.6871 21.5 10.75C21.5 4.81294 16.6871 0 10.75 0Z"
-        fill={theme === "dark" ? "#7776b3" : "#6167a0"}
+        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+        stroke="#AB9EF6"
+        stroke-width="1.5"
       />
       <path
-        d="M10.75 6.75V10.4824C10.75 10.6496 10.8336 10.8057 10.9726 10.8984L13.75 12.75"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
+        opacity="0.3"
+        d="M12 8V11.7324C12 11.8996 12.0836 12.0557 12.2226 12.1484L15 14"
+        stroke="#AB9EF6"
+        stroke-width="1.5"
+        stroke-linecap="round"
       />
     </svg>
   );

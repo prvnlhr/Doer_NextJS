@@ -47,7 +47,8 @@
       cursor: pointer;
       p {
         font-size: 0.85rem;
-        color: white;
+        color: #06060e;
+        font-weight: 500;
         @include small-device {
           font-size: clamp(
             0.8rem,

@@ -106,7 +106,7 @@
         p {
           font-size: 0.75rem;
           white-space: nowrap;
-          color: white;
+          color: #06060e;
           font-weight: 500;
           letter-spacing: 0.3px;
         }
@@ -318,7 +318,7 @@
   // border: 1px solid red;
 
   &__actionButton {
-    height: 85%;
+    height: 100%;
     aspect-ratio: 1/1;
     @include flex-container(center, center);
     cursor: pointer;

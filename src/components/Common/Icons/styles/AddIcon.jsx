@@ -10,13 +10,13 @@ const AddIcon = () => {
     >
       <path
         d="M4.80029 8.81445H13.2188"
-        stroke="white"
+        stroke="#06060e"
         strokeWidth="1.05231"
         strokeLinejoin="round"
       />
       <path
         d="M9.00928 13.023V4.60449"
-        stroke="white"
+        stroke="#06060e"
         strokeWidth="1.05231"
         strokeLinejoin="round"
       />

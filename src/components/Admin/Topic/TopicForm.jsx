@@ -9,7 +9,6 @@ import { useParams, useRouter } from "next/navigation";
 import { createTopic, updateTopic } from "@/lib/api/admin/topicsApi";
 import Spinner from "@/components/Common/Icons/Spinner";
 import CrossIcon from "@/components/Common/Icons/CrossIcon";
-import CkeditorSkeleton from "@/components/Common/Skeletons/CkeditorSkeleton";
 
 const DurationInput = ({ label, value, onChange, onBlur, formik }) => {
   const incrementHigherUnit = (higherLabel, amount) => {

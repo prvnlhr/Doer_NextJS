@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "Dank Mono",
+    "editor.fontFamily": "Hasklug Nerd Font",
     "editor.fontLigatures": true,
     "terminal.integrated.fontFamily": "Hasklug Nerd Font",
     "terminal.integrated.fontSize": 13,
@@ -7,4 +7,5 @@
     "editor.fontSize": 14,
     "terminal.integrated.fontWeightBold": "500",
     "editor.letterSpacing": 0.3,
+    "editor.fontWeight": "400",
 }

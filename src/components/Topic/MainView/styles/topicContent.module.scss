@@ -84,7 +84,7 @@ $codeFontSize: 0.9rem;
     .verticalLine {
       height: 50%;
       @include themed() {
-        background-color: t(app-scheme-color);
+        background-color: t(accordion-line);
       }
       width: 1px;
       margin-left: 5px;
