@@ -4,7 +4,7 @@ import styles from "./styles/mainHeader.module.scss";
 import popUpStyles from "./styles/popUpMenu.module.scss";
 import AppLogo from "../logo/AppLogo";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut, signIn } from "next-auth/react";
 import PopUpMenuIcon from "../Icons/PopUpMenuIcon";
 import { usePathname } from "next/navigation";
 import PopUpMenu from "./PopUpMenu";
@@ -100,7 +100,11 @@ const MainHeader = () => {
               </div>
             </div>
             <div className={popUpStyles.logoutCell}>
-              <button type="button" className={popUpStyles.logoutBtn}>
+              <button
+                type="button"
+                className={popUpStyles.logoutBtn}
+                onClick={() => signOut()}
+              >
                 <div className={popUpStyles.lgIconCell}>
                   <svg
                     viewBox="0 0 24 24"
