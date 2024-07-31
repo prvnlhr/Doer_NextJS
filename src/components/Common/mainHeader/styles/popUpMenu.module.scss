@@ -4,11 +4,9 @@
 
 .popMenuWrapper {
   position: absolute;
-  width: 150px;
-  // @include themed() {
-  //   background-color: t(card-bg-primary);
-  // box-shadow: t(card-box-shadow-secondary);
-  // }
+  width: 190px;
+  aspect-ratio: 1/0.7;
+
   background-color: #2a2b32;
   height: auto;
   padding: 5px;
@@ -19,11 +17,12 @@
   grid-template-areas:
     "userInfoCell"
     "logoutCell";
-  grid-template-rows: 50px 35px;
+  grid-template-rows: 60% 40%;
   grid-template-columns: 100%;
 
   @include small-device {
-    width: clamp(8rem, 0rem + 40vw, 12rem) !important;
+    font-size: clamp(12rem, 4rem + 40vw, 16rem) !important;
+    aspect-ratio: 1/0.7;
   }
 
   .userInfoCell {
@@ -34,13 +33,13 @@
     grid-template-areas:
       "userIconCell userNameCell"
       "userIconCell userEmailCell";
-    grid-template-rows: 60% 40%;
+    grid-template-rows: 50% 50%;
     grid-template-columns: auto minmax(0, 1fr);
 
     .userIconCell {
       grid-area: userIconCell;
       height: 100%;
-      aspect-ratio: 1/1;
+      aspect-ratio: 1/1.5;
       // border: 1px solid skyblue;
       display: flex;
       justify-content: center;
@@ -70,9 +69,9 @@
       // border: 1px solid salmon;
       display: flex;
       justify-content: flex-start;
-      align-items: center;
+      align-items: flex-end;
       p {
-        font-size: 0.9rem;
+        font-size: 1rem;
         width: 95%;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -94,17 +93,19 @@
       justify-content: flex-start;
       align-items: flex-start;
       p {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         width: 95%;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        color: #aaacb3;
         @include small-device {
-          font-size: clamp(
-            0.6rem,
-            0.29999999999999993rem + 1.5000000000000002vw,
-            0.75rem
-          ) !important;
+          // font-size: clamp(
+          //   0.6rem,
+          //   0.29999999999999993rem + 1.5000000000000002vw,
+          //   0.75rem
+          // ) !important;
+          font-size: 1rem;
         }
       }
     }
@@ -123,7 +124,7 @@
     }
     .logoutBtn {
       width: 85%;
-      height: 90%;
+      height: 70%;
       background: none;
       outline: none;
       display: grid;
@@ -141,7 +142,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 5px;
+        padding: 8px;
       }
       .lgTextCell {
         grid-area: lgTextCell;
@@ -151,7 +152,7 @@
         justify-content: flex-start;
         align-items: center;
         p {
-          font-size: 0.8rem;
+          font-size: 1rem;
           @include small-device {
             font-size: clamp(
               0.8rem,
