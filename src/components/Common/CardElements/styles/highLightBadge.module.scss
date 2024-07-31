@@ -68,9 +68,9 @@
       font-size: 0.58rem;
       @include small-device {
         font-size: clamp(
-          0.4rem,
-          -0.16000000000000003rem + 2.8000000000000003vw,
-          0.68rem
+          0.42rem,
+          -0.13999999999999996rem + 2.8vw,
+          0.7rem
         ) !important;
       }
     }

@@ -12,7 +12,7 @@ export function convertMinutesToHours(minutes) {
     const totalHours = hours + roundedFraction;
     const res = {
       number: totalHours,
-      unit: `Hours${totalHours !== 1 ? "s" : ""}`,
+      unit: `Hour${totalHours !== 1 ? "s" : ""}`,
     };
     // return `${totalHours} Hour${totalHours !== 1 ? "s" : ""}`;
     return res;
