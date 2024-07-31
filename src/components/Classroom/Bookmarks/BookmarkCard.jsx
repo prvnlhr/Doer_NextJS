@@ -34,7 +34,8 @@ const BookmarkCard = ({ bookmark }) => {
         <div className={styles.card__durationWrapper__badgeContainer}>
           <HighLightBadge
             IconComponent={ClockIcon}
-            text={`Duration ${topicDuration} Min`}
+            text={`Minutes`}
+            spanText={topicDuration}
             isHighlighted={true}
             type={"bookmark"}
           />

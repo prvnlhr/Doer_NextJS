@@ -17,7 +17,6 @@
     justify-content: flex-start;
     align-items: center;
     @include themed() {
-      border-top: 1px solid t(division-border-color);
       border-bottom: 1px solid t(division-border-color);
     }
     box-sizing: border-box;
@@ -205,9 +204,8 @@
       text-overflow: ellipsis;
       overflow: hidden;
       font-weight: 500;
-      @include themed() {
-        color: t(primary-color);
-      }
+      color: #aaacb3;
+
       &:hover {
         text-decoration: underline;
       }
