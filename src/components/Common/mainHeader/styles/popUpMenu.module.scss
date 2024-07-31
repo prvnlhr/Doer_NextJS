@@ -45,7 +45,7 @@
       justify-content: center;
       align-items: center;
       .userBadgeDiv {
-        width: 70%;
+        width: 80%;
         aspect-ratio: 1/1;
         border-radius: 50%;
         // border: 1px solid white;
@@ -76,11 +76,12 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        margin-left: 5px;
         @include small-device {
           font-size: clamp(
-            0.9rem,
-            0.4999999999999999rem + 2.000000000000001vw,
-            1.1rem
+            1.1rem,
+            0.9000000000000004rem + 0.9999999999999987vw,
+            1.2rem
           ) !important;
         }
       }
@@ -94,18 +95,19 @@
       align-items: flex-start;
       p {
         font-size: 0.8rem;
+        margin-left: 5px;
+
         width: 95%;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
         color: #aaacb3;
         @include small-device {
-          // font-size: clamp(
-          //   0.6rem,
-          //   0.29999999999999993rem + 1.5000000000000002vw,
-          //   0.75rem
-          // ) !important;
-          font-size: 1rem;
+          font-size: clamp(
+            0.85rem,
+            0.34999999999999976rem + 2.5000000000000013vw,
+            1.1rem
+          ) !important;
         }
       }
     }
