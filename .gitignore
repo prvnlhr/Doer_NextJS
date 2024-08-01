@@ -37,3 +37,8 @@ next-env.d.ts
 
 
 /src/ckeditor5/node_modules/
+
+
+# Auto Generated PWA files
+**/public/sw.js
+**/public/workbox-*.js

@@ -18,6 +18,29 @@ const poppins = Poppins({
 export const metadata = {
   title: "Do.er - E Learning",
   description: "E-Learning app",
+  generator: "Next.js",
+  manifest: "/manifest.json",
+  keywords: ["nextjs", "next14", "pwa", "next-pwa"],
+
+  authors: [
+    {
+      name: "prvnlhr",
+      url: "https://www.linkedin.com/in/praveen-lohar-338620208/",
+    },
+  ],
+
+  icons: [
+    { rel: "apple-touch-icon", url: "../../public/icons/apple-icon-180.png" },
+    { rel: "icon", url: "../../public/icons/favicon.svg" },
+  ],
+};
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  shrinkToFit: "no",
+  viewportFit: "cover",
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#A99EF0" }],
+  colorScheme: "dark",
 };
 
 const satoshi = localFont({
