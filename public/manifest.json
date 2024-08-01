@@ -1,7 +1,7 @@
 {
   "name": "Doer",
   "short_name": "Doer",
-  "theme_color": "#A99EF0",
+  "theme_color": "#0e0e0e",
   "background_color": "#0E0E0E",
   "display": "standalone",
   "orientation": "any",
