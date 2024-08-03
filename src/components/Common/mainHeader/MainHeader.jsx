@@ -58,13 +58,24 @@ const MainHeader = () => {
       </div>
       <div className={styles.headerWrapper__rightSection}>
         {status === "authenticated" && !isClassroomPage && !isAdminPath ? (
-          <Link
-            prefetch={false}
-            href={`/user/${session?.user?.userId}/classroom`}
-            className={styles.navbarLink}
-          >
-            <p>Classroom</p>
-          </Link>
+          <>
+            {session?.user?.role === "admin" && (
+              <Link
+                prefetch={false}
+                href={`/admin/courses`}
+                className={`${styles.navbarLink} ${styles.adminPanelBtn}`}
+              >
+                <p>Admin Panel</p>
+              </Link>
+            )}
+            <Link
+              prefetch={false}
+              href={`/user/${session?.user?.userId}/classroom`}
+              className={styles.navbarLink}
+            >
+              <p>Classroom</p>
+            </Link>
+          </>
         ) : (
           !isAuthPage &&
           status === "unauthenticated" && (
