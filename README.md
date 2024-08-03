@@ -1,7 +1,7 @@
 <h1 align="center">DO.er - Your MERN-Powered E-Learning Platform</h1>
 
 <p align="center">
-  <a href="https://doer.onrender.com/" target="_blank">&#128279;
+  <a href="https://doer-next.vercel.app/" target="_blank">&#128279;
     <br>
     Explore DO.er
   </a>
@@ -23,7 +23,7 @@ Effortlessly uncover tutorials, courses, and resources for any programming langu
 ### 📱 OTP Login
 Swift and secure login through OTP verification, enabling you to dive right into your educational expedition without a hitch.
 
-### 🌓 Dark Mode [coming soon...]
+### 🌓 Dark Mode 
 Shield your eyes and code with flair as our captivating dark mode awaits. Bid farewell to eyestrain and welcome a delightful coding experience, day or night.
 
 ### 🎨 Responsive UI
@@ -45,7 +45,7 @@ Observe your growth over time with real-time productivity statistics showcased e
 
 ## Embark on an Exploration!
 
-Visit [DO.er](https://www.doer-learnandcode.com) today and unlock a realm of knowledge, inspiration, and innovation. Embrace the thrill of learning, coding, and evolving with DO.er - Your Personalized Tutorial App.
+Visit [DO.er](https://doer-next.vercel.app/) today and unlock a realm of knowledge, inspiration, and innovation. Embrace the thrill of learning, coding, and evolving with DO.er - Your Personalized Tutorial App.
 
 _"Learning is a journey; allow DO.er to be your guide."_ 🚀
 
