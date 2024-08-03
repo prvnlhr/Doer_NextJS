@@ -62,4 +62,5 @@ _"Learning is a journey; allow DO.er to be your guide."_ 🚀
 
 <br></br>
 
-![Frame 483](https://github.com/prvnlhr/DO.er_mern_pwa/assets/70936225/7a70a984-86cc-43e3-804e-008917b22979)
+![MacBook Air - 1](https://github.com/user-attachments/assets/0aaed3f3-74db-459c-87aa-24674b9b0591)
+
