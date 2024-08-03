@@ -19,6 +19,7 @@ const Accordion = ({ accordionListData, params }) => {
       topicId: chapter.topics[0]._id,
       topicName: chapter.topics[0].title,
     };
+    console.log("XX", chapter.topicsCount);
     localStorage.setItem("courseState", JSON.stringify(updatedState));
     setCurrentOpenChapterId((prevId) =>
       prevId === chapter._id ? null : chapter._id

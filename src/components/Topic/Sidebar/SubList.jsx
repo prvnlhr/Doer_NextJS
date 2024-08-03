@@ -37,6 +37,11 @@ const SubList = ({ chapter, params }) => {
     <div
       className={styles.mainList__subListWrapper}
       style={{
+        minHeight:
+          currentOpenChapterId === chapter._id
+            ? `${chapter.topicsCount * 40}px`
+            : "0px",
+
         height:
           currentOpenChapterId === chapter._id
             ? `${chapter.topicsCount * 40}px`
