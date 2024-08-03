@@ -303,5 +303,46 @@ $codeFontSize: 0.9rem;
       background-color: #24262e;
       border: none;
     }
+
+    // SCSS code for styling all table tags
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      display: block;
+      overflow-x: auto;
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #24262e;
+        font-size: $fontSize;
+
+        @include small-device {
+          font-size: clamp(
+            0.8rem,
+            0.19999999999999996rem + 3.0000000000000004vw,
+            1.1rem
+          ) !important;
+        }
+        @include themed() {
+          color: t(topic-li-color);
+        }
+      }
+
+      th {
+        background-color: transparent;
+        font-weight: bold;
+      }
+
+      // Optional: Zebra striping for table rows
+      tr:nth-child(even) {
+        background-color: transparent;
+      }
+
+      tr:hover {
+        background-color: transparent;
+      }
+    }
   }
 }
