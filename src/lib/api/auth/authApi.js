@@ -4,6 +4,7 @@ import { revalidatePathHandler } from "@/app/revalidate";
 import { signIn } from "next-auth/react";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:3000";
+
 export async function signUp(userData) {
   try {
     const response = await fetch(`${BASE_URL}/api/auth/signup`, {

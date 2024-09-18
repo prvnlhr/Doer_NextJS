@@ -64,7 +64,7 @@ export async function updateChapter(chapterData, courseId, chapterId) {
     let response = await fetch(
       `${BASE_URL}/api/admin/courses/${courseId}/chapters/${chapterId}`,
       {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(chapterData),
         headers: {
           "Content-Type": "application/json",

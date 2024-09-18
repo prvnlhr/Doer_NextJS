@@ -16,6 +16,7 @@ const nextConfig = {
       },
     ],
   },
+  //https/res.cloudinary.com/de9q4gaee/image/upload/
   async headers() {
     return [
       {
