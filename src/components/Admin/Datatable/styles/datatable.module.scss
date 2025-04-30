@@ -132,8 +132,10 @@
         height: auto;
         max-height: 100%;
         position: relative;
-        @include scroll();
+        @include scroll(); // scolling in y dir
+
         @include themed() {
+          // just for dark theme
           border: 1px solid t(division-border-color);
         }
 
@@ -161,13 +163,12 @@
           }
 
           th {
+            position: relative;
             text-align: start;
             padding: 15px;
             @include themed() {
               background-color: t(table-th-bg);
             }
-
-            position: relative;
 
             &:not(:last-child)::after {
               content: "";

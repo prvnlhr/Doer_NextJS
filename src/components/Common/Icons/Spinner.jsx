@@ -4,8 +4,8 @@ import { SpinnerCircular } from "spinners-react";
 const Spinner = ({ color }) => {
   return (
     <SpinnerCircular
-      thickness={250}
-      style={{ height: "70%" }}
+      thickness={200}
+      style={{ height: "70%", width: "70%" }}
       speed={140}
       color={color ? color : "white"}
       secondaryColor="transparent"

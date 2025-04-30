@@ -16,12 +16,12 @@ const EditIcon = () => {
         stroke="#AB9EF6"
         strokeWidth="1.35407"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M13.8403 21.3936H22.2552"
         stroke="#AB9EF6"
-        stroke-opacity="0.3"
+        strokeOpacity="0.3"
         strokeWidth="1.3518"
         strokeLinecap="round"
       />

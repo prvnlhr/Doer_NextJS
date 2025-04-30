@@ -7,11 +7,7 @@ const ChaptersListPage = async ({ params, searchParams }) => {
   const courseId = params.courseId;
   const chapters = await fetchChapters(courseId);
   return (
-    <ChaptersList
-      searchParams={searchParams}
-      params={params}
-      chapters={chapters}
-    />
+    <ChaptersList searchParams={searchParams} params={params} p={chapters} />
   );
 };
 

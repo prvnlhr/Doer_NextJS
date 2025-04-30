@@ -13,12 +13,28 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         email: { label: "Email", type: "text" },
         otp: { label: "OTP", type: "text" },
       },
+
       authorize: async (credentials) => {
         try {
           await dbConnect();
 
-          // console.log(credentials.email, process.env.NEXT_PUBLIC_DEMO_LOGIN_ID);
+          // Demo account bypass
+          if (credentials.email === process.env.NEXT_PUBLIC_DEMO_LOGIN_ID) {
+            const demoUser = await User.findOne({ email: credentials.email });
+            if (!demoUser) {
+              throw new Error("Demo account not configured");
+            }
 
+            return {
+              userId: demoUser._id,
+              email: demoUser.email,
+              name: demoUser.fullname,
+              country: demoUser.country,
+              role: demoUser.role,
+            };
+          }
+
+          // Regular user flow
           const user = await User.findOne({ email: credentials.email });
           if (!user) {
             throw new Error("No user found with the email");
@@ -32,14 +48,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           if (!isOtpValid) {
             throw new Error("Invalid OTP");
           }
-          const isDemoAccount =
-            user.email === process.env.NEXT_PUBLIC_DEMO_LOGIN_ID;
 
-          if (!isDemoAccount) {
-            user.otp = null;
-            user.otpExpiry = null;
-            await user.save();
-          }
+          user.otp = null;
+          user.otpExpiry = null;
+          await user.save();
 
           return {
             userId: user._id,

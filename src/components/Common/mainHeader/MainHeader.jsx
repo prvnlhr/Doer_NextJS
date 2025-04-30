@@ -12,6 +12,7 @@ import { useTheme } from "@/context/ThemeContext";
 import SunIcon from "../Icons/SunIcon";
 import MoonIcon from "../Icons/MoonIcon";
 import UserIcon from "../Icons/UserIcon";
+
 const MainHeader = () => {
   const { toggleTheme, theme } = useTheme();
   const { data: session, status } = useSession();
@@ -127,26 +128,26 @@ const MainHeader = () => {
                         d="M17.4395 14.62L19.9995 12.06L17.4395 9.5"
                         stroke="#AB9EF6"
                         strokeWidth="1.5"
-                        stroke-miterlimit="10"
+                        strokeMiterlimit="10"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M9.75977 12.0596H19.9298"
                         stroke="#AB9EF6"
                         strokeWidth="1.5"
-                        stroke-miterlimit="10"
+                        strokeMiterlimit="10"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       />
                     </g>
                     <path
                       d="M11.7598 20C7.33977 20 3.75977 17 3.75977 12C3.75977 7 7.33977 4 11.7598 4"
                       stroke="#AB9EF6"
                       strokeWidth="1.5"
-                      stroke-miterlimit="10"
+                      strokeMiterlimit="10"
                       strokeLinecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </div>
