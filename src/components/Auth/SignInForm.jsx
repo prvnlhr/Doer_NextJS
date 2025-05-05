@@ -147,7 +147,7 @@ const SignInForm = () => {
                   </p>
                 </div>
                 <button type="submit" className={styles.submitButton}>
-                  {!formik.isSubmitting && !isDemoLogin ? (
+                  {formik.isSubmitting && !isDemoLogin ? (
                     <Spinner />
                   ) : (
                     <SubmitBtnIcon />
