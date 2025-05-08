@@ -6,6 +6,7 @@ import Chapter from "@/lib/db/models/Chapter";
 export async function GET(req, { params }) {
   await dbConnect();
   const { courseId } = params;
+  console.log(" courseId:", courseId);
   try {
     const query = {
       course: new mongoose.Types.ObjectId(courseId),
